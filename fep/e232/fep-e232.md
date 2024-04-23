@@ -4,8 +4,7 @@ authors: silverpill <@silverpill@mitra.social>
 status: FINAL
 dateReceived: 2022-08-01
 dateFinalized: 2023-12-03
-trackingIssue: https://codeberg.org/fediverse/fep/issues/14
-discussionsTo: https://socialhub.activitypub.rocks/t/fep-e232-object-links/2722
+discussionsTo: https://codeberg.org/fediverse/fep/issues/14
 ---
 # FEP-e232: Object Links
 
@@ -79,8 +78,6 @@ Note that the `content` includes the `RE: <url>` microsyntax but consuming imple
 - Pleroma ([via MRF](https://git.pleroma.social/pleroma/pleroma/-/blob/v2.6.0/lib/pleroma/web/activity_pub/mrf/quote_to_link_tag_policy.ex))
 - Threads ([announcement](https://engineering.fb.com/2024/03/21/networking-traffic/threads-has-entered-the-fediverse/))
 - [Friendica](https://github.com/friendica/friendica/pull/14032)
-- Bridgy Fed
-- [Hollo](https://hollo.social/@hollo/01920132-739e-7eff-9f5f-424282884eee)
 
 ## References
 
