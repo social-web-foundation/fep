@@ -89,8 +89,8 @@ Fediverse Enhancement Proposals must be placed in the public domain by the autho
 stateDiagram-v2
     accTitle: FEP process flowchart
     accDescr {
-        The process begins from the "DRAFT" state, followed by either of the "FINAL" or "WITHDRAWN" state.
-        The "WITHDRAWN" state can go back to the "DRAFT" state.
+        The process begins from the "DRAFT" status, followed by either of the "FINAL" or "WITHDRAWN" status.
+        The "WITHDRAWN" status can go back to the "DRAFT" status.
     }
     [*] --> DRAFT
     DRAFT --> FINAL
