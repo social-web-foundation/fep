@@ -27,7 +27,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 This activity is similar to `Like` activity. In addition to standard properties of `Like` activity, `EmojiReact` activity MUST have a `content` property. Reaction content MUST be either a single unicode grapheme, or a shortcode of a custom emoji. The shortcode MUST be enclosed in colons.
 
-If custom emoji is used, `EmojiReact` activity MUST have a `tag` property containing a single `Emoji` object (which is specified in [Mastodon ActivityPub extension documentation](https://docs.joinmastodon.org/spec/activitypub/#Emoji)), and its `name` MUST be present in reaction content. The embedded `Emoji` can originate from a server that is different from the actor's server.
+If custom emoji is used, `EmojiReact` activity MUST have a `tag` property containing a single `Emoji` object (which is specified in [Mastodon ActivityPub extension documentation](https://docs.joinmastodon.org/spec/activitypub/#Emoji)). The value of its `name` property MUST be a shortcode that matches the shortcode in reaction content, and it SHOULD be enclosed in colons. The embedded `Emoji` can originate from a server that is different from the actor's server.
 
 An actor can generate multiple `EmojiReact` activities for a single `object`. However, implementers MAY choose to not allow more than one reaction with the same emoji, or more than one reaction per object.
 
