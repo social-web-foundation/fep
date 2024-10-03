@@ -48,7 +48,7 @@ The context is as follows:
 
 ## Terms
 
-The context defines one property.
+The context defines two properties.
 
 ### `thread`
 
