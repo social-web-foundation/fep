@@ -2,8 +2,8 @@
 slug: "76ea"
 authors: Evan Prodromou <evan@socialwebfoundation.org>
 status: DRAFT
-dateReceived: 1970-01-01
-discussionsTo: https://forum.example/topics/xxxx
+dateReceived: 2024-10-04
+discussionsTo: https://codeberg.org/evanp/fep/issues
 ---
 # FEP-76ea: Conversation Threads
 
