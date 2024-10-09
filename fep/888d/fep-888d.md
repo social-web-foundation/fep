@@ -251,21 +251,23 @@ If the term definition contains JSON-LD keywords like `@id`, `@vocab`, `@set`, o
 
 ### Using the python script
 
-Source code for the script is available in `scripts/make_definition.py`.
+Source code for the script is available in `make_definition.py`, currently co-located in the FEP-888d folder.
 
-The script will operate according to the following rules:
+The script will operate according to the following logic:
 
 #### Options available
 
 - GENERATE_CONTEXT_FROM_TERMDEFS: if true, will automatically generate a context. The generated context can be manipulated by the presence of JSON-LD keywords like `@id`, `@vocab`, `@set`, and `@list`.
 - OUTPUT_FORMATS: a list of formats to be used when generating outputs for both singular term definitions as well as FEP-wide schema or ontology files.
+- PATH_TO_CONTEXT: a pre-written context document whose context mapping will be injected into the JSON-LD output of the FEP. Defaults to the JSON-LD alternate format of the FEP (`fep-$SLUG.jsonld` co-located within the FEP folder). Failure to read this path as valid JSON will lead to an empty context mapping.
 
 #### Algorithm
 
 1) Render markdown as HTML.
 2) Find all HTML elements that have `id` and `resource`. These are considered "term definitions".
 3) Initialize an empty graph for the entire FEP.
-4) Initialize an empty context mapping for the entire FEP, or load it manually from `context.jsonld` co-located in the FEP folder.
+4) Initialize an empty context mapping for the entire FEP.
+4.1) If GENERATE_CONTEXT_FROM_TERMDEFS is set to false, then try to load an existing context mapping from PATH_TO_CONTEXT.
 5) Loop over all elements identified as "term definitions".
 5.1) Initialize an empty graph for the current term.
 5.2) Set the subject `s` equal to the `resource` attribute of the element.
@@ -294,8 +296,8 @@ The script will operate according to the following rules:
 5.6.11) If the `options` mapping is not empty, then map `term_name` to the `options` mapping. Otherwise, map `term_name` to the string `s`. This is considered a "context term definition".
 5.6.12) Insert the context term definition into the context mapping.
 5.7) Merge the current term graph into the FEP-wide graph.
-5.8) For each alternate output format in OUTPUT_FORMATS, serialize the current term graph to that format and write it to a file within a co-located subfolder with the name `term_name`.
-6) For each alternate output format in OUTPUT_FORMATS, serialize the FEP-wide graph to that format and write it to a file co-located with the name `fep-$SLUG.$FORMAT`. For example, if Turtle output is enabled, then `fep-xxxx.ttl` will be written.
+5.8) If the subject `s` is not a fragment identifier, then for each alternate output format in OUTPUT_FORMATS, serialize the current term graph to that format and write it to a file within a co-located subfolder with the name `term_name`.
+6) For each alternate output format in OUTPUT_FORMATS, serialize the FEP-wide graph to that format and write it to a file co-located with the name `fep-$SLUG.$FORMAT`. For example, if Turtle output is enabled, then `fep-xxxx.ttl` will be written. For JSON-LD output, use the current context mapping when serializing the FEP-wide graph.
 6.1) If GENERATE_CONTEXT_FROM_TERMDEFS is set to true but JSON-LD is not one of the output formats, then initialize and serialize an empty graph, using the generated context term definition.
 6.1.1) Remove the graph from the context document.
 6.1.2) Save the generated context document as `fep-xxxx.jsonld`.
@@ -327,6 +329,7 @@ Using the same fictitious terms from the above examples:
 - `exampleA` is a term for a property with some literal value (string, boolean, number)
 - `exampleB` is a term for a property that links to another node on the graph (for example, another object)
 - `exampleC` is a term for a property that is an ordered list of literal values that are specifically non-negative integers
+- `ExcludedExample` is a term for some class that is useful for ontology but not intended to be used for the context mapping
 
 We can formulate the following machine-readable term definition blocks, which are intended to provide a range of examples of various RDFa syntactical constructs for demonstration purposes. Specifically, the following mechanisms are demonstrated:
 
@@ -338,6 +341,7 @@ We can formulate the following machine-readable term definition blocks, which ar
 - Declaring multiple values for a given `property` by including multiple tags
 - Providing additional schema metadata that wasn't provided in the `@context`, such as signaling that a property is required or functional
   - Declaring that a `property` has literal `content` instead of referring to a resource, and that this content can have its own `datatype` to which it can be coerced
+- Excluding a term definition from the automatically generated context document, using the `excluded` attribute
 
 
 
@@ -473,6 +477,24 @@ We can formulate the following machine-readable term definition blocks, which ar
 }
 </code>
 </pre>
+</section>
+
+
+
+<section id="ExcludedExample" resource="https://w3id.org/fep/888d#ExcludedExample" typeof="rdfs:Class" excluded="1">
+<h3>ExcludedExample</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/888d#ExcludedExample</code></dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">Excluded Example</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">A class that is useful for ontology but not intended to be used for the context mapping</dd>
+<dt>Subclass of</dt>
+<dd><a property="rdfs:subClassOf" href="https://www.w3.org/ns/activitystreams#Object">Object</dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/888d">FEP-888d</a></dd>
+</dl>
 </section>
 
 

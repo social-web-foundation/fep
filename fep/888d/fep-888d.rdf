@@ -6,25 +6,25 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 >
+  <rdf:Description rdf:about="https://w3id.org/fep/888d/exampleA">
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:label xml:lang="en">has example relation A with the literal value</rdfs:label>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+    <rdfs:comment xml:lang="en">A property with some literal value (string, boolean, number)</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/fep/888d/SomeType"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+  </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/fep/888d/SomeType">
-    <rdfs:subClassOf rdf:resource="https://www.w3.org/ns/activitystreams#Object"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-    <rdfs:seeAlso rdf:resource="https://w3id.org/fep/888d/exampleB"/>
     <rdfs:seeAlso rdf:resource="https://w3id.org/fep/888d/exampleA"/>
     <rdfs:seeAlso rdf:resource="https://w3id.org/fep/888d/exampleC"/>
-    <rdfs:label xml:lang="en">Some Type</rdfs:label>
+    <rdfs:seeAlso rdf:resource="https://w3id.org/fep/888d/exampleB"/>
+    <rdfs:subClassOf rdf:resource="https://www.w3.org/ns/activitystreams#Object"/>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
     <rdfs:comment xml:lang="en">Some type.</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/fep/888d/exampleA">
-    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
-    <rdfs:domain rdf:resource="https://w3id.org/fep/888d/SomeType"/>
-    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
-    <rdfs:label xml:lang="en">has example relation A with the literal value</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-    <rdfs:comment xml:lang="en">A property with some literal value (string, boolean, number)</rdfs:comment>
-    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
+    <rdfs:label xml:lang="en">Some Type</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/fep/888d">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
@@ -36,23 +36,30 @@
     <dc:creator>a &lt;a@trwnh.com&gt;</dc:creator>
     <dcterms:dateSubmitted rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2023-04-10</dcterms:dateSubmitted>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/fep/888d/exampleB">
-    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
-    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment xml:lang="en">A property that links to another node on the graph (for example, another object)</rdfs:comment>
-    <rdfs:label xml:lang="en">has example relation B with</rdfs:label>
-    <rdfs:domain rdf:resource="https://w3id.org/fep/888d/SomeType"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/fep/888d/exampleC">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:comment xml:lang="en">A property that is an ordered list of literal values that are specifically non-negative integers</rdfs:comment>
     <rdfs:domain rdf:resource="https://w3id.org/fep/888d/SomeType"/>
-    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
-    <rdfs:label xml:lang="en">has an exampleC value of</rdfs:label>
-    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    <rdfs:label xml:lang="en">has an exampleC value of</rdfs:label>
     <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/888d#ExcludedExample">
+    <rdfs:comment xml:lang="en">A class that is useful for ontology but not intended to be used for the context mapping</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://www.w3.org/ns/activitystreams#Object"/>
+    <rdfs:label xml:lang="en">Excluded Example</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/888d/exampleB">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="en">A property that links to another node on the graph (for example, another object)</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    <rdfs:label xml:lang="en">has example relation B with</rdfs:label>
+    <rdfs:domain rdf:resource="https://w3id.org/fep/888d/SomeType"/>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/888d"/>
   </rdf:Description>
 </rdf:RDF>

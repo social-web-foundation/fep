@@ -5,6 +5,12 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<https://w3id.org/fep/888d#ExcludedExample> a rdfs:Class ;
+	rdfs:label "Excluded Example"@en ;
+	rdfs:comment "A class that is useful for ontology but not intended to be used for the context mapping"@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/888d> ;
+	rdfs:subClassOf as:Object .
+
 <https://w3id.org/fep/888d/SomeType> a rdfs:Class ;
 	rdfs:label "Some Type"@en ;
 	rdfs:comment "Some type."@en ;
