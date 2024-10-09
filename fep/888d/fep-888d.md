@@ -297,8 +297,20 @@ The script will operate according to the following logic:
 5.6.12) Insert the context term definition into the context mapping.
 5.7) Merge the current term graph into the FEP-wide graph.
 5.8) If the subject `s` is not a fragment identifier, then for each alternate output format in OUTPUT_FORMATS, serialize the current term graph to that format and write it to a file within a co-located subfolder with the name `term_name`.
-6) For each alternate output format in OUTPUT_FORMATS, serialize the FEP-wide graph to that format and write it to a file co-located with the name `fep-$SLUG.$FORMAT`. For example, if Turtle output is enabled, then `fep-xxxx.ttl` will be written. For JSON-LD output, use the current context mapping when serializing the FEP-wide graph.
-6.1) If GENERATE_CONTEXT_FROM_TERMDEFS is set to true but JSON-LD is not one of the output formats, then initialize and serialize an empty graph, using the generated context term definition.
+5.8.1) If HTML+RDFa is one of the OUTPUT_FORMATS, then the term definition element can be copied as-is.
+5.8.2) If Markdown is one of the OUTPUT_FORMATS:
+5.8.2.1) Write a first-level heading with the shorthand `term_name` set equal to the `id` attribute of the term definition.
+5.8.2.2) Pairwise combine each child `<dt>` element with its corresponding child `<dd>` element.
+5.8.2.3) For each pair of `<dt>` and `<dd>` element, write a definition list term and definition list definition.
+5.8.2.4) Extract examples by finding all HTML elements that are `<pre>`.
+5.8.2.5) If any examples were found, write a second-level heading with the text set to `Examples`.
+5.8.2.5) For each example block found:
+5.8.2.5.1) If a `title` attribute is present, then write a paragraph with the text set to the value of `title`.
+5.8.2.5.2) Write the start of the code block with backticks. If a `lang` attribute is present, then append its value immediately afterward.
+5.8.2.5.3) Write the inner text of the example.
+5.8.2.5.4) Write the closing backticks for closing the code block.
+6) For each alternate output format in OUTPUT_FORMATS, serialize the FEP-wide graph to that format and write it to a file co-located with the name `fep-$SLUG.$FORMAT`. For example, if Turtle output is enabled, then `fep-xxxx.ttl` will be written. For JSON-LD output, use the current context mapping when serializing the FEP-wide graph. For HTML+RDFa or Markdown output, ignore these formats. (Outputting HTML can be done as part of a separate process of rendering the Markdown with a static site generator. Outputting the Markdown makes no sense since it is the source material and should not be overwritten.)
+6.3) If GENERATE_CONTEXT_FROM_TERMDEFS is set to true but JSON-LD is not one of the output formats, then initialize and serialize an empty graph, using the generated context term definition.
 6.1.1) Remove the graph from the context document.
 6.1.2) Save the generated context document as `fep-xxxx.jsonld`.
 
@@ -361,7 +373,7 @@ We can formulate the following machine-readable term definition blocks, which ar
 <dt>Is defined by</dt>
 <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/888d">FEP-888d</a></dd>
 </dl>
-<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC">
+<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC" lang="json">
 <code>
 {
   "@context": "https://w3id.org/fep/888d",
@@ -396,7 +408,7 @@ We can formulate the following machine-readable term definition blocks, which ar
 <dt>Is defined by</dt>
 <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/888d">FEP-888d</a></dd>
 </dl>
-<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC">
+<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC" lang="json">
 <code>
 {
   "@context": "https://w3id.org/fep/888d",
