@@ -443,7 +443,7 @@ We can formulate the following machine-readable term definition blocks, which ar
 <dt>Is defined by</dt>
 <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/888d">FEP-888d</a></dd>
 </dl>
-<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC">
+<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC" lang="json">
 <code>
 {
   "@context": "https://w3id.org/fep/888d",
@@ -478,7 +478,7 @@ We can formulate the following machine-readable term definition blocks, which ar
 <dt>Is defined by</dt>
 <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/888d">FEP-888d</a></dd>
 </dl>
-<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC">
+<pre title="Example of a SomeType with properties exampleA, exampleB, exampleC" lang="json">
 <code>
 {
   "@context": "https://w3id.org/fep/888d",
