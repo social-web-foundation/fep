@@ -273,7 +273,7 @@ if not GENERATE_CONTEXT_FROM_TERMDEFS and PATH_TO_CONTEXT:
 	with open(PATH_TO_CONTEXT, 'r') as f:
 		try:
 			context = json.loads(f.read()).get('@context')
-		except:
+		except ValueError:
 			pass
 
 # process all term definitions that we found
