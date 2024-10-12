@@ -1,12 +1,12 @@
 ---
-slug: "9f1d"
-authors: Daiki "tesaguri" Mizukami <tesaguriguma+fep-9f1d@gmail.com>
+slug: "268d"
+authors: Daiki "tesaguri" Mizukami <tesaguriguma+fep-268d@gmail.com>
 status: DRAFT
 dateReceived: 2024-10-12
-discussionsTo: https://socialhub.activitypub.rocks/t/fep-9f1d-search-consent-signals-for-objects/4654
+discussionsTo: https://socialhub.activitypub.rocks/t/fep-268d-search-consent-signals-for-objects/4654
 relatedFeps: FEP-5feb
 ---
-# FEP-9f1d: Search consent signals for objects
+# FEP-268d: Search consent signals for objects
 
 ## Summary
 
@@ -52,7 +52,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 <dt>Required</dt>
 <dd property="owl:minCardinality" content="0" datatype="xsd:nonNegativeInteger">No</dd>
 <dt>Is defined by</dt>
-<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/9f1d" resource="https://w3id.org/fep/9f1d">FEP-9f1d</a></dd>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/268d" resource="https://w3id.org/fep/268d">FEP-268d</a></dd>
 </dl>
 
 A non-normative example of a publicly searchable post:
@@ -60,7 +60,7 @@ A non-normative example of a publicly searchable post:
 ```json
 {
   "@context": [
-    "https://w3id.org/fep/9f1d",
+    "https://w3id.org/fep/268d",
     "https://www.w3.org/ns/activitystreams"
   ],
   "id": "https://example.com/notes/1",
@@ -78,7 +78,7 @@ A post only searchable by the mentioned users and the author's followers:
 ```json
 {
   "@context": [
-    "https://w3id.org/fep/9f1d",
+    "https://w3id.org/fep/268d",
     "https://www.w3.org/ns/activitystreams"
   ],
   "id": "https://example.com/notes/42",
@@ -103,7 +103,7 @@ A post only searchable by the author themselves:
 ```json
 {
   "@context": [
-    "https://w3id.org/fep/9f1d",
+    "https://w3id.org/fep/268d",
     "https://www.w3.org/ns/activitystreams"
   ],
   "id": "https://example.com/notes/123",
@@ -121,7 +121,7 @@ An actor with a default searchability of `as:Public`:
 ```json
 {
   "@context": [
-    "https://w3id.org/fep/9f1d",
+    "https://w3id.org/fep/268d",
     "https://www.w3.org/ns/activitystreams"
   ],
   "id": "https://example.com/users/1",
