@@ -2,6 +2,8 @@
 slug: "9f1d"
 authors: Daiki "tesaguri" Mizukami <tesaguriguma+fep-9f1d@gmail.com>
 status: DRAFT
+dateReceived: 2024-10-12
+discussionsTo: https://socialhub.activitypub.rocks/t/fep-9f1d-search-consent-signals-for-objects/4654
 relatedFeps: FEP-5feb
 ---
 # FEP-9f1d: Search consent signals for objects
