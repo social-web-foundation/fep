@@ -48,9 +48,9 @@ a4ed
 
 By using the hash of the title as identifier we reduce the burden on facilitators to assign unique ids. This requires proposal titles to be unique.
 
-### Categories
+### Proposal Type
 
-Fediverse Enhancement Proposals are divided into two categories:
+Fediverse Enhancement Proposals are classified into following types:
 
 - Informational documents
 - Implementation proposals
@@ -61,10 +61,10 @@ Proposal metadata is placed at the top of the document as key-value pairs betwee
 
 Following metadata key-value pairs may be placed at the top of a proposal:
 
+- `type`: Indicates the type of the proposal. Can be either `informational` or `implementation`.
 - `slug`: the proposal identifier. The value must be enclosed within double quote marks, e.g. `"a4ed"`.
 - `authors`: A comma separated list of authors of the proposal. Each item of the list should contain an author's name followed by a contact address in angle brackets (e.g. `Alyssa P. Hacker <alyssa.p.hacker@email.example>`, `Alyssa P. Hacker <@alyssa.p.hacker@fediverse.example>`).
 - `status`: Indicates the proposal status. Can be either `DRAFT`, `WITHDRAWN` or `FINAL`.
-- `category`: Indicates the category of the proposal. Can be either `informational` or `implementation`.
 - `dateReceived`: Date of when the proposal was added to the repository (when status is set to `DRAFT`).
 - `dateWithdrawn`: Date of when the proposal status was set to `WITHDRAWN` (only for proposals with status `WITHDRAWN`).
 - `dateFinalized`: Date of when the proposal status was set to `FINAL` (only for proposals with status `FINAL`).
