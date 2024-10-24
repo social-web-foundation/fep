@@ -4,6 +4,7 @@ authors: pukkamustard <pukkamustard@posteo.net>
 status: FINAL
 dateReceived: 2020-10-16
 dateFinalized: 2021-01-18
+trackingIssue: https://codeberg.org/fediverse/fep/issues/201
 discussionsTo: https://codeberg.org/fediverse/fep/issues/201
 ---
 # FEP-a4ed: The Fediverse Enhancement Proposal Process
@@ -22,7 +23,7 @@ A proposal should always have the intention of improving the interoperability an
 
 The Fediverse includes applications, services and communities using the ActivityPub protocol and other protocols that foster decentralized and diverse social media and culture.
 
-Proposals may include descriptions of technical protocols and mechanism, documentation of experimental work or current best practices.
+Proposals may include descriptions of technical protocols and mechanisms, documentation of experimental work or current best practices.
 
 Proposals are not limited to technical topics and may focus on social and cultural aspects.
 
@@ -53,12 +54,14 @@ Proposal metadata is placed at the top of the document as key-value pairs betwee
 
 Following metadata key-value pairs may be placed at the top of a proposal:
 
+- `slug`: the proposal identifier. The value must be enclosed within double quote marks, e.g. `"a4ed"`.
 - `authors`: A comma separated list of authors of the proposal. Each item of the list should contain an author's name followed by a contact address in angle brackets (e.g. `Alyssa P. Hacker <alyssa.p.hacker@email.example>`, `Alyssa P. Hacker <@alyssa.p.hacker@fediverse.example>`).
 - `status`: Indicates the proposal status. Can be either `DRAFT`, `WITHDRAWN` or `FINAL`.
 - `dateReceived`: Date of when the proposal was added to the repository (when status is set to `DRAFT`).
 - `dateWithdrawn`: Date of when the proposal status was set to `WITHDRAWN` (only for proposals with status `WITHDRAWN`).
 - `dateFinalized`: Date of when the proposal status was set to `FINAL` (only for proposals with status `FINAL`).
-- `discussionsTo`: Link to the tracking issue for the proposal.
+- `trackingIssue`: Link to the tracking issue for the proposal.
+- `discussionsTo`: Link to the discussion.
 - `relatedFeps`: A comma separated list of related FEPs (e.g. `FEP-a4ed, FEP-141a, FEP-686f`).
 - `replaces`: A comma separated list of FEPs that are replaced by the proposal.
 - `replacedBy`: Identifier of a FEP that replaces the proposal.
@@ -82,23 +85,25 @@ Fediverse Enhancement Proposals must be placed in the public domain by the autho
 
 ## The Fediverse Enhancement Proposals Process
 
-```
-                                     +-------+
-                           +-------> | FINAL | 
-                           |         +-------+
-         +-------+         |
--------->| DRAFT | --------+
-         +-------+         |
-             ^             |         +-----------+
-             |             +-------> | WITHDRAWN |
-             |                       +-----------+
-             |                             |
-             +-----------------------------+
+```mermaid
+stateDiagram-v2
+    accTitle: FEP process flowchart
+    accDescr {
+        The process begins from the "DRAFT" status, followed by either of the "FINAL" or "WITHDRAWN" status.
+        The "WITHDRAWN" status can go back to the "DRAFT" status.
+    }
+    [*] --> DRAFT
+    DRAFT --> FINAL
+    DRAFT --> WITHDRAWN
+    WITHDRAWN --> DRAFT
+    FINAL --> [*]
 ```
 
 1. A Fediverse Enhancement Proposal can be submitted by individuals or groups of individuals (authors). See the `SUBMISSION.md` file for a list of accepted submission methods.
 2. Within seven days one of the facilitators will read and respond to the proposal. The facilitator checks if the proposal conforms to the required structure and fits the scope and objective of the FEPs. The facilitator may request the authors to clarify, justify, or withdraw the proposal. Such a request must not reflect the personal bias of a facilitator. Rather, it will be made strictly to maintain a high quality of submissions. The facilitators reserve the right to reject a submission when a proposal amounts to blatant misuse of the process. The authors may seek feedback from the wider community if the submitted proposal is rejected or clarifications are requested.
-3. If a FEP Facilitator approves a submission it receives the status `DRAFT` and is added to the repository. The facilitator also creates a tracking issue for the proposal.
+3. If a FEP facilitator approves a submission it receives the status `DRAFT` and is added to the repository. The facilitator also creates a tracking issue for the proposal and adds `trackingIssue` attribute to the proposal metadata.
+   - Registered proposals must have the following metadata attributes: `slug`, `authors`, `status`, `dateReceived`, `trackingIssue` and `discussionsTo`.
+   - When the status is changed to `FINAL` or `WITHDRAWN`, facilitator adds `dateFinalized` or `dateWithdrawn` attributes to the proposal metadata.
 4. While a proposal has the status `DRAFT`:
    - Authors are responsible for initiating community discussion and collecting feedback.
    - Authors may submit updates to the proposal which will be checked in to the repository by a facilitator. Others may also submit updates, but in this case a change must be approved by at least one author.

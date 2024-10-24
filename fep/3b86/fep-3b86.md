@@ -4,6 +4,7 @@ authors: Ben Pate \<@benpate@mastodon.social\>
 status: DRAFT
 dateReceived: 2024-04-19
 relatedFeps: FEP-4adb, FEP-888d
+trackingIssue: https://codeberg.org/fediverse/fep/issues/302
 discussionsTo: https://codeberg.org/fediverse/fep/issues/302
 ---
 
@@ -559,7 +560,7 @@ The TentativeReject intent publishes the API endpoint where the current user can
 #### 4.24.1. Parameters
 * `{object}` - ID of the object that the user will tentatively reject when they use this workflow.
 * `{on-success}` - (optional) URL to redirect the user to after the workflow completes.
-* `{on-cancel}` - (optional) URL to redirect users if they abort the workflow.
+* `{on-cancel}` - (optional) URL to redirect the user to if they abort the workflow.
 
 #### 4.24.2. Example
 ```json
@@ -578,7 +579,7 @@ The Travel intent publishes the API endpoint where the user can initiate a "trav
 * `{target}` - (optional) The ID of the location that the actor will travel to.
 * `{origin}` - (optional) The ID of the location that the actor will travel from.
 * `{on-success}` - (optional) URL to redirect the user to after the workflow completes.
-* `{on-cancel}` - (optional) URL to redirect users if they abort the workflow.
+* `{on-cancel}` - (optional) URL to redirect the user to if they abort the workflow.
 
 #### 4.25.2. Example
 ```json
@@ -645,7 +646,7 @@ The View intent publishes the API endpoint where the current user can initiate a
 ## 5.0. Security Considerations 
 
 ### 5.1 CSRF issues
-This FEP does not expose any additional attack vectors, but only documents the endpoints that already exist within the server.  Still, it is important to reiterate some key security practices to prevent [Cross Site Request Forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) vulnerabilities.
+It is important to reiterate some key security practices to prevent [Cross Site Request Forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) vulnerabilities.
 
 * Remote Servers MUST only send `GET` requests to Home Servers.
 * Home Servers MUST NOT change data based on GET requests.

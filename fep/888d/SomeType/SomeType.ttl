@@ -1,0 +1,11 @@
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://w3id.org/fep/888d/SomeType> a rdfs:Class ;
+	rdfs:label "Some Type"@en ;
+	rdfs:comment "Some type."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/888d> ;
+	rdfs:seeAlso <https://w3id.org/fep/888d/exampleA>,
+		<https://w3id.org/fep/888d/exampleB>,
+		<https://w3id.org/fep/888d/exampleC> ;
+	rdfs:subClassOf as:Object .
