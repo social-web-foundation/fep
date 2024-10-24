@@ -141,7 +141,7 @@ The Accept intent publishes the API endpoint where the current user can "accept"
 ```
 
 ### 4.2. Add Intent
-This intent corresponds to the ActivityStreams [Add activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-add) and is defined using the link relation `https://w3id.org/fep/3b86/Accept` .
+This intent corresponds to the ActivityStreams [Add activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-add) and is defined using the link relation `https://w3id.org/fep/3b86/Add` .
 
 The Add intent publishes the API endpoint where the current user can add an object to the designated collection..
 
@@ -259,7 +259,7 @@ The Delete intent publishes the API endpoint where the current user can initiate
 ```
 
 ### 4.8. Dislike Intent
-This intent corresponds to the ActivityStreams [Dislike activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-delete) and is defined using the link relation  `https://w3id.org/fep/3b86/Dislike`.
+This intent corresponds to the ActivityStreams [Dislike activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-dislike) and is defined using the link relation  `https://w3id.org/fep/3b86/Dislike`.
 
 The Dislike intent publishes the API endpoint where the current user can initiate a "dislike" request.
 
@@ -516,7 +516,7 @@ The Reject intent publishes the API endpoint where the current user can initiate
 ```
 
 ### 4.22. Remove Intent
-This intent corresponds to the ActivityStreams [Remove activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove) and is defined using the link relation  `https://w3id.org/fep/3b86/Offer`.
+This intent corresponds to the ActivityStreams [Remove activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-remove) and is defined using the link relation  `https://w3id.org/fep/3b86/Remove`.
 
 The Remove intent publishes the API endpoint where the current user can initiate a "remove" request.
 
@@ -535,7 +535,7 @@ The Remove intent publishes the API endpoint where the current user can initiate
 ```
 
 ### 4.23. TentativeAccept Intent
-This intent corresponds to the ActivityStreams [TentativeAccept activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-tentativeaccept), which itself is a specialization of the [Accept activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-accept) and is defined using the link relation  `https://w3id.org/fep/3b86/TentativeAccept`.
+This intent corresponds to the ActivityStreams [TentativeAccept activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-tentativeaccept), which itself is a specialization of the [Accept activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-tentativeaccept) and is defined using the link relation  `https://w3id.org/fep/3b86/TentativeAccept`.
 
 The TentativeAccept intent publishes the API endpoint where the current user can initiate an "tentative accept" request, indicating that acceptance of the original offer is tentative.
 
@@ -553,7 +553,7 @@ The TentativeAccept intent publishes the API endpoint where the current user can
 ```
 
 ### 4.24. TentativeReject Intent
-This intent corresponds to the ActivityStreams [TentativeReject activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-tentativereject), which itself is a specialization of the [Reject activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-reject) and is defined using the link relation  `https://w3id.org/fep/3b86/TentativeReject`.
+This intent corresponds to the ActivityStreams [TentativeReject activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-tentativereject), which itself is a specialization of the [Reject activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-tentativereject) and is defined using the link relation  `https://w3id.org/fep/3b86/TentativeReject`.
 
 The TentativeReject intent publishes the API endpoint where the current user can initiate an "tentative reject" request, indicating that rejection of the original offer is tentative.
 
