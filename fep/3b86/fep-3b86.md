@@ -549,7 +549,7 @@ The TentativeReject intent publishes the API endpoint where the current user can
 #### 4.24.1. Parameters
 * `{object}` - ID of the object that the user will tentatively reject when they use this workflow.
 * `{on-success}` - (optional) URL to redirect the user to after the workflow completes.
-* `{on-cancel}` - (optional) URL to redirect the user to if they abort the workflow.
+* `{on-cancel}` - (optional) URL to redirect users if they abort the workflow.
 
 #### 4.24.2. Example
 ```json
@@ -562,13 +562,13 @@ The TentativeReject intent publishes the API endpoint where the current user can
 ### 4.25. Travel Intent
 This intent corresponds to the ActivityStreams [Travel activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-travel) and is defined using the link relation  `https://w3id.org/fep/3b86/Travel`.
 
-The Travel intent publishes the API endpoint where the current user can initiate a "travel" request.
+The Travel intent publishes the API endpoint where the user can initiate a "travel" request.
 
 #### 4.25.1. Parameters
 * `{target}` - (optional) The ID of the location that the actor will travel to.
 * `{origin}` - (optional) The ID of the location that the actor will travel from.
 * `{on-success}` - (optional) URL to redirect the user to after the workflow completes.
-* `{on-cancel}` - (optional) URL to redirect the user to if they abort the workflow.
+* `{on-cancel}` - (optional) URL to redirect users if they abort the workflow.
 
 #### 4.25.2. Example
 ```json
@@ -586,7 +586,7 @@ The Undo intent publishes the API endpoint where the current user can initiate a
 #### 4.26.1. Parameters
 * `{object}` - ID of the activity that the actor will undo.
 * `{on-success}` - (optional) URL to redirect the user to after the workflow completes.
-* `{on-cancel}` - (optional) URL to redirect the user to if they abort the workflow.
+* `{on-cancel}` - (optional) URL to redirect users if they abort the workflow.
 
 #### 4.26.2. Example
 ```json
@@ -599,7 +599,7 @@ The Undo intent publishes the API endpoint where the current user can initiate a
 ### 4.27. Update Intent
 This intent corresponds to the ActivityStreams [Update activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-update) and is defined using the link relation  `https://w3id.org/fep/3b86/Update`.
 
-The Update intent publishes the API endpoint where the current user can initiate an "update" request.
+The Update intent publishes the API endpoint where the user can initiate an "update" request.
 
 #### 4.27.1. Parameters
 * `{object}` - ID of the object that the actor will update when they use this workflow.
