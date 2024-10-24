@@ -91,12 +91,22 @@ In all cases, Activity Intents intentionally use the property names defined in t
 
 In addition, remote servers MUST [Percent Encode](https://datatracker.ietf.org/doc/html/rfc3986#section-2.1) all values replaced in the href template.
 
-### 3.4 Workflow Redirects
+### 3.4 Workflow Actions
 Activity Intents MAY include additional query parameters `on-success` and `on-cancel` that allow home servers to return users to their original workflow on the remote server:
 
-**on-success** - If present in the link template, this value signifies a URL that the home server SHOULD redirect clients to once the Activity Intent workflow is complete.  If this parameter is missing, then the resulting page is left up to the home server to choose.
+**on-success** - If present in the link template, this value identifies the action that the home server SHOULD take once the Activity Intent workflow is complete.  If this parameter is missing, then the resulting page is left up to the home server to choose.
 
-**on-cancel** - If present in the link template, this value signifies a URL that the home server SHOULD redirect clients to if they abort the Activity Intent workflow.  If this parameter is missing, then the resulting page is left up to the home server to choose.
+**on-cancel** - If present in the link template, this value identifies the action that the home server SHOULD take if they abort the Activity Intent workflow.  If this parameter is missing, then the resulting page is left up to the home server to choose.
+
+#### Action: (close-window)
+If the value of either `on-success` or `on-cancel` parameter is the string `(close-window)` then the home server can assume that it is running in a pop-up window, and SHOULD close the current window.
+
+#### Action: Redirecting to a URL
+If the value of either `on-success` or `on-cancel` query parameter is a valid URL, then the home server SHOULD redirect clients to the provided URL.  When redirecting to a new URL, the home server MUST use an interstitial page that notified the user that they are being redirected, and displays the URL of the new page to them.
+
+IMPORTANT! [Unvalidated Redirects](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) are a documented vulnerability that opens the home server up to phishing attacks. 
+
+To avoid a potential security vulnerability when handling `on-success` and `on-cancel` workflows, it is important that the home server: "Force all redirects to first go through a page notifying users that they are going off of your site, with the destination clearly displayed, and have them click a link to confirm." ([owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards))
 
 ### 3.5 Endpoint Expectations
 The user's home server is a trusted environment that manages the user's sign-in status along with the rest of their social inbox and outbox.  When the remote server links to an Activity Intent provided by the home server, the layout, fields, and UI are all determined by the home server
@@ -632,12 +642,19 @@ The View intent publishes the API endpoint where the current user can initiate a
 }
 ```
 
-## 5.0. Security Considerations and CSRF issues
+## 5.0. Security Considerations 
+
+### 5.1 CSRF issues
 This FEP does not expose any additional attack vectors, but only documents the endpoints that already exist within the server.  Still, it is important to reiterate some key security practices to prevent [Cross Site Request Forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) vulnerabilities.
 
 * Remote Servers MUST only send `GET` requests to Home Servers.
 * Home Servers MUST NOT change data based on GET requests.
 * Home Servers SHOULD protect these published endpoints by generating CSRF tokens and including them with every POST request.  This validates that the request originated on the user's home server, and was initiated by the user. See [OWASP Related Controls](https://owasp.org/www-community/attacks/csrf#related-controls) for in-depth discussion.
+
+### 5.2 Open/Unvalidated Redirects
+Activity Intents includes the ability for home servers to redirect browsers to new URLs based on the `on-success` and `on-cancel` query parameters.  If improperly implemented, this has the potential to expose an [Unvalidated Redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) vulnerability, which can open the home server up to phishing attack. 
+
+To avoid a potential security vulnerability when handling `on-success` and `on-cancel` workflows, it is important that the home server: "Force all redirects to first go through a page notifying users that they are going off of your site, with the destination clearly displayed, and have them click a link to confirm." ([owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards))
 
 ## 6.0. Remote Servers: The Rest of the Equation
 This FEP provides the prerequisite information required for a "Home Server" publish Activity Intents for its Actors.  It does not specify how "Remote Servers" will use this information - i.e., how they implement "share" and "like" buttons in their content.
