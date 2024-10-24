@@ -657,6 +657,8 @@ Activity Intents includes the ability for home servers to redirect browsers to n
 
 To avoid a potential security vulnerability when handling `on-success` and `on-cancel` workflows, it is important that the home server: "Force all redirects to first go through a page notifying users that they are going off of your site, with the destination clearly displayed, and have them click a link to confirm." ([owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards))
 
+There is another good description of this issue [OAuth 2.0 Security Best Current Practice § 4.11. Open Redirection](https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-27.html#name-open-redirection)
+
 ## 6.0. Remote Servers: The Rest of the Equation
 This FEP provides the prerequisite information required for a "Home Server" publish Activity Intents for its Actors.  It does not specify how "Remote Servers" will use this information - i.e., how they implement "share" and "like" buttons in their content.
 
@@ -693,6 +695,8 @@ Remote servers MAY also account for applications that do not publish Activity In
 * [IETF RFC 7033](https://datatracker.ietf.org/doc/html/rfc7033) - WebFinger
 * [IETF RFC 3896](https://datatracker.ietf.org/doc/html/rfc3986#section-2.1) - Uniform Resource Identifier Generic Syntax
 * [IEFT RFC 2119](https://tools.ietf.org/html/rfc2119.html) - Key words for use in RFCs to Indicate Requirement Levels
+* [Unvalidated Redirects and Forwards Cheat Sheet - owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards))
+* [OAuth 2.0 Security Best Current Practice](https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-27.html)
 
 ## Copyright
 CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
