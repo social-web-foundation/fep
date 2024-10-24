@@ -99,8 +99,8 @@ Activity Intents MAY include additional query parameters `on-success` and `on-ca
 
 **on-cancel** - If present in the link template, this value identifies the action that the home server SHOULD take if they abort the Activity Intent workflow.  If this parameter is missing, then the resulting page is left up to the home server to choose.
 
-#### Action: (close-window)
-If the value of either `on-success` or `on-cancel` parameter is the string `(close-window)` then the home server can assume that it is running in a pop-up window, and SHOULD close the current window.
+#### Action: (close)
+If the value of either `on-success` or `on-cancel` parameter is the string `(close)` then the home server can assume that it is running in a pop-up window, and SHOULD close the current window.
 
 #### Action: Redirecting to a URL
 If the value of either `on-success` or `on-cancel` query parameter is a valid URL, then the home server SHOULD redirect clients to the provided URL.  When redirecting to a new URL, the home server MUST use an interstitial page that notified the user that they are being redirected, and displays the URL of the new page to them.
