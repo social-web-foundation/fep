@@ -1,6 +1,6 @@
 [
   {
-    "slug": "\"a4ed\"",
+    "slug": "a4ed",
     "authors": "pukkamustard <pukkamustard@posteo.net>",
     "status": "FINAL",
     "dateReceived": "2020-10-16",
@@ -10,7 +10,7 @@
     "title": "The Fediverse Enhancement Proposal Process"
   },
   {
-    "slug": "\"8fcf\"",
+    "slug": "8fcf",
     "authors": "Claire <claire.fep-1d7d@sitedethib.com>",
     "status": "FINAL",
     "dateReceived": "2020-10-24",
@@ -20,7 +20,7 @@
     "title": "Followers collection synchronization across servers"
   },
   {
-    "slug": "\"f1d5\"",
+    "slug": "f1d5",
     "authors": "CJ <cjslep@gmail.com>, silverpill <@silverpill@mitra.social>",
     "status": "FINAL",
     "dateReceived": "2020-12-13",
@@ -30,7 +30,7 @@
     "title": "NodeInfo in Fediverse Software"
   },
   {
-    "slug": "\"400e\"",
+    "slug": "400e",
     "authors": "Gregory Klyushnikov <activitypub@grishka.me>",
     "status": "FINAL",
     "dateReceived": "2021-02-16",
@@ -40,7 +40,7 @@
     "title": "Publicly-appendable ActivityPub collections"
   },
   {
-    "slug": "\"8c3f\"",
+    "slug": "8c3f",
     "authors": "Diogo Peralta Cordeiro <mail@diogo.site>, Phablulo Joel <phablulo@gmail.com>",
     "status": "WITHDRAWN",
     "dateReceived": "2022-01-18",
@@ -50,7 +50,7 @@
     "title": "Web Monetization"
   },
   {
-    "slug": "\"2100\"",
+    "slug": "2100",
     "authors": "Diogo Peralta Cordeiro <mail@diogo.site>",
     "status": "DRAFT",
     "dateReceived": "2022-03-31",
@@ -59,7 +59,7 @@
     "title": "Unbound Group and Organization"
   },
   {
-    "slug": "\"e232\"",
+    "slug": "e232",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "FINAL",
     "dateReceived": "2022-08-01",
@@ -69,7 +69,7 @@
     "title": "Object Links"
   },
   {
-    "slug": "\"5624\"",
+    "slug": "5624",
     "authors": "Claire <claire.fep-1d7d@sitedethib.com>",
     "status": "DRAFT",
     "dateReceived": "2022-08-23",
@@ -78,7 +78,7 @@
     "title": "Per-object reply control policies"
   },
   {
-    "slug": "\"1b12\"",
+    "slug": "1b12",
     "authors": "Felix Ableitner <me@nutomic.com>",
     "status": "FINAL",
     "dateReceived": "2022-11-12",
@@ -88,7 +88,7 @@
     "title": "Group federation"
   },
   {
-    "slug": "\"8b32\"",
+    "slug": "8b32",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2022-11-12",
@@ -97,7 +97,7 @@
     "title": "Object Integrity Proofs"
   },
   {
-    "slug": "\"c390\"",
+    "slug": "c390",
     "authors": "silverpill <silverpill@firemail.cc>",
     "status": "DRAFT",
     "dateReceived": "2022-11-23",
@@ -107,7 +107,7 @@
     "title": "Identity Proofs"
   },
   {
-    "slug": "\"cb76\"",
+    "slug": "cb76",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2022-11-29",
@@ -116,7 +116,7 @@
     "title": "Content Addressed Vocabulary"
   },
   {
-    "slug": "\"fb2a\"",
+    "slug": "fb2a",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2022-12-09",
@@ -125,7 +125,7 @@
     "title": "Actor metadata"
   },
   {
-    "slug": "\"c118\"",
+    "slug": "c118",
     "authors": "Tim Bray <tbray@texgtuality.com>",
     "status": "DRAFT",
     "dateReceived": "2023-01-16",
@@ -134,7 +134,7 @@
     "title": "Content licensing support"
   },
   {
-    "slug": "\"2e40\"",
+    "slug": "2e40",
     "authors": "Helge Krueger <helge.krueger@gmail.com>",
     "status": "WITHDRAWN",
     "dateReceived": "2023-02-13",
@@ -144,7 +144,7 @@
     "title": "The FEP Vocabulary Extension Process"
   },
   {
-    "slug": "\"7888\"",
+    "slug": "7888",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2023-03-14",
@@ -153,7 +153,7 @@
     "title": "Demystifying the context property"
   },
   {
-    "slug": "\"d767\"",
+    "slug": "d767",
     "authors": "Lynn Foster <lynnfoster@social.coop>",
     "status": "WITHDRAWN",
     "dateReceived": "2023-04-02",
@@ -163,7 +163,7 @@
     "title": "Extend ActivityPub with Valueflows"
   },
   {
-    "slug": "\"5bf0\"",
+    "slug": "5bf0",
     "authors": "Michael Puckett <michael@puckett.contact>",
     "status": "DRAFT",
     "dateReceived": "2023-04-10",
@@ -172,16 +172,16 @@
     "title": "Collection sorting and filtering"
   },
   {
-    "slug": "\"888d\"",
+    "slug": "888d",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2023-04-10",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/83",
-    "discussionsTo": "https://codeberg.org/fediverse/fep/issues/83",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-888d-using-w3id-org-fep-as-a-namespace-for-extension-terms-and-for-fep-documents/3098",
     "title": "Using https://w3id.org/fep as a base for FEP-specific namespaces"
   },
   {
-    "slug": "\"0ea0\"",
+    "slug": "0ea0",
     "authors": "silverpill <silverpill@firemail.cc>",
     "status": "DRAFT",
     "dateReceived": "2023-04-18",
@@ -190,7 +190,7 @@
     "title": "Payment Links"
   },
   {
-    "slug": "\"612d\"",
+    "slug": "612d",
     "authors": "Helge <helge.krueger@gmail.com>",
     "status": "DRAFT",
     "dateReceived": "2023-04-18",
@@ -199,7 +199,7 @@
     "title": "Identifying ActivityPub Objects through DNS"
   },
   {
-    "slug": "\"fffd\"",
+    "slug": "fffd",
     "authors": "Adam R. Nelson <adam@nels.onl>",
     "status": "DRAFT",
     "dateReceived": "2023-04-29",
@@ -208,7 +208,7 @@
     "title": "Proxy Objects"
   },
   {
-    "slug": "\"4adb\"",
+    "slug": "4adb",
     "authors": "Helge <helge.krueger@gmail.com>",
     "status": "DRAFT",
     "dateReceived": "2023-05-13",
@@ -217,7 +217,7 @@
     "title": "Dereferencing identifiers with webfinger"
   },
   {
-    "slug": "\"a070\"",
+    "slug": "a070",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2023-06-13",
@@ -226,7 +226,7 @@
     "title": "Ordered properties for plain JSON consumers"
   },
   {
-    "slug": "\"c648\"",
+    "slug": "c648",
     "authors": "Evan Prodromou <evan@prodromou.name>",
     "status": "DRAFT",
     "dateReceived": "2023-06-14",
@@ -235,7 +235,7 @@
     "title": "Blocked Collection"
   },
   {
-    "slug": "\"bad1\"",
+    "slug": "bad1",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2023-06-15",
@@ -244,7 +244,7 @@
     "title": "Object history collection"
   },
   {
-    "slug": "\"4ccd\"",
+    "slug": "4ccd",
     "authors": "Evan Prodromou <evan@prodromou.name>",
     "status": "DRAFT",
     "dateReceived": "2023-06-21",
@@ -253,7 +253,7 @@
     "title": "Pending Followers Collection and Pending Following Collection"
   },
   {
-    "slug": "\"d36d\"",
+    "slug": "d36d",
     "authors": "Zack Dunn <zack@tilde.team>",
     "status": "DRAFT",
     "dateReceived": "2023-07-01",
@@ -262,7 +262,7 @@
     "title": "Sharing Content Across Federated Forums"
   },
   {
-    "slug": "\"1970\"",
+    "slug": "1970",
     "authors": "John Livingston <git@john-livingston.fr>",
     "status": "DRAFT",
     "dateReceived": "2023-07-04",
@@ -271,7 +271,7 @@
     "title": "Chat Links"
   },
   {
-    "slug": "\"521a\"",
+    "slug": "521a",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2023-07-08",
@@ -280,7 +280,7 @@
     "title": "Representing actor's public keys"
   },
   {
-    "slug": "\"ae97\"",
+    "slug": "ae97",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2023-08-14",
@@ -289,7 +289,7 @@
     "title": "Client-side activity signing"
   },
   {
-    "slug": "\"0837\"",
+    "slug": "0837",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2023-08-17",
@@ -298,7 +298,7 @@
     "title": "Federated Marketplace"
   },
   {
-    "slug": "\"67ff\"",
+    "slug": "67ff",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2023-09-05",
@@ -307,7 +307,7 @@
     "title": "FEDERATION.md"
   },
   {
-    "slug": "\"5feb\"",
+    "slug": "5feb",
     "authors": "Claire <claire.fep-1d7d@sitedethib.com>",
     "status": "DRAFT",
     "dateReceived": "2023-09-06",
@@ -316,7 +316,7 @@
     "title": "Search indexing consent for actors"
   },
   {
-    "slug": "\"dc88\"",
+    "slug": "dc88",
     "authors": "Calvin Lee <pounce@integraldoma.in>",
     "status": "DRAFT",
     "dateReceived": "2023-09-12",
@@ -325,7 +325,7 @@
     "title": "Formatting Mathematics"
   },
   {
-    "slug": "\"d8c2\"",
+    "slug": "d8c2",
     "authors": "Evan Prodromou <evan@prodromou.name>",
     "status": "DRAFT",
     "dateReceived": "2023-09-17",
@@ -334,7 +334,7 @@
     "title": "OAuth 2.0 Profile for the ActivityPub API"
   },
   {
-    "slug": "\"7628\"",
+    "slug": "7628",
     "authors": "silverpill <silverpill@firemail.cc>",
     "status": "DRAFT",
     "dateReceived": "2023-09-20",
@@ -343,7 +343,7 @@
     "title": "Move actor"
   },
   {
-    "slug": "\"07d7\"",
+    "slug": "07d7",
     "authors": "Jennifer Moore <contact@jenniferplusplus.com>",
     "status": "DRAFT",
     "dateReceived": "2023-09-22",
@@ -352,7 +352,7 @@
     "title": "A Custom URL Scheme and Web-Based Protocol Handlers for Linking to ActivityPub Resources"
   },
   {
-    "slug": "\"37f2\"",
+    "slug": "37f2",
     "authors": "bengo <https://mastodon.social/@bengo>",
     "status": "DRAFT",
     "dateReceived": "2023-09-28",
@@ -361,7 +361,7 @@
     "title": "a policy for calls for consensus on SWICG group decisions"
   },
   {
-    "slug": "\"2677\"",
+    "slug": "2677",
     "authors": "Helge <helge.krueger@gmail.com>",
     "status": "DRAFT",
     "dateReceived": "2023-10-14",
@@ -370,7 +370,7 @@
     "title": "Identifying the Application Actor"
   },
   {
-    "slug": "\"03c1\"",
+    "slug": "03c1",
     "authors": "helge <@helge@mymath.rocks>",
     "status": "DRAFT",
     "dateReceived": "2023-11-10",
@@ -379,7 +379,7 @@
     "title": "Actors without acct-URI"
   },
   {
-    "slug": "\"ef61\"",
+    "slug": "ef61",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2023-12-06",
@@ -388,7 +388,7 @@
     "title": "Portable Objects"
   },
   {
-    "slug": "\"7502\"",
+    "slug": "7502",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2023-12-24",
@@ -397,7 +397,7 @@
     "title": "Limiting visibility to authenticated actors"
   },
   {
-    "slug": "\"2c59\"",
+    "slug": "2c59",
     "authors": "Evan Prodromou <evan@prodromou.name>",
     "status": "DRAFT",
     "dateReceived": "2024-01-04",
@@ -406,7 +406,7 @@
     "title": "Discovery of a Webfinger address from an ActivityPub actor"
   },
   {
-    "slug": "\"d556\"",
+    "slug": "d556",
     "authors": "Steve Bate <svc-fep@stevebate.net>",
     "status": "DRAFT",
     "dateReceived": "2024-01-20",
@@ -415,7 +415,7 @@
     "title": "Server-Level Actor Discovery Using WebFinger"
   },
   {
-    "slug": "\"3264\"",
+    "slug": "3264",
     "authors": "Lynn Foster <lynn@mikorizal.org>",
     "status": "DRAFT",
     "dateReceived": "2024-01-31",
@@ -424,7 +424,7 @@
     "title": "Federated Work Coordination"
   },
   {
-    "slug": "\"c5a1\"",
+    "slug": "c5a1",
     "authors": "Lynn Foster <lynn@mikorizal.org>",
     "status": "DRAFT",
     "dateReceived": "2024-01-31",
@@ -433,7 +433,7 @@
     "title": "To-do's"
   },
   {
-    "slug": "\"61cf\"",
+    "slug": "61cf",
     "authors": "FenTiger <@FenTiger@zotum.net>",
     "status": "DRAFT",
     "dateReceived": "2024-02-06",
@@ -442,7 +442,7 @@
     "title": "The OpenWebAuth Protocol"
   },
   {
-    "slug": "\"73cd\"",
+    "slug": "73cd",
     "authors": "Bumblefudge <@learningproof.xyz> / <@by_caballero@mastodon.social>",
     "status": "DRAFT",
     "relatedFeps": "FEP-8b32, FEP-7628, FEP-c390, FEP-ae97, FEP-ef61, FEP-521a",
@@ -452,7 +452,7 @@
     "title": "Migration User Stories"
   },
   {
-    "slug": "\"96ff\"",
+    "slug": "96ff",
     "authors": "Erin Shepherd <fep@erinshepherd.net>",
     "status": "DRAFT",
     "dateReceived": "2024-02-17",
@@ -461,7 +461,7 @@
     "title": "Explicit signalling of ActivityPub Semantics"
   },
   {
-    "slug": "\"6481\"",
+    "slug": "6481",
     "authors": "James Smith <james@floppy.org.uk>",
     "status": "DRAFT",
     "dateReceived": "2024-03-12",
@@ -471,7 +471,7 @@
     "title": "Specifying ActivityPub extension support with NodeInfo"
   },
   {
-    "slug": "\"9fde\"",
+    "slug": "9fde",
     "authors": "Nik Clayton <nik@ngo.org.uk>",
     "dateReceived": "2024-03-14",
     "status": "DRAFT",
@@ -480,7 +480,7 @@
     "title": "Mechanism for servers to expose supported operations"
   },
   {
-    "slug": "\"e229\"",
+    "slug": "e229",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2024-04-02",
@@ -489,7 +489,7 @@
     "title": "Best practices for extensibility"
   },
   {
-    "slug": "\"3b86\"",
+    "slug": "3b86",
     "authors": "Ben Pate \\<@benpate@mastodon.social\\>",
     "status": "DRAFT",
     "dateReceived": "2024-04-19",
@@ -499,7 +499,7 @@
     "title": "Activity Intents"
   },
   {
-    "slug": "\"7458\"",
+    "slug": "7458",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2024-04-26",
@@ -508,7 +508,7 @@
     "title": "Using the replies collection"
   },
   {
-    "slug": "\"0391\"",
+    "slug": "0391",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2024-04-29",
@@ -518,7 +518,7 @@
     "title": "Special collection proofs"
   },
   {
-    "slug": "\"db0e\"",
+    "slug": "db0e",
     "authors": "Gregory Klyushnikov <activitypub@grishka.me>",
     "status": "DRAFT",
     "dateReceived": "2024-05-03",
@@ -528,7 +528,7 @@
     "title": "Authentication mechanism for non-public groups"
   },
   {
-    "slug": "\"cd47\"",
+    "slug": "cd47",
     "authors": "Bumblefudge <bumblefudge@learningproof.xyz>",
     "status": "DRAFT",
     "dateReceived": "2024-05-31",
@@ -537,7 +537,7 @@
     "title": "Federation-friendly Addressing and Deduplication Use-Cases"
   },
   {
-    "slug": "\"c7d3\"",
+    "slug": "c7d3",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2024-06-04",
@@ -546,7 +546,7 @@
     "title": "Ownership"
   },
   {
-    "slug": "\"5e53\"",
+    "slug": "5e53",
     "authors": "Don Marti <dmarti@zgp.org>",
     "status": "DRAFT",
     "dateReceived": "2024-06-09",
@@ -555,7 +555,7 @@
     "title": "Opt-out Preference Signals"
   },
   {
-    "slug": "\"e3e9\"",
+    "slug": "e3e9",
     "authors": "Dmitri Zagidulin <@dmitri@social.coop>, bumblefudge <bumblefudge@learningproof.xyz>",
     "status": "DRAFT",
     "dateReceived": "2024-06-29",
@@ -564,7 +564,7 @@
     "title": "Actor-Relative URLs"
   },
   {
-    "slug": "\"d9ad\"",
+    "slug": "d9ad",
     "authors": "bengo <ben@bengo.co>",
     "status": "DRAFT",
     "dateReceived": "2024-07-02",
@@ -573,7 +573,7 @@
     "title": "Create Conformance Tests for Fediverse Enhancement Proposals"
   },
   {
-    "slug": "\"e965\"",
+    "slug": "e965",
     "authors": "bumblefudge <bumblefudge@learningproof.xyz>, bengo <@bengo@social.coop>",
     "status": "DRAFT",
     "dateReceived": "2024-07-05",
@@ -582,7 +582,7 @@
     "title": "Move Activity for Migrations and Announce Activity for Tombstone Events"
   },
   {
-    "slug": "\"9091\"",
+    "slug": "9091",
     "authors": "Dmitri Zagidulin <@dmitri@social.coop>",
     "status": "DRAFT",
     "dateReceived": "2024-07-08",
@@ -591,7 +591,7 @@
     "title": "Export Actor Service Endpoint"
   },
   {
-    "slug": "\"6fcd\"",
+    "slug": "6fcd",
     "authors": "Dmitri Zagidulin <@dmitri@social.coop>",
     "status": "DRAFT",
     "dateReceived": "2024-07-11",
@@ -600,7 +600,7 @@
     "title": "Account Export Container Format"
   },
   {
-    "slug": "\"c551\"",
+    "slug": "c551",
     "authors": "bengo <ben@bengo.co>",
     "status": "DRAFT",
     "dateReceived": "2024-07-11",
@@ -609,7 +609,7 @@
     "title": "Use ECMAScript Modules to Create Conformance Tests for Fediverse Enhancement Proposals"
   },
   {
-    "slug": "\"a5c5\"",
+    "slug": "a5c5",
     "authors": "AvidSeeker <avidseeker7@protonmail.com>",
     "status": "DRAFT",
     "dateReceived": "2024-07-15",
@@ -619,7 +619,7 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/368"
   },
   {
-    "slug": "\"c4ad\"",
+    "slug": "c4ad",
     "authors": "AvidSeeker <avidseeker7@protonmail.com>",
     "status": "DRAFT",
     "dateReceived": "2024-07-15",
@@ -629,7 +629,7 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/367"
   },
   {
-    "slug": "\"c893\"",
+    "slug": "c893",
     "authors": "AvidSeeker <avidseeker7@protonmail.com>",
     "status": "DRAFT",
     "dateReceived": "2024-07-15",
@@ -638,7 +638,7 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/372"
   },
   {
-    "slug": "\"eb48\"",
+    "slug": "eb48",
     "title": "Hashtags",
     "dateReceived": "2024-07-16",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/4369",
@@ -647,7 +647,7 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/373"
   },
   {
-    "slug": "\"eb22\"",
+    "slug": "eb22",
     "authors": "Manton Reece <manton@micro.blog>",
     "status": "DRAFT",
     "dateReceived": "2024-07-25",
@@ -656,7 +656,7 @@
     "title": "Supported ActivityStreams types with NodeInfo"
   },
   {
-    "slug": "\"c0e0\"",
+    "slug": "c0e0",
     "authors": "silverpill <@silverpill@mitra.social>",
     "status": "DRAFT",
     "dateReceived": "2024-08-08",
@@ -665,7 +665,7 @@
     "title": "Emoji reactions"
   },
   {
-    "slug": "\"c16b\"",
+    "slug": "c16b",
     "authors": "ilja <ilja@ilja.space>",
     "status": "DRAFT",
     "dateReceived": "2024-08-10",
@@ -675,7 +675,7 @@
     "title": "Formatting MFM functions"
   },
   {
-    "slug": "\"0499\"",
+    "slug": "0499",
     "authors": "a <trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2024-09-30",
@@ -684,7 +684,7 @@
     "title": "Delivering to multiple inboxes with a multibox endpoint"
   },
   {
-    "slug": "\"76ea\"",
+    "slug": "76ea",
     "authors": "Evan Prodromou <evan@socialwebfoundation.org>",
     "status": "DRAFT",
     "dateReceived": "2024-10-04",
@@ -693,7 +693,7 @@
     "title": "Conversation Threads"
   },
   {
-    "slug": "\"1985\"",
+    "slug": "1985",
     "authors": "a <a@trwnh.com>",
     "status": "DRAFT",
     "dateReceived": "2024-10-10",
@@ -702,7 +702,7 @@
     "title": "Signaling how an OrderedCollection is ordered"
   },
   {
-    "slug": "\"268d\"",
+    "slug": "268d",
     "authors": "Daiki \"tesaguri\" Mizukami <tesaguriguma+fep-268d@gmail.com>",
     "status": "DRAFT",
     "dateReceived": "2024-10-12",
@@ -712,7 +712,7 @@
     "title": "Search consent signals for objects"
   },
   {
-    "slug": "\"ae0c\"",
+    "slug": "ae0c",
     "authors": "Steve Bate <svc-fep@stevebate.net>",
     "status": "DRAFT",
     "category": "informational",
