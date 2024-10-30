@@ -70,7 +70,12 @@ If an application does not handle joins of an `Event` via ActivityPub, but knows
 
 ```json
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    {
+      "joinMode": "https://joinmobilizon.org/ns#joinMode"
+    }
+  ],
   "type": "Event",
   "id": "https://example.org/foo",
   "name": "New years party",
@@ -84,7 +89,13 @@ Note that `externalParticipationUrl` *MAY* also be a `mailto`-URL, which is a wa
 
 ```json
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    {
+      "joinMode": "https://joinmobilizon.org/ns#joinMode",
+      "externalParticipationUrl": "https://joinmobilizon.org/ns#externalParticipationUrl"
+    }
+  ],
   "type": "Event",
   "id": "https://example.org/fediverse-workshop",
   "name": "Fediverse Workshop",
@@ -107,7 +118,7 @@ Remaining attendee capacity *SHOULD* be shown indirectly via using the Collectio
     "https://www.w3.org/ns/activitystreams",
     {
       "attendees": {
-        "@id": "https://event-federation.eu/ns#remainingAttendeeCapacity",
+        "@id": "https://event-federation.eu/ns#attendees ",
         "@type": "https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection"
       }
     }
@@ -140,8 +151,8 @@ Federated event calendars usually have thumbnail images with fixed aspect ratios
 ```json
 {
   "@context": [
-     "https://www.w3.org/ns/activitystreams",
-      {
+    "https://www.w3.org/ns/activitystreams",
+    {
       "toot": "http://joinmastodon.org/ns#",
       "focalPoint": {
         "@container": "@list",
@@ -178,8 +189,8 @@ Example with address of type `https://schema.org/PostalAddress`:
 ```json
 {
   "@context": [
-     "https://schema.org",
-     "https://www.w3.org/ns/activitystreams"
+    "https://schema.org",
+    "https://www.w3.org/ns/activitystreams"
   ],
   "type": "Event",
   "id": "https://example.org/new-year-party",
@@ -205,7 +216,7 @@ Example with pure text address:
 ```json
 {
   "@context": [
-     "https://www.w3.org/ns/activitystreams",
+    "https://www.w3.org/ns/activitystreams",
     {
       "address": "https://schema.org/address"
     }
@@ -232,8 +243,8 @@ An online Location *SHOULD* be represented by using a multi-type of `Place` and 
 ```json
 {
   "@context": [
-     "https://schema.org",
-     "https://www.w3.org/ns/activitystreams"
+    "https://schema.org",
+    "https://www.w3.org/ns/activitystreams"
   ],
   "type": "Event",
   "id": "https://example.org/new-year-party",
@@ -250,6 +261,37 @@ An online Location *SHOULD* be represented by using a multi-type of `Place` and 
 #### Hybrid
 
 Using multiple entries in `location` makes it easy to define multiple virtual and physical locations. When not supporting multiple entries in `location` applications *MUST* use the first item.
+
+```json
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "type": "Event",
+  "id": "https://example.org/new-year-party",
+  "name": "Discussion about the Fediverse",
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "location": [
+    {
+      "type": ["Place"],
+      "name": "Fediverse University",
+      "url": "https://university.example.com",
+      "address": "15 Fediverse Street, 1337 Fediverse Town, Fediverse Country"
+    },
+    {
+      "type": ["Place", "VirtualLocation"],
+      "name": "Big Blue Button Participation Link",
+      "url": "https://bbb.example.com/meeting-room-1"
+    },
+    {
+      "type": ["Place", "VirtualLocation"],
+      "name": "Live Stream",
+      "url": "https://peertube.example.com/fediverse-discussion"
+    }
+  ]
+}
+```
 
 ### Discoverability
 
