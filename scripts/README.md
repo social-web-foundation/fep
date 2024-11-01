@@ -22,16 +22,7 @@ to update the table in `README.md`. You are now ready to commit the
 changes to the FEP (added `trackingIssue` to frontmatter) and README.md,
 added the new FEP.
 
-Run
-
-```bash
-python scripts/create_topic.py $SLUG
-```
-
-and following the instructions to create a topic on SocialHub to discuss
-the FEP.
-
-Finally, add the link to the SocialHub topic to the tracking issue, created above.
+Finally, add the link to the discussion topic to the tracking issue, created above.
 
 ## Configuration
 
