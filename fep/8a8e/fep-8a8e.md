@@ -48,7 +48,12 @@ If `endTime` is specified it *MUST* be greater than `startTime`.
 
 #### Time zone
 
-When receiving an `Event` with a `startTime` that has no offset information, the receiving application *MUST* check if `https://joinmobilizon.org/ns#timezone` is set and use that information. If the timezone setting is known, the application *SHOULD* prefer setting the `timezone` and providing a non-offset date-time for the events start and end-times rather than adding the offset directly.
+If an `Event` is primarily conducted offline in a single specific location, and the location's timezone is known, the application *SHOULD* prefer setting the `timezone` and providing the objects `startTime` and `endTime` as UTC rather than adding the offset directly.
+
+When receiving an `Event` with a `startTime` or `endTime` in UTC (indicated via the appendix "Z", "z", or "+00:00"), the receiving application *SHOULD* check if the property `timezone` is set and use that information for displaying the times.
+
+> **Warning**  
+> **ToDo:** `timezone`: `@type` and `@valueType` – evaluate [already defined `timezone`s](https://lov.linkeddata.es/dataset/lov/terms?q=timezone).
 
 ### RSVP (Attendee Management)
 
@@ -144,7 +149,7 @@ If the event has an image in the style of a flyer or a share-pic which is repres
 
 #### Banner
 
-If the `Event` has a particular banner image, this image *SHOULD* be set as the first `attachment` of type `Image` (type `Document` is also valid). To indicate that an image from within the `attachment` attribute of an `Event` should be preferred over the flyer/share-pic image(s) within `image` attribute, for the use of list pages and header images, the attribute `https://event-federation.eu/ns/isThumbnail` *SHOULD* be set.
+If the `Event` has a particular banner image, this image *SHOULD* be set as the first `attachment` of type `Image` (type `Document` is also valid). To indicate that an image from within the `attachment` attribute of an `Event` should be preferred over the flyer/share-pic image(s) within `image` attribute, for the use of list pages and header images, the attribute `https://event-federation.eu/ns#isThumbnail` *SHOULD* be set.
 
 Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore, if the image's aspect ratio is not close to 16:9 `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
 
@@ -180,7 +185,7 @@ Federated event calendars usually have thumbnail images with fixed aspect ratios
 
 #### Physical
 
-For adding information about the physical address of an event the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address`.
+For adding information about the physical address of an `Event` the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address`.
 
 This allows the address to be given as a simple text input as well as a structured `https://schema.org/PostalAddress`. Applications *MUST* be able to transmogrify both incoming types to their internal representation.
 
@@ -236,7 +241,7 @@ Example with pure text address:
 #### Virtual
 
 > **To Do**  
-> Or use a custom attribute `https://event-federation.eu/ns/#isVirtualLocation`
+> Or use a custom attribute `https://event-federation.eu/ns#isVirtualLocation`
 
 An online Location *SHOULD* be represented by using a multi-type of `Place` and `https://schema.org/VirtualLocation`. Note that it is important that `Place` *MUST* be the first item in that case. Applications *SHOULD* at least set and be able to make use of `name` and `url`.
 
