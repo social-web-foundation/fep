@@ -8,6 +8,49 @@ A Fediverse Enhancement Proposal (FEP) is a document that provides information t
 
 The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypub.rocks) developer community, a liaison of the [W3C Social Web Incubator Community Group](https://www.w3.org/community/SocialCG/). For ongoing and past discussion see the [SocialHub FEP category](https://socialhub.activitypub.rocks/c/standards/fep/54).
 
+## Submitting a FEP
+
+Do you have an idea, opinion or information that you want to share with the wider Fediverse community? You may do so with a Fediverse Enhancement Proposal (FEP).
+
+To create and submit a FEP:
+
+1. Fork this repository, and then clone it to your local machine. Check the Codeberg [Cheat sheet](https://docs.codeberg.org/collaborating/pull-requests-and-git-flow/#cheat-sheet) on how to prepare your Pull Request.
+2. Think of a title for the FEP you want to submit.
+3. Compute the identifier of the FEP by computing the hash of the title. This can be done with following Unix command:
+
+```
+$ echo -n "The title of my proposal" | sha256sum | cut -c-4
+b3f0
+```
+
+4. Create a subdirectory of [`fep/`](./fep/) using the identifier you just computed.
+5. Copy the FEP template ([fep-xxxx-template.md](./fep-xxxx-template.md)) to this subdirectory and change the filename appropriately.
+6. Use the identifer as the "slug" when filling out the frontmatter.
+
+    - For example, if your computed identifier was `abcd`, then your file would be located at `fep/abcd/fep-abcd.md` and your frontmatter would include `slug: "abcd"`.
+
+7. Write down your idea in the newly created file and commit it to a new branch in your repository (ex. fep-xxxx).
+8. When you are ready to submit the FEP, change the value of `dateReceived` field in the frontmatter to the current date.
+9. Create a discussion topic for your FEP. You can use [ActivityPub category](https://socialhub.activitypub.rocks/c/activitypub/5) on the SocialHub forum.
+10. Add `discussionsTo` field containing the URL of the discussion topic to the front matter of your FEP.
+11. Create a Pull Request to complete Step 1 of [FEP-a4ed: The Fediverse Enhancement Proposal Process](./fep/a4ed/fep-a4ed.md). Further process is described in FEP-a4ed.
+
+Alternatively to steps 3. to 6., you can run
+
+```bash
+python scripts/new_proposal.py TITLE OF YOUR PROPOSAL
+```
+
+that should create a prefilled template for you.
+
+## Facilitators
+
+The list of FEP's is maintained by the facilitators who are listed in the [FACILITATORS.md](FACILITATORS.md) file. Facilitators are neutral custodians of the FEP process, who merge PR's and create tracking issues.
+
+## Contributing
+
+Do you have ideas to improve the FEP Process? Post your suggestions to the issue tracker, or on the [SocialHub](https://socialhub.activitypub.rocks) forum. The SocialHub developer community is a "DoOcracy" which means: “pick up any task you want, and then steer it to completion”. Your contributions are most welcome, so delve in and find out how you can help.
+
 ## FEPs
 
 <!-- TODO: This table is not CommonMark (as specified by FEP-a4ed) and requires maintenance. -->
@@ -74,6 +117,7 @@ The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypu
 | [FEP-cd47: Federation-friendly Addressing and Deduplication Use-Cases](./fep/cd47/fep-cd47.md) | `DRAFT` | [#319](https://codeberg.org/fediverse/fep/issues/319) | 2024-05-31 | - |
 | [FEP-c7d3: Ownership](./fep/c7d3/fep-c7d3.md) | `DRAFT` | [#323](https://codeberg.org/fediverse/fep/issues/323) | 2024-06-04 | - |
 | [FEP-5e53: Opt-out Preference Signals](./fep/5e53/fep-5e53.md) | `DRAFT` | [#327](https://codeberg.org/fediverse/fep/issues/327) | 2024-06-09 | - |
+| [FEP-7952: Roadmap For Actor and Object Portability](./fep/7952/fep-7952.md) | `DRAFT` | [#435](https://codeberg.org/fediverse/fep/issues/435) | 2024-06-20 | - |
 | [FEP-e3e9: Actor-Relative URLs](./fep/e3e9/fep-e3e9.md) | `DRAFT` | [#346](https://codeberg.org/fediverse/fep/issues/346) | 2024-06-29 | - |
 | [FEP-d9ad: Create Conformance Tests for Fediverse Enhancement Proposals](./fep/d9ad/fep-d9ad.md) | `DRAFT` | [#350](https://codeberg.org/fediverse/fep/issues/350) | 2024-07-02 | - |
 | [FEP-e965: Move Activity for Migrations and Announce Activity for Tombstone Events](./fep/e965/fep-e965.md) | `DRAFT` | [#352](https://codeberg.org/fediverse/fep/issues/352) | 2024-07-05 | - |
@@ -88,49 +132,11 @@ The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypu
 | [FEP-c0e0: Emoji reactions](./fep/c0e0/fep-c0e0.md) | `DRAFT` | [#384](https://codeberg.org/fediverse/fep/issues/384) | 2024-08-08 | - |
 | [FEP-c16b: Formatting MFM functions](./fep/c16b/fep-c16b.md) | `DRAFT` | [#383](https://codeberg.org/fediverse/fep/issues/383) | 2024-08-10 | - |
 | [FEP-0499: Delivering to multiple inboxes with a multibox endpoint](./fep/0499/fep-0499.md) | `DRAFT` | [#402](https://codeberg.org/fediverse/fep/issues/402) | 2024-09-30 | - |
-
-## Submitting a FEP
-
-Do you have an idea, opinion or information that you want to share with the wider Fediverse community? You may do so with a Fediverse Enhancement Proposal (FEP).
-
-To create and submit a FEP:
-
-1. Fork this repository, and then clone it to your local machine. Check the Codeberg [Cheat sheet](https://docs.codeberg.org/collaborating/pull-requests-and-git-flow/#cheat-sheet) on how to prepare your Pull Request.
-2. Think of a title for the FEP you want to submit.
-3. Compute the identifier of the FEP by computing the hash of the title. This can be done with following Unix command:
-
-```
-$ echo -n "The title of my proposal" | sha256sum | cut -c-4
-b3f0
-```
-
-4. Create a subdirectory of [`fep/`](./fep/) using the identifier you just computed.
-5. Copy the FEP template ([fep-xxxx-template.md](./fep-xxxx-template.md)) to this subdirectory and change the filename appropriately.
-6. Use the identifer as the "slug" when filling out the frontmatter.
-
-    - For example, if your computed identifier was `abcd`, then your file would be located at `fep/abcd/fep-abcd.md` and your frontmatter would include `slug: "abcd"`.
-
-7. Write down your idea in the newly created file and commit it to a new branch in your repository (ex. fep-xxxx).
-8. When you are ready to submit the FEP, change the value of `dateReceived` field in the frontmatter to the current date.
-9. Create a discussion topic for your FEP. You can use [ActivityPub category](https://socialhub.activitypub.rocks/c/activitypub/5) on the SocialHub forum.
-10. Add `discussionsTo` field containing the URL of the discussion topic to the front matter of your FEP.
-11. Create a Pull Request to complete Step 1 of [FEP-a4ed: The Fediverse Enhancement Proposal Process](./fep/a4ed/fep-a4ed.md). Further process is described in FEP-a4ed.
-
-Alternatively to steps 3. to 6., you can run
-
-```bash
-python scripts/new_proposal.py TITLE OF YOUR PROPOSAL
-```
-
-that should create a prefilled template for you.
-
-## Facilitators
-
-The list of FEP's is maintained by the facilitators who are listed in the [FACILITATORS.md](FACILITATORS.md) file. Facilitators are neutral custodians of the FEP process, who merge PR's and create tracking issues.
-
-## Contributing
-
-Do you have ideas to improve the FEP Process? Post your suggestions to the issue tracker, or on the [SocialHub](https://socialhub.activitypub.rocks) forum. The SocialHub developer community is a "DoOcracy" which means: “pick up any task you want, and then steer it to completion”. Your contributions are most welcome, so delve in and find out how you can help.
+| [FEP-76ea: Conversation Threads](./fep/76ea/fep-76ea.md) | `DRAFT` | [#407](https://codeberg.org/fediverse/fep/issues/407) | 2024-10-04 | - |
+| [FEP-1985: Signaling how an OrderedCollection is ordered](./fep/1985/fep-1985.md) | `DRAFT` | [#417](https://codeberg.org/fediverse/fep/issues/417) | 2024-10-10 | - |
+| [FEP-268d: Search consent signals for objects](./fep/268d/fep-268d.md) | `DRAFT` | [#421](https://codeberg.org/fediverse/fep/issues/421) | 2024-10-12 | - |
+| [FEP-ae0c: Fediverse Relay Protocols: Mastodon and LitePub](./fep/ae0c/fep-ae0c.md) | `DRAFT` | [#424](https://codeberg.org/fediverse/fep/issues/424) | 2024-10-19 | - |
+| [FEP-b2b8: Long-form Text](./fep/b2b8/fep-b2b8.md) | `DRAFT` | [#441](https://codeberg.org/fediverse/fep/issues/441) | 2024-11-07 | - |
 
 ## License
 
