@@ -103,6 +103,7 @@ the full HTML element set. It should not include any CSS or JavaScript. This sub
 
 - `<p>`
 - `<span>` (class)
+- `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`
 - `<br>`
 - `<a>` (href, rel, class)
 - `<del>`
