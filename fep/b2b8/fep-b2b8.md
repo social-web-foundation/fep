@@ -118,8 +118,9 @@ the full HTML element set. It should not include any CSS or JavaScript. This sub
 - `<li>` (value)
 - `<blockquote>`
 - `<img>` (src, alt, title, width, height, class)
-- `<video>` (src, poster, width, height, class)
-- `<audio>` (src, controls, class)
+- `<video>` (src, controls, loop, poster, width, height, class)
+- `<audio>` (src, controls, loop, class)
+- `<source>` (src, type)
 - `<ruby>`
 - `<rt>`
 - `<rp>`
