@@ -149,7 +149,7 @@
     "status": "DRAFT",
     "dateReceived": "2023-03-14",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/68",
-    "discussionsTo": "https://codeberg.org/fediverse/fep/issues/68",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-7888-demystifying-the-context-property/3021",
     "title": "Demystifying the context property"
   },
   {
@@ -463,8 +463,9 @@
   {
     "slug": "6481",
     "authors": "James Smith <james@floppy.org.uk>",
-    "status": "DRAFT",
+    "status": "WITHDRAWN",
     "dateReceived": "2024-03-12",
+    "dateWithdrawn": "2024-10-31",
     "relatedFeps": "FEP-f1d5",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/279",
     "discussionsTo": "https://codeberg.org/fediverse/fep/issues/279",
@@ -553,6 +554,15 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/327",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-5e53-opt-out-preference-signals/4323",
     "title": "Opt-out Preference Signals"
+  },
+  {
+    "slug": "7952",
+    "authors": "Dmitri Zagidulin <@dmitri@social.coop>, bumblefudge <bumblefudge@learningproof.xyz>",
+    "status": "DRAFT",
+    "dateReceived": "2024-06-20",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-7952-roadmap-for-actor-and-object-portability/4332/",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/435",
+    "title": "Roadmap For Actor and Object Portability"
   },
   {
     "slug": "e3e9",
@@ -720,5 +730,14 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/424",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fediverse-relays/4626",
     "title": "Fediverse Relay Protocols: Mastodon and LitePub"
+  },
+  {
+    "slug": "b2b8",
+    "authors": "Evan Prodromou <evan@socialwebfoundation.org>",
+    "status": "DRAFT",
+    "dateReceived": "2024-11-07",
+    "discussionsTo": "https://codeberg.org/evanp/fep/issues",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/441",
+    "title": "Long-form Text"
   }
 ]
