@@ -300,10 +300,11 @@
   {
     "slug": "67ff",
     "authors": "silverpill <@silverpill@mitra.social>",
-    "status": "DRAFT",
+    "status": "FINAL",
     "dateReceived": "2023-09-05",
+    "dateFinalized": "2024-09-22",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/157",
-    "discussionsTo": "https://codeberg.org/fediverse/fep/issues/157",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-67ff-federation-md/3555",
     "title": "FEDERATION.md"
   },
   {
@@ -739,5 +740,41 @@
     "discussionsTo": "https://codeberg.org/evanp/fep/issues",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/441",
     "title": "Long-form Text"
+  },
+  {
+    "slug": "fe34",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "status": "DRAFT",
+    "dateReceived": "2024-11-15",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c7d3-ownership/4292",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/445",
+    "title": "Origin-based security model"
+  },
+  {
+    "slug": "171b",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "status": "DRAFT",
+    "dateReceived": "2024-11-23",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-171b-conversation-containers/4766",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/449",
+    "title": "Conversation Containers"
+  },
+  {
+    "slug": "6606",
+    "authors": "Marius Orcsik <marius@federated.id>",
+    "status": "DRAFT",
+    "dateReceived": "2024-12-04",
+    "discussionsTo": "https://lists.sr.ht/~mariusor/go-activitypub-discuss/%3Cwecobrezdaeqzfsukst42hncuuimomii5oeixonirrksrvs4md@4l76dr4obisi%3E",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/453",
+    "title": "ActivityPub client to server collections addressing conventions"
+  },
+  {
+    "slug": "1311",
+    "authors": "Helge <@helge@mymath.rocks>",
+    "status": "DRAFT",
+    "dateReceived": "2024-12-08",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-1311-media-attachments/4796",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/459",
+    "title": "Media Attachments"
   }
 ]
