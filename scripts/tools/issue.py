@@ -17,7 +17,7 @@ The [proposal](https://codeberg.org/fediverse/fep/src/branch/main/{filename}) ha
 
 This issue tracks discussions and updates to the proposal during the `DRAFT` period.
 
-Please post links to relevant discussions as comment to this issue.
+Please post links to relevant discussions as comments to this issue.
 
 `dateReceived`: {date1}
 
@@ -26,10 +26,9 @@ If no further actions are taken, the proposal may be set by the facilitators to 
 
     return body
 
+
 def create_codeberg_issue(owner, repo, token, title, body):
-    request = Request(
-    f"https://codeberg.org/api/v1/repos/{owner}/{repo}/issues"
-)
+    request = Request(f"https://codeberg.org/api/v1/repos/{owner}/{repo}/issues")
     request.add_header("Content-Type", "application/json; charset=utf-8")
     request_body = json.dumps(
         {"title": title, "body": body, "labels": [DRAFT_FEP_LABEL]}
@@ -43,8 +42,27 @@ def create_codeberg_issue(owner, repo, token, title, body):
 
     return issue_url
 
-def create_issue(owner, repo, token, slug):
 
+def parse_and_update_date_received(input_date: str) -> date:
+    try:
+        parsed = date.fromisoformat(input_date)
+
+        if parsed < date.today() - timedelta(days=30):
+            return date.today()
+
+        return parsed
+    except Exception:
+        return date.today()
+
+
+def update_fep_file_with_date_received(fep_file: FepFile, date_received: date):
+    fep_file.frontmatter = [
+        x for x in fep_file.frontmatter if not x.startswith("dateReceived")
+    ]
+    fep_file.frontmatter.append(f"dateReceived: {date_received.isoformat()}")
+
+
+def create_issue(owner, repo, token, slug):
     fep_file = FepFile(slug)
 
     if "trackingIssue" in fep_file.parsed_frontmatter:
@@ -53,7 +71,10 @@ def create_issue(owner, repo, token, slug):
 
     title = f"[TRACKING] FEP-{slug}: {fep_file.title}"
 
-    date_received = date.fromisoformat(fep_file.parsed_frontmatter["dateReceived"])
+    date_received = parse_and_update_date_received(
+        fep_file.parsed_frontmatter["dateReceived"]
+    )
+    update_fep_file_with_date_received(fep_file, date_received)
 
     body = create_body(fep_file.filename, date_received)
 
@@ -62,6 +83,7 @@ def create_issue(owner, repo, token, slug):
     fep_file.frontmatter.append(f"trackingIssue: {issue_url}")
     if "discussionsTo" not in fep_file.parsed_frontmatter:
         fep_file.frontmatter.append(f"discussionsTo: {issue_url}")
+
     fep_file.write()
 
     print(f"Issue url: {issue_url} for {title}")

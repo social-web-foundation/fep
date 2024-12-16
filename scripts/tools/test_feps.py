@@ -20,7 +20,9 @@ def test_fep_front_matter(fep):
 
     discussions_to = parsed_frontmatter["discussionsTo"]
 
-    assert not urlparse(discussions_to).netloc.endswith(".example")
+    assert not urlparse(discussions_to).netloc.endswith(
+        ".example"
+    ), "Update discussionsTo to a valid URL for a discussion topic"
 
     if parsed_frontmatter["status"] == "FINAL":
         assert "dateFinalized" in parsed_frontmatter
@@ -30,7 +32,6 @@ def test_fep_front_matter(fep):
     for field_name in ["dateReceived", "dateFinalized", "dateWithdrawn"]:
         if field_name in parsed_frontmatter:
             datetime.datetime.strptime(parsed_frontmatter[field_name], "%Y-%m-%d")
-
 
 
 @pytest.mark.parametrize("fep", get_fep_ids())
