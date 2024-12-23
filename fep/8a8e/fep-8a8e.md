@@ -10,7 +10,7 @@ discussionsTo: https://socialhub.activitypub.rocks/t/events-interoperability-val
 
 ## Summary
 
-ActivityStreams defines the Object Type `Event`. In real-world applications, the event object immediately showed the need for extension. Applications featuring `Event` objects have often chosen to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in these real-world implementations.
+ActivityStreams defines the [Object Type `Event`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-event). In real-world applications, the event object immediately showed the need for extension. Applications featuring `Event` objects have often chose to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations.
 
 This includes guidelines for the minimal interoperable event, handling of RSVP ("répondez s'il vous plaît", i.e., attendee management, and side effects), attendee capacities, physical location addresses, virtual locations, and clarification of how to control the visibility of events in federation.
 
