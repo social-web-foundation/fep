@@ -47,13 +47,131 @@ If you expect your event to be receivable by others you *MUST* have the attribut
 If `endTime` is specified it *MUST* be greater than `startTime`.
 
 #### Time zone
-
 If an `Event` is primarily conducted offline in a single specific location, and the location's timezone is known, the application *SHOULD* prefer setting the `timezone` and providing the objects `startTime` and `endTime` as UTC rather than adding the offset directly.
 
 When receiving an `Event` with a `startTime` or `endTime` in UTC (indicated via the appendix "Z", "z", or "+00:00"), the receiving application *SHOULD* check if the property `timezone` is set and use that information for displaying the times.
 
 > **Warning**  
 > **ToDo:** `timezone`: `@type` and `@valueType` – evaluate [already defined `timezone`s](https://lov.linkeddata.es/dataset/lov/terms?q=timezone).
+
+### Location
+
+#### Physical
+
+For adding information about the physical address of an `Event` the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address`.
+
+This allows the address to be given as a simple text input as well as a structured `https://schema.org/PostalAddress`. Applications *MUST* be able to transmogrify both incoming types to their internal representation.
+
+Example with address of type `https://schema.org/PostalAddress`:
+
+```json
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "type": "Event",
+  "id": "https://example.org/new-year-party",
+  "name": "New years party",
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "location": {
+    "id": "",
+    "type": "Place",
+    "name": "Foo Bar",
+    "address": {
+      "type": "PostalAddress",
+      "addressCountry": "Austria",
+      "addressLocality": "Fediverse Town",
+      "addressRegion": "Steiermark",
+      "postalCode": "8010",
+      "streetAddress": "15 Fediverse Street"
+    }
+  }
+}
+```
+
+Example with pure text address:
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    {
+      "address": "https://schema.org/address"
+    }
+  ],
+  "type": "Event",
+  "id": "https://example.org/new-year-party",
+  "name": "New years party",
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "location": {
+    "type": "Place",
+    "name": "Foo Bar",
+    "address": "15 Fediverse Street, 8010 Fediverse Town, Austria"
+  }
+}
+```
+
+#### Virtual
+
+> **To Do**  
+> Or use a custom attribute `https://event-federation.eu/ns#isVirtualLocation`
+
+An online Location *SHOULD* be represented by using a multi-type of `Place` and `https://schema.org/VirtualLocation`. Note that it is important that `Place` *MUST* be the first item in that case. Applications *SHOULD* at least set and be able to make use of `name` and `url`.
+
+```json
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "type": "Event",
+  "id": "https://example.org/new-year-party",
+  "name": "Fediverse Moderation Meeting",
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "location": {
+    "type": ["Place", "VirtualLocation"],
+    "name": "Jitsi Meet Meeting Link",
+    "url": "https://jit.si/fediverse-moderation-meeting"
+  }
+}
+```
+
+#### Hybrid
+
+Using multiple entries in `location` makes it easy to define multiple virtual and physical locations. When not supporting multiple entries in `location` applications *MUST* use the first item.
+
+```json
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "type": "Event",
+  "id": "https://example.org/new-year-party",
+  "name": "Discussion about the Fediverse",
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "location": [
+    {
+      "type": ["Place"],
+      "name": "Fediverse University",
+      "url": "https://university.example.com",
+      "address": "15 Fediverse Street, 1337 Fediverse Town, Fediverse Country"
+    },
+    {
+      "type": ["Place", "VirtualLocation"],
+      "name": "Big Blue Button Participation Link",
+      "url": "https://bbb.example.com/meeting-room-1"
+    },
+    {
+      "type": ["Place", "VirtualLocation"],
+      "name": "Live Stream",
+      "url": "https://peertube.example.com/fediverse-discussion"
+    }
+  ]
+}
+```
+
 
 ### RSVP (Attendee Management)
 
@@ -178,123 +296,6 @@ Federated event calendars usually have thumbnail images with fixed aspect ratios
       0.43
     ]
   }
-}
-```
-
-### Location
-
-#### Physical
-
-For adding information about the physical address of an `Event` the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address`.
-
-This allows the address to be given as a simple text input as well as a structured `https://schema.org/PostalAddress`. Applications *MUST* be able to transmogrify both incoming types to their internal representation.
-
-Example with address of type `https://schema.org/PostalAddress`:
-
-```json
-{
-  "@context": [
-    "https://schema.org",
-    "https://www.w3.org/ns/activitystreams"
-  ],
-  "type": "Event",
-  "id": "https://example.org/new-year-party",
-  "name": "New years party",
-  "startTime": "2014-12-31T23:00:00-08:00",
-  "location": {
-    "type": "Place",
-    "name": "Foo Bar",
-    "address": {
-      "type": "PostalAddress",
-      "addressCountry": "Austria",
-      "addressLocality": "Fediverse Town",
-      "addressRegion": "Steiermark",
-      "postalCode": "8010",
-      "streetAddress": "15 Fediverse Street"
-    }
-  }
-}
-```
-
-Example with pure text address:
-
-```json
-{
-  "@context": [
-    "https://www.w3.org/ns/activitystreams",
-    {
-      "address": "https://schema.org/address"
-    }
-  ],
-  "type": "Event",
-  "id": "https://example.org/new-year-party",
-  "name": "New years party",
-  "startTime": "2014-12-31T23:00:00-08:00",
-  "location": {
-    "type": "Place",
-    "name": "Foo Bar",
-    "address": "15 Fediverse Street, 8010 Fediverse Town, Austria"
-  }
-}
-```
-
-#### Virtual
-
-> **To Do**  
-> Or use a custom attribute `https://event-federation.eu/ns#isVirtualLocation`
-
-An online Location *SHOULD* be represented by using a multi-type of `Place` and `https://schema.org/VirtualLocation`. Note that it is important that `Place` *MUST* be the first item in that case. Applications *SHOULD* at least set and be able to make use of `name` and `url`.
-
-```json
-{
-  "@context": [
-    "https://schema.org",
-    "https://www.w3.org/ns/activitystreams"
-  ],
-  "type": "Event",
-  "id": "https://example.org/new-year-party",
-  "name": "Fediverse Moderation Meeting",
-  "startTime": "2014-12-31T23:00:00-08:00",
-  "location": {
-    "type": ["Place", "VirtualLocation"],
-    "name": "Jitsi Meet Meeting Link",
-    "url": "https://jit.si/fediverse-moderation-meeting"
-  }
-}
-```
-
-#### Hybrid
-
-Using multiple entries in `location` makes it easy to define multiple virtual and physical locations. When not supporting multiple entries in `location` applications *MUST* use the first item.
-
-```json
-{
-  "@context": [
-    "https://schema.org",
-    "https://www.w3.org/ns/activitystreams"
-  ],
-  "type": "Event",
-  "id": "https://example.org/new-year-party",
-  "name": "Discussion about the Fediverse",
-  "startTime": "2014-12-31T23:00:00-08:00",
-  "location": [
-    {
-      "type": ["Place"],
-      "name": "Fediverse University",
-      "url": "https://university.example.com",
-      "address": "15 Fediverse Street, 1337 Fediverse Town, Fediverse Country"
-    },
-    {
-      "type": ["Place", "VirtualLocation"],
-      "name": "Big Blue Button Participation Link",
-      "url": "https://bbb.example.com/meeting-room-1"
-    },
-    {
-      "type": ["Place", "VirtualLocation"],
-      "name": "Live Stream",
-      "url": "https://peertube.example.com/fediverse-discussion"
-    }
-  ]
 }
 ```
 
