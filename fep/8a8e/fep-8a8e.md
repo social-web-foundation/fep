@@ -305,6 +305,60 @@ In both cases these *MUST* never include events from federation that do not have
 
 The discoverability of an incoming event from federation *MUST NOT* be controlled by the type of the actor set in `attributedTo` or by the `Activity` the event was received (e.g., `Announce`, `Create`).
 
+### Organizers
+
+Events *SHOULD* indicate their organizers by using `https://event-federation.eu/ns#organizers`. 
+The `organizers` collection helps provide clarity about the event’s management, supports federated discovery, and improves interoperability across platforms.
+
+The value of the `organizers` field *MUST* be either an `OrderedCollection` or a `Collection`.
+The `items` within this collection *MAY* include [actors](https://www.w3.org/TR/activitystreams-core/#actors),  or [links](https://www.w3.org/TR/activitystreams-core/#link).
+If the organizer is a non-ActivityPub entity (e.g., a website or organization without an actor), it *SHOULD* use a link.
+
+```json
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/activitystreams",
+    {
+      "organizer": {
+        "@id": "https://event-federation.eu/ns#organizer",
+        "@type": "https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection"
+      }
+    }
+  ],
+  "type": "Event",
+  "id": "https://example.org/foo-bar-party",
+  "name": "New Year's Party",
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "organizers": {
+    "type": "Collection",
+    "id": "https://example.org/foo-bar-party/organizers",
+    "totalItems": 3,
+    "first": {
+      "type": "CollectionPage",
+      "partOf": "https://example.org/foo-bar-party/organizers",
+      "items": [
+        "https://example.social/users/johnmastodon",
+        "https://example.org/somewebsite",
+        {
+          "type": "Organization",
+          "id": "https://example.events/actors/eventorganizer",
+          "context": "https://example.events/actors/eventorganizer/accept/example.org-foo-bar-party-offer"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### Explicit Non-Disclosure
+
+A `organizer` with `totalItems: 0` or an empty `items` attribute *MUST* explicitly signal that the event's organizers are intentionally not disclosed. This indicates a deliberate choice to withhold organizer information and overrides any assumptions about organizers based on other fields.
+
+#### Fallback to `attributedTo`:
+
+If the `organizers` property is omitted, it *MAY* be inferred that the actors in the `attributedTo` property are the event's organizers. For events with multiple organizers, it is *RECOMMENDED* to provide an organizers collection to avoid ambiguity, and be compatible with applications that do not support arrays in `attributedTo`.
+
 ## Credits
 
 This work would not have been possible without the support of [NLnet foundation](https://nlnet.nl/) and [NGI Zero](https://nlnet.nl/NGI0/).
