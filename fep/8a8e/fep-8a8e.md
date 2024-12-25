@@ -39,11 +39,8 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 
 - [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
 
-- [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
-If the event is "open end", or the `endTime` is not intended for display to humans, the `https://event-federation.eu/ns/#displayEndTime` attribute *SHOULD* be set to `"false"`.
-If omitted, `https://event-federation.eu/ns/#displayEndTime` defaults to `"true"`, requiring `endTime` to be displayed.
-Receiving an `Event` without `endTime` being set, applications *MAY* infer a reasonable `endTime` based on their requirements.
-In such cases, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users.
+- [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end, or can be treated as ended by applications in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
+
 
 ```json
 {
@@ -55,7 +52,53 @@ In such cases, the `Event` *MUST* be treated as if `https://event-federation.eu/
 }
 ```
 
-### Time zone
+### Open End – Display of the Events End Time
+
+If the event is "open end", or the `endTime` is not intended for display to humans, the `todo:displayEndTime` attribute *SHOULD* be set to `"false"`.
+If omitted, `todo:displayEndTime` defaults to `"true"`, requiring `endTime` to be displayed.
+Receiving an `Event` without `endTime` being set, applications *MAY* infer a reasonable end time based on their requirements.
+In such cases, the `Event` *MUST* be treated as if `todo:displayEndTime` were set to `"false"` to avoid misleading users.
+
+Example: Event with open end but technical end-time which might utilized by applications.
+
+```json
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Event",
+  "name": "Community Meetup",
+  "startTime": "2024-12-31T18:00:00Z",
+  "endTime": "2024-12-31T21:00:00Z",
+  "displayEndTime": false
+}
+```
+
+<section id="displayEndTime" resource="https://w3id.org/fep/888d/displayEndTime" typeof="owl:DatatypeProperty">
+  <h3>displayEndTime</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code class="chroma language-json display">https://w3id.org/fep/8a8e#displayEndTime</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">Indicates whether the endTime should be displayed to users</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">A boolean property that specifies whether the event's end time should be displayed to users. If not specified, the default value is true.</dd>
+    <dt>Domain</dt>
+    <dd><a property="rdfs:domain" href="https://www.w3.org/ns/activitystreams#Event">Event</a></dd>
+    <dt>Range</dt>
+    <dd property="rdfs:range" resource="xsd:boolean">A boolean value (true or false)</dd>
+    <dt>Required</dt>
+    <dd property="owl:minCardinality" content="0" datatype="xsd:nonNegativeInteger">No</dd>
+    <dt>Functional</dt>
+    <dd property="owl:maxCardinality" content="1" datatype="xsd:nonNegativeInteger">Yes</dd>
+    <dt>Default Value</dt>
+    <dd property="schema:defaultValue" datatype="xsd:boolean">true</dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+  </dl>
+</section>
+
+
+### Time Zones
+
 The `timezone` property is introduced to support time zone information for events, enabling consistent handling of local "wall times".
 
 > It is important to note that the "time-offset" component in `startTime` and `endTime` property does not correlate to time-zones, and while times that include the "time-offset" component work well for timestamps, they cannot be reliably converted to and from local "wall times" without additional information and processing.
