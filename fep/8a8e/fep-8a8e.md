@@ -28,20 +28,22 @@ Within Mobilizon, for historical and internal reasons, the federated visibility 
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this specification are to be interpreted as described in [RFC-2119](https://datatracker.ietf.org/doc/html/rfc2119.html).
 
+**The context of attributes:** Attributes that have no context prefix are to be interpreted as being in the `https://www.w3.org/ns/activitystreams` context.
 
 ## Object Type Event
 The ActivityStreams specification already defines Objects of type Event by inheriting properties from the Object type so some of the properties useful to describe an event are already specified but some others are missing and a clear specification will help.
 
+An `Object` Type `Event` *MUST* specify at least the following properties:
 
-An `Object` Type `Event` _MUST_ specify at least the following properties:
+- [`name`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-name): A simple, human-readable, plain-text title for the event. HTML markup *MUST NOT* be included. Values for the name *MUST NOT* be an empty string and the name *MAY* be expressed using multiple language-tagged values.
 
-- [`name`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-name): A simple, human-readable, plain-text title for the event. HTML markup _MUST NOT_ be included. Values for the name *MUST NOT* be an empty string and the name _MAY_ be expressed using multiple language-tagged values.
+- [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
 
-- [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-name) : The date and time describing the moment the event began or is scheduled to begin. Note that as specified in [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates) "all properties with date and time values MUST conform to the "date-time" production in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) with the one exception that seconds MAY be omitted.
-An uppercase "T" character MUST be used to separate date and time, and an uppercase "Z" character MUST be used in the absence of a numeric time zone offset. 
-
-
-#### Minimal receivable event
+- [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
+If the event is "open end", or the `endTime` is not intended for display to humans, the `https://event-federation.eu/ns/#displayEndTime` attribute *SHOULD* be set to `"false"`.
+If omitted, `https://event-federation.eu/ns/#displayEndTime` defaults to `"true"`, requiring `endTime` to be displayed.
+Receiving an `Event` without `endTime` being set, applications *MAY* infer a reasonable `endTime` based on their requirements.
+In such cases, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users.
 
 ```json
 {
@@ -49,29 +51,24 @@ An uppercase "T" character MUST be used to separate date and time, and an upperc
   "type": "Event",
   "id": "https://example.org/foo",
   "name": "New years party",
-  "startTime": "2014-12-31T23:00:00-08:00"
+  "startTime": "2014-12-31T23:00:00Z",
 }
 ```
 
-#### endTime
+### Time zone
+The `timezone` property is introduced to support time zone information for events, enabling consistent handling of local "wall times".
 
-The date and time describing the moment the event concluded or is expected to conclude _SHOULD be indicated with the [endTime](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endtime) property. When specified, the `endTime` property _MUST_ be greater than `startTime`.
-
-
-#### Time zone
-The `timezone` property is introduced to support time zone information for events, enabling consistent handling of local "wall times". 
-
-> It is important to note that the `time-offset` component in `startTime` and `endTime` property does not correlate to time-zones, and while times that include the `time-offset` component work well for timestamps, they cannot be reliably converted to and from local "wall times" without additional information and processing. 
+> It is important to note that the "time-offset" component in `startTime` and `endTime` property does not correlate to time-zones, and while times that include the "time-offset" component work well for timestamps, they cannot be reliably converted to and from local "wall times" without additional information and processing.
 > [https://www.w3.org/TR/activitystreams-core/#dates](https://www.w3.org/TR/activitystreams-core/#dates)
 
-For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application _SHOULD_ set the named `timezone`.
+For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application *SHOULD* set the named `timezone`.
 
-In case the `timezone` property is specified it _MUST_ be a specific IANA time zone identifier included in the [IANA Time Zone Database](https://data.iana.org/time-zones/tz-link.html) (often called tz or zoneinfo). [https://www.w3.org/TR/timezone/#time-zone-identifiers](https://www.w3.org/TR/timezone/#time-zone-identifiers).  
+In case the `timezone` property is specified it *MUST* be a specific IANA time zone identifier included in the [IANA Time Zone Database](https://data.iana.org/time-zones/tz-link.html) (often called tz or zoneinfo, see [https://www.w3.org/TR/timezone/#time-zone-identifiers](https://www.w3.org/TR/timezone/#time-zone-identifiers)).
 
-When receiving an `Event` with a `timezone` property specified, the receiving application _SHOULD_ use that information for displaying the times.
+When receiving an `Event` with a `timezone` property specified, the receiving application *SHOULD* use that information for displaying the times.
 
-<!-- 
-  Evaluated @id / @type for @context:  
+<!--
+  Evaluated @id / @type for @context:
    https://iana.org/time-zones
    https://www.w3.org/2006/timezone
    https://www.w3.org/2006/time#timezone
@@ -85,7 +82,9 @@ When receiving an `Event` with a `timezone` property specified, the receiving ap
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    { "timezone": "http://www.w3.org/2006/time#timezone" }
+    {
+      "timezone": "http://www.w3.org/2006/time#timezone"
+    }
   ],
   "type": "Event",
   "id": "https://example.org/foo",
@@ -349,8 +348,8 @@ The discoverability of an incoming event from federation *MUST NOT* be controlle
 
 ### Organizers
 
-Events *SHOULD* indicate their organizers by using `https://event-federation.eu/ns#organizers`. 
-The `organizers` collection helps provide clarity about the event’s management, supports federated discovery, and improves interoperability across platforms.
+Events *SHOULD* indicate their organizers by using `https://event-federation.eu/ns#organizers`.
+The `organizers` collection helps provide clarity about the event's management, supports federated discovery, and improves interoperability across platforms.
 
 The value of the `organizers` field *MUST* be either an `OrderedCollection` or a `Collection`.
 The `items` within this collection *MAY* include [actors](https://www.w3.org/TR/activitystreams-core/#actors),  or [links](https://www.w3.org/TR/activitystreams-core/#link).
