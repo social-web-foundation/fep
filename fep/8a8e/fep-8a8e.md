@@ -295,7 +295,7 @@ Remaining attendee capacity *SHOULD* be shown indirectly via using the Collectio
     "https://www.w3.org/ns/activitystreams",
     {
       "attendees": {
-        "@id": "https://event-federation.eu/ns#attendees ",
+        "@id": "https://event-federation.eu/ns#attendees",
         "@type": "https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection"
       }
     }
