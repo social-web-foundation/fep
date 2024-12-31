@@ -39,7 +39,7 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 
 - [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
 
-- [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
+- [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `endTime` *MUST* be a later date than the `startTime`. If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
 
 
 ```json
