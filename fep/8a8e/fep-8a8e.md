@@ -39,11 +39,8 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 
 - [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
 
-- [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
-If the event is "open end", or the `endTime` is not intended for display to humans, the `https://event-federation.eu/ns/#displayEndTime` attribute *SHOULD* be set to `"false"`.
-If omitted, `https://event-federation.eu/ns/#displayEndTime` defaults to `"true"`, requiring `endTime` to be displayed.
-Receiving an `Event` without `endTime` being set, applications *MAY* infer a reasonable `endTime` based on their requirements.
-In such cases, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users.
+- [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
+
 
 ```json
 {
@@ -52,6 +49,7 @@ In such cases, the `Event` *MUST* be treated as if `https://event-federation.eu/
   "id": "https://example.org/foo",
   "name": "New years party",
   "startTime": "2014-12-31T23:00:00Z",
+  "endTime": "2015-01-01T06:00:00Z"
 }
 ```
 
@@ -93,6 +91,14 @@ When receiving an `Event` with a `timezone` property specified, the receiving ap
   "timezone": "Europe/Rome"
 }
 ```
+
+### Events with Open End
+
+If the event is open-ended, or the `endTime` is not intended to be displayed to humans, the `https://event-federation.eu/ns/#displayEndTime` attribute *SHOULD* be used and set to `"false"`.
+
+Receiving an `Event` with an `endTime` set and no `https://event-federation.eu/ns/#displayEndTime` set, it *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` is set to `"true"`, requiring the   `endTime` to be displayed.
+
+If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
 
 ### Location
 
