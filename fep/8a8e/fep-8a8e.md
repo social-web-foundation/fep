@@ -313,6 +313,15 @@ Remaining attendee capacity *SHOULD* be shown indirectly via using the Collectio
 }
 ```
 
+#### Attendees Collection
+
+Every [`Event`](https://www.w3.org/ns/activitystreams#Event) *MAY* have an `attendees` collection. This is a list of all [`actor`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-actor)s that meet one or more of the following conditions, added as a [side effect](https://www.w3.org/TR/activitypub/#like-activity-inbox).
+
+- The actor has sent a [`Join`](https://www.w3.org/ns/activitystreams#Join) activity with this object as the [`object`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object) property that has been answered with an [`Accept`](https://www.w3.org/ns/activitystreams#Accept).
+- The actor has responded to an [`Invite`](https://www.w3.org/ns/activitystreams#Invite) activity from the `Event`'s owner (where the Event is specified as the `object` property) with an [`Accept`](https://www.w3.org/ns/activitystreams#Accept) activity.
+
+The `attendees` collection *MUST* be either an [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) or a [`Collection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection) and *MAY* be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the [`totalItems`](https://www.w3.org/ns/activitystreams#totalItems) set in any case.
+
 ### Event Banner and Poster Images
 
 #### Flyer
@@ -360,7 +369,7 @@ In both cases these *MUST* never include events from federation that do not have
 
 The discoverability of an incoming event from federation *MUST NOT* be controlled by the type of the actor set in `attributedTo` or by the `Activity` the event was received (e.g., `Announce`, `Create`).
 
-### Organizers
+### Organizers Collection
 
 Events *SHOULD* indicate their organizers by using `https://event-federation.eu/ns#organizers`.
 The `organizers` collection helps provide clarity about the event's management, supports federated discovery, and improves interoperability across platforms.
@@ -413,6 +422,25 @@ A `organizer` with `totalItems: 0` or an empty `items` attribute *MUST* explicit
 #### Fallback to `attributedTo`:
 
 If the `organizers` property is omitted, it *MAY* be inferred that the actors in the `attributedTo` property are the event's organizers. For events with multiple organizers, it is *RECOMMENDED* to provide an organizers collection to avoid ambiguity, and be compatible with applications that do not support arrays in `attributedTo`.
+
+## Upcoming Events Collection for Actors
+
+Every `actor` that has published `Event`s *SHOULD* have an `https://event-federation.eu/ns#upcomingEvents` collection to list their future or ongoing events. This collection *MUST* follow these rules:
+
+- **Collection Type**:  
+  The collection *MUST* be an `OrderedCollection`.
+
+- **Ordering**:  
+  Events *MUST* be ordered by their `startTime` in ascending order (earliest first), except featured events *MAY* appear at the start of the list, regardless of their `startTime`.
+
+- **Items**:  
+  Each item in the collection *MUST* meet the following criteria:  
+  - **Type**: The item *MUST* be of type `Event` or one of its subtypes.  
+  - **Time**: The `Event`'s `endTime` *MUST NOT* be earlier than the current time, i.e., the event is ongoing or scheduled in the future.  
+  - **Actor Involvement**: At least one of the following conditions *MUST* apply:  
+    - The `actor` owns the `Event`, i.e., is part of the `Event`'s `attributedTo`.  
+    - The `actor` is included in the `Event`'s `organizer` collection.  
+    - The `actor` is of type `Application`, the `Event` is in the actor's `shares` collection, and the `Event` shares the same host with the `actor`.  
 
 ## Credits
 
