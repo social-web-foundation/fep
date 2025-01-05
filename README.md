@@ -38,7 +38,7 @@ b3f0
 Alternatively to steps 3. to 6., you can run
 
 ```bash
-python scripts/new_proposal.py TITLE OF YOUR PROPOSAL
+./scripts/new_proposal.py TITLE OF YOUR PROPOSAL
 ```
 
 that should create a prefilled template for you.
@@ -89,7 +89,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-521a: Representing actor's public keys](./fep/521a/fep-521a.md) | `DRAFT` | [#130](https://codeberg.org/fediverse/fep/issues/130) | 2023-07-08 | - |
 | [FEP-ae97: Client-side activity signing](./fep/ae97/fep-ae97.md) | `DRAFT` | [#148](https://codeberg.org/fediverse/fep/issues/148) | 2023-08-14 | - |
 | [FEP-0837: Federated Marketplace](./fep/0837/fep-0837.md) | `DRAFT` | [#147](https://codeberg.org/fediverse/fep/issues/147) | 2023-08-17 | - |
-| [FEP-67ff: FEDERATION.md](./fep/67ff/fep-67ff.md) | `DRAFT` | [#157](https://codeberg.org/fediverse/fep/issues/157) | 2023-09-05 | - |
+| [FEP-67ff: FEDERATION.md](./fep/67ff/fep-67ff.md) | `FINAL` | [#157](https://codeberg.org/fediverse/fep/issues/157) | 2023-09-05 | 2024-09-22 |
 | [FEP-5feb: Search indexing consent for actors](./fep/5feb/fep-5feb.md) | `DRAFT` | [#154](https://codeberg.org/fediverse/fep/issues/154) | 2023-09-06 | - |
 | [FEP-dc88: Formatting Mathematics](./fep/dc88/fep-dc88.md) | `DRAFT` | [#161](https://codeberg.org/fediverse/fep/issues/161) | 2023-09-12 | - |
 | [FEP-d8c2: OAuth 2.0 Profile for the ActivityPub API](./fep/d8c2/fep-d8c2.md) | `DRAFT` | [#165](https://codeberg.org/fediverse/fep/issues/165) | 2023-09-17 | - |
@@ -107,7 +107,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-61cf: The OpenWebAuth Protocol](./fep/61cf/fep-61cf.md) | `DRAFT` | [#263](https://codeberg.org/fediverse/fep/issues/263) | 2024-02-06 | - |
 | [FEP-73cd: Migration User Stories](./fep/73cd/fep-73cd.md) | `DRAFT` | [#265](https://codeberg.org/fediverse/fep/issues/265) | 2024-02-07 | - |
 | [FEP-96ff: Explicit signalling of ActivityPub Semantics](./fep/96ff/fep-96ff.md) | `DRAFT` | [#272](https://codeberg.org/fediverse/fep/issues/272) | 2024-02-17 | - |
-| [FEP-6481: Specifying ActivityPub extension support with NodeInfo](./fep/6481/fep-6481.md) | `DRAFT` | [#279](https://codeberg.org/fediverse/fep/issues/279) | 2024-03-12 | - |
+| [FEP-6481: Specifying ActivityPub extension support with NodeInfo](./fep/6481/fep-6481.md) | `WITHDRAWN` | [#279](https://codeberg.org/fediverse/fep/issues/279) | 2024-03-12 | 2024-10-31 |
 | [FEP-9fde: Mechanism for servers to expose supported operations](./fep/9fde/fep-9fde.md) | `DRAFT` | [#282](https://codeberg.org/fediverse/fep/issues/282) | 2024-03-14 | - |
 | [FEP-e229: Best practices for extensibility](./fep/e229/fep-e229.md) | `DRAFT` | [#293](https://codeberg.org/fediverse/fep/issues/293) | 2024-04-02 | - |
 | [FEP-3b86: Activity Intents](./fep/3b86/fep-3b86.md) | `DRAFT` | [#302](https://codeberg.org/fediverse/fep/issues/302) | 2024-04-19 | - |
@@ -117,6 +117,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-cd47: Federation-friendly Addressing and Deduplication Use-Cases](./fep/cd47/fep-cd47.md) | `DRAFT` | [#319](https://codeberg.org/fediverse/fep/issues/319) | 2024-05-31 | - |
 | [FEP-c7d3: Ownership](./fep/c7d3/fep-c7d3.md) | `DRAFT` | [#323](https://codeberg.org/fediverse/fep/issues/323) | 2024-06-04 | - |
 | [FEP-5e53: Opt-out Preference Signals](./fep/5e53/fep-5e53.md) | `DRAFT` | [#327](https://codeberg.org/fediverse/fep/issues/327) | 2024-06-09 | - |
+| [FEP-7952: Roadmap For Actor and Object Portability](./fep/7952/fep-7952.md) | `DRAFT` | [#435](https://codeberg.org/fediverse/fep/issues/435) | 2024-06-20 | - |
 | [FEP-e3e9: Actor-Relative URLs](./fep/e3e9/fep-e3e9.md) | `DRAFT` | [#346](https://codeberg.org/fediverse/fep/issues/346) | 2024-06-29 | - |
 | [FEP-d9ad: Create Conformance Tests for Fediverse Enhancement Proposals](./fep/d9ad/fep-d9ad.md) | `DRAFT` | [#350](https://codeberg.org/fediverse/fep/issues/350) | 2024-07-02 | - |
 | [FEP-e965: Move Activity for Migrations and Announce Activity for Tombstone Events](./fep/e965/fep-e965.md) | `DRAFT` | [#352](https://codeberg.org/fediverse/fep/issues/352) | 2024-07-05 | - |
@@ -135,6 +136,11 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-1985: Signaling how an OrderedCollection is ordered](./fep/1985/fep-1985.md) | `DRAFT` | [#417](https://codeberg.org/fediverse/fep/issues/417) | 2024-10-10 | - |
 | [FEP-268d: Search consent signals for objects](./fep/268d/fep-268d.md) | `DRAFT` | [#421](https://codeberg.org/fediverse/fep/issues/421) | 2024-10-12 | - |
 | [FEP-ae0c: Fediverse Relay Protocols: Mastodon and LitePub](./fep/ae0c/fep-ae0c.md) | `DRAFT` | [#424](https://codeberg.org/fediverse/fep/issues/424) | 2024-10-19 | - |
+| [FEP-b2b8: Long-form Text](./fep/b2b8/fep-b2b8.md) | `DRAFT` | [#441](https://codeberg.org/fediverse/fep/issues/441) | 2024-11-07 | - |
+| [FEP-fe34: Origin-based security model](./fep/fe34/fep-fe34.md) | `DRAFT` | [#445](https://codeberg.org/fediverse/fep/issues/445) | 2024-11-15 | - |
+| [FEP-171b: Conversation Containers](./fep/171b/fep-171b.md) | `DRAFT` | [#449](https://codeberg.org/fediverse/fep/issues/449) | 2024-11-23 | - |
+| [FEP-6606: ActivityPub client to server collections addressing conventions](./fep/6606/fep-6606.md) | `DRAFT` | [#453](https://codeberg.org/fediverse/fep/issues/453) | 2024-12-04 | - |
+| [FEP-1311: Media Attachments](./fep/1311/fep-1311.md) | `DRAFT` | [#459](https://codeberg.org/fediverse/fep/issues/459) | 2024-12-08 | - |
 
 ## License
 
