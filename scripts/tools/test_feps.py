@@ -27,6 +27,9 @@ def test_fep(fep):
         if field_name in parsed_frontmatter:
             datetime.datetime.strptime(parsed_frontmatter[field_name], "%Y-%m-%d")
 
+    if "type" in parsed_frontmatter:
+        assert parsed_frontmatter["type"] in ["informational", "implementation"]
+
     assert "## Summary" in content
     assert "## Copyright" in content
 
