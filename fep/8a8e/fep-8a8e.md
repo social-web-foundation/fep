@@ -53,6 +53,14 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 }
 ```
 
+### Events with Open End
+
+If the event is open-ended, or the `endTime` is not intended to be displayed to humans, the `https://event-federation.eu/ns/#displayEndTime` attribute *SHOULD* be used and set to `"false"`.
+
+Receiving an `Event` with an `endTime` set and no `https://event-federation.eu/ns/#displayEndTime` set, it *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` is set to `"true"`, requiring the   `endTime` to be displayed.
+
+If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
+
 ### Time zone
 The `timezone` property is introduced to support time zone information for events, enabling consistent handling of local "wall times".
 
@@ -94,13 +102,6 @@ When receiving an `Event` with a `timezone` property specified, the receiving ap
 }
 ```
 
-### Events with Open End
-
-If the event is open-ended, or the `endTime` is not intended to be displayed to humans, the `https://event-federation.eu/ns/#displayEndTime` attribute *SHOULD* be used and set to `"false"`.
-
-Receiving an `Event` with an `endTime` set and no `https://event-federation.eu/ns/#displayEndTime` set, it *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` is set to `"true"`, requiring the   `endTime` to be displayed.
-
-If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
 
 ### Location
 
