@@ -107,6 +107,12 @@ When receiving an `Event` with a `timezone` property specified, the receiving ap
 
 
 ### Location
+ActivityStreams provides a flexible framework for representing locations, as outlined in [this section of the specification](https://www.w3.org/TR/activitystreams-vocabulary/#places). However, its flexibility can sometimes lead to ambiguity.
+
+This section aims to establish a clear and consistent format for representing the locations of events, whether they are physical, virtual, or mixed.
+
+The `location` property *MUST* be used to indicate one or more physical or logical locations where the event will take place.
+Rather than creating a new schema, this specification adopts the [`location` property from Schema.org](https://schema.org/location) 
 
 #### Physical
 
