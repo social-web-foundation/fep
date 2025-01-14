@@ -62,9 +62,12 @@ Receiving an `Event` with an `endTime` set and no `https://event-federation.eu/n
 If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
 
 ### Time zone
+
+_This section is non-normative._
+
 The `timezone` property is introduced to support time zone information for events, enabling consistent handling of local "wall times".
 
-> It is important to note that the "time-offset" component in `startTime` and `endTime` property does not correlate to time-zones, and while times that include the "time-offset" component work well for timestamps, they cannot be reliably converted to and from local "wall times" without additional information and processing.
+> It is important to note that the "time-offset" component in `startTime` and `endTime` property does not correlate to time-zones, and while times that include the "time-offset" component work well for timestamps, they cannot be reliably converted to and from local "wall times" without additional information and processing.  
 > [https://www.w3.org/TR/activitystreams-core/#dates](https://www.w3.org/TR/activitystreams-core/#dates)
 
 For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application *SHOULD* set the named `timezone`.
