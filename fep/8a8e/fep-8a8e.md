@@ -85,9 +85,6 @@ When receiving an `Event` with a `timezone` property specified, the receiving ap
     {
       "timezone": "http://www.w3.org/2006/time#timezone"
     }
-    {
-      "timezone": "http://www.w3.org/2006/time#timezone"
-    }
   ],
   "type": "Event",
   "id": "https://example.org/foo",
