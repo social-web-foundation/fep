@@ -60,12 +60,9 @@ The `timezone` property is introduced to support time zone information for event
 > [https://www.w3.org/TR/activitystreams-core/#dates](https://www.w3.org/TR/activitystreams-core/#dates)
 
 For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application *SHOULD* set the named `timezone`.
-For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application *SHOULD* set the named `timezone`.
 
 In case the `timezone` property is specified it *MUST* be a specific IANA time zone identifier included in the [IANA Time Zone Database](https://data.iana.org/time-zones/tz-link.html) (often called tz or zoneinfo, see [https://www.w3.org/TR/timezone/#time-zone-identifiers](https://www.w3.org/TR/timezone/#time-zone-identifiers)).
-In case the `timezone` property is specified it *MUST* be a specific IANA time zone identifier included in the [IANA Time Zone Database](https://data.iana.org/time-zones/tz-link.html) (often called tz or zoneinfo, see [https://www.w3.org/TR/timezone/#time-zone-identifiers](https://www.w3.org/TR/timezone/#time-zone-identifiers)).
 
-When receiving an `Event` with a `timezone` property specified, the receiving application *SHOULD* use that information for displaying the times.
 When receiving an `Event` with a `timezone` property specified, the receiving application *SHOULD* use that information for displaying the times.
 
 <!--
