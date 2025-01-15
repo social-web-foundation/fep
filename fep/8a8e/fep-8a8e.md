@@ -206,8 +206,6 @@ Using multiple entries in `location` makes it easy to define multiple virtual an
 
 When not supporting multiple entries in `location` applications *MUST* use the first supported item.
 
-In case there is a physical `Place`, it *MUST* be the first item.
-
 ```json
 {
   "@context": [
