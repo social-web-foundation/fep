@@ -111,14 +111,41 @@ ActivityStreams provides a flexible framework for representing locations, as out
 
 This section aims to establish a clear and consistent format for representing the locations of events, whether they are physical, virtual, or mixed.
 
-The `location` property *MUST* be used to indicate one or more physical or logical locations where the event will take place.
-Rather than creating a new schema, this specification adopts the [`location` property from Schema.org](https://schema.org/location) 
+Rather than creating a new schema, this specification adopts the [`location` property from Schema.org](https://schema.org/location) with some adjustements to better suite federated event handling:
+
+- Exclusion of `Text` as a valid type:
+Unlike the original Schema.org definition, Text is not a permitted type for location and *MUST NOT* be used. If only a name is required to describe a location, the Place type can be used.
+
+- Support for multiple locations:
+To specify mixed-format events (e.g., hybrid online and offline events), the location property can contain an array of locations. Each entry in the array can represent either a physical Place or a VirtualLocation.
 
 #### Physical
 
-For adding information about the physical address of an `Event` the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address`.
+For adding information about a physical location of an `Event` the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address`.
 
 This allows the address to be given as a simple text input as well as a structured `https://schema.org/PostalAddress`. Applications *MUST* be able to transmogrify both incoming types to their internal representation.
+
+Example with pure text address:
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    {
+      "address": "https://schema.org/address"
+    }
+  ],
+  "type": "Event",
+  "id": "https://example.org/new-year-party",
+  "name": "New years party",
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "location": {
+    "type": "Place",
+    "name": "Foo Bar",
+    "address": "15 Fediverse Street, 8010 Fediverse Town, Austria"
+  }
+}
+```
 
 Example with address of type `https://schema.org/PostalAddress`:
 
@@ -148,34 +175,12 @@ Example with address of type `https://schema.org/PostalAddress`:
 }
 ```
 
-Example with pure text address:
-
-```json
-{
-  "@context": [
-    "https://www.w3.org/ns/activitystreams",
-    {
-      "address": "https://schema.org/address"
-    }
-  ],
-  "type": "Event",
-  "id": "https://example.org/new-year-party",
-  "name": "New years party",
-  "startTime": "2014-12-31T23:00:00-08:00",
-  "location": {
-    "type": "Place",
-    "name": "Foo Bar",
-    "address": "15 Fediverse Street, 8010 Fediverse Town, Austria"
-  }
-}
-```
 
 #### Virtual
 
-> **To Do**  
-> Or use a custom attribute `https://event-federation.eu/ns#isVirtualLocation`
+An online Location *SHOULD* be represented by using a type `VirtualLocation` as specified in [https://schema.org/VirtualLocation](https://schema.org/VirtualLocation).
 
-An online Location *SHOULD* be represented by using a multi-type of `Place` and `https://schema.org/VirtualLocation`. Note that it is important that `Place` *MUST* be the first item in that case. Applications *SHOULD* at least set and be able to make use of `name` and `url`.
+ Applications *SHOULD* at least set and be able to make use of `name` and `url` properties.
 
 ```json
 {
@@ -188,8 +193,8 @@ An online Location *SHOULD* be represented by using a multi-type of `Place` and 
   "name": "Fediverse Moderation Meeting",
   "startTime": "2014-12-31T23:00:00-08:00",
   "location": {
-    "type": ["Place", "VirtualLocation"],
-    "name": "Jitsi Meet Meeting Link",
+    "type":"VirtualLocation",
+    "name":"Jitsi Meet Meeting Link",
     "url": "https://jit.si/fediverse-moderation-meeting"
   }
 }
@@ -197,7 +202,11 @@ An online Location *SHOULD* be represented by using a multi-type of `Place` and 
 
 #### Hybrid
 
-Using multiple entries in `location` makes it easy to define multiple virtual and physical locations. When not supporting multiple entries in `location` applications *MUST* use the first item.
+Using multiple entries in `location` makes it easy to define multiple virtual and physical locations.
+
+When not supporting multiple entries in `location` applications *MUST* use the first supported item.
+
+In case there is a physical `Place`, it *MUST* be the first item.
 
 ```json
 {
@@ -211,18 +220,18 @@ Using multiple entries in `location` makes it easy to define multiple virtual an
   "startTime": "2014-12-31T23:00:00-08:00",
   "location": [
     {
-      "type": ["Place"],
+      "type": "Place",
       "name": "Fediverse University",
       "url": "https://university.example.com",
       "address": "15 Fediverse Street, 1337 Fediverse Town, Fediverse Country"
     },
     {
-      "type": ["Place", "VirtualLocation"],
+      "type":"VirtualLocation",
       "name": "Big Blue Button Participation Link",
       "url": "https://bbb.example.com/meeting-room-1"
     },
     {
-      "type": ["Place", "VirtualLocation"],
+      "type": "VirtualLocation",
       "name": "Live Stream",
       "url": "https://peertube.example.com/fediverse-discussion"
     }
