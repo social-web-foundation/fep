@@ -1,6 +1,6 @@
 ---
 slug: "8a8e"
-authors: André Menrath <andre.menrath@event-federation.eu>
+authors: André Menrath <andre.menrath@event-federation.eu>, les <lesion@autistici.org>
 status: DRAFT
 dateReceived: 2024-10-27
 trackingIssue: https://codeberg.org/fediverse/fep/issues/XX
