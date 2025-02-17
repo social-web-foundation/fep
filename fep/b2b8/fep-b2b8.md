@@ -348,6 +348,28 @@ This section includes examples of long-form text objects. Note that for brevity,
 }
 ```
 
+## User interface guidance
+
+Consumers should use their native interfaces to handle `Article` objects in an intuitive way that integrates well with other object types. The following illustrations provide examples of how `Article` objects might be displayed in a stream-oriented social web interface, such as a microblogging application. The UI elements are labelled with the properties of the `Article` object that most likely correspond to them.
+
+### In stream, with image
+
+An example of a long-form text object with an `image` property displayed in a social stream.
+
+![Article in stream, with image](in-stream-with-image.drawio.svg)
+
+### In stream, without image
+
+An example of a long-form text object without an `image` property displayed in a social stream.
+
+![Article in stream, without image](in-stream-no-image.drawio.svg)
+
+### In stream, no title
+
+An example of a long-form text object without a `name` property displayed in a social stream.
+
+![Article in stream, no title](in-stream-no-title.drawio.svg)
+
 ## References
 
 - Christine Lemmer Webber, Jessica Tallon, [ActivityPub][ActivityPub], 2018
