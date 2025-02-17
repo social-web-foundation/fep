@@ -27,9 +27,9 @@ The [Article](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-article) typ
 
 Some consumers do not display `Article` objects with their full content. Some publishers work around this by using a `Note`-type object with much more content than expected for a note.
 
-Publishers should avoid this workaround, and instead give consumers the full information they need to display the content correctly in their own interfaces.
+Publishers should avoid this workaround, and instead give consumers the full information they need to display the content correctly in their own interfaces. The [preview](#preview) property can be used to provide a simpler version of the content for consumers that don't support `Article` directly.
 
-Consumers that only display short text should show the `name`, `summary` and a link to the `url` property so that users can view the full content in a web browser.
+Consumers that only display short text should show the `name`, `summary` and a link to the `url` property so that users can view the full content in a web browser. As a fallback, they can use the `preview` property if it is present.
 
 ## Properties
 
@@ -165,6 +165,20 @@ There can be multiple `context` properties, either as an array of strings or obj
 
 The [generator](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-generator) property provides information about the software that generated the text. This is usually an `Application` or `Service` object with an `id` and a `name` property.
 
+### `preview`
+
+In AS2, the `preview` property provides an abbreviated version of the content of the object. Especially for microblogging applications, the `preview` property is a useful fallback for supporting unrecognized object types like `Article`.
+
+For an article, the `preview` can be a `Note` that gives a well-formatted preview of the article content in its `content` property. For example, the `name`, `summary`, and a link to the `url` would be an appropriate representation.
+
+The `content` property of the `preview` should include a minimal set of HTML elements, as described in [ActivityPub Primer HTML](https://www.w3.org/wiki/ActivityPub/Primer/HTML).
+
+Metadata on the `Article` that applies equally to the preview, such as `attributedTo`, `published`, `updated`, and `tag` should be repeated in the `preview` property.
+
+The `image` property of the `Article` may be included in the `preview` property as `attachment` items.
+
+The `preview` property may have an `id` property.
+
 ## Examples
 
 This section includes examples of long-form text objects. Note that for brevity, the content is not actually multi-paragraph text.
@@ -299,6 +313,38 @@ This section includes examples of long-form text objects. Note that for brevity,
     "https://example.com/2024/11/07/category"
   ],
   "published": "2024-11-07T12:00:00Z"
+}
+```
+
+### Long-form text with preview
+
+```
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Article",
+  "id": "https://example.com/2025/02/17/long-form-text-preview.jsonld",
+  "name": "Long-form text with preview",
+  "url": "https://example.com/2025/02/17/long-form-text-preview.html",
+  "attributedTo": "https://example.com/evan",
+  "summary": "<p>This is the summary for a long-form text with a preview.</p>",
+  "content": "<p>This is the content for a long-form text with a preview.</p>",
+  "published": "2024-11-07T12:00:00Z",
+  "image": {
+    "type": "Link",
+    "href": "https://example.com/image.jpg",
+    "mediaType": "image/jpeg"
+  },
+  "preview": {
+    "type": "Note",
+    "attributedTo": "https://example.com/evan",
+    "content": "<p><strong>Long-form text with preview</strong></p><p>This is the summary for a long-form text with a preview.</p><p><a href='https://example.com/2025/02/17/long-form-text-preview.html'>Read more</a></p>",
+    "published": "2024-11-07T12:00:00Z",
+    "attachment": {
+      "type": "Link",
+      "href": "https://example.com/image.jpg",
+      "mediaType": "image/jpeg"
+    }
+  }
 }
 ```
 
