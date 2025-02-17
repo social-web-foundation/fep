@@ -185,6 +185,12 @@ The `image` property of the `Article` may be included in the `preview` property 
 
 The `preview` property may have an `id` property.
 
+### `to`, `cc`, `bcc`, `bto`, `audience`
+
+As with other AS2 object types, the `to`, `cc`, `bcc`, `bto`, and `audience` properties identify the addressees of the text. For ActivityPub, they also determine the delivery targets of the text.
+
+The addressing properties provide an access control mechanism for AS2. Publishers and consumers should not disclose the properties of any AS2 object type, including the `Article` type, with anyone except the addressees, listed in these addressing properties, or the creator(s), listed in the `attributedTo` property.
+
 ## Examples
 
 This section includes examples of long-form text objects. Note that for brevity, the content is not actually multi-paragraph text.
