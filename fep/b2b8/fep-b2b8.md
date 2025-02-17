@@ -11,17 +11,19 @@ trackingIssue: https://codeberg.org/fediverse/fep/issues/441
 
 ## Summary
 
-Multi-paragraph text is an important content type on the Social Web. This FEP defines best practices for representing and using properties of a long-form text object in Activity Streams 2.0.
+Multi-paragraph text is an important content type on the Social Web. This FEP defines best practices for representing and using properties of a long-form text object in [Activity Streams 2.0][AS2].
 
 ## Motivation
 
-Blog posts, magazine articles, and forum posts are often made up of multiple paragraphs of text, sometimes with embedded images, video, audio or other media. This important content type is documented in the Activity Vocabulary, but this FEP provides additional guidance for publishers and consumers and collects the relevant properties in one place.
+Blog posts, magazine articles, and forum posts are often made up of multiple paragraphs of text, sometimes with embedded images, video, audio or other media. This important content type is documented in the [Activity Vocabulary], but this FEP provides additional guidance for publishers and consumers and collects the relevant properties in one place.
 
 Well-defined behaviour for supporting long-form text provides multiple benefits. Not only does it allow publishers to integrate content in a dependable way across different platforms, but it also gives users of Activity Streams 2.0 consumer applications more control over their reading experience -- including filtering or sorting long-form text objects in their stream.
 
 This FEP does not provide guidance for book-length or longer text.
 
-This document provides information for multiple protocols that use Activity Streams 2.0 as a representation format. Where ActivityPub use is different than AS2, it is noted.
+This document provides information for multiple protocols that use Activity Streams 2.0 as a representation format. Where [ActivityPub] use is different than AS2, it is noted.
+
+Because long-form text is often syndicated using [RSS 2.0][RSS2], the properties in this FEP are compared to the properties in that format where appropriate.
 
 ## Type
 
@@ -376,9 +378,15 @@ An example of a long-form text object without a `name` property displayed in a s
 
 ## References
 
+- James Snell, Evan Prodromou, [Activity Streams 2.0][AS2], 2017
+- James Snell, Evan Prodromou, [Activity Vocabulary][Activity Vocabulary], 2017
 - Christine Lemmer Webber, Jessica Tallon, [ActivityPub][ActivityPub], 2018
+- Dave Winer, [RSS 2.0 Specification][RSS2], 2003
 
 [ActivityPub]: https://www.w3.org/TR/activitypub/
+[AS2]: https://www.w3.org/TR/activitystreams-core/
+[Activity Vocabulary]: https://www.w3.org/TR/activitystreams-vocabulary/
+[RSS2]: https://cyber.harvard.edu/rss/rss.html
 
 ## Copyright
 
