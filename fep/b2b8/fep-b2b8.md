@@ -17,17 +17,21 @@ Multi-paragraph text is an important content type on the Social Web. This FEP de
 
 Blog posts, magazine articles, and forum posts are often made up of multiple paragraphs of text, sometimes with embedded images, video, audio or other media. This important content type is documented in the Activity Vocabulary, but this FEP provides additional guidance for publishers and consumers and collects the relevant properties in one place.
 
+Well-defined behaviour for supporting long-form text provides multiple benefits. Not only does it allow publishers to integrate content in a dependable way across different platforms, but it also gives users of Activity Streams 2.0 consumer applications more control over their reading experience -- including filtering or sorting long-form text objects in their stream.
+
 This FEP does not provide guidance for book-length or longer text.
 
 This document provides information for multiple protocols that use Activity Streams 2.0 as a representation format. Where ActivityPub use is different than AS2, it is noted.
 
 ## Type
 
-The [Article](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-article) type is used to represent multi-paragraph text.
+The [Article](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-article) type is used to represent multi-paragraph text. The Activity Streams 2.0 primer provides [guidance](https://w3.org/wiki/Activity_Streams/Primer/Article_and_Note) on when to use the `Article` type and when to use the `Note` type.
 
 Some consumers do not display `Article` objects with their full content. Some publishers work around this by using a `Note`-type object with much more content than expected for a note.
 
 Publishers should avoid this workaround, and instead give consumers the full information they need to display the content correctly in their own interfaces. The [preview](#preview) property can be used to provide a simpler version of the content for consumers that don't support `Article` directly.
+
+Forcing long-form text into a `Note` object can cause problems for consumers that expect `Note` objects to be short and well-formatted for stream display. Maintaining a clear distinction between `Note` and `Article` objects is important for interoperability.
 
 Consumers that only display short text should show the `name`, `summary` and a link to the `url` property so that users can view the full content in a web browser. As a fallback, they can use the `preview` property if it is present.
 
