@@ -103,6 +103,7 @@ the full HTML element set. It should not include any CSS or JavaScript. This sub
 
 - `<p>`
 - `<span>` (class)
+- `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`
 - `<br>`
 - `<a>` (href, rel, class)
 - `<del>`
@@ -118,8 +119,12 @@ the full HTML element set. It should not include any CSS or JavaScript. This sub
 - `<li>` (value)
 - `<blockquote>`
 - `<img>` (src, alt, title, width, height, class)
-- `<video>` (src, poster, width, height, class)
-- `<audio>` (src, controls, class)
+- `<video>` (src, controls, loop, poster, width, height, class)
+- `<audio>` (src, controls, loop, class)
+- `<source>` (src, type)
+- `<ruby>`
+- `<rt>`
+- `<rp>`
 
 The HTML should only include the content of the text. Additional navigation to other pages on the originating site, like category links or home page links, should not be included. Other affordances like "favourite", "like", "bookmark" or other buttons should not be included.
 
