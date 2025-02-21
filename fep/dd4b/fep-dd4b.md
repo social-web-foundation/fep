@@ -94,11 +94,11 @@ This represents a quote post with a hashtag, where the actor is sharing a note f
     "type": "Note",
     "attributedTo": "https://example.com/users/franklin"
   },
-  "content": "Great description of Cretan geology; saving it for my next trip. <a href='https://example.com/tags/evanstriptocrete'>#evanstripincrete</a>",
+  "content": "Great description of Cretan geology; saving it for my next trip. <a href='https://example.com/tags/evanstriptocrete'>#evanstriptocrete</a>",
   "tag": {
     "type": "Hashtag",
     "href": "https://example.com/tags/evanstriptocrete",
-    "name": "evanstripincrete"
+    "name": "evanstriptocrete"
   }
 }
 ```
