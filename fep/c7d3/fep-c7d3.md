@@ -1,8 +1,9 @@
 ---
 slug: "c7d3"
 authors: silverpill <@silverpill@mitra.social>
-status: DRAFT
+status: WITHDRAWN
 dateReceived: 2024-06-04
+dateWithdrawn: 2025-02-21
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-c7d3-ownership/4292
 trackingIssue: https://codeberg.org/fediverse/fep/issues/323
 ---
@@ -11,6 +12,9 @@ trackingIssue: https://codeberg.org/fediverse/fep/issues/323
 ## Summary
 
 In this document we discuss the concept of ownership, as applied to [ActivityPub] objects.
+
+>[!WARNING]
+>This FEP has been superseded by [FEP-fe34](https://codeberg.org/fediverse/fep/src/branch/main/fep/fe34/fep-fe34.md).
 
 ## Rationale
 
@@ -34,10 +38,10 @@ Ownership is indicated by a property of an ActivityPub object. The name of this 
 The owner of an object MUST be an actor.
 
 >[!WARNING]
-> According to [Activity Vocabulary][ActivityVocabulary], `actor` and `attributedTo` properties can contain references to multiple actors. These scenarios are not covered by this document and implementers are expected to determine the appropriate authentication and authorization procedures on a case-by-case basis.
+>According to [Activity Vocabulary][ActivityVocabulary], `actor` and `attributedTo` properties can contain references to multiple actors. These scenarios are not covered by this document and implementers are expected to determine the appropriate authentication and authorization procedures on a case-by-case basis.
 
 >[!NOTE]
-> In subsequent sections, "objects" and "activities" will be referred to as simply "objects".
+>In subsequent sections, "objects" and "activities" will be referred to as simply "objects".
 
 ## Origin
 
@@ -46,7 +50,7 @@ Object identifiers are grouped together into protection domains called "origins"
 The same-origin policy determines when a relationship between objects can be trusted.
 
 >[!NOTE]
-> There might be other ways to establish trust, but they are not covered by this document.
+>There might be other ways to establish trust, but they are not covered by this document.
 
 ## Identifiers and ownership
 
@@ -57,12 +61,16 @@ Identifier of an object and identifier of its owner MUST have the same origin.
 The object is considered authentic if any of the following conditions are met:
 
 1. It was fetched from the location that has the same origin as its owner's ID.
-2. It was delivered to inbox and the request contained a valid [HTTP signature][HttpSig] created using a key whose owner has the same origin as the object owner.
+2. It was delivered to inbox and the `POST` request contained a valid [HTTP signature][HttpSig] created using a key whose owner has the same origin as the object owner.
 3. It contains a valid [FEP-8b32] integrity proof created using a key whose owner has the same origin as the object owner.
+4. If it is embedded within another object, and its owner has the same origin as the owner of the containing object.
 
 If none of these conditions are met, the object MUST be discarded.
 
 If signature verification is performed, the key owner SHOULD match the object owner.
+
+>[!NOTE]
+>In some cases, consumers can process unauthenticated objects if the risk is deemed acceptable.
 
 ### Delivered to inbox
 
@@ -70,7 +78,7 @@ If the object was delivered to inbox and its authentication fails, the recipient
 
 ### Emdedded objects
 
-If the object is embedded within another object, it MAY be considered authentic if its owner has the same origin as the owner of the containing object. If the embedded and the containing objects have owners with different origins, the authenticity of the embedded object MUST be verified independently either by fetching it from the server of origin, or by verifying its [FEP-8b32] integrity proof.
+If the embedded and the containing objects have owners with different origins, the authenticity of the embedded object MUST be verified independently either by fetching it from the server of origin, or by verifying its [FEP-8b32] integrity proof.
 
 ### Anonymous objects
 
@@ -93,9 +101,13 @@ Examples:
 - `Add` and `Remove` activities, and objects indicated by their `target` property SHOULD have the same owner.
 - `Announce` and `Like` activities don't modify objects indicated by their `object` property, therefore their owners can be different.
 
-## Ownership transfer
+### Ownership transfer
 
 When ownership changes, the new owner ID MUST have the same origin as the old owner ID.
+
+### Access control
+
+When a protected object is fetched, the `GET` request MUST contain a [HTTP signature][HttpSig] created using a key whose owner SHOULD belong to object's intended audience. If key owner doesn't belong to intended audience, its ID MUST have the same origin as one of the actors in object's intended audience.
 
 ## References
 

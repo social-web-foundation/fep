@@ -1,9 +1,11 @@
 ---
 slug: "67ff"
 authors: silverpill <@silverpill@mitra.social>
-status: DRAFT
+status: FINAL
 dateReceived: 2023-09-05
-discussionsTo: https://codeberg.org/fediverse/fep/issues/157
+dateFinalized: 2024-09-22
+trackingIssue: https://codeberg.org/fediverse/fep/issues/157
+discussionsTo: https://socialhub.activitypub.rocks/t/fep-67ff-federation-md/3555
 ---
 # FEP-67ff: FEDERATION.md
 
@@ -67,6 +69,14 @@ The `FEDERATION.md` file can have arbitrary structure and content. The only requ
 - [BookWyrm](https://github.com/bookwyrm-social/bookwyrm/blob/main/FEDERATION.md)
 - [Hatsu](https://github.com/importantimport/hatsu/blob/main/FEDERATION.md)
 - [tootik](https://github.com/dimkr/tootik/blob/main/FEDERATION.md)
+- [Bridgy Fed](https://github.com/snarfed/bridgy-fed/blob/main/FEDERATION.md)
+- [Friendica](https://git.friendi.ca/friendica/friendica/src/branch/develop/FEDERATION.md)
+- [PieFed](https://codeberg.org/rimu/pyfedi/src/branch/main/FEDERATION.md)
+- [Akkoma](https://akkoma.dev/AkkomaGang/akkoma/src/branch/stable/FEDERATION.md)
+- [Iceshrimp.NET](https://iceshrimp.dev/iceshrimp/Iceshrimp.NET/src/branch/dev/FEDERATION.md)
+- [Forte](https://codeberg.org/fortified/forte/src/branch/dev/FEDERATION.md)
+- [NeoDB](https://github.com/neodb-social/neodb/blob/main/FEDERATION.md)
+- [FIRM](https://github.com/steve-bate/firm/blob/main/FEDERATION.md)
 
 ## References
 
