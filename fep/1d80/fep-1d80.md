@@ -1,6 +1,6 @@
 ---
 slug: "1d80"
-authors: Alyssa P. Hacker <alyssa.p.hacker@email.example>, Chatty Ben <@ben@fediverse.example>
+authors: Alan "JollyRoberts" Roberts <jolly.development@gmail.com>
 status: DRAFT
 dateReceived: 1970-01-01
 discussionsTo: https://forum.example/topics/xxxx
@@ -34,6 +34,9 @@ Lemmy Issues
 * [Support for grouping communities / multi-communities](https://github.com/LemmyNet/lemmy/issues/818)
 * [Subscription Groups](https://github.com/LemmyNet/lemmy/issues/3875)
 
+MBin Issue
+* [Implement MultiMag Views](https://github.com/MbinOrg/mbin/issues/486)
+
 The below document proposes an activitypub native method of satisfying this request.
 
 
@@ -61,9 +64,9 @@ Example following collection:
     "https://www.w3.org/ns/activitystreams",
     "https://w3id.org/security/v1"
   ],
-  "id": "https://server.name/f/feedname/following",
+  "id": "https://example.com/f/feedname/following",
   "items": [
-    "https://server.name/c/communityname",
+    "https://example.com/c/communityname",
     "https://server2.name/c/community-two-name"
   ],
   "totalItems": 2,
@@ -86,26 +89,26 @@ Example announce/add:
 {
     "@context": "https://www.w3.org/ns/activitystreams",
     "type": "Announce",
-    "actor": "https://server.name/f/feedname",
-    "id": "https://server.name/activities/announce/d3ade180-f641-4d6b-8ae7-ceab824f2b72",
+    "actor": "https://example.com/f/feedname",
+    "id": "https://example.com/activities/announce/d3ade180-f641-4d6b-8ae7-ceab824f2b72",
     "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
         "type": "Add",
-        "actor": "https://server.name/f/feedname",
-        "id": "https://server.name/activities/feedadd/4242",
+        "actor": "https://example.com/f/feedname",
+        "id": "https://example.com/activities/feedadd/4242",
         "object": {
             "type": "Group",
-            "id": "https://server.name/c/communityname"
+            "id": "https://example.com/c/communityname"
         },
         "target": {
             "type": "Collection",
-            "id": "https://server.name/f/feedname/following"
+            "id": "https://example.com/f/feedname/following"
         }
     }
 }
 ```
 
-After the group successfully verifies and wraps the received activity, it sends it to the inboxes of its followers. Followers then use the outer `Announce` activity to verify that the content was really approved by the feed. After this step the `Announce` can be discarded and only the inner activity used to update the feed following collection.
+After the feed successfully verifies and wraps the received activity, it sends it to the inboxes of its followers. Followers then use the outer `Announce` activity to verify that the content was really approved by the feed. After this step the `Announce` can be discarded and only the inner activity used to update the feed following collection.
 
 
 ### Announce/Remove
@@ -123,26 +126,26 @@ Example announce/remove:
 {
     "@context": "https://www.w3.org/ns/activitystreams",
     "type": "Announce",
-    "actor": "https://server.name/f/feedname",
-    "id": "https://server.name/activities/announce/d3ade180-f641-4d6b-8ae7-ceab824f2b72",
+    "actor": "https://example.com/f/feedname",
+    "id": "https://example.com/activities/announce/d3ade180-f641-4d6b-8ae7-ceab824f2b72",
     "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
         "type": "Remove",
-        "actor": "https://server.name/f/feedname",
-        "id": "https://server.name/activities/feedremove/4242",
+        "actor": "https://example.com/f/feedname",
+        "id": "https://example.com/activities/feedremove/4242",
         "object": {
             "type": "Group",
-            "id": "https://server.name/c/communityname"
+            "id": "https://example.com/c/communityname"
         },
         "target": {
             "type": "Collection",
-            "id": "https://server.name/f/feedname/following"
+            "id": "https://example.com/f/feedname/following"
         }
     }
 }
 ```
 
-After the group successfully verifies and wraps the received activity, it sends it to the inboxes of its followers. Followers then use the outer `Announce` activity to verify that the content was really approved by the feed. After this step the `Announce` can be discarded and only the inner activity used to update the feed following collection.
+After the feed successfully verifies and wraps the received activity, it sends it to the inboxes of its followers. Followers then use the outer `Announce` activity to verify that the content was really approved by the feed. After this step the `Announce` can be discarded and only the inner activity used to update the feed following collection.
 
 
 ## The followers collection
@@ -159,7 +162,7 @@ Example followers collection:
         "https://www.w3.org/ns/activitystreams",
         "https://w3id.org/security/v1"
     ],
-    "id": "https://server.name/f/feedname/followers",
+    "id": "https://example.com/f/feedname/followers",
     "items": [],
     "totalItems": 2,
     "type": "Collection"
@@ -181,9 +184,9 @@ Example moderators ordered collection:
     "https://www.w3.org/ns/activitystreams",
     "https://w3id.org/security/v1"
   ],
-  "id": "https://server.name/f/feedname/moderators",
+  "id": "https://example.com/f/feedname/moderators",
   "orderedItems": [
-    "https://server.name/u/username"
+    "https://example.com/u/username"
   ],
   "totalItems": 1,
   "type": "OrderedCollection"
