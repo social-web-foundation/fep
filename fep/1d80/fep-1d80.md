@@ -172,7 +172,7 @@ Example followers collection:
 
 ## Feed ownership
 
-Feeds MUST provide ownership information. This SHOULD be provided as either the `attributedTo` or `moderators` property of the feed actor.
+Feeds MUST provide ownership information. This SHOULD be provided as the `attributedTo` property of the feed actor.
 
 Implementations MAY provide this information as a single actor, an OrderedCollection of actors, or a Collection of actors.
 
