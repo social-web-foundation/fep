@@ -2,7 +2,7 @@
 slug: "1d80"
 authors: Alan "JollyRoberts" Roberts <jolly.development@gmail.com>
 status: DRAFT
-dateReceived: 1970-01-01
+dateReceived: 2025-03-11
 discussionsTo: https://forum.example/topics/xxxx
 ---
 # FEP-1d80: Feed Actor - a way to federate a collection of Group actors
