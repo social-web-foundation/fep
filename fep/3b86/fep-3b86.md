@@ -34,6 +34,8 @@ In the most basic terms, Activity Intents expand on the common Fediverse use of 
 
 When generating a WebFinger result for a user account, servers supporting Activity Intents SHOULD respond with one or more intent links in the ["links" property](https://datatracker.ietf.org/doc/html/rfc7033#section-4.4.4). Activity Intent links MUST have `rel` and `template` properties.  All others properties are ignored.
 
+While the number and specific behavior of each Activity Intent is defined independently by each home server, to maximize compatibility home servers SHOULD publish all of the activities that they support.  This gives remote servers the greatest opportunity to match as many activities as possible.
+
 ### 3.1. Example
 Here is an example response from a WebFinger server which includes three Activity Intents appended to the end of its `links` property.
 
