@@ -118,7 +118,7 @@ Remote servers MAY open Activity Intent links in many different environments, su
 3. a mobile app HTML view
 4. or other constrained environments.
 
-Home servers SHOULD build their UI with minimal assumptions so that the endpoint will fit well into as many environments as possible.  Home servers may not be aware f the remote server opens the Activity Intent link in a separate popup window, so remote servers SHOULD include `on-success` and `on-cancel` parameters that redirect back to its own pages so that it can close the pop-up itself.
+Home servers SHOULD build their UI with minimal assumptions so that the endpoint will fit well into as many environments as possible.  Home servers may not be aware if the remote server opens the Activity Intent link in a separate popup window or not, so remote servers SHOULD include `on-success` and `on-cancel` parameters that redirect back to its own pages so that it can close the pop-up itself.
 
 ## 4. Standard Intent Definitions
 
