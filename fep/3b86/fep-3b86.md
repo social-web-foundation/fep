@@ -220,7 +220,7 @@ The Create intent publishes the API endpoint where the current user can create a
 
 This is similar to the existing "share" endpoints supported by several Fediverse apps, where the user can create a new post in their inbox starting with some pre-populated content.
 
-This Intent differs slightly from others in that it does not take IDs/URLs of other objects, but parameters to pre-populate into a new object to be created by the user.  
+This Intent differs slightly from others in that it does not take an object ID as a parameter because it expects a the user's home server to create a new object.  Instead, the parameters for this Intent are meant to pre-populate into the new object that the user will create.  
 
 #### 4.6.1. Parameters
 * `{content}` - Text content to pre-populate into the created object.
