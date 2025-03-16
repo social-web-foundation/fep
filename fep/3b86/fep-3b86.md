@@ -120,7 +120,7 @@ Remote servers MAY open Activity Intent links in many different environments, su
 
 Home servers SHOULD build their UI with minimal assumptions so that the endpoint will fit well into as many environments as possible.  Home servers may not be aware f the remote server opens the Activity Intent link in a separate popup window, so remote servers SHOULD include `on-success` and `on-cancel` parameters that redirect back to its own pages so that it can close the pop-up itself.
 
-## 4. Intent Definitions
+## 4. Standard Intent Definitions
 
 ### 4.1. Accept Intent
 This intent corresponds to the ActivityStreams [Accept activity](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-accept) and is defined using the link relation `https://w3id.org/fep/3b86/Accept`.
