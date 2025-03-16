@@ -223,11 +223,16 @@ This is similar to the existing "share" endpoints supported by several Fediverse
 This Intent differs slightly from others in that it does not take an object ID as a parameter because it expects a the user's home server to create a new object.  Instead, the parameters for this Intent are meant to pre-populate into the new object that the user will create.  
 
 #### 4.6.1. Parameters
-* `{content}` - Text content to pre-populate into the created object.
 * `{type}` - (optional) Type of object to create (Note, Article, etc). Home servers can determine whether to use or ignore this value.
 * `{name}` - (optional) Name to pre-populate into the created object.
 * `{summary}` - (optional) Summary to pre-populate into the created object.
+* `{content}` - (optional) Text content to pre-populate into the created object.
 * `{inReplyTo}` - (optional)The ID of the ActivityStreams Document that the user is replying to.
+* `{attachment}` - (optional) ID of an object (such as a link or an image) that should be included in the created object.
+* `{tag}` - (optional) ID of an object (such as a tag definition) that should be referenced by the created object
+* `{startTime}` - (optional) a [date-time](https://www.w3.org/TR/activitystreams-core/#dates) that identifies the actual or expected starting time of the created object. [RFC3339 format](https://tools.ietf.org/html/rfc3339) 
+* `{endTime}` - (optional) a [date-time](https://www.w3.org/TR/activitystreams-core/#dates) that identifies the actual or expected ending time of the created object. [RFC3339 format](https://tools.ietf.org/html/rfc3339)
+* `{describes}` (optional) the ID of an object to be described, when creating a [Profile](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-profile) object.
 * `{on-success}` - (optional) Workflow action to perform after the workflow completes.
 * `{on-cancel}` - (optional) Workflow action to perform if the user aborts the workflow.
 
