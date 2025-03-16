@@ -101,7 +101,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-ef61: Portable Objects](./fep/ef61/fep-ef61.md) | `DRAFT` | [#209](https://codeberg.org/fediverse/fep/issues/209) | 2023-12-06 | - |
 | [FEP-7502: Limiting visibility to authenticated actors](./fep/7502/fep-7502.md) | `DRAFT` | [#218](https://codeberg.org/fediverse/fep/issues/218) | 2023-12-24 | - |
 | [FEP-2c59: Discovery of a Webfinger address from an ActivityPub actor](./fep/2c59/fep-2c59.md) | `DRAFT` | [#226](https://codeberg.org/fediverse/fep/issues/226) | 2024-01-04 | - |
-| [FEP-d556: Server-Level Actor Discovery Using WebFinger](./fep/d556/fep-d556.md) | `DRAFT` | [#243](https://codeberg.org/fediverse/fep/issues/243) | 2024-01-20 | - |
+| [FEP-d556: Server-Level Actor Discovery Using WebFinger](./fep/d556/fep-d556.md) | `FINAL` | [#243](https://codeberg.org/fediverse/fep/issues/243) | 2024-01-20 | 2025-03-15 |
 | [FEP-3264: Federated Work Coordination](./fep/3264/fep-3264.md) | `DRAFT` | [#255](https://codeberg.org/fediverse/fep/issues/255) | 2024-01-31 | - |
 | [FEP-c5a1: To-do's](./fep/c5a1/fep-c5a1.md) | `DRAFT` | [#256](https://codeberg.org/fediverse/fep/issues/256) | 2024-01-31 | - |
 | [FEP-61cf: The OpenWebAuth Protocol](./fep/61cf/fep-61cf.md) | `DRAFT` | [#263](https://codeberg.org/fediverse/fep/issues/263) | 2024-02-06 | - |
@@ -135,7 +135,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-76ea: Conversation Threads](./fep/76ea/fep-76ea.md) | `DRAFT` | [#407](https://codeberg.org/fediverse/fep/issues/407) | 2024-10-04 | - |
 | [FEP-1985: Signaling how an OrderedCollection is ordered](./fep/1985/fep-1985.md) | `DRAFT` | [#417](https://codeberg.org/fediverse/fep/issues/417) | 2024-10-10 | - |
 | [FEP-268d: Search consent signals for objects](./fep/268d/fep-268d.md) | `DRAFT` | [#421](https://codeberg.org/fediverse/fep/issues/421) | 2024-10-12 | - |
-| [FEP-ae0c: Fediverse Relay Protocols: Mastodon and LitePub](./fep/ae0c/fep-ae0c.md) | `DRAFT` | [#424](https://codeberg.org/fediverse/fep/issues/424) | 2024-10-19 | - |
+| [FEP-ae0c: Fediverse Relay Protocols: Mastodon and LitePub](./fep/ae0c/fep-ae0c.md) | `FINAL` | [#424](https://codeberg.org/fediverse/fep/issues/424) | 2024-10-19 | 2025-03-14 |
 | [FEP-b2b8: Long-form Text](./fep/b2b8/fep-b2b8.md) | `DRAFT` | [#441](https://codeberg.org/fediverse/fep/issues/441) | 2024-11-07 | - |
 | [FEP-fe34: Origin-based security model](./fep/fe34/fep-fe34.md) | `DRAFT` | [#445](https://codeberg.org/fediverse/fep/issues/445) | 2024-11-15 | - |
 | [FEP-171b: Conversation Containers](./fep/171b/fep-171b.md) | `DRAFT` | [#449](https://codeberg.org/fediverse/fep/issues/449) | 2024-11-23 | - |
