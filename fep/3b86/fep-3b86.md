@@ -643,26 +643,48 @@ The View intent publishes the API endpoint where the current user can initiate a
 }
 ```
 
-## 5.0. Security Considerations
+## 5.0. Additional Intent Definitions
 
-### 5.1 CSRF issues
+In addition to the activities defined in the [Activity Vocabulary spec](https://www.w3.org/TR/activitystreams-vocabulary/), this FEP defines a few additional intents that home severs SHOULD publish, and remote servers MAY implement.
+
+### 5.1 Object Intent
+This intent corresponds to the ActivityStreams [Object definition](https://www.w3.org/TR/activitystreams-core/#object), and is intended as a way for users to open an object from a remote server directly in their home server.  This is analogous to copying the URL of the object in question, then pasting the URL into the search box of the user's home server.
+
+This intent only opens the object using the user's home server.  It does not trigger an ActivityPub activity.  Because of this, it does not use the `on-success` and `on-cancel` workflows because there is no action to succeed, and no action to cancel.
+
+#### 5.1.1. Parameters
+* `{object}` - ID of the object that the actor will open in their home server when they use this workflow.
+
+#### 5.1.2. Example
+```json
+{
+	"rel": "https://w3id.org/fep/3b86/Object",
+	"template": "https://server.org/intents/object?objectId={object}"
+}
+```
+
+
+
+## 6.0. Security Considerations
+
+### 6.1 CSRF issues
 It is important to reiterate some key security practices to prevent [Cross Site Request Forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) vulnerabilities.
 
 * Remote Servers MUST only send `GET` requests to Home Servers.
 * Home Servers MUST NOT change data based on GET requests.
 * Home Servers SHOULD protect these published endpoints by generating CSRF tokens and including them with every POST request.  This validates that the request originated on the user's home server, and was initiated by the user. See [OWASP Related Controls](https://owasp.org/www-community/attacks/csrf#related-controls) for in-depth discussion.
 
-### 5.2 Open/Unvalidated Redirects
+### 6.2 Open/Unvalidated Redirects
 Activity Intents includes the ability for home servers to redirect browsers to new URLs based on the `on-success` and `on-cancel` query parameters.  If improperly implemented, this has the potential to expose an [Unvalidated Redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) vulnerability, which can open the home server up to phishing attack. 
 
 To avoid a potential security vulnerability when handling `on-success` and `on-cancel` workflows, it is important that the home server: "Force all redirects to first go through a page notifying users that they are going off of your site, with the destination clearly displayed, and have them click a link to confirm." ([owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#preventing-unvalidated-redirects-and-forwards))
 
 There is another good description of this issue [OAuth 2.0 Security Best Current Practice § 4.11. Open Redirection](https://www.ietf.org/archive/id/draft-ietf-oauth-security-topics-27.html#name-open-redirection)
 
-## 6.0. Remote Servers: The Rest of the Equation
+## 7.0. Remote Servers: The Rest of the Equation
 This FEP provides the prerequisite information required for a "Home Server" publish Activity Intents for its Actors.  It does not specify how "Remote Servers" will use this information - i.e., how they implement "share" and "like" buttons in their content.
 
-### 6.1. Remote Server Example
+### 7.1. Remote Server Example
 Here is a brief example of the workflow as implemented by a remote server:
 
 1. A user visits a remote server (i.e., any address on the Internet where they do not have an ActivityPub account)
@@ -677,10 +699,10 @@ Here is a brief example of the workflow as implemented by a remote server:
 6. When the user completes the workflow, the home server SHOULD use URL in the `on-success` parameter to redirect the user back to the correct page on the remote server.
 	1. Similarly, if the user cancels the workflow, the home server SHOULD use the URL in the `on-cancel` parameter to redirect the user back to the correct page on the remote server.
 
-### 6.2. Fallbacks for Unpublished Links
+### 7.2. Fallbacks for Unpublished Links
 Remote servers MAY also account for applications that do not publish Activity Intents, but whose endpoints are still well known.  In this case, remote servers SHOULD use Activity Intents links if they are present, then fall back to older links (such as the oStatus `/authorize_interaction` endpoint) if they are present, then fall back to hard-coded values (such as the Mastodon `/share` endpoint) if no other values exist.
 
-## 7.0. Implementations
+## 8.0. Implementations
 * [Emissary](https://emissary.dev) will support this FEP once its syntax is finalized.
 * Add your name to this list and win a cookie 🍪
 
