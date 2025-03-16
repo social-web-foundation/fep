@@ -2,8 +2,9 @@
 slug: "d556"
 type: implementation
 authors: Steve Bate <svc-fep@stevebate.net>
-status: DRAFT
+status: FINAL
 dateReceived: 2024-01-20
+dateFinalized: 2025-03-15
 trackingIssue: https://codeberg.org/fediverse/fep/issues/243
 discussionsTo: https://codeberg.org/fediverse/fep/issues/243
 ---
@@ -174,7 +175,9 @@ GET /.well-known/webfinger?resource=https://server.example/&rel=self
 Known implementations include:
 
 * FIRM
-* [Mastodon] implements something similar to this proposal. 
+* [Mastodon] implements something similar to this proposal.
+* Streams
+* Mitra
 
 ## Mastodon Example
 
