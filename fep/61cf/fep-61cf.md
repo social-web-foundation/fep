@@ -36,6 +36,32 @@ This `zid=` mechanism is not necessarily specific to OpenWebAuth. It can be used
 
 ## Operation of the protocol
 
+The protocol can be summarised in a sequence diagram as below. This diagram shows the `zid=` case, where the user is not prompted to log in.
+
+```mermaid
+sequenceDiagram
+  participant browser as Browser
+  participant target as Target instance
+  participant home as Home instance
+
+  browser ->> target: GET /page?zid=user@home
+  target ->> home: webfinger user@home
+  home -->> target: location of redirection endpoint
+  target -->> browser: Location: https://home.example/magic?...
+  browser ->> home: GET /magic?...
+  Note over home: Check user is logged in,<br/>eg by checking session cookie
+  home ->> target: webfinger /
+  target -->> home: location of token endpoint
+  rect rgb(216, 255, 216)
+  Note over home,target: Protected by actor's private key
+  home ->> target: GET /token<br/>(signed)
+  target -->> home: <token><br/>(encrypted)
+  end
+  home -->> browser: Location: https://target.example/page?owt=<token>
+  browser ->> target: GET /page?owt=<token>
+  target -->> browser: <contents of page>
+```
+
 Regardless of how the flow is started, the protocol begins with the user's browser making a request to the target instance.
 
 ### 1. Redirection to home instance
@@ -56,7 +82,9 @@ The `/magic` endpoint at the user's home instance first checks that the user's b
 
 If so, it decodes the `bdest` destination URL. It performs a webfinger lookup on the root URL of the destination site and looks for a link with `rel` set to `http://purl.org/openwebauth/v1`. This identifies the target instance's "token endpoint".
 
-The home instance constructs and issues a signed HTTPS request to this endpoint. The request also contains an additional signed header, `X-Open-Web-Auth`, containing a random string. Target instances do not use this header; it is provided to add additional entropy to the signature calculation.
+If an error occurs during this step, the home instance should not redirect to the 'bdest' URL; this would allow it to be used as an open redirector. Instead it should respond with a suitable HTTP error code.
+
+On success, the home instance constructs and issues a signed HTTPS request to the discovered token endpoint. The request also contains an additional signed header, `X-Open-Web-Auth`, containing a random string. Target instances do not use this header; it is provided to add additional entropy to the signature calculation.
 
 ### 3. Target instance provides a token
 

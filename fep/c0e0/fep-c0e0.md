@@ -1,6 +1,7 @@
 ---
 slug: "c0e0"
 authors: silverpill <@silverpill@mitra.social>
+type: implementation
 status: DRAFT
 dateReceived: 2024-08-08
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-c0e0-emoji-reactions/4443
@@ -118,9 +119,22 @@ Emoji reactions can be retracted using a standard `Undo` activity:
 }
 ```
 
+## `emojiReactions` collection
+
+The list of emoji reactions to an object can be exposed using the `emojiReactions` property. Its full IRI is `http://fedibird.com/ns#emojiReactions`.
+
+The URL specified by this property MUST resolve to a collection containing `Like` (with `content`) and `EmojiReact` activities.
+
 ## Implementations
 
-This document is based on implementations of emoji reactions in Misskey and Pleroma.
+This document is based on implementations of emoji reactions in Misskey, Pleroma and Fedibird.
+
+A number of other projects announced support for this FEP after it was published:
+
+- [Hollo](https://hollo.social/@hollo/0192479d-cbcc-7e4d-b2f1-1e0f8de61ea7)
+- [Mitra](https://codeberg.org/silverpill/mitra/src/commit/3458b584bdb649f32cccac0e55ad10844debd397/FEDERATION.md#supported-feps)
+- [PieFed](https://codeberg.org/rimu/pyfedi/src/commit/7ea1930b0601c4a0521da6e37e0a732b38c98c3b/FEDERATION.md#partially-supported-feps)
+- [Iceshrimp.NET](https://iceshrimp.dev/iceshrimp/Iceshrimp.NET/src/commit/65d6edf799169a0dc88d895f52a8a32071b5f0c4/FEDERATION.md#supported-feps)
 
 ## References
 

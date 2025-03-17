@@ -273,6 +273,7 @@
   {
     "slug": "521a",
     "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
     "status": "DRAFT",
     "dateReceived": "2023-07-08",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/130",
@@ -408,9 +409,11 @@
   },
   {
     "slug": "d556",
+    "type": "implementation",
     "authors": "Steve Bate <svc-fep@stevebate.net>",
-    "status": "DRAFT",
+    "status": "FINAL",
     "dateReceived": "2024-01-20",
+    "dateFinalized": "2025-03-15",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/243",
     "discussionsTo": "https://codeberg.org/fediverse/fep/issues/243",
     "title": "Server-Level Actor Discovery Using WebFinger"
@@ -541,8 +544,9 @@
   {
     "slug": "c7d3",
     "authors": "silverpill <@silverpill@mitra.social>",
-    "status": "DRAFT",
+    "status": "WITHDRAWN",
     "dateReceived": "2024-06-04",
+    "dateWithdrawn": "2025-02-21",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c7d3-ownership/4292",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/323",
     "title": "Ownership"
@@ -669,6 +673,7 @@
   {
     "slug": "c0e0",
     "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
     "status": "DRAFT",
     "dateReceived": "2024-08-08",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c0e0-emoji-reactions/4443",
@@ -725,9 +730,10 @@
   {
     "slug": "ae0c",
     "authors": "Steve Bate <svc-fep@stevebate.net>",
-    "status": "DRAFT",
+    "status": "FINAL",
     "category": "informational",
     "dateReceived": "2024-10-19",
+    "dateFinalized": "2025-03-14",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/424",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fediverse-relays/4626",
     "title": "Fediverse Relay Protocols: Mastodon and LitePub"
@@ -753,6 +759,7 @@
   {
     "slug": "171b",
     "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
     "status": "DRAFT",
     "dateReceived": "2024-11-23",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-171b-conversation-containers/4766",
@@ -776,5 +783,80 @@
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-1311-media-attachments/4796",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/459",
     "title": "Media Attachments"
+  },
+  {
+    "slug": "7d8c",
+    "authors": "Helge <@helge@mymath.rocks>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-repo-rights/4797/3",
+    "dateReceived": "2025-01-20",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/470",
+    "title": "Documentation: Automation of FEP"
+  },
+  {
+    "slug": "9967",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-9967-polls/4885",
+    "dateReceived": "2025-01-23",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/478",
+    "title": "Polls"
+  },
+  {
+    "slug": "2277",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "informational",
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/silverpill/feps/issues",
+    "dateReceived": "2025-01-31",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/485",
+    "title": "ActivityPub core types"
+  },
+  {
+    "slug": "a974",
+    "authors": "James Smith <james@floppy.org.uk>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/proposed-fep-a974-all-actor-types-should-be-followable/5012",
+    "dateReceived": "2025-02-05",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/487",
+    "title": "All Actor types should be followable"
+  },
+  {
+    "slug": "efda",
+    "authors": "a <a@trwnh.com>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-efda-followable-objects/5030",
+    "dateReceived": "2025-02-13",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/492",
+    "title": "Followable objects"
+  },
+  {
+    "slug": "f228",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/silverpill/feps/issues",
+    "dateReceived": "2025-02-17",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/500",
+    "title": "Backfilling conversations"
+  },
+  {
+    "slug": "f06f",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/silverpill/feps/issues",
+    "dateReceived": "2025-02-18",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/503",
+    "title": "Object observers"
+  },
+  {
+    "slug": "dd4b",
+    "authors": "Evan Prodromou <evan@socialwebfoundation.org>",
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/evanp/fep/issues",
+    "dateReceived": "2025-02-21",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/511",
+    "title": "Quote Posts"
   }
 ]
