@@ -16,6 +16,14 @@ This includes guidelines for the minimal interoperable event, handling of RSVP (
 
 These differences in how the aforementioned features are implemented have led to fragmentation in how events are published, discovered, and managed across platforms.
 
+## What is not covered
+
+We do not cover recurrence, multiple-scheduled, and connected events.
+
+For more information on that, check out for example: 
+- [RFC 5545 Section 3.8.5.3](https://www.rfc-editor.org/rfc/rfc5545#section-3.8.5.3)
+- [RFC 5545 Section 3.8.4.5](https://www.rfc-editor.org/rfc/rfc5545#section-3.8.4.5)
+
 ## History
 
 Fediverse applications, such as Mobilizon, Friendica, Gancio, and Hubzilla, have adopted varying approaches for handling ActivityPub events. Their different aims and the varying use cases have led to fragmentation in how events are published, discovered, and managed across federation.
@@ -40,7 +48,7 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 - [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
 
 - [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `endTime` *MUST* be a later date than the `startTime`. If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
-
+- [`organizers`](https://event-federation.eu/ns#organizer)
 
 ```json
 {
@@ -49,7 +57,8 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
   "id": "https://example.org/foo",
   "name": "New years party",
   "startTime": "2014-12-31T23:00:00Z",
-  "endTime": "2015-01-01T06:00:00Z"
+  "endTime": "2015-01-01T06:00:00Z",
+  "organizers": null,
 }
 ```
 
@@ -73,8 +82,6 @@ The `timezone` property is introduced to support time zone information for event
 For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application *SHOULD* set the named `timezone`.
 
 In case the `timezone` property is specified it *MUST* be a specific IANA time zone identifier included in the [IANA Time Zone Database](https://data.iana.org/time-zones/tz-link.html) (often called tz or zoneinfo, see [https://www.w3.org/TR/timezone/#time-zone-identifiers](https://www.w3.org/TR/timezone/#time-zone-identifiers)).
-
-When receiving an `Event` with a `timezone` property specified, the receiving application *SHOULD* use that information for displaying the times.
 
 <!--
   Evaluated @id / @type for @context:
@@ -100,13 +107,16 @@ When receiving an `Event` with a `timezone` property specified, the receiving ap
   "type": "Event",
   "id": "https://example.org/foo",
   "name": "New years party",
+  "organizers": null,
   "startTime": "2014-12-31T23:00:00+01:00",
+  "endTime": "2015-01-01T04:00:00+01:00",
   "timezone": "Europe/Rome"
 }
 ```
 
 
 ### Location
+
 ActivityStreams provides a flexible framework for representing locations, as outlined in [this section of the specification](https://www.w3.org/TR/activitystreams-vocabulary/#places). However, its flexibility can sometimes lead to ambiguity.
 
 This section aims to establish a clear and consistent format for representing the locations of events, whether they are physical, virtual, or mixed.
@@ -138,7 +148,9 @@ Example with pure text address:
   "type": "Event",
   "id": "https://example.org/new-year-party",
   "name": "New years party",
-  "startTime": "2014-12-31T23:00:00-08:00",
+  "organizers": null,
+  "startTime": "2014-12-31T23:00:00+01:00",
+  "endTime": "2015-01-01T04:00:00+01:00",
   "location": {
     "type": "Place",
     "name": "Foo Bar",
@@ -158,7 +170,9 @@ Example with address of type `https://schema.org/PostalAddress`:
   "type": "Event",
   "id": "https://example.org/new-year-party",
   "name": "New years party",
+  "organizers": null,
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
   "location": {
     "id": "",
     "type": "Place",
@@ -191,11 +205,13 @@ An online Location *SHOULD* be represented by using a type `VirtualLocation` as 
   "type": "Event",
   "id": "https://example.org/new-year-party",
   "name": "Fediverse Moderation Meeting",
+  "organizers": null,
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
   "location": {
     "type":"VirtualLocation",
     "name":"Jitsi Meet Meeting Link",
-    "url": "https://jit.si/fediverse-moderation-meeting"
+    "url": "https://jitsi.example.org/fediverse-moderation-meeting"
   }
 }
 ```
@@ -215,7 +231,9 @@ When not supporting multiple entries in `location` applications *MUST* use the f
   "type": "Event",
   "id": "https://example.org/new-year-party",
   "name": "Discussion about the Fediverse",
+  "organizers": null,
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
   "location": [
     {
       "type": "Place",
@@ -267,9 +285,11 @@ If an application does not handle joins of an `Event` via ActivityPub, but knows
   "type": "Event",
   "id": "https://example.org/foo",
   "name": "New years party",
+  "organizers": null,
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
   "joinMode": "external",
-  "externalParticipationUrl": "https://example.org/foo#regisiter"
+  "externalParticipationUrl": "https://example.org/foo#register"
 }
 ```
 
@@ -286,10 +306,12 @@ Note that `externalParticipationUrl` *MAY* also be a `mailto`-URL, which is a wa
   ],
   "type": "Event",
   "id": "https://example.org/fediverse-workshop",
+  "organizers": null,
   "name": "Fediverse Workshop",
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2025-01-01T04:00:00-08:00",
   "joinMode": "external",
-  "externalParticipationUrl": "mailto:team@fediverse-workshop.org"
+  "externalParticipationUrl": "mailto:fediverse-workshop@example.org"
 }
 ```
 
@@ -297,7 +319,7 @@ Note that `externalParticipationUrl` *MAY* also be a `mailto`-URL, which is a wa
 
 To specify the maximum number of attendees for an `Event`, applications *SHOULD* use the `https://schema.org/maximumAttendeeCapacity`.
 
-Remaining attendee capacity *SHOULD* be shown indirectly via using the Collection `https://event-federation.eu/ns#attendees`. This is a list of all actors who have successfully joined the event, i.e. when an `Accept` activity is sent as a response to the actor requesting to join, the actor is added as a side effect. The `attendees` collection *MUST* be either an `OrderedCollection` or a `Collection` and *MAY* be filtered by the privileges of an authenticated user, or as appropriate if no authentication is given.
+Remaining attendee capacity *SHOULD* be shown indirectly via using the Collection `https://event-federation.eu/ns#attendees`. This is a list of all vent attendees. Every `Actor` that has accepted an `Invite` containing the `Event` as an `object` or which `Join` targeting the `Event` has been accepted is added as a side effect. Note that also other object types other than `Actor` (and it's subclasses) might be part of that collection, e.g. when an application allows for attendees to register by e-mail. In that case using `https://schema.org/Person` or `https://schema.org/Organization` is **RECOMMENDED**. The `attendees` collection *MUST* be either an `OrderedCollection` or a `Collection` and *MAY* be filtered by the privileges of an authenticated user, or as appropriate if no authentication is given.
 
 ```json
 {
@@ -314,7 +336,9 @@ Remaining attendee capacity *SHOULD* be shown indirectly via using the Collectio
   "type": "Event",
   "id": "https://example.org/foo-bar-party",
   "name": "New years party",
+  "organizers": null,
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
   "maximumAttendeeCapacity": 100,
   "attendees": {
      "type": "Collection",
@@ -343,7 +367,7 @@ If the event has an image in the style of a flyer or a share-pic which is repres
 
 If the `Event` has a particular banner image, this image *SHOULD* be set as the first `attachment` of type `Image` (type `Document` is also valid). To indicate that an image from within the `attachment` attribute of an `Event` should be preferred over the flyer/share-pic image(s) within `image` attribute, for the use of list pages and header images, the attribute `https://event-federation.eu/ns#isThumbnail` *SHOULD* be set.
 
-Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore, if the image's aspect ratio is not close to 16:9 `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
+Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
 
 ```json
 {
@@ -360,7 +384,9 @@ Federated event calendars usually have thumbnail images with fixed aspect ratios
   "type": "Event",
   "id": "https://example.org/new-year-party",
   "name": "New years party",
+  "organizers": null,
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
   "image": {
     "type": "Image",
     "mediaType": "image/jpeg",
@@ -395,7 +421,7 @@ If the organizer is a non-ActivityPub entity (e.g., a website or organization wi
     "https://schema.org",
     "https://www.w3.org/ns/activitystreams",
     {
-      "organizer": {
+      "organizers": {
         "@id": "https://event-federation.eu/ns#organizer",
         "@type": "https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection"
       }
@@ -405,6 +431,7 @@ If the organizer is a non-ActivityPub entity (e.g., a website or organization wi
   "id": "https://example.org/foo-bar-party",
   "name": "New Year's Party",
   "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
   "organizers": {
     "type": "Collection",
     "id": "https://example.org/foo-bar-party/organizers",
@@ -428,7 +455,7 @@ If the organizer is a non-ActivityPub entity (e.g., a website or organization wi
 
 #### Explicit Non-Disclosure
 
-A `organizer` with `totalItems: 0` or an empty `items` attribute *MUST* explicitly signal that the event's organizers are intentionally not disclosed. This indicates a deliberate choice to withhold organizer information and overrides any assumptions about organizers based on other fields.
+A `organizers` with `totalItems: 0` or an empty `items` attribute *MUST* explicitly signal that the event's organizers are intentionally not disclosed. This indicates a deliberate choice to withhold organizer information and overrides any assumptions about organizers based on other fields.
 
 #### Fallback to `attributedTo`:
 
@@ -450,7 +477,7 @@ Every `actor` that has published `Event`s *SHOULD* have an `https://event-federa
   - **Time**: The `Event`'s `endTime` *MUST NOT* be earlier than the current time, i.e., the event is ongoing or scheduled in the future.  
   - **Actor Involvement**: At least one of the following conditions *MUST* apply:  
     - The `actor` owns the `Event`, i.e., is part of the `Event`'s `attributedTo`.  
-    - The `actor` is included in the `Event`'s `organizer` collection.  
+    - The `actor` is included in the `Event`'s `organizers` collection.  
     - The `actor` is of type `Application`, the `Event` is in the actor's `shares` collection, and the `Event` shares the same host with the `actor`.  
 
 ## Credits
@@ -459,7 +486,7 @@ This work would not have been possible without the support of [NLnet foundation]
 
 Thanks are also expressed to the people at OFFDEM who laid out [the beginnings of this document](https://event-federation.eu/2024/02/10/fediversity-at-o%e2%82%84ffdem/).
 
-Special grants to Laurin Weger, for being available for many timely discussions.
+Special thanks go to Laurin Weger, who was available for many time-consuming discussions. Further thanks go to the Cloudfest Hackathon 2025 for providing space and a platform for further discussion of this FEP and especially to Andreas Heigl for his rich feedback and ideas.
 
 ## Copyright
 
