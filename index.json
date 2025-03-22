@@ -98,12 +98,13 @@
   },
   {
     "slug": "c390",
-    "authors": "silverpill <silverpill@firemail.cc>",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
     "status": "DRAFT",
     "dateReceived": "2022-11-23",
     "relatedFeps": "FEP-8b32",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/34",
-    "discussionsTo": "https://codeberg.org/fediverse/fep/issues/34",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c390-identity-proofs/2726",
     "title": "Identity Proofs"
   },
   {
@@ -383,6 +384,7 @@
   {
     "slug": "ef61",
     "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
     "status": "DRAFT",
     "dateReceived": "2023-12-06",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/209",
@@ -750,9 +752,10 @@
   {
     "slug": "fe34",
     "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
     "status": "DRAFT",
     "dateReceived": "2024-11-15",
-    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c7d3-ownership/4292",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-fe34-origin-based-security-model/4292",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/445",
     "title": "Origin-based security model"
   },
@@ -858,5 +861,14 @@
     "dateReceived": "2025-02-21",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/511",
     "title": "Quote Posts"
+  },
+  {
+    "slug": "c180",
+    "authors": "Evan Prodromou <evan@socialwebfoundation.org>",
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/evanp/fep/issues",
+    "dateReceived": "2025-03-11",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/531",
+    "title": "Problem Details for ActivityPub"
   }
 ]
