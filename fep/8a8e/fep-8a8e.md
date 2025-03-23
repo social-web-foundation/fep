@@ -48,6 +48,7 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 - [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
 
 - [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `endTime` *MUST* be a later date than the `startTime`. If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
+
 - [`organizers`](https://event-federation.eu/ns#organizer)
 
 ```json
@@ -412,8 +413,8 @@ Events *SHOULD* indicate their organizers by using `https://event-federation.eu/
 The `organizers` collection helps provide clarity about the event's management, supports federated discovery, and improves interoperability across platforms.
 
 The value of the `organizers` field *MUST* be either an `OrderedCollection` or a `Collection`.
-The `items` within this collection *MAY* include [actors](https://www.w3.org/TR/activitystreams-core/#actors),  or [links](https://www.w3.org/TR/activitystreams-core/#link).
-If the organizer is a non-ActivityPub entity (e.g., a website or organization without an actor), it *SHOULD* use a link.
+The `items` within this collection *MAY* include [actors](https://www.w3.org/TR/activitystreams-core/#actors), or [links](https://www.w3.org/TR/activitystreams-core/#link).
+If the organizer is not an ActivityPub entity (e.g., a website or organization without an actor), it is recommended to either use a `Link` or `https://schema.org/Person` or `https://schema.org/Organization`.
 
 ```json
 {
@@ -455,11 +456,13 @@ If the organizer is a non-ActivityPub entity (e.g., a website or organization wi
 
 #### Explicit Non-Disclosure
 
-A `organizers` with `totalItems: 0` or an empty `items` attribute *MUST* explicitly signal that the event's organizers are intentionally not disclosed. This indicates a deliberate choice to withhold organizer information and overrides any assumptions about organizers based on other fields.
+If the event’s organizers are intentionally not disclosed, the `organizers` field *MUST* be set to `null`, have `totalItems: 0`, or contain an empty `items` array. This explicitly indicates a deliberate choice to withhold organizer information and takes precedence over any assumptions about organizers based on other fields.
 
-#### Fallback to `attributedTo`:
+When receiving an event, clients *MUST NOT* infer organizers from other event data if the `organizers` field is explicitly empty.
 
-If the `organizers` property is omitted, it *MAY* be inferred that the actors in the `attributedTo` property are the event's organizers. For events with multiple organizers, it is *RECOMMENDED* to provide an organizers collection to avoid ambiguity, and be compatible with applications that do not support arrays in `attributedTo`.
+#### Fallback to `attributedTo`
+
+If the `organizers` property is omitted, it *MAY* be inferred that the actors in the `attributedTo` property are the event's organizers. For events with multiple organizers, it is *RECOMMENDED* to provide an`organizers` collection to avoid and ensure compatibility with applications that do not support arrays in `attributedTo`.
 
 ## Upcoming Events Collection for Actors
 
@@ -476,9 +479,9 @@ Every `actor` that has published `Event`s *SHOULD* have an `https://event-federa
   - **Type**: The item *MUST* be of type `Event` or one of its subtypes.  
   - **Time**: The `Event`'s `endTime` *MUST NOT* be earlier than the current time, i.e., the event is ongoing or scheduled in the future.  
   - **Actor Involvement**: At least one of the following conditions *MUST* apply:  
-    - The `actor` owns the `Event`, i.e., is part of the `Event`'s `attributedTo`.  
-    - The `actor` is included in the `Event`'s `organizers` collection.  
-    - The `actor` is of type `Application`, the `Event` is in the actor's `shares` collection, and the `Event` shares the same host with the `actor`.  
+    - The `Actor` is included in the `Event`'s `organizers` collection.
+    - The `Actor` owns the `Event`, i.e., is part of the `Event`'s `attributedTo`.
+    - The `Event` is in the actor's `shares` collection, and the `Event` shares the same host with the `actor`. This use case is primarily intended to cover relay and group `Actor`s.
 
 ## Credits
 
