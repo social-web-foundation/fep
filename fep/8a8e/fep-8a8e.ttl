@@ -1,0 +1,70 @@
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/fep/8a8e/AttendeesCollection> a rdfs:Class ;
+	rdfs:label "A Collection of the Event's attendees"@en ;
+	rdfs:comment """
+      Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization.
+      The items of the AttendeesCollection are entities that are confirmed attendees by an Events organizer(s). It contains all ActivityPub actors that meet one or more of the following conditions, added as a side effect.
+      
+The actor has sent a Join activity with this object as the object property that has been answered with an Accept.
+The actor has responded to an Invite activity from the Event‘s owner (where the Event is specified as the object property) with an Accept activity.
+
+      The items MAY be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the totalItems set in any case.
+    """@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/attendees> ;
+	rdfs:subClassOf as:OrderedCollection .
+
+<https://w3id.org/fep/8a8e/OrganizersCollection> a rdfs:Class ;
+	rdfs:label "An Event's Organizer Collection"@en ;
+	rdfs:comment "Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/organizers> ;
+	rdfs:subClassOf as:Collection .
+
+<https://w3id.org/fep/8a8e/timezone> a owl:ObjectProperty ;
+	rdfs:label "The timezone of an Event"@en ;
+	rdfs:comment "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range rdfs:Literal .
+
+<https://w3id.org/fep/8a8e/upcomingEvents> a owl:ObjectProperty ;
+	rdfs:label "Collection of upcoming Events"@en ;
+	rdfs:comment "An ActivityStreams Collection of Event objects that have a startTime property in the future."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> .
+
+<https://w3id.org/fep/8a8e/attendees> a owl:ObjectProperty ;
+	rdfs:label "Attendees of an Event"@en ;
+	rdfs:comment ""@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range rdfs:Resource ;
+	owl:minCardinality "0"^^xsd:nonNegativeInteger .
+
+<https://w3id.org/fep/8a8e/displayEndTime> a owl:DatatypeProperty ;
+	rdfs:label "Whether to display the endTime"@en ;
+	rdfs:comment "A property that defines whether the end time of an event should be displayed."@en ;
+	rdfs:domain <https://w3id.org/fep/8a8e/displayEndTime> ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range xsd:boolean .
+
+<https://w3id.org/fep/8a8e/organizers> a owl:ObjectProperty ;
+	rdfs:label "Organizers Collection"@en ;
+	rdfs:comment "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range rdfs:Resource .
+
+<https://w3id.org/fep/8a8e> a owl:Ontology ;
+	dc:creator "André Menrath <andre.menrath@posteo.de>",
+		"les <lesion@autistici.org>" ;
+	dc:rights "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"@en ;
+	dcterms:abstract "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chose to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations." ;
+	dcterms:dateSubmitted "2024-10-27"^^xsd:date ;
+	dcterms:identifier "https://w3id.org/fep/8a8e"^^xsd:anyURI ;
+	dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+	dcterms:title "FEP-8a8e: A common approach to using the Event object type" .
+

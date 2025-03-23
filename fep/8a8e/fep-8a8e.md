@@ -1,6 +1,6 @@
 ---
 slug: "8a8e"
-authors: André Menrath <andre.menrath@event-federation.eu>, les <lesion@autistici.org>
+authors: André Menrath <andre.menrath@posteo.de>, les <lesion@autistici.org>
 status: DRAFT
 dateReceived: 2024-10-27
 trackingIssue: https://codeberg.org/fediverse/fep/issues/XX
@@ -49,7 +49,7 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 
 - [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `endTime` *MUST* be a later date than the `startTime`. If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
 
-- [`organizers`](https://event-federation.eu/ns#organizer)
+- [`organizers`](https://w3id.org/fep/8a8e/organizers)
 
 ```json
 {
@@ -65,11 +65,11 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 
 ### Events with Open End
 
-If the event is open-ended, or the `endTime` is not intended to be displayed to humans, the `https://event-federation.eu/ns/#displayEndTime` attribute *SHOULD* be used and set to `"false"`.
+If the event is open-ended, or the `endTime` is not intended to be displayed to humans, the `https://w3id.org/fep/8a8e/displayEndTime` attribute *SHOULD* be used and set to `"false"`.
 
-Receiving an `Event` with an `endTime` set and no `https://event-federation.eu/ns/#displayEndTime` set, it *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` is set to `"true"`, requiring the   `endTime` to be displayed.
+Receiving an `Event` with an `endTime` set and no `https://w3id.org/fep/8a8e/displayEndTime` set, it *MUST* be treated as if `https://w3id.org/fep/8a8e/displayEndTime` is set to `"true"`, requiring the `endTime` to be displayed.
 
-If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://event-federation.eu/ns/#displayEndTime` were set to `"false"` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
+If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://w3id.org/fep/8a8e/displayEndTime` were set to `"false"` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
 
 ### Time zone
 
@@ -320,7 +320,7 @@ Note that `externalParticipationUrl` *MAY* also be a `mailto`-URL, which is a wa
 
 To specify the maximum number of attendees for an `Event`, applications *SHOULD* use the `https://schema.org/maximumAttendeeCapacity`.
 
-Remaining attendee capacity *SHOULD* be shown indirectly via using the Collection `https://event-federation.eu/ns#attendees`. This is a list of all vent attendees. Every `Actor` that has accepted an `Invite` containing the `Event` as an `object` or which `Join` targeting the `Event` has been accepted is added as a side effect. Note that also other object types other than `Actor` (and it's subclasses) might be part of that collection, e.g. when an application allows for attendees to register by e-mail. In that case using `https://schema.org/Person` or `https://schema.org/Organization` is **RECOMMENDED**. The `attendees` collection *MUST* be either an `OrderedCollection` or a `Collection` and *MAY* be filtered by the privileges of an authenticated user, or as appropriate if no authentication is given.
+Remaining attendee capacity *SHOULD* be shown indirectly via using the Collection `https://w3id.org/fep/8a8e/attendees`. This is a list of all vent attendees. Every `Actor` that has accepted an `Invite` containing the `Event` as an `object` or which `Join` targeting the `Event` has been accepted is added as a side effect. Note that also other object types other than `Actor` (and it's subclasses) might be part of that collection, e.g. when an application allows for attendees to register by e-mail. In that case using `https://schema.org/Person` or `https://schema.org/Organization` is **RECOMMENDED**. The `attendees` collection *MUST* be either an `OrderedCollection` or a `Collection` and *MAY* be filtered by the privileges of an authenticated user, or as appropriate if no authentication is given.
 
 ```json
 {
@@ -329,7 +329,7 @@ Remaining attendee capacity *SHOULD* be shown indirectly via using the Collectio
     "https://www.w3.org/ns/activitystreams",
     {
       "attendees": {
-        "@id": "https://event-federation.eu/ns#attendees",
+        "@id": "https://w3id.org/fep/8a8e/attendees",
         "@type": "https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection"
       }
     }
@@ -366,9 +366,9 @@ If the event has an image in the style of a flyer or a share-pic which is repres
 
 #### Banner
 
-If the `Event` has a particular banner image, this image *SHOULD* be set as the first `attachment` of type `Image` (type `Document` is also valid). To indicate that an image from within the `attachment` attribute of an `Event` should be preferred over the flyer/share-pic image(s) within `image` attribute, for the use of list pages and header images, the attribute `https://event-federation.eu/ns#isThumbnail` *SHOULD* be set.
+If the `Event` has a particular banner image, this image *SHOULD* be set as the first `attachment` of type `Image` (type `Document` is also valid). To indicate that an image from within the `attachment` attribute of an `Event` should be preferred over the flyer/share-pic image(s) within `image` attribute, for the use of list pages and header images, the attribute `https://w3id.org/fep/8a8e/isThumbnail` *SHOULD* be set.
 
-Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
+Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore, `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
 
 ```json
 {
@@ -409,7 +409,7 @@ The discoverability of an incoming event from federation *MUST NOT* be controlle
 
 ### Organizers Collection
 
-Events *SHOULD* indicate their organizers by using `https://event-federation.eu/ns#organizers`.
+Events *SHOULD* indicate their organizers by using `https://w3id.org/fep/8a8e/organizers`.
 The `organizers` collection helps provide clarity about the event's management, supports federated discovery, and improves interoperability across platforms.
 
 The value of the `organizers` field *MUST* be either an `OrderedCollection` or a `Collection`.
@@ -420,13 +420,8 @@ If the organizer is not an ActivityPub entity (e.g., a website or organization w
 {
   "@context": [
     "https://schema.org",
+    "https://https://w3id.org/fep/8a8e",
     "https://www.w3.org/ns/activitystreams",
-    {
-      "organizers": {
-        "@id": "https://event-federation.eu/ns#organizer",
-        "@type": "https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection"
-      }
-    }
   ],
   "type": "Event",
   "id": "https://example.org/foo-bar-party",
@@ -434,7 +429,7 @@ If the organizer is not an ActivityPub entity (e.g., a website or organization w
   "startTime": "2014-12-31T23:00:00-08:00",
   "endTime": "2015-01-01T04:00:00-08:00",
   "organizers": {
-    "type": "Collection",
+    "type": "OrganizersCollection",
     "id": "https://example.org/foo-bar-party/organizers",
     "totalItems": 3,
     "first": {
@@ -466,13 +461,13 @@ If the `organizers` property is omitted, it *MAY* be inferred that the actors in
 
 ## Upcoming Events Collection for Actors
 
-Every `actor` that has published `Event`s *SHOULD* have an `https://event-federation.eu/ns#upcomingEvents` collection to list their future or ongoing events. This collection *MUST* follow these rules:
+Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/8a8e/upcomingEvents` collection to list their future or ongoing events. This collection *MUST* follow these rules:
 
 - **Collection Type**:  
-  The collection *MUST* be an `OrderedCollection`.
+  The collection *MUST* be a `Collection` or one of its subtypes.
 
-- **Ordering**:  
-  Events *MUST* be ordered by their `startTime` in ascending order (earliest first), except featured events *MAY* appear at the start of the list, regardless of their `startTime`.
+- **Ordering**:
+  Events *MUST* be ordered in ascending order by their `startTime`, with the earliest events appearing first.
 
 - **Items**:  
   Each item in the collection *MUST* meet the following criteria:  
@@ -482,6 +477,250 @@ Every `actor` that has published `Event`s *SHOULD* have an `https://event-federa
     - The `Actor` is included in the `Event`'s `organizers` collection.
     - The `Actor` owns the `Event`, i.e., is part of the `Event`'s `attributedTo`.
     - The `Event` is in the actor's `shares` collection, and the `Event` shares the same host with the `actor`. This use case is primarily intended to cover relay and group `Actor`s.
+
+## Terms
+
+<section id="displayEndTime" resource="https://w3id.org/fep/8a8e/displayEndTime" typeof="owl:DatatypeProperty">
+  <h3>displayEndTime</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/displayEndTime</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">Whether to display the endTime</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">A property that defines whether the end time of an event should be displayed.</dd>
+    <dt>Domain</dt>
+    <dd><a property="rdfs:domain" href="https://w3id.org/fep/8a8e/displayEndTime">displayEndTime</a></dd>
+    <dt>Range</dt>
+    <dd property="rdfs:range" resource="xsd:boolean">Boolean</dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+  </dl>
+  <pre title="Example usage of displayEndTime" lang="json">
+    <code>
+    {
+      "@context": "https://w3id.org/fep/8a8e",
+      "@type": "as:Event",
+      "displayEndTime": true
+    }
+    </code>
+  </pre>
+</section>
+
+<section id="upcomingEvents" resource="https://w3id.org/fep/8a8e/upcomingEvents" typeof="owl:ObjectProperty">
+  <h3>upcomingEvents</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/upcomingEvents</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">Collection of upcoming Events</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">An ActivityStreams Collection of Event objects that have a startTime property in the future.</dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+  </dl>
+  <pre title="Example usage of upcomingEvents" lang="json">
+    <code>
+    {
+      "@context": "https://w3id.org/fep/8a8e",
+      "@type": "as:Actor",
+      "upcomingEvents": {
+        "@type": "Collection",
+        "items": [
+          { "@type": "Event", "startTime": "2025-06-01T12:00:00Z" },
+          { "@type": "Event", "startTime": "2025-07-15T15:30:00Z" }
+        ]
+      }
+    }
+    </code>
+  </pre>
+</section>
+
+<section id="OrganizersCollection" resource="https://w3id.org/fep/8a8e/OrganizersCollection" typeof="rdfs:Class">
+  <h3>OrganizersCollection</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/OrganizersCollection</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">An Event's Organizer Collection</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">Inherits all properties from <code><a href="https://www.w3.org/ns/activitystreams#Collection">https://www.w3.org/ns/activitystreams#Collection</a></code> with the addition that the <code>items</code> may also include <code>https://schema.org/Person</code> or <code>https://schema.org/Organization</code>.</dd>
+    <dt>Subclass of</dt>
+    <dd><a property="rdfs:subClassOf" href="https://www.w3.org/ns/activitystreams#Collection">Object</dd>
+    <dt>See also</dt>
+    <dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/organizers">organizers</a></dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+  </dl>
+  <pre title="Example of an OrganizersCollection with different items" lang="json">
+    <code>
+    {
+      "@type": "OrganizersCollection",
+      "items": [
+        { "@type": "https://www.w3.org/ns/activitystreams#Group", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
+        { "@type": "https://www.w3.org/ns/activitystreams#Link", "href": "https://organizer1.example.org"},
+        { "@type": "https://schema.org/Person", "name": "Alice" },
+        { "@type": "[sc:](https://schema.org/)Organization", "name": "Event Co." }
+      ]
+    }
+    </code>
+  </pre>
+</section>
+
+<section id="organizers" resource="https://w3id.org/fep/8a8e/organizers" typeof="owl:ObjectProperty">
+  <h3>organizers</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/organizers</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">Organizers Collection</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to <code>null</code> this explicitly indicates a deliberate choice to withhold organizer information.</dd>
+    <dt>Range</dt>
+    <dd property="rdfs:range" resource="rdfs:Resource"><a href="https://w3id.org/fep/8a8e/OrganizersCollection" target="_blank">OrganizersCollection</a> (SubType of of the Collection or OrderedCollection ActivityStreams Type) or <code>null</code></dd>
+    <dt>Required</dt>
+    <dd>Yes</dd>
+    <dt>Functional</dt>
+    <dd>No</dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+  </dl>
+  <pre title="Example usage of organizers" lang="json">
+    <code>
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "@type": "Event",
+      "organizers": {
+        "@type": "https://w3id.org/fep/8a8e/OrganizersCollection",
+        "totalItems": 4,
+        "items": [
+          { "@type": "as:Actor", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
+          { "@type": "as:Link", "href": "https://organizer1.example.org"},
+          { "@type": "sc:Person", "name": "Alice" },
+          { "@type": "sc:Organization", "name": "Event Co." }
+        ]
+      }
+    }
+    </code>
+  </pre>
+</section>
+
+<section id="AttendeesCollection" resource="https://w3id.org/fep/8a8e/AttendeesCollection" typeof="rdfs:Class">
+  <h3>AttendeesCollection</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/AttendeesCollection</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">A Collection of the Event's attendees</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">
+      Inherits all properties from <code><a href="https://www.w3.org/ns/activitystreams#Collection">https://www.w3.org/ns/activitystreams#Collection</a></code> with the addition that the <code>items</code> may also include <code>https://schema.org/Person</code> or <code>https://schema.org/Organization</code>.
+      The items of the <code>AttendeesCollection</code> are entities that are confirmed attendees by an Events organizer(s). It contains all ActivityPub actors that meet one or more of the following conditions, added as a side effect.
+      <ul>
+        <li>The actor has sent a Join activity with this object as the object property that has been answered with an Accept.</li>
+        <li>The actor has responded to an Invite activity from the Event‘s owner (where the Event is specified as the object property) with an Accept activity.</li>
+      </ul>
+      The items MAY be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the totalItems set in any case.
+    </dd>
+    <dt>Subclass of</dt>
+    <dd><a property="rdfs:subClassOf" href="https://www.w3.org/ns/activitystreams#OrderedCollection">Object</dd>
+    <dt>See also</dt>
+    <dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/attendees">attendees</a></dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+  </dl>
+  <pre title="Example of an AttendeesCollection with different items" lang="json">
+    <code>
+    {
+      "@context": "https://w3id.org/fep/8a8e",
+      "@type": "AttendeesCollection",
+      "totalItems": 2,
+      "context": "https://example.org/events/alice-birthday-party"
+      "items": [
+        { "@type": "https://www.w3.org/ns/activitystreams#Person", "name": "Bob", "id": "https://example.org/actors/bob"},
+        { "@type": "https://schema.org/Person", "name": "Alice", "email": "alice@example.org"},
+      ]
+    }
+    </code>
+  </pre>
+</section>
+
+<section id="attendees" resource="https://w3id.org/fep/8a8e/attendees" typeof="owl:ObjectProperty">
+  <h3>attendees</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/attendees</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">Attendees of an Event</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en"></dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+    <dt>Range</dt>
+    <dd property="rdfs:range" resource="rdfs:Resource"><a href="https://w3id.org/fep/8a8e/AttendeesCollection" target="_blank">Collection</a> (ActivityStreams Type)</dd>
+    <dt>Required</dt>
+    <dd property="owl:minCardinality" content="0" datatype="xsd:nonNegativeInteger">No</dd>
+    <dt>Functional</dt>
+    <dd>No</dd>
+  </dl>
+  <pre title="Example usage of attendees" lang="json">
+    <code>
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "@type": "Event",
+      "attendees": {
+        "@type": "https://w3id.org/fep/8a8e/OrganizersCollection",
+        "totalItems": 4,
+        "items": [
+          { "@type": "as:Actor", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
+          { "@type": "as:Link", "href": "https://organizer1.example.org"},
+          { "@type": "sc:Person", "name": "Alice" },
+          { "@type": "sc:Organization", "name": "Event Co." }
+        ]
+      }
+    }
+    </code>
+  </pre>
+</section>
+
+
+
+<section id="timezone" resource="https://w3id.org/fep/8a8e/timezone" typeof="owl:ObjectProperty">
+  <h3>timezone</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/timezone</code></dd>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">The timezone of an Event</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database.</dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+    <dt>Range</dt>
+    <dd property="rdfs:range" resource="rdfs:Literal">IANA Time Zone identifier</a></dd>
+    <dt>Required</dt>
+    <dd>No</dd>
+    <dt>Functional</dt>
+    <dd>No</dd>
+  </dl>
+  <pre title="Example usage of timezone" lang="json">
+    <code>
+    {
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams",
+      ]
+      "type": "Event",
+      "id": "https://example.org/events/new-years-party",
+      "name": "New years party",
+      "startTime": "2014-12-31T23:00:00Z",
+      "endTime": "2015-01-01T06:00:00Z",
+      "timezone": "Europe/Vienna",
+      "organizers": null,
+    }
+    </code>
+  </pre>
+</section>
 
 ## Credits
 
