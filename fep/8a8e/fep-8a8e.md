@@ -618,7 +618,7 @@ Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/
       The items of the <code>AttendeesCollection</code> are entities that are confirmed attendees by an Events organizer(s). It contains all ActivityPub actors that meet one or more of the following conditions, added as a side effect.
       <ul>
         <li>The actor has sent a Join activity with this object as the object property that has been answered with an Accept.</li>
-        <li>The actor has responded to an Invite activity from the Event‘s owner (where the Event is specified as the object property) with an Accept activity.</li>
+        <li>The actor has responded to an Invite activity from the Event's owner (where the Event is specified as the object property) with an Accept activity.</li>
       </ul>
       The items MAY be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the totalItems set in any case.
     </dd>

@@ -8,7 +8,7 @@
       The items of the AttendeesCollection are entities that are confirmed attendees by an Events organizer(s). It contains all ActivityPub actors that meet one or more of the following conditions, added as a side effect.
       
 The actor has sent a Join activity with this object as the object property that has been answered with an Accept.
-The actor has responded to an Invite activity from the Event‘s owner (where the Event is specified as the object property) with an Accept activity.
+The actor has responded to an Invite activity from the Event's owner (where the Event is specified as the object property) with an Accept activity.
 
       The items MAY be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the totalItems set in any case.
     """@en ;
