@@ -65,11 +65,11 @@ An `Object` Type `Event` *MUST* specify at least the following properties:
 
 ### Events with Open End
 
-If the event is open-ended, or the `endTime` is not intended to be displayed to humans, the `https://w3id.org/fep/8a8e/displayEndTime` attribute *SHOULD* be used and set to `"false"`.
+If the event is open-ended, or the `endTime` is not intended to be displayed to humans, the `https://w3id.org/fep/8a8e/displayEndTime` attribute *SHOULD* be used and set to `false`.
 
-Receiving an `Event` with an `endTime` set and no `https://w3id.org/fep/8a8e/displayEndTime` set, it *MUST* be treated as if `https://w3id.org/fep/8a8e/displayEndTime` is set to `"true"`, requiring the `endTime` to be displayed.
+Receiving an `Event` with an `endTime` set and no `https://w3id.org/fep/8a8e/displayEndTime` set, it *MUST* be treated as if `https://w3id.org/fep/8a8e/displayEndTime` is set to `true`, requiring the `endTime` to be displayed.
 
-If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://w3id.org/fep/8a8e/displayEndTime` were set to `"false"` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
+If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated as if `https://w3id.org/fep/8a8e/displayEndTime` were set to `false` to avoid misleading users. In such cases, the receiving application *MAY* infer an appropriate `endTime` based on its requirements.
 
 ### Time zone
 
