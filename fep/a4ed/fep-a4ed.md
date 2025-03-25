@@ -21,7 +21,7 @@ A Fediverse Enhancement Proposal (FEP) should be a concise and focused documenta
 
 A proposal should always have the intention of improving the interoperability and well-being of diverse services, applications and community of the Fediverse.
 
-The Fediverse includes applications, services and communities using the ActivityPub protocol and other protocols that foster decentralized and diverse social media and culture.
+The Fediverse includes applications, services and communities using the ActivityPub protocol, its predecessors, and other historically related protocols that foster decentralized and diverse social media and culture.
 
 Proposals may include descriptions of technical protocols and mechanisms, documentation of experimental work or current best practices.
 
