@@ -1,6 +1,8 @@
 ---
 slug: "044f"
 authors: Claire <claire.fep-1d7d@sitedethib.com>
+status: DRAFT
+dateReceived: 2025-04-03
 ---
 
 # FEP-044f: Consent-respecting quote posts
