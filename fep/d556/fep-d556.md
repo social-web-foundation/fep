@@ -1,8 +1,10 @@
 ---
 slug: "d556"
+type: implementation
 authors: Steve Bate <svc-fep@stevebate.net>
-status: DRAFT
+status: FINAL
 dateReceived: 2024-01-20
+dateFinalized: 2025-03-15
 trackingIssue: https://codeberg.org/fediverse/fep/issues/243
 discussionsTo: https://codeberg.org/fediverse/fep/issues/243
 ---
@@ -61,7 +63,7 @@ Response:
     ]
 }
 ```
-The `subject` would typically be the resource URI. However, this proposal does not depend on any specific value for `subject`.
+The `subject` would typically be the resource URI. This proposal does not depend on any specific URI for `subject`, although the ActivityPub actor URI is recommended.
 
 The Server-level Actor's URI will be the `href` property of a `link` with a `rel` (relation type) property of `https://www.w3.org/ns/activitystreams#Service` ([W3C AS2 Service Primer][ActivityPubService]). The type of the Server-level Actor itself is not required to be the same as the relation type.
 
@@ -92,7 +94,9 @@ A `http://webfinger.net/rel/profile-page` `rel` ([WebFinger Relations][WebFinger
 }
 ```
 
-If multiple server-level actor links are returned, the links can be disambiguated by adding metadata to the links using standard [WebFinger] properties. For example, an implementation could have different server-level actors that serve different purposes. It's also possible that another FEP will define standard `rel` URIs for common roles. In that case, the FEP roles should be preferred over using a relationship property. 
+If multiple server-level actor links are returned, the links can be disambiguated by adding metadata to the links using standard [WebFinger] properties. For example, an implementation could have different server-level actors that serve different purposes. 
+
+It's also possible that another FEP will define standard `rel` URIs for common roles. In that case, those FEP role URIs SHOULD be preferred. 
 
 > NOTE: The definition of standard server-level actor roles is outside the scope of this FEP.
 
@@ -105,7 +109,7 @@ If multiple server-level actor links are returned, the links can be disambiguate
             "type": "application/activity+json",
             "href": "https://server.example/actor",
             "properties": {
-              "https://www.w3.org/ns/activitystreams#relationship": "moderation"
+              "http://schema.org/roleName": "administration"
             }
         },
         {
@@ -113,12 +117,15 @@ If multiple server-level actor links are returned, the links can be disambiguate
             "type": "application/activity+json",
             "href": "https://server.example/actor",
             "properties": {
-              "https://www.w3.org/ns/activitystreams#relationship": "administration"
+              "http://schema.org/roleName": "moderation"
             }
         }
     ]
 }
 ```
+
+In this example, the same actor used used for administration and moderation. However, the example would also be valid if the actors were different. It's possible that for some use cases a role might be further refined. For example, additional properties might specify a geographical region for a role.
+
 
 ## <a id="single-actor-servers"></a> Single Actor Servers
 
@@ -165,7 +172,14 @@ GET /.well-known/webfinger?resource=https://server.example/&rel=self
 
 # Implementations
 
-[Mastodon] implements something similar to this proposal. For example,
+Known implementations include:
+
+* FIRM
+* [Mastodon] implements something similar to this proposal.
+* Streams
+* Mitra
+
+## Mastodon Example
 
 ```
 GET /.well-known/webfinger?resource=https://mastodon.social/
@@ -206,7 +220,7 @@ Some differences between the Mastodon implementation and this proposal include:
 
 * It does not support standard [WebFinger] filtering by `rel`.
 
-* The `subject` is the Mastodon-specific account URI for the server-level actor rather than the [ActivityPub] actor URI.
+* The `subject` is the Mastodon-specific account URI for the server-level actor rather than the recommended [ActivityPub] actor URI.
 
 Since no user-related actor link is provided for the server resource, the `self` `rel` value can be used without ambiguity
 

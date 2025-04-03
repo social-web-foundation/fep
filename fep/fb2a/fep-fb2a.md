@@ -141,6 +141,12 @@ Implementation according to this FEP might result in a simpler and more semantic
 }
 ```
 
+## Implementations
+
+- WordPress
+- Streams
+- NodeBB
+
 ## References
 
 - [ActivityPub] Christine Lemmer Webber, Jessica Tallon, [ActivityPub](https://www.w3.org/TR/activitypub/), 2018

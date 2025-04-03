@@ -8,6 +8,49 @@ A Fediverse Enhancement Proposal (FEP) is a document that provides information t
 
 The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypub.rocks) developer community, a liaison of the [W3C Social Web Incubator Community Group](https://www.w3.org/community/SocialCG/). For ongoing and past discussion see the [SocialHub FEP category](https://socialhub.activitypub.rocks/c/standards/fep/54).
 
+## Submitting a FEP
+
+Do you have an idea, opinion or information that you want to share with the wider Fediverse community? You may do so with a Fediverse Enhancement Proposal (FEP).
+
+To create and submit a FEP:
+
+1. Fork this repository, and then clone it to your local machine. Check the Codeberg [Cheat sheet](https://docs.codeberg.org/collaborating/pull-requests-and-git-flow/#cheat-sheet) on how to prepare your Pull Request.
+2. Think of a title for the FEP you want to submit.
+3. Compute the identifier of the FEP by computing the hash of the title. This can be done with following Unix command:
+
+```
+$ echo -n "The title of my proposal" | sha256sum | cut -c-4
+b3f0
+```
+
+4. Create a subdirectory of [`fep/`](./fep/) using the identifier you just computed.
+5. Copy the FEP template ([fep-xxxx-template.md](./fep-xxxx-template.md)) to this subdirectory and change the filename appropriately.
+6. Use the identifer as the "slug" when filling out the frontmatter.
+
+    - For example, if your computed identifier was `abcd`, then your file would be located at `fep/abcd/fep-abcd.md` and your frontmatter would include `slug: "abcd"`.
+
+7. Write down your idea in the newly created file and commit it to a new branch in your repository (ex. fep-xxxx).
+8. When you are ready to submit the FEP, change the value of `dateReceived` field in the frontmatter to the current date.
+9. Create a discussion topic for your FEP. You can use [ActivityPub category](https://socialhub.activitypub.rocks/c/activitypub/5) on the SocialHub forum.
+10. Add `discussionsTo` field containing the URL of the discussion topic to the front matter of your FEP.
+11. Create a Pull Request to complete Step 1 of [FEP-a4ed: The Fediverse Enhancement Proposal Process](./fep/a4ed/fep-a4ed.md). Further process is described in FEP-a4ed.
+
+Alternatively to steps 3. to 6., you can run
+
+```bash
+./scripts/new_proposal.py TITLE OF YOUR PROPOSAL
+```
+
+that should create a prefilled template for you.
+
+## Facilitators
+
+The list of FEP's is maintained by the facilitators who are listed in the [FACILITATORS.md](FACILITATORS.md) file. Facilitators are neutral custodians of the FEP process, who merge PR's and create tracking issues.
+
+## Contributing
+
+Do you have ideas to improve the FEP Process? Post your suggestions to the issue tracker, or on the [SocialHub](https://socialhub.activitypub.rocks) forum. The SocialHub developer community is a "DoOcracy" which means: “pick up any task you want, and then steer it to completion”. Your contributions are most welcome, so delve in and find out how you can help.
+
 ## FEPs
 
 <!-- TODO: This table is not CommonMark (as specified by FEP-a4ed) and requires maintenance. -->
@@ -46,7 +89,7 @@ The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypu
 | [FEP-521a: Representing actor's public keys](./fep/521a/fep-521a.md) | `DRAFT` | [#130](https://codeberg.org/fediverse/fep/issues/130) | 2023-07-08 | - |
 | [FEP-ae97: Client-side activity signing](./fep/ae97/fep-ae97.md) | `DRAFT` | [#148](https://codeberg.org/fediverse/fep/issues/148) | 2023-08-14 | - |
 | [FEP-0837: Federated Marketplace](./fep/0837/fep-0837.md) | `DRAFT` | [#147](https://codeberg.org/fediverse/fep/issues/147) | 2023-08-17 | - |
-| [FEP-67ff: FEDERATION.md](./fep/67ff/fep-67ff.md) | `DRAFT` | [#157](https://codeberg.org/fediverse/fep/issues/157) | 2023-09-05 | - |
+| [FEP-67ff: FEDERATION.md](./fep/67ff/fep-67ff.md) | `FINAL` | [#157](https://codeberg.org/fediverse/fep/issues/157) | 2023-09-05 | 2024-09-22 |
 | [FEP-5feb: Search indexing consent for actors](./fep/5feb/fep-5feb.md) | `DRAFT` | [#154](https://codeberg.org/fediverse/fep/issues/154) | 2023-09-06 | - |
 | [FEP-dc88: Formatting Mathematics](./fep/dc88/fep-dc88.md) | `DRAFT` | [#161](https://codeberg.org/fediverse/fep/issues/161) | 2023-09-12 | - |
 | [FEP-d8c2: OAuth 2.0 Profile for the ActivityPub API](./fep/d8c2/fep-d8c2.md) | `DRAFT` | [#165](https://codeberg.org/fediverse/fep/issues/165) | 2023-09-17 | - |
@@ -58,13 +101,13 @@ The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypu
 | [FEP-ef61: Portable Objects](./fep/ef61/fep-ef61.md) | `DRAFT` | [#209](https://codeberg.org/fediverse/fep/issues/209) | 2023-12-06 | - |
 | [FEP-7502: Limiting visibility to authenticated actors](./fep/7502/fep-7502.md) | `DRAFT` | [#218](https://codeberg.org/fediverse/fep/issues/218) | 2023-12-24 | - |
 | [FEP-2c59: Discovery of a Webfinger address from an ActivityPub actor](./fep/2c59/fep-2c59.md) | `DRAFT` | [#226](https://codeberg.org/fediverse/fep/issues/226) | 2024-01-04 | - |
-| [FEP-d556: Server-Level Actor Discovery Using WebFinger](./fep/d556/fep-d556.md) | `DRAFT` | [#243](https://codeberg.org/fediverse/fep/issues/243) | 2024-01-20 | - |
+| [FEP-d556: Server-Level Actor Discovery Using WebFinger](./fep/d556/fep-d556.md) | `FINAL` | [#243](https://codeberg.org/fediverse/fep/issues/243) | 2024-01-20 | 2025-03-15 |
 | [FEP-3264: Federated Work Coordination](./fep/3264/fep-3264.md) | `DRAFT` | [#255](https://codeberg.org/fediverse/fep/issues/255) | 2024-01-31 | - |
 | [FEP-c5a1: To-do's](./fep/c5a1/fep-c5a1.md) | `DRAFT` | [#256](https://codeberg.org/fediverse/fep/issues/256) | 2024-01-31 | - |
 | [FEP-61cf: The OpenWebAuth Protocol](./fep/61cf/fep-61cf.md) | `DRAFT` | [#263](https://codeberg.org/fediverse/fep/issues/263) | 2024-02-06 | - |
 | [FEP-73cd: Migration User Stories](./fep/73cd/fep-73cd.md) | `DRAFT` | [#265](https://codeberg.org/fediverse/fep/issues/265) | 2024-02-07 | - |
 | [FEP-96ff: Explicit signalling of ActivityPub Semantics](./fep/96ff/fep-96ff.md) | `DRAFT` | [#272](https://codeberg.org/fediverse/fep/issues/272) | 2024-02-17 | - |
-| [FEP-6481: Specifying ActivityPub extension support with NodeInfo](./fep/6481/fep-6481.md) | `DRAFT` | [#279](https://codeberg.org/fediverse/fep/issues/279) | 2024-03-12 | - |
+| [FEP-6481: Specifying ActivityPub extension support with NodeInfo](./fep/6481/fep-6481.md) | `WITHDRAWN` | [#279](https://codeberg.org/fediverse/fep/issues/279) | 2024-03-12 | 2024-10-31 |
 | [FEP-9fde: Mechanism for servers to expose supported operations](./fep/9fde/fep-9fde.md) | `DRAFT` | [#282](https://codeberg.org/fediverse/fep/issues/282) | 2024-03-14 | - |
 | [FEP-e229: Best practices for extensibility](./fep/e229/fep-e229.md) | `DRAFT` | [#293](https://codeberg.org/fediverse/fep/issues/293) | 2024-04-02 | - |
 | [FEP-3b86: Activity Intents](./fep/3b86/fep-3b86.md) | `DRAFT` | [#302](https://codeberg.org/fediverse/fep/issues/302) | 2024-04-19 | - |
@@ -72,11 +115,12 @@ The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypu
 | [FEP-0391: Special collection proofs](./fep/0391/fep-0391.md) | `DRAFT` | [#310](https://codeberg.org/fediverse/fep/issues/310) | 2024-04-29 | - |
 | [FEP-db0e: Authentication mechanism for non-public groups](./fep/db0e/fep-db0e.md) | `DRAFT` | [#313](https://codeberg.org/fediverse/fep/issues/313) | 2024-05-03 | - |
 | [FEP-cd47: Federation-friendly Addressing and Deduplication Use-Cases](./fep/cd47/fep-cd47.md) | `DRAFT` | [#319](https://codeberg.org/fediverse/fep/issues/319) | 2024-05-31 | - |
-| [FEP-c7d3: Ownership](./fep/c7d3/fep-c7d3.md) | `DRAFT` | [#323](https://codeberg.org/fediverse/fep/issues/323) | 2024-06-04 | - |
+| [FEP-c7d3: Ownership](./fep/c7d3/fep-c7d3.md) | `WITHDRAWN` | [#323](https://codeberg.org/fediverse/fep/issues/323) | 2024-06-04 | 2025-02-21 |
 | [FEP-5e53: Opt-out Preference Signals](./fep/5e53/fep-5e53.md) | `DRAFT` | [#327](https://codeberg.org/fediverse/fep/issues/327) | 2024-06-09 | - |
+| [FEP-7952: Roadmap For Actor and Object Portability](./fep/7952/fep-7952.md) | `DRAFT` | [#435](https://codeberg.org/fediverse/fep/issues/435) | 2024-06-20 | - |
 | [FEP-e3e9: Actor-Relative URLs](./fep/e3e9/fep-e3e9.md) | `DRAFT` | [#346](https://codeberg.org/fediverse/fep/issues/346) | 2024-06-29 | - |
 | [FEP-d9ad: Create Conformance Tests for Fediverse Enhancement Proposals](./fep/d9ad/fep-d9ad.md) | `DRAFT` | [#350](https://codeberg.org/fediverse/fep/issues/350) | 2024-07-02 | - |
-| [FEP-0f2a: Announce Activity for Migrations and Tombstone Events](./fep/0f2a/fep-0f2a.md) | `DRAFT` | [#352](https://codeberg.org/fediverse/fep/issues/352) | 2024-07-05 | - |
+| [FEP-e965: Move Activity for Migrations and Announce Activity for Tombstone Events](./fep/e965/fep-e965.md) | `DRAFT` | [#352](https://codeberg.org/fediverse/fep/issues/352) | 2024-07-05 | - |
 | [FEP-9091: Export Actor Service Endpoint](./fep/9091/fep-9091.md) | `DRAFT` | [#358](https://codeberg.org/fediverse/fep/issues/358) | 2024-07-08 | - |
 | [FEP-6fcd: Account Export Container Format](./fep/6fcd/fep-6fcd.md) | `DRAFT` | [#357](https://codeberg.org/fediverse/fep/issues/357) | 2024-07-11 | - |
 | [FEP-c551: Use ECMAScript Modules to Create Conformance Tests for Fediverse Enhancement Proposals](./fep/c551/fep-c551.md) | `DRAFT` | [#366](https://codeberg.org/fediverse/fep/issues/366) | 2024-07-11 | - |
@@ -84,46 +128,30 @@ The FEP Process is an initiative of the [SocialHub](https://socialhub.activitypu
 | [FEP-c4ad: Viewership History](./fep/c4ad/fep-c4ad.md) | `DRAFT` | [#367](https://codeberg.org/fediverse/fep/issues/367) | 2024-07-15 | - |
 | [FEP-c893: DOAP](./fep/c893/fep-c893.md) | `DRAFT` | [#372](https://codeberg.org/fediverse/fep/issues/372) | 2024-07-15 | - |
 | [FEP-eb48: Hashtags](./fep/eb48/fep-eb48.md) | `DRAFT` | [#373](https://codeberg.org/fediverse/fep/issues/373) | 2024-07-16 | - |
-
-## Submitting a FEP
-
-Do you have an idea, opinion or information that you want to share with the wider Fediverse community? You may do so with a Fediverse Enhancement Proposal (FEP).
-
-To create and submit a FEP:
-
-1. Fork this repository, and then clone it to your local machine. Check the Codeberg [Cheat sheet](https://docs.codeberg.org/collaborating/pull-requests-and-git-flow/#cheat-sheet) on how to prepare your Pull Request.
-2. Think of a title for the FEP you want to submit.
-3. Compute the identifier of the FEP by computing the hash of the title. This can be done with following Unix command:
-
-```
-$ echo -n "The title of my proposal" | sha256sum | cut -c-4
-b3f0
-```
-
-4. Create a subdirectory of [`fep/`](./fep/) using the identifier you just computed.
-5. Copy the FEP template ([fep-xxxx-template.md](./fep-xxxx-template.md)) to this subdirectory and change the filename appropriately.
-6. Use the identifer as the "slug" when filling out the frontmatter.
-
-    - For example, if your computed identifier was `abcd`, then your file would be located at `fep/abcd/fep-abcd.md` and your frontmatter would include `slug: "abcd"`.
-
-7. Write down your idea in the newly created file and commit it to a new branch in your repository (ex. fep-xxxx).
-8. Create a Pull Request to complete Step 1 of [FEP-a4ed: The Fediverse Enhancement Proposal Process](./fep/a4ed/fep-a4ed.md). Further process is described in FEP-a4ed.
-
-Alternatively to steps 3. to 6., you can run
-
-```bash
-python scripts/new_proposal.py TITLE OF YOUR PROPOSAL
-```
-
-that should create a prefilled template for you.
-
-## Facilitators
-
-The list of FEP's is maintained by the facilitators who are listed in the [FACILITATORS.md](FACILITATORS.md) file. Facilitators are neutral custodians of the FEP process, who merge PR's, create tracking issues, and start discussion threads for each FEP in the [SocialHub](https://socialhub.activitypub.rocks) developer community forum.
-
-## Contributing
-
-Do you have ideas to improve the FEP Process? Post your suggestions to the issue tracker, or on the SocialHub forum. The SocialHub developer community is a "DoOcracy" which means: “pick up any task you want, and then steer it to completion”. Your contributions are most welcome, so delve in and find out how you can help.
+| [FEP-eb22: Supported ActivityStreams types with NodeInfo](./fep/eb22/fep-eb22.md) | `DRAFT` | [#386](https://codeberg.org/fediverse/fep/issues/386) | 2024-07-25 | - |
+| [FEP-c0e0: Emoji reactions](./fep/c0e0/fep-c0e0.md) | `DRAFT` | [#384](https://codeberg.org/fediverse/fep/issues/384) | 2024-08-08 | - |
+| [FEP-c16b: Formatting MFM functions](./fep/c16b/fep-c16b.md) | `DRAFT` | [#383](https://codeberg.org/fediverse/fep/issues/383) | 2024-08-10 | - |
+| [FEP-0499: Delivering to multiple inboxes with a multibox endpoint](./fep/0499/fep-0499.md) | `DRAFT` | [#402](https://codeberg.org/fediverse/fep/issues/402) | 2024-09-30 | - |
+| [FEP-76ea: Conversation Threads](./fep/76ea/fep-76ea.md) | `DRAFT` | [#407](https://codeberg.org/fediverse/fep/issues/407) | 2024-10-04 | - |
+| [FEP-1985: Signaling how an OrderedCollection is ordered](./fep/1985/fep-1985.md) | `DRAFT` | [#417](https://codeberg.org/fediverse/fep/issues/417) | 2024-10-10 | - |
+| [FEP-268d: Search consent signals for objects](./fep/268d/fep-268d.md) | `DRAFT` | [#421](https://codeberg.org/fediverse/fep/issues/421) | 2024-10-12 | - |
+| [FEP-ae0c: Fediverse Relay Protocols: Mastodon and LitePub](./fep/ae0c/fep-ae0c.md) | `FINAL` | [#424](https://codeberg.org/fediverse/fep/issues/424) | 2024-10-19 | 2025-03-14 |
+| [FEP-b2b8: Long-form Text](./fep/b2b8/fep-b2b8.md) | `DRAFT` | [#441](https://codeberg.org/fediverse/fep/issues/441) | 2024-11-07 | - |
+| [FEP-fe34: Origin-based security model](./fep/fe34/fep-fe34.md) | `DRAFT` | [#445](https://codeberg.org/fediverse/fep/issues/445) | 2024-11-15 | - |
+| [FEP-171b: Conversation Containers](./fep/171b/fep-171b.md) | `DRAFT` | [#449](https://codeberg.org/fediverse/fep/issues/449) | 2024-11-23 | - |
+| [FEP-6606: ActivityPub client to server collections addressing conventions](./fep/6606/fep-6606.md) | `DRAFT` | [#453](https://codeberg.org/fediverse/fep/issues/453) | 2024-12-04 | - |
+| [FEP-1311: Media Attachments](./fep/1311/fep-1311.md) | `DRAFT` | [#459](https://codeberg.org/fediverse/fep/issues/459) | 2024-12-08 | - |
+| [FEP-7d8c: Documentation: Automation of FEP](./fep/7d8c/fep-7d8c.md) | `DRAFT` | [#470](https://codeberg.org/fediverse/fep/issues/470) | 2025-01-20 | - |
+| [FEP-9967: Polls](./fep/9967/fep-9967.md) | `DRAFT` | [#478](https://codeberg.org/fediverse/fep/issues/478) | 2025-01-23 | - |
+| [FEP-2277: ActivityPub core types](./fep/2277/fep-2277.md) | `DRAFT` | [#485](https://codeberg.org/fediverse/fep/issues/485) | 2025-01-31 | - |
+| [FEP-a974: All Actor types should be followable](./fep/a974/fep-a974.md) | `DRAFT` | [#487](https://codeberg.org/fediverse/fep/issues/487) | 2025-02-05 | - |
+| [FEP-efda: Followable objects](./fep/efda/fep-efda.md) | `DRAFT` | [#492](https://codeberg.org/fediverse/fep/issues/492) | 2025-02-13 | - |
+| [FEP-f228: Backfilling conversations](./fep/f228/fep-f228.md) | `DRAFT` | [#500](https://codeberg.org/fediverse/fep/issues/500) | 2025-02-17 | - |
+| [FEP-f06f: Object observers](./fep/f06f/fep-f06f.md) | `DRAFT` | [#503](https://codeberg.org/fediverse/fep/issues/503) | 2025-02-18 | - |
+| [FEP-dd4b: Quote Posts](./fep/dd4b/fep-dd4b.md) | `DRAFT` | [#511](https://codeberg.org/fediverse/fep/issues/511) | 2025-02-21 | - |
+| [FEP-c180: Problem Details for ActivityPub](./fep/c180/fep-c180.md) | `DRAFT` | [#531](https://codeberg.org/fediverse/fep/issues/531) | 2025-03-11 | - |
+| [FEP-2931: Representing context with a Collection](./fep/2931/fep-2931.md) | `DRAFT` | [#534](https://codeberg.org/fediverse/fep/issues/534) | 2025-03-22 | - |
+| [FEP-5711: Inverse Properties for Collections](./fep/5711/fep-5711.md) | `DRAFT` | [#539](https://codeberg.org/fediverse/fep/issues/539) | 2025-03-24 | - |
 
 ## License
 

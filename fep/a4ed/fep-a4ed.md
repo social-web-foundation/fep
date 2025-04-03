@@ -48,12 +48,20 @@ a4ed
 
 By using the hash of the title as identifier we reduce the burden on facilitators to assign unique ids. This requires proposal titles to be unique.
 
+### Proposal Type
+
+Fediverse Enhancement Proposals are classified into following types:
+
+- Informational documents
+- Implementation proposals
+
 ### Metadata
 
 Proposal metadata is placed at the top of the document as key-value pairs between opening and closing ~---~.
 
 Following metadata key-value pairs may be placed at the top of a proposal:
 
+- `type`: Indicates the type of the proposal. Can be either `informational` or `implementation`.
 - `slug`: the proposal identifier. The value must be enclosed within double quote marks, e.g. `"a4ed"`.
 - `authors`: A comma separated list of authors of the proposal. Each item of the list should contain an author's name followed by a contact address in angle brackets (e.g. `Alyssa P. Hacker <alyssa.p.hacker@email.example>`, `Alyssa P. Hacker <@alyssa.p.hacker@fediverse.example>`).
 - `status`: Indicates the proposal status. Can be either `DRAFT`, `WITHDRAWN` or `FINAL`.
@@ -85,18 +93,18 @@ Fediverse Enhancement Proposals must be placed in the public domain by the autho
 
 ## The Fediverse Enhancement Proposals Process
 
-```
-                                     +-------+
-                           +-------> | FINAL | 
-                           |         +-------+
-         +-------+         |
--------->| DRAFT | --------+
-         +-------+         |
-             ^             |         +-----------+
-             |             +-------> | WITHDRAWN |
-             |                       +-----------+
-             |                             |
-             +-----------------------------+
+```mermaid
+stateDiagram-v2
+    accTitle: FEP process flowchart
+    accDescr {
+        The process begins from the "DRAFT" status, followed by either of the "FINAL" or "WITHDRAWN" status.
+        The "WITHDRAWN" status can go back to the "DRAFT" status.
+    }
+    [*] --> DRAFT
+    DRAFT --> FINAL
+    DRAFT --> WITHDRAWN
+    WITHDRAWN --> DRAFT
+    FINAL --> [*]
 ```
 
 1. A Fediverse Enhancement Proposal can be submitted by individuals or groups of individuals (authors). See the `SUBMISSION.md` file for a list of accepted submission methods.
