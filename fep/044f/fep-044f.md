@@ -211,11 +211,11 @@ The `QuoteRequest` activity uses the `object` property to refer to the quoted ob
 
 When receiving a `QuoteRequest` activity, the original author decides (either manually or automatically) whether the quote is acceptable. Software that automatically accepts quotes on the author's behalf should notify the author of such quotes according to their notification settings.
 
-The receiving end MAY inspect the `instrument` of the `Quote` itself to decide whether it is acceptable.
+The receiving end MAY inspect the `instrument` of the `QuoteRequest` itself to decide whether it is acceptable.
 
-If the quote post is considered acceptable, the original author MUST reply with an `Accept` activity with the `Quote` activity as its object, and a `QuoteAuthorization` as its `result`.
+If the quote post is considered acceptable, the original author MUST reply with an `Accept` activity with the `QuoteRequest` activity as its object, and a `QuoteAuthorization` as its `result`.
 
-If the quote post is considered unacceptable, the authority SHOULD reply with a `Reject` activity with the `Quote` activity as its object.
+If the quote post is considered unacceptable, the authority SHOULD reply with a `Reject` activity with the `QuoteRequest` activity as its object.
 
 ### Example `Accept`
 
