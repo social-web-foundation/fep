@@ -153,10 +153,10 @@ The following stamp can be used to prove that actor `https://example.com/users/a
 
 ### Verifying a `QuoteAuthorization`
 
-To be considered valid for a particular quote post, the `QuoteAuthorization` object referenced in `quoteApproval` MUST satisfy the following properties:
+To be considered valid for a particular quote post, a `QuoteAuthorization` MUST satisfy the following properties:
 - its `interactingObject` is the quote post under consideration
 - its `interactionTarget` property is the quoted object
-- its `attributedTo` property is the author of its `object`
+- its `attributedTo` property is the author of its `interactionTarget`
 - the authenticity of the `QuoteAuthorization` object can be asserted
 
 ### Revoking a `QuoteAuthorization`
