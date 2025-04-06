@@ -1,10 +1,11 @@
 ---
 slug: "c118"
 authors: Tim Bray <tbray@texgtuality.com>
-status: DRAFT
+status: WITHDRAWN
 dateReceived: 2023-01-16
+dateWithdrawn: 2025-04-06
 trackingIssue: https://codeberg.org/fediverse/fep/issues/57
-discussionsTo: https://codeberg.org/fediverse/fep/issues/57
+discussionsTo: https://socialhub.activitypub.rocks/t/fep-c118-content-licensing-support/2903
 ---
 # FEP-c118: Content licensing support
 
