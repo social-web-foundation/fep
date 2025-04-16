@@ -27,7 +27,7 @@ In the remaining of this document, “quoted object” refers to the object bein
 
 This proposal has benefitted from significant discussions on SocialHub as well as discussions with _trwnh_ and [GoToSocial](https://gotosocial.org/) developers. In fact, the `interactionPolicy` vocabulary directly comes from [GoToSocial's interaction policies](https://docs.gotosocial.org/en/latest/federation/interaction_policy/) which have since evolved along the current proposal.
 
-## Representation of a quote post
+## Representation of a quote post {#quote}
 
 A “quote post” is represented as an object with a `quote` (`https://w3id.org/fep/044f#quote`) attribute.
 
@@ -163,7 +163,7 @@ See later sections for the actual verification mechanism.
 }
 ```
 
-## Approval stamps
+## Approval stamps {#QuoteAuthorization}
 
 In order to enforce a policy, we rely on approval stamps, a mechanism used to tell third-party servers that a quote is approved, regardless of the current state of the policy.
 
@@ -317,7 +317,7 @@ If the quote post is considered unacceptable, the authority SHOULD reply with a 
 }
 ```
 
-## Requesting, obtaining and validating approval
+## Requesting, obtaining and validating approval {#quoteAuthorization}
 
 In order to get approval, the quote post author MUST send a `QuoteRequest` (`http://joinmastodon.org/ns#QuoteRequest`) activity to the author of the quoted object, with the quoted object as its `object` property and the quote post as its `instrument`.
 
