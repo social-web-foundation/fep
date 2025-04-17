@@ -68,7 +68,7 @@ While this FEP introduces `https://w3id.org/fep/044f#quote`, there are competing
 - `quoteUri` (`http://fedibird.com/ns#quoteUri`)
 - FEP-e232 Object links with a `https://misskey-hub.net/ns/#_misskey_quote` `rel` value
 
-We believe each of those to have significant drawbacks, such as re-using a namespace that has no definition for them, implying the value is an URL or URI, or using an unusual naming scheme, and none of them are linked to a control mechanism like the one defined in this FEP, hence why we introduced `https://w3.id.org/fep/044f#quote`.
+We believe each of those to have significant drawbacks, such as re-using a namespace that has no definition for them, implying the value is an URL or URI, or using an unusual naming scheme, and none of them are linked to a control mechanism like the one defined in this FEP, hence why we introduced `https://w3id.org/fep/044f#quote`.
 
 That being said, we suggest some of them as fallback for compatibility with existing fediverse software implementations.
 
