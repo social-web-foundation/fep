@@ -10,7 +10,7 @@ discussionsTo: https://socialhub.activitypub.rocks/t/events-interoperability-val
 
 ## Summary
 
-ActivityStreams defines the [Object Type `Event`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-event). In real-world applications, the event object immediately showed the need for extension. Applications featuring `Event` objects have often chose to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations.
+ActivityStreams defines the [Object Type `Event`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-event). In real-world applications, the event object immediately showed the need for extension. Applications featuring `Event` objects have often chosen to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations.
 
 This includes guidelines for the minimal interoperable event, handling of RSVP ("répondez s'il vous plaît", i.e., attendee management, and side effects), attendee capacities, physical location addresses, virtual locations, timezone, and clarification of how to control the visibility of events in federation.
 
@@ -28,7 +28,7 @@ For more information on that, check out for example:
 
 Fediverse applications, such as Mobilizon, Friendica, Gancio, and Hubzilla, have adopted varying approaches for handling ActivityPub events. Their different aims and the varying use cases have led to fragmentation in how events are published, discovered, and managed across federation.
 
-Friendica and Hubzilla, for instance, follow the example set by ActivityStreams 2.0, using `Invite` for events, which seems to be very suited for smaller, more private gatherings, such as a birthday party. `Invite` seems natural when visibility is intentionally limited. On the other hand, applications like Mobilizon or Gancio have a focus on announcing public events and therefore chose to make use of the `Create` activity. This seems reasonable, since public events should as well be discoverable by anonymous actors, even by people who do not have an account in the Fediverse. This is achieved through federated event calendars, which are assembled by the instance administrators, who can add various federated event sources by following federated ActivityPub actors.
+Friendica and Hubzilla, for instance, follow the example set by ActivityStreams 2.0, using `Invite` for events, which seems to be very suited for smaller, more private gatherings, such as a birthday party. `Invite` seems natural when visibility is intentionally limited. On the other hand, applications like Mobilizon or Gancio have a focus on announcing public events and therefore chose to make use of the `Create` activity. Maybe another reason was that using creates eases interoperability with applications that do not support the `Invite` activity (yet). Furthermore, this may be justified because public events should as well be discoverable by anonymous actors, even by people who do not have an account in the Fediverse. This is achieved through federated event calendars, which are assembled by the instance administrators, who can add various federated event sources by following federated ActivityPub actors.
 
 Within Mobilizon, for historical and internal reasons, the federated visibility of events is currently still controlled by whether a `Group` has published the `Event` or not, and whether the `Event` has also been announced at least once, rather than using `to`/`cc` (e.g., like Mastodon's "public silent"). In federation with other applications, this and other discrepancies led to issues, which have proven to be huge blockers. That's why this FEP sets out to define a common ground.
 
@@ -39,9 +39,10 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 **The context of attributes:** Attributes that have no context prefix are to be interpreted as being in the `https://www.w3.org/ns/activitystreams` context.
 
 ## Object Type Event
-The ActivityStreams specification already defines Objects of type Event by inheriting properties from the Object type so some of the properties useful to describe an event are already specified but some others are missing and a clear specification will help.
 
-An `Object` Type `Event` *MUST* specify at least the following properties:
+The ActivityStreams specification already defines an object type `Event` which is inheriting all properties from the base `Object`, so some properties useful for describing an event are already specified, but some others are missing, and an enhanced specification will help.
+
+An `Event` *MUST* specify at least the following properties:
 
 - [`name`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-name): A simple, human-readable, plain-text title for the event. HTML markup *MUST NOT* be included. Values for the name *MUST NOT* be an empty string and the name *MAY* be expressed using multiple language-tagged values.
 
@@ -122,13 +123,13 @@ ActivityStreams provides a flexible framework for representing locations, as out
 
 This section aims to establish a clear and consistent format for representing the locations of events, whether they are physical, virtual, or mixed.
 
-Rather than creating a new schema, this specification adopts the [`location` property from Schema.org](https://schema.org/location) with some adjustements to better suite federated event handling:
+Rather than creating a new schema, this specification adopts the [`location` property from Schema.org](https://schema.org/location) with some adjustments to better suite federated event handling:
 
 - Exclusion of `Text` as a valid type:
 Unlike the original Schema.org definition, Text is not a permitted type for location and *MUST NOT* be used. If only a name is required to describe a location, the Place type can be used.
 
 - Support for multiple locations:
-To specify mixed-format events (e.g., hybrid online and offline events), the location property can contain an array of locations. Each entry in the array can represent either a physical Place or a VirtualLocation.
+To specify mixed-format events (e.g., hybrid online and offline events), the location property can contain an array of locations. Each entry in the array can represent either a physical `Place` or a `VirtualLocation`.
 
 #### Physical
 
@@ -189,7 +190,6 @@ Example with address of type `https://schema.org/PostalAddress`:
   }
 }
 ```
-
 
 #### Virtual
 
@@ -256,7 +256,6 @@ When not supporting multiple entries in `location` applications *MUST* use the f
 }
 ```
 
-
 ### RSVP (Attendee Management)
 
 #### Not handling RSVP
@@ -320,7 +319,7 @@ Note that `externalParticipationUrl` *MAY* also be a `mailto`-URL, which is a wa
 
 To specify the maximum number of attendees for an `Event`, applications *SHOULD* use the `https://schema.org/maximumAttendeeCapacity`.
 
-Remaining attendee capacity *SHOULD* be shown indirectly via using the Collection `https://w3id.org/fep/8a8e/attendees`. This is a list of all vent attendees. Every `Actor` that has accepted an `Invite` containing the `Event` as an `object` or which `Join` targeting the `Event` has been accepted is added as a side effect. Note that also other object types other than `Actor` (and it's subclasses) might be part of that collection, e.g. when an application allows for attendees to register by e-mail. In that case using `https://schema.org/Person` or `https://schema.org/Organization` is **RECOMMENDED**. The `attendees` collection *MUST* be either an `OrderedCollection` or a `Collection` and *MAY* be filtered by the privileges of an authenticated user, or as appropriate if no authentication is given.
+Remaining attendee capacity *SHOULD* be shown indirectly via using the Collection `https://w3id.org/fep/8a8e/attendees`. This is a list of all event attendees. Every `Actor` that has accepted an `Invite` containing the `Event` as an `object` or which `Join` targeting the `Event` has been accepted is added as a side effect. Note that also other object types other than `Actor` (and it's subclasses) might be part of that collection, e.g. when an application allows for attendees to register by e-mail. In that case using `https://schema.org/Person` or `https://schema.org/Organization` is **RECOMMENDED**. The `attendees` collection *MUST* be either an `OrderedCollection` or a `Collection` and *MAY* be filtered by the privileges of an authenticated user, or as appropriate if no authentication is given.
 
 ```json
 {
