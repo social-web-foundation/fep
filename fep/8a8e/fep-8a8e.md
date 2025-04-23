@@ -466,7 +466,6 @@ Applications *SHOULD* utilize at least the following recommended set of event ca
 - SPORTS
 - THEATRE
 - WORKSHOPS_SKILL_SHARING
-- DEFAULT
 
 > **Note**
 > Implementing applications may extend this list or allow user-generated categories. However, such additions may not be understood by all consuming platforms and could default to a generic or "unknown" category.
@@ -1258,7 +1257,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
 <dt>Label</dt>
 <dd property="rdfs:label" lang="en">The category of an Event</dd>
 <dt>Comment</dt>
-<dd property="rdfs:comment" lang="en">Recommended event categories include: <code>ARTS</code>, <code>AUTO_BOAT_AIR</code>, <code>BOOK_CLUBS</code>, <code>BUSINESS</code>, <code>CAUSES</code>, <code>CLIMATE_ENVIRONMENT</code>, <code>COMMUNITY</code>, <code>COMEDY</code>, <code>CRAFTS</code>, <code>CREATIVE_JAMS</code>, <code>DIY_MAKER_SPACES</code>, <code>FAMILY_EDUCATION</code>, <code>FASHION_BEAUTY</code>, <code>FESTIVALS</code>, <code>FILM_MEDIA</code>, <code>FOOD_DRINK</code>, <code>GAMES</code>, <code>INCLUSIVE_SPACES</code>, <code>LANGUAGE_CULTURE</code>, <code>LEARNING</code>, <code>LGBTQ</code>, <code>MEETING</code>, <code>MEDITATION_WELLBEING</code>, <code>MOVEMENTS_POLITICS</code>, <code>MUSIC</code>, <code>NETWORKING</code>, <code>OUTDOORS_ADVENTURE</code>, <code>PARTY</code>, <code>PERFORMING_VISUAL_ARTS</code>, <code>PETS</code>, <code>PHOTOGRAPHY</code>, <code>SCIENCE_TECH</code>, <code>SPIRITUALITY_RELIGION_BELIEFS</code>, <code>SPORTS</code>, <code>THEATRE</code>, <code>WORKSHOPS_SKILL_SHARING</code>, <code>DEFAULT</code>
+<dd property="rdfs:comment" lang="en">Recommended event categories include: <code>ARTS</code>, <code>AUTO_BOAT_AIR</code>, <code>BOOK_CLUBS</code>, <code>BUSINESS</code>, <code>CAUSES</code>, <code>CLIMATE_ENVIRONMENT</code>, <code>COMMUNITY</code>, <code>COMEDY</code>, <code>CRAFTS</code>, <code>CREATIVE_JAMS</code>, <code>DIY_MAKER_SPACES</code>, <code>FAMILY_EDUCATION</code>, <code>FASHION_BEAUTY</code>, <code>FESTIVALS</code>, <code>FILM_MEDIA</code>, <code>FOOD_DRINK</code>, <code>GAMES</code>, <code>INCLUSIVE_SPACES</code>, <code>LANGUAGE_CULTURE</code>, <code>LEARNING</code>, <code>LGBTQ</code>, <code>MEETING</code>, <code>MEDITATION_WELLBEING</code>, <code>MOVEMENTS_POLITICS</code>, <code>MUSIC</code>, <code>NETWORKING</code>, <code>OUTDOORS_ADVENTURE</code>, <code>PARTY</code>, <code>PERFORMING_VISUAL_ARTS</code>, <code>PETS</code>, <code>PHOTOGRAPHY</code>, <code>SCIENCE_TECH</code>, <code>SPIRITUALITY_RELIGION_BELIEFS</code>, <code>SPORTS</code>, <code>THEATRE</code>, <code>WORKSHOPS_SKILL_SHARING</code>
 </dd>
 <dt>Domain</dt>
 <dd><a property="rdfs:domain" resource="as:Event" href="https://www.w3.org/ns/activitystreams#Event">Event</a></dd>
