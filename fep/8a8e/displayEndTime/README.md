@@ -25,8 +25,11 @@ Example usage of displayEndTime
 
 ```json
     {
-      "@context": "https://w3id.org/fep/8a8e",
-      "@type": "as:Event",
-      "displayEndTime": true
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams"
+      ],
+      "type": "Event",
+      "displayEndTime": false
     }
     ```

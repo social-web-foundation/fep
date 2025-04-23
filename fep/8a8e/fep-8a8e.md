@@ -474,7 +474,7 @@ If the `organizers` property is omitted, it *MAY* be inferred that the actors in
 Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/8a8e/upcomingEvents` collection to list their future or ongoing events. This collection *MUST* follow these rules:
 
 - **Collection Type**:  
-  The collection *MUST* be a `Collection` or one of its subtypes.
+  The collection *MUST* be an `OrderedCollection` or one of its subtypes.
 
 - **Ordering**:
   Events *MUST* be ordered in ascending order by their `startTime`, with the earliest events appearing first.
@@ -490,7 +490,7 @@ Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/
 
 ## Terms
 
-Note that the terms `joinMode` and `externalParticipationUrl` are either directly compatibly with or extensions of the ones [defined by Mobilizon](https://docs.mobilizon.org/5.%20Interoperability/1.activity_pub/).
+Note that the terms `joinMode` and `externalParticipationUrl` are compatible with and also leaned on the extensions [defined by Mobilizon](https://docs.mobilizon.org/5.%20Interoperability/1.activity_pub/).
 
 <section id="displayEndTime" resource="https://w3id.org/fep/8a8e/displayEndTime" typeof="owl:DatatypeProperty">
   <h3>displayEndTime</h3>
@@ -511,9 +511,12 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
   <pre title="Example usage of displayEndTime" lang="json">
     <code>
     {
-      "@context": "https://w3id.org/fep/8a8e",
-      "@type": "as:Event",
-      "displayEndTime": true
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams"
+      ],
+      "type": "Event",
+      "displayEndTime": false
     }
     </code>
   </pre>
@@ -536,13 +539,16 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
   <pre title="Example usage of upcomingEvents" lang="json">
     <code>
     {
-      "@context": "https://w3id.org/fep/8a8e",
-      "@type": "as:Actor",
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams"
+      ],
+      "@type": "Actor",
       "upcomingEvents": {
-        "@type": "Collection",
+        "type": "Collection",
         "items": [
-          { "@type": "Event", "startTime": "2025-06-01T12:00:00Z" },
-          { "@type": "Event", "startTime": "2025-07-15T15:30:00Z" }
+          { "type": "Event", "startTime": "2025-06-01T12:00:00Z" },
+          { "type": "Event", "startTime": "2025-07-15T15:30:00Z" }
         ]
       }
     }
@@ -569,12 +575,19 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
   <pre title="Example of an OrganizersCollection with different items" lang="json">
     <code>
     {
-      "@type": "OrganizersCollection",
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams",
+        {
+          "sc": "http://schema.org#",
+        }
+      ],
+      "type": "OrganizersCollection",
       "items": [
-        { "@type": "https://www.w3.org/ns/activitystreams#Group", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
-        { "@type": "https://www.w3.org/ns/activitystreams#Link", "href": "https://organizer1.example.org"},
-        { "@type": "https://schema.org/Person", "name": "Alice" },
-        { "@type": "[sc:](https://schema.org/)Organization", "name": "Event Co." }
+        { "type": "Group", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
+        { "type": "Link", "href": "https://organizer1.example.org"},
+        { "type": "sc:Person", "name": "Alice" },
+        { "type": "Organization", "name": "Event Co." }
       ]
     }
     </code>
@@ -602,16 +615,22 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
   <pre title="Example usage of organizers" lang="json">
     <code>
     {
-      "@context": "https://www.w3.org/ns/activitystreams",
-      "@type": "Event",
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams",
+        {
+          "sc": "http://schema.org#",
+        }
+      ],
+      "type": "Event",
       "organizers": {
-        "@type": "https://w3id.org/fep/8a8e/OrganizersCollection",
+        "type": "OrganizersCollection",
         "totalItems": 4,
         "items": [
-          { "@type": "as:Actor", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
-          { "@type": "as:Link", "href": "https://organizer1.example.org"},
-          { "@type": "sc:Person", "name": "Alice" },
-          { "@type": "sc:Organization", "name": "Event Co." }
+          { "type": "Actor", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
+          { "type": "Link", "href": "https://organizer1.example.org"},
+          { "type": "sc:Person", "name": "Alice" },
+          { "type": "sc:Organization", "name": "Event Co." }
         ]
       }
     }
@@ -646,13 +665,19 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
   <pre title="Example of an AttendeesCollection with different items" lang="json">
     <code>
     {
-      "@context": "https://w3id.org/fep/8a8e",
-      "@type": "AttendeesCollection",
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams",
+        {
+          "sc": "https://schema.org#"
+        }
+      ]
+      "type": "AttendeesCollection",
       "totalItems": 2,
       "context": "https://example.org/events/alice-birthday-party"
       "items": [
-        { "@type": "https://www.w3.org/ns/activitystreams#Person", "name": "Bob", "id": "https://example.org/actors/bob"},
-        { "@type": "https://schema.org/Person", "name": "Alice", "email": "alice@example.org"},
+        { "type": "Person", "name": "Bob", "id": "https://example.org/actors/bob"},
+        { "type": "sc:Person", "name": "Alice", "email": "alice@example.org"},
       ]
     }
     </code>
@@ -680,16 +705,23 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
   <pre title="Example usage of attendees" lang="json">
     <code>
     {
-      "@context": "https://www.w3.org/ns/activitystreams",
-      "@type": "Event",
+      "@context": [
+        "https://schema.org",
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams",
+        {
+          "sc": "https://schema.org#"
+        }
+      ],
+      "type": "Event",
       "attendees": {
-        "@type": "https://w3id.org/fep/8a8e/OrganizersCollection",
+        "type": "https://w3id.org/fep/8a8e/OrganizersCollection",
         "totalItems": 4,
         "items": [
-          { "@type": "as:Actor", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
-          { "@type": "as:Link", "href": "https://organizer1.example.org"},
-          { "@type": "sc:Person", "name": "Alice" },
-          { "@type": "sc:Organization", "name": "Event Co." }
+          { "type": "Actor", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
+          { "type": "Link", "href": "https://organizer1.example.org"},
+          { "type": "Person", "name": "Alice" },
+          { "type": "sc:Organization", "name": "Event Co." }
         ]
       }
     }
@@ -720,7 +752,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
     {
       "@context": [
         "https://w3id.org/fep/8a8e",
-        "https://www.w3.org/ns/activitystreams",
+        "https://www.w3.org/ns/activitystreams"
       ]
       "type": "Event",
       "id": "https://example.org/events/new-years-party",
@@ -765,7 +797,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
     "https://w3id.org/fep/8a8e",
     "https://www.w3.org/ns/activitystreams"
   ],
-  "@type": "Event",
+  "type": "Event",
   "url": "http://example.org/events/1234",
   "joinMode": "restricted"
 }
@@ -778,7 +810,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
     "https://w3id.org/fep/8a8e",
     "https://www.w3.org/ns/activitystreams"
   ],
-  "@type": "as:Event",
+  "type": "Event",
   "url": "http://example.org/events/1234",
   "joinMode": "external",
   "externalParticipationUrl": "https://www.escample.org/events/1234/participate"
@@ -808,7 +840,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
    "@context": [
     "https://schema.org",
     "https://https://w3id.org/fep/8a8e",
-    "https://www.w3.org/ns/activitystreams",
+    "https://www.w3.org/ns/activitystreams"
   ],
   "type": "Event",
   "id": "https://example.org/yoga-workshop",

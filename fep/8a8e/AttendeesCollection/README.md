@@ -31,13 +31,19 @@ Example of an AttendeesCollection with different items
 
 ```json
     {
-      "@context": "https://w3id.org/fep/8a8e",
-      "@type": "AttendeesCollection",
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams",
+        {
+          "sc": "https://schema.org#"
+        }
+      ]
+      "type": "AttendeesCollection",
       "totalItems": 2,
       "context": "https://example.org/events/alice-birthday-party"
       "items": [
-        { "@type": "https://www.w3.org/ns/activitystreams#Person", "name": "Bob", "id": "https://example.org/actors/bob"},
-        { "@type": "https://schema.org/Person", "name": "Alice", "email": "alice@example.org"},
+        { "type": "Person", "name": "Bob", "id": "https://example.org/actors/bob"},
+        { "type": "sc:Person", "name": "Alice", "email": "alice@example.org"},
       ]
     }
     ```

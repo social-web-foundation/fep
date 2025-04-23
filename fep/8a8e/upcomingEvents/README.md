@@ -22,13 +22,16 @@ Example usage of upcomingEvents
 
 ```json
     {
-      "@context": "https://w3id.org/fep/8a8e",
-      "@type": "as:Actor",
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams"
+      ],
+      "@type": "Actor",
       "upcomingEvents": {
-        "@type": "Collection",
+        "type": "Collection",
         "items": [
-          { "@type": "Event", "startTime": "2025-06-01T12:00:00Z" },
-          { "@type": "Event", "startTime": "2025-07-15T15:30:00Z" }
+          { "type": "Event", "startTime": "2025-06-01T12:00:00Z" },
+          { "type": "Event", "startTime": "2025-07-15T15:30:00Z" }
         ]
       }
     }

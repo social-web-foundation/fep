@@ -25,12 +25,19 @@ Example of an OrganizersCollection with different items
 
 ```json
     {
-      "@type": "OrganizersCollection",
+      "@context": [
+        "https://w3id.org/fep/8a8e",
+        "https://www.w3.org/ns/activitystreams",
+        {
+          "sc": "http://schema.org#",
+        }
+      ],
+      "type": "OrganizersCollection",
       "items": [
-        { "@type": "https://www.w3.org/ns/activitystreams#Group", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
-        { "@type": "https://www.w3.org/ns/activitystreams#Link", "href": "https://organizer1.example.org"},
-        { "@type": "https://schema.org/Person", "name": "Alice" },
-        { "@type": "[sc:](https://schema.org/)Organization", "name": "Event Co." }
+        { "type": "Group", "name": "ActivityPub Group Actor", "id": "https://example.org/actors/group1"},
+        { "type": "Link", "href": "https://organizer1.example.org"},
+        { "type": "sc:Person", "name": "Alice" },
+        { "type": "Organization", "name": "Event Co." }
       ]
     }
     ```

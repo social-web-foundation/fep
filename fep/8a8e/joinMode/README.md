@@ -30,7 +30,7 @@ Example: restricted
     "https://w3id.org/fep/8a8e",
     "https://www.w3.org/ns/activitystreams"
   ],
-  "@type": "Event",
+  "type": "Event",
   "url": "http://example.org/events/1234",
   "joinMode": "restricted"
 }
@@ -43,7 +43,7 @@ Example: external
     "https://w3id.org/fep/8a8e",
     "https://www.w3.org/ns/activitystreams"
   ],
-  "@type": "as:Event",
+  "type": "Event",
   "url": "http://example.org/events/1234",
   "joinMode": "external",
   "externalParticipationUrl": "https://www.escample.org/events/1234/participate"

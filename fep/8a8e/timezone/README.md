@@ -30,7 +30,7 @@ Example usage of timezone
     {
       "@context": [
         "https://w3id.org/fep/8a8e",
-        "https://www.w3.org/ns/activitystreams",
+        "https://www.w3.org/ns/activitystreams"
       ]
       "type": "Event",
       "id": "https://example.org/events/new-years-party",

@@ -24,66 +24,6 @@
   },
   "@graph": [
     {
-      "@id": "https://w3id.org/fep/8a8e/joinMode",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "\n      Indicator of how new members may be able to join an event.\n      Accepted values: free, restricted, external, none, invite.\n      If external, you must also set externalParticipationUrl.\n    "
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Event"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e/"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Join mode"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/upcomingEvents",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "An ActivityStreams OrderedCollection of Event objects that have a startTime property in the future, sorted by startTime with the earliest first."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Ordered collection of upcoming Events"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/requiredJoinVisibility",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "\n      Specifies the minimum audience that must be addressed in a valid Join activity related to the event. This can include individual actors, groups, the as:Public collection, or any other URI. The Join activity must be addressed accordingly (e.g., using to, cc, bto, or audience).\n    "
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Event"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Required Join Visibility"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
-      }
-    },
-    {
       "@id": "https://w3id.org/fep/8a8e",
       "@type": "http://www.w3.org/2002/07/owl#Ontology",
       "http://purl.org/dc/elements/1.1/creator": [
@@ -109,24 +49,21 @@
       "http://purl.org/dc/terms/title": "FEP-8a8e: A common approach to using the Event object type"
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/OrganizersCollection",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "@id": "https://w3id.org/fep/8a8e/timezone",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization."
+        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "An Event's Organizer Collection"
+        "@value": "The timezone of an Event"
       },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/organizers"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://www.w3.org/ns/activitystreams#Collection"
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
       }
     },
     {
@@ -172,25 +109,42 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/attendees",
+      "@id": "https://w3id.org/fep/8a8e/upcomingEvents",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": ""
+        "@value": "An ActivityStreams OrderedCollection of Event objects that have a startTime property in the future, sorted by startTime with the earliest first."
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "Attendees of an Event"
+        "@value": "Ordered collection of upcoming Events"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2000/01/rdf-schema#Resource"
+        "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/OrganizersCollection",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization."
       },
-      "http://www.w3.org/2002/07/owl#minCardinality": {
-        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-        "@value": "0"
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "An Event's Organizer Collection"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/organizers"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://www.w3.org/ns/activitystreams#Collection"
       }
     },
     {
@@ -215,6 +169,28 @@
       }
     },
     {
+      "@id": "https://w3id.org/fep/8a8e/attendees",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": ""
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Attendees of an Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Resource"
+      },
+      "http://www.w3.org/2002/07/owl#minCardinality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "0"
+      }
+    },
+    {
       "@id": "https://w3id.org/fep/8a8e/organizers",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
@@ -233,21 +209,45 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/timezone",
+      "@id": "https://w3id.org/fep/8a8e/joinMode",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
+        "@value": "\n      Indicator of how new members may be able to join an event.\n      Accepted values: free, restricted, external, none, invite.\n      If external, you must also set externalParticipationUrl.\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e/"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Join mode"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/requiredJoinVisibility",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "\n      Specifies the minimum audience that must be addressed in a valid Join activity related to the event. This can include individual actors, groups, the as:Public collection, or any other URI. The Join activity must be addressed accordingly (e.g., using to, cc, bto, or audience).\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The timezone of an Event"
+        "@value": "Required Join Visibility"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
       }
     },
     {
