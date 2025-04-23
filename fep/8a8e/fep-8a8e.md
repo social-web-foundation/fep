@@ -76,14 +76,14 @@ If an `Event` is received with no `endTime` set, the `Event` *MUST* be treated a
 
 _This section is non-normative._
 
-The `timezone` property is introduced to support time zone information for events, enabling consistent handling of local "wall times".
+The [`https://w3id.org/fep/8a8e/timezone](`https://w3id.org/fep/8a8e/timezone`) property is introduced to support time zone information for events, enabling consistent handling of local "wall times".
 
 > It is important to note that the "time-offset" component in `startTime` and `endTime` property does not correlate to time-zones, and while times that include the "time-offset" component work well for timestamps, they cannot be reliably converted to and from local "wall times" without additional information and processing.  
 > [https://www.w3.org/TR/activitystreams-core/#dates](https://www.w3.org/TR/activitystreams-core/#dates)
 
-For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application *SHOULD* set the named `timezone`.
+For this reason, if the `Event` is primarily conducted in a single specific time-zone, the application *SHOULD* set the `https://w3id.org/fep/8a8e/timezone`.
 
-In case the `timezone` property is specified it *MUST* be a specific IANA time zone identifier included in the [IANA Time Zone Database](https://data.iana.org/time-zones/tz-link.html) (often called tz or zoneinfo, see [https://www.w3.org/TR/timezone/#time-zone-identifiers](https://www.w3.org/TR/timezone/#time-zone-identifiers)).
+In case the `https://w3id.org/fep/8a8e/timezone` property is specified it *MUST* be a specific IANA time zone identifier included in the [IANA Time Zone Database](https://data.iana.org/time-zones/tz-link.html) (often called tz or zoneinfo, see [https://www.w3.org/TR/timezone/#time-zone-identifiers](https://www.w3.org/TR/timezone/#time-zone-identifiers)).
 
 <!--
   Evaluated @id / @type for @context:
@@ -425,7 +425,7 @@ Federated event calendars usually have thumbnail images with fixed aspect ratios
 
 Federated event platforms benefit from a shared understanding of general event categories. These categories serve a distinct purpose from user-generated tags or hashtags. While hashtags are typically entered freely and reflect a specific language, event categories are drawn from a limited, generalized set, making them more suitable for tasks like filtering events in aggregated or joined calendars.
 
-To represent categories, this FEP introduces the property `https://w3id.org/fep/8a8e/category`.
+To represent categories, this FEP introduces the property [https://w3id.org/fep/8a8e/category](`https://w3id.org/fep/8a8e/category`).
 
 In most cases, a single category should be sufficient. However, multiple categories may be included when relevant.
 Applications *SHOULD* utilize at least the following recommended set of event categories:
