@@ -365,7 +365,7 @@ Every [`Event`](https://www.w3.org/ns/activitystreams#Event) *MAY* have an `atte
 - The actor has sent a [`Join`](https://www.w3.org/ns/activitystreams#Join) activity with this object as the [`object`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object) property that has been answered with an [`Accept`](https://www.w3.org/ns/activitystreams#Accept).
 - The actor has responded to an [`Invite`](https://www.w3.org/ns/activitystreams#Invite) activity from the `Event`'s owner (where the Event is specified as the `object` property) with an [`Accept`](https://www.w3.org/ns/activitystreams#Accept) activity.
 
-The `attendees` collection *MUST* be either an [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) or a [`Collection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection) and *MAY* be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the [`totalItems`](https://www.w3.org/ns/activitystreams#totalItems) set in any case.
+The `attendees` collection *MUST* be either an [`OrderedCollection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-orderedcollection) or a [`Collection`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-collection) and *MAY* be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *MAY* have the [`totalItems`](https://www.w3.org/ns/activitystreams#totalItems) set regardless of authentication. If `https://schema.org/maximumAttendeeCapacity` is used `totalItems` *SHOULD* be public to disclose remaining capacity.
 
 ### Event Banner and Poster Images
 
@@ -375,9 +375,12 @@ If the event has an image in the style of a flyer or a share-pic which is repres
 
 #### Banner
 
-If the `Event` has a particular banner image, this image *SHOULD* be set as the first `attachment` of type `Image` (type `Document` is also valid). To indicate that an image from within the `attachment` attribute of an `Event` should be preferred over the flyer/share-pic image(s) within `image` attribute, for the use of list pages and header images, the attribute `https://w3id.org/fep/8a8e/isThumbnail` *SHOULD* be set.
+If the `Event` has a particular banner image, this image *SHOULD* be set as the first `attachment` of type `Image` (type `Document` is also valid but not *RECOMMENDED*). To indicate that an image from within the `attachment` attribute of an `Event` should be preferred over the flyer/share-pic image(s) within `image` attribute, for the use of list pages and header images, the attribute `https://w3id.org/fep/8a8e/isBannerImage` *SHOULD* be set.
 
 Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore, `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
+
+> **Hint**
+> Providing multiple versions of banner images and specifying `width` and `height` gives receiving applications the most flexibility to choose the most appropriate one based on aspect ratio.
 
 ```json
 {
@@ -460,13 +463,11 @@ If the organizer is not an ActivityPub entity (e.g., a website or organization w
 
 #### Explicit Non-Disclosure
 
-If the event’s organizers are intentionally not disclosed, the `organizers` field *MUST* be set to `null`, have `totalItems: 0`, or contain an empty `items` array. This explicitly indicates a deliberate choice to withhold organizer information and takes precedence over any assumptions about organizers based on other fields.
-
-When receiving an event, clients *MUST NOT* infer organizers from other event data if the `organizers` field is explicitly empty.
+If the event’s organizers are intentionally not disclosed, the `organizers` field *MUST* be set to `null`, have `totalItems: 0`, or contain an empty `items` array. This explicitly indicates a deliberate choice to withhold organizer information and takes precedence over any assumptions about organizers based on other fields. In such a case, when receiving an event, clients *MUST NOT* infer organizers from other event data.
 
 #### Fallback to `attributedTo`
 
-If the `organizers` property is omitted, it *MAY* be inferred that the actors in the `attributedTo` property are the event's organizers. For events with multiple organizers, it is *RECOMMENDED* to provide an`organizers` collection to avoid and ensure compatibility with applications that do not support arrays in `attributedTo`.
+If the `organizers` property is omitted, it *MAY* be inferred that the actors in the `attributedTo` property are the event's organizers. For events with multiple organizers, it is *RECOMMENDED* to provide an `organizers` collection to avoid and ensure compatibility with applications that do not support arrays in `attributedTo`.
 
 ## Upcoming Events Collection for Actors
 
@@ -751,7 +752,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
       <a property="rdfs:domain" href="https://www.w3.org/ns/activitystreams#Event">as:Event</a>
     </dd>
     <dt>rdfs:range</dt>
-    <dd property="rdfs:range" resource="rdfs:Literal">A literal value</a></dd>
+    <dd property="rdfs:range" resource="xsd:string">A string</a></dd>
     <dt>rdfs:isDefinedBy</dt>
     <dd>
       <a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e/">FEP‑8a8e</a>
@@ -798,7 +799,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
     <dt>Domain</dt>
     <dd property="rdfs:domain"><a href="https://www.w3.org/ns/activitystreams#Event">as:Event</a></dd>
     <dt>Range</dt>
-    <dd property="rdfs:range"></dd>
+    <dd property="rdfs:range" resource="xsd:anyURI"> A list of any addressed targets, i.e. URIs (@list)</dd>
     <dt>Is defined by</dt>
     <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
   </dl>
@@ -861,10 +862,65 @@ Note that the terms `joinMode` and `externalParticipationUrl` are either directl
     "https://w3id.org/fep/8a8e",
     "https://www.w3.org/ns/activitystreams"
   ],
-  "@type": "Event",
+  "type": "Event",
   "url": "http://example.org/events/1234",
   "joinMode": "external",
   "externalParticipationUrl": "https://www.meetup.com/somegroup/events/00000/"
+}
+</code>
+  </pre>
+</section>
+
+<section id="isBannerImage" resource="https://w3id.org/fep/8a8e/isBannerImage" typeof="owl:DatatypeProperty">
+  <h3>isBannerImage</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/isBannerImage</code></dd>
+    <dt>rdfs:label</dt>
+    <dd property="rdfs:label" lang="en">Image is a banner image</dd>
+    <dt>rdfs:comment</dt>
+    <dd property="rdfs:comment" lang="en">
+      Whether an image is an (events) banner image.
+    </dd>
+    <dt>rdfs:domain</dt>
+    <dd><a property="rdfs:domain" href="https://www.w3.org/ns/activitystreams#Image">as:Image</a></dd>
+    <dt>rdfs:range</dt>
+    <dd property="rdfs:range" resource="xsd:boolean">Boolean</dd>
+    <dt>rdfs:isDefinedBy</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP‑8a8e</a></dd>
+  </dl>
+
+  <pre title="Example usage of isBannerImage" lang="json">
+<code>{
+  "@context": [
+    "https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "type": "Event",
+  "id": "https://example.org/new-year-party",
+  "name": "New years party",
+  "organizers": null,
+  "startTime": "2014-12-31T23:00:00-08:00",
+  "endTime": "2015-01-01T04:00:00-08:00",
+  "image": {
+    "type": "Image",
+    "mediaType": "image/jpeg",
+    "url": "https://example.com/images/new-year-party-flyer.png",
+    "focalPoint": [
+      -0.55,
+      0.43
+    ]
+  },
+  "attachment": [
+    {
+      "type": "Image",
+      "mediaType": "image/jpeg",
+      "url": "https://example.com/images/new-year-party-banner.png",
+      "witdh": 1000,
+      "height": 500,
+      "isBannerImage": true
+    }
+  ]
 }
 </code>
   </pre>

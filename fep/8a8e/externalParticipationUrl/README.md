@@ -28,7 +28,7 @@ Example usage of externalParticipationUrl
     "https://w3id.org/fep/8a8e",
     "https://www.w3.org/ns/activitystreams"
   ],
-  "@type": "Event",
+  "type": "Event",
   "url": "http://example.org/events/1234",
   "joinMode": "external",
   "externalParticipationUrl": "https://www.meetup.com/somegroup/events/00000/"

@@ -15,7 +15,7 @@ rdfs:domain
 : [as:Event](https://www.w3.org/ns/activitystreams#Event)
 
 rdfs:range
-: A literal value
+: A string
 
 rdfs:isDefinedBy
 : [FEP‑8a8e](https://w3id.org/fep/8a8e/)

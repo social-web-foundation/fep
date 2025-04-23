@@ -10,7 +10,7 @@ Domain
 : [as:Event](https://www.w3.org/ns/activitystreams#Event)
 
 Range
-: 
+:  A list of any addressed targets, i.e. URIs (@list)
 
 Is defined by
 : [FEP-8a8e](https://w3id.org/fep/8a8e)
