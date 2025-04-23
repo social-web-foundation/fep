@@ -68,7 +68,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-1b12: Group federation](./fep/1b12/fep-1b12.md) | `FINAL` | [#22](https://codeberg.org/fediverse/fep/issues/22) | 2022-11-12 | 2023-02-09 |
 | [FEP-8b32: Object Integrity Proofs](./fep/8b32/fep-8b32.md) | `DRAFT` | [#29](https://codeberg.org/fediverse/fep/issues/29) | 2022-11-12 | - |
 | [FEP-c390: Identity Proofs](./fep/c390/fep-c390.md) | `DRAFT` | [#34](https://codeberg.org/fediverse/fep/issues/34) | 2022-11-23 | - |
-| [FEP-cb76: Content Addressed Vocabulary](./fep/cb76/fep-cb76.md) | `DRAFT` | [#41](https://codeberg.org/fediverse/fep/issues/41) | 2022-11-29 | - |
+| [FEP-cb76: Content Addressed Vocabulary](./fep/cb76/fep-cb76.md) | `WITHDRAWN` | [#41](https://codeberg.org/fediverse/fep/issues/41) | 2022-11-29 | 2025-04-07 |
 | [FEP-fb2a: Actor metadata](./fep/fb2a/fep-fb2a.md) | `DRAFT` | [#45](https://codeberg.org/fediverse/fep/issues/45) | 2022-12-09 | - |
 | [FEP-c118: Content licensing support](./fep/c118/fep-c118.md) | `DRAFT` | [#57](https://codeberg.org/fediverse/fep/issues/57) | 2023-01-16 | - |
 | [FEP-2e40: The FEP Vocabulary Extension Process](./fep/2e40/fep-2e40.md) | `WITHDRAWN` | [#62](https://codeberg.org/fediverse/fep/issues/62) | 2023-02-13 | 2023-09-04 |
@@ -150,6 +150,11 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-f06f: Object observers](./fep/f06f/fep-f06f.md) | `DRAFT` | [#503](https://codeberg.org/fediverse/fep/issues/503) | 2025-02-18 | - |
 | [FEP-dd4b: Quote Posts](./fep/dd4b/fep-dd4b.md) | `DRAFT` | [#511](https://codeberg.org/fediverse/fep/issues/511) | 2025-02-21 | - |
 | [FEP-c180: Problem Details for ActivityPub](./fep/c180/fep-c180.md) | `DRAFT` | [#531](https://codeberg.org/fediverse/fep/issues/531) | 2025-03-11 | - |
+| [FEP-2931: Representing context with a Collection](./fep/2931/fep-2931.md) | `DRAFT` | [#534](https://codeberg.org/fediverse/fep/issues/534) | 2025-03-22 | - |
+| [FEP-5711: Inverse Properties for Collections](./fep/5711/fep-5711.md) | `DRAFT` | [#539](https://codeberg.org/fediverse/fep/issues/539) | 2025-03-24 | - |
+| [FEP-044f: Consent-respecting quote posts](./fep/044f/fep-044f.md) | `DRAFT` | [#547](https://codeberg.org/fediverse/fep/issues/547) | 2025-04-03 | - |
+| [FEP-1042: Peer to Peer Fediverse Identities](./fep/1042/fep-1042.md) | `DRAFT` | [#546](https://codeberg.org/fediverse/fep/issues/546) | 2025-04-03 | - |
+| [FEP-4f05: Soft Deletion](./fep/4f05/fep-4f05.md) | `DRAFT` | [#554](https://codeberg.org/fediverse/fep/issues/554) | 2025-04-15 | - |
 
 ## License
 

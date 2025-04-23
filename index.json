@@ -90,6 +90,7 @@
   {
     "slug": "8b32",
     "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
     "status": "DRAFT",
     "dateReceived": "2022-11-12",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/29",
@@ -110,10 +111,11 @@
   {
     "slug": "cb76",
     "authors": "a <a@trwnh.com>",
-    "status": "DRAFT",
+    "status": "WITHDRAWN",
     "dateReceived": "2022-11-29",
+    "dateWithdrawn": "2025-04-07",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/41",
-    "discussionsTo": "https://codeberg.org/fediverse/fep/issues/41",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-cb76-content-addressed-vocabulary/2735",
     "title": "Content Addressed Vocabulary"
   },
   {
@@ -870,5 +872,52 @@
     "dateReceived": "2025-03-11",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/531",
     "title": "Problem Details for ActivityPub"
+  },
+  {
+    "slug": "2931",
+    "authors": "a <a@trwnh.com>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-2931-representing-context-with-a-collection/5154",
+    "relatedFeps": "FEP-7888",
+    "type": "implementation",
+    "dateReceived": "2025-03-22",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/534",
+    "title": "Representing context with a Collection"
+  },
+  {
+    "slug": "5711",
+    "authors": "Evan Prodromou <evan@socialwebfoundation.org>",
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/evanp/fep/issues",
+    "dateReceived": "2025-03-24",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/539",
+    "title": "Inverse Properties for Collections"
+  },
+  {
+    "slug": "044f",
+    "authors": "Claire <claire.fep-1d7d@sitedethib.com>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/pre-fep-quote-posts-quote-policies-and-quote-controls/5031",
+    "dateReceived": "2025-04-03",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/547",
+    "title": "Consent-respecting quote posts"
+  },
+  {
+    "slug": "1042",
+    "authors": "Mauve Signweaver <contact@mauve.moe>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-1024-peer-to-peer-fediverse-identities/4400",
+    "dateReceived": "2025-04-03",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/546",
+    "title": "Peer to Peer Fediverse Identities"
+  },
+  {
+    "slug": "4f05",
+    "authors": "Julian Lam <julian@nodebb.org>, Angus McLeod <angus@pavilion.tech>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-4f05-soft-deletion",
+    "dateReceived": "2025-04-15",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/554",
+    "title": "Soft Deletion"
   }
 ]
