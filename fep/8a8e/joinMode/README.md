@@ -9,7 +9,7 @@ rdfs:label
 rdfs:comment
 : Indicator of how new members may be able to join an event.
 Accepted values: `free`, `restricted`, `external`, `none`, `invite`.
-If `external`, you must also set `externalParticipationUrl`.
+If `external`, you must also set [`externalParticipationUrl`](https://w3id.org/fep/8a8e/externalParticipationUrl).
 
 rdfs:domain
 : [as:Event](https://www.w3.org/ns/activitystreams#Event)

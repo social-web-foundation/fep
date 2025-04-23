@@ -4,7 +4,7 @@ Label
 : Required Join Visibility
 
 Comment
-: Specifies the minimum audience that must be addressed in a valid `Join activity related to the event. This can include individual actors, groups, the as:Public collection, or any other URI. The Join activity must be addressed accordingly (e.g., using to, cc, bto, or audience).`
+: Specifies the minimum audience that must be addressed in a valid `Join` activity related to the event. This can include individual actors, groups, the `as:Public` collection, or any other URI. The `Join` activity must be addressed accordingly (e.g., using `to`, `cc`, `bto`, or `audience`).
 
 Domain
 : [as:Event](https://www.w3.org/ns/activitystreams#Event)

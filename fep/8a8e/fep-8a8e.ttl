@@ -2,7 +2,9 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://w3id.org/fep/8a8e/AttendeesCollection> a rdfs:Class ;
@@ -19,6 +21,48 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
 	rdfs:seeAlso <https://w3id.org/fep/8a8e/attendees> ;
 	rdfs:subClassOf as:OrderedCollection .
+
+<https://w3id.org/fep/8a8e/EventCancelled> a rdfs:Class ;
+	rdfs:label "The event has been cancelled."@en ;
+	rdfs:comment "The event has been cancelled."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/eventStatus> ;
+	rdfs:subClassOf <https://w3id.org/fep/8a8e/EventStatusType> .
+
+<https://w3id.org/fep/8a8e/EventMovedOnline> a rdfs:Class ;
+	rdfs:label "The event moved online."@en ;
+	rdfs:comment "Indicates that the event was changed to allow online participation."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/eventStatus> ;
+	rdfs:subClassOf <https://w3id.org/fep/8a8e/EventStatusType> .
+
+<https://w3id.org/fep/8a8e/EventPostponed> a rdfs:Class ;
+	rdfs:label "The event has been postponed."@en ;
+	rdfs:comment "The event has been postponed and no new date has been set. The event's previousStartTime should be set."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/eventStatus> ;
+	rdfs:subClassOf <https://w3id.org/fep/8a8e/EventStatusType> .
+
+<https://w3id.org/fep/8a8e/EventRescheduled> a rdfs:Class ;
+	rdfs:label "The event has been rescheduled."@en ;
+	rdfs:comment "The event's previousStartTime should be set to the old date and the startTime should be set to the event's new start date."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/eventStatus> ;
+	rdfs:subClassOf <https://w3id.org/fep/8a8e/EventStatusType> .
+
+<https://w3id.org/fep/8a8e/EventStatusType> a rdfs:Class ;
+	rdfs:label "8a8e"@en ;
+	rdfs:comment "EventStatusType is an enumeration type whose instances represent several states that an Event may be in."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/eventStatus> ;
+	rdfs:subClassOf schema:EventStatusType .
+
+<https://w3id.org/fep/8a8e/EventTentative> a rdfs:Class ;
+	rdfs:label "The event is tentative"@en ;
+	rdfs:comment "The event is currently being planned but not confirmed."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/eventStatus> ;
+	rdfs:subClassOf <https://w3id.org/fep/8a8e/EventStatusType> .
 
 <https://w3id.org/fep/8a8e/OrganizersCollection> a rdfs:Class ;
 	rdfs:label "An Event's Organizer Collection"@en ;
@@ -97,12 +141,22 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
 	rdfs:range <https://w3id.org/fep/8a8e/OrganizersCollection> .
 
+<https://w3id.org/fep/8a8e/eventStatus> a rdf:Property ;
+	rdfs:label "The events status is"@en ;
+	rdfs:comment "An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled."@en ;
+	rdfs:domain as:Event ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range <https://w3id.org/fep/8a8e/EventStatusType> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/EventCancelled> ;
+	owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:minCardinality "0"^^xsd:nonNegativeInteger .
+
 <https://w3id.org/fep/8a8e> a owl:Ontology ;
 	dc:creator "André Menrath <andre.menrath@posteo.de>",
 		"les <lesion@autistici.org>" ;
 	dc:rights "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"@en ;
 	dcterms:abstract "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chosen to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations." ;
-	dcterms:dateSubmitted "2024-10-27"^^xsd:date ;
+	dcterms:dateSubmitted "2025-04-23"^^xsd:date ;
 	dcterms:identifier "https://w3id.org/fep/8a8e"^^xsd:anyURI ;
 	dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
 	dcterms:title "FEP-8a8e: A common approach to using the Event object type" .

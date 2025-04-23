@@ -42,11 +42,11 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 The ActivityStreams specification already defines an object type `Event` which is inheriting all properties from the base `Object`, so some properties useful for describing an event are already specified, but some others are missing, and an enhanced specification will help.
 
-An `Event` *MUST* specify at least the following properties:
+For an `Event` at least the following properties are *REQUIRED*:
 
 - [`name`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-name): A simple, human-readable, plain-text title for the event. HTML markup *MUST NOT* be included. Values for the name *MUST NOT* be an empty string and the name *MAY* be expressed using multiple language-tagged values.
 
-- [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates).
+- [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `startTime` is not *REQUIRED* in case an event is postponed and a `https://previousStartDate` is set instead.
 
 - [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `endTime` *MUST* be a later date than the `startTime`. If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
 
@@ -264,6 +264,21 @@ When not supporting multiple entries in `location` applications *MUST* use the f
 }
 ```
 
+### Event status
+
+To indicate the status of an `Event`, the `https://w3id.org/fep/8a8e/eventStatus` property *MUST* be used. As a fallback, it is *RECOMMENDED* to also support the `status` property, especially for incoming remote events, which might contain a value from `https://www.w3.org/2002/12/cal/ical#status`.
+
+The possible values for the `https://w3id.org/fep/8a8e/eventStatus` are:
+- [EventCancelled](https://w3id.org/fep/8a8e/EventCancelled)
+- [EventMovedOnline](https://w3id.org/fep/8a8e/EventMovedOnline)
+- [EventPostponed](https://w3id.org/fep/8a8e/EventPostponed)
+- [EventRescheduled](https://w3id.org/fep/8a8e/EventRescheduled)
+- [EventScheduled](https://w3id.org/fep/8a8e/EventScheduled)
+- [EventTentative](https://w3id.org/fep/8a8e/EventTentative)
+
+> **Note**
+> `https://w3id.org/fep/8a8e/eventStatus` is almost identical to `https://schema.org/eventStatus`, however it has an additional status type for the event being tentative, which is leaned on iCalendar's `TENTATIVE`.
+
 ### RSVP (Attendee Management)
 
 #### Not handling RSVP
@@ -322,8 +337,6 @@ If an application does not handle joins of an `Event` via ActivityPub, but knows
 #### Indicating visibility and target audience of RSVP requests
 
 Who the participants of an event are should possibly not be public, but should, for example, only be visible to the organisers of the event, in other cases also to other confirmed participants, or, for example, completely anonymously. An Event *SHOULD* provide information about the visibility scope of valid `Join` requests targeting the event via utilizing `https://w3id.org/fep/8a8e/requiredJoinVisibility`.
-
-
 
 #### Showing RSVP status via ActivityPub
 
@@ -956,6 +969,176 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
 }
 </code>
   </pre>
+</section>
+
+<section id="eventStatus" resource="https://w3id.org/fep/8a8e/eventStatus" typeof="rdf:Property">
+<h3>eventStatus</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/eventStatus</code></dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The events status is</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled.</dd>
+<dt>Domain</dt>
+<dd><a property="rdfs:domain" resource="as:Event" href="https://www.w3.org/ns/activitystreams#Event">Event</a></dd>
+<dt>Range</dt>
+<dd><a property="rdfs:range" resource="https://w3id.org/fep/8a8e/EventStatusType" href="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</a> (@vocab)</dd>
+<dt>Required</dt>
+<dd property="owl:minCardinality" content="0" datatype="xsd:nonNegativeInteger">No</dd>
+<dt>Functional</dt>
+<dd property="owl:maxCardinality" content="1" datatype="xsd:nonNegativeInteger">Yes</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventCancelled">ForwardChronological</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+<pre title="Example of a forward chronological OrderedCollection with additional context">
+<code>
+{
+	"@context": [
+    "https://w3id.org/fep/8a8e"
+		"https://www.w3.org/ns/activitystreams",
+	],
+	"id": "https://domain.example/events/0",
+	"type": "Event",
+	"eventStatus": "eventScheduled",
+}
+</code>
+</pre>
+</section>
+
+<section id="EventStatusType" resource="https://w3id.org/fep/8a8e/EventStatusType" typeof="rdfs:Class">
+<h3>EventStatusType</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/8a8e</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">8a8e</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">EventStatusType is an enumeration type whose instances represent several states that an Event may be in.</dd>
+<dt>Subclass of</dt>
+<dd property="rdfs:subClassOf" resource="https://schema.org/EventStatusType">https://schema.org/EventStatusType</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="EventPostponed" resource="https://w3id.org/fep/8a8e/EventPostponed" typeof="rdfs:Class">
+<h3>EventCancelled</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/EventPostponed</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The event has been postponed.</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">The event has been postponed and no new date has been set. The event's previousStartTime should be set.</dd>
+<dt>Subclass of</dt>
+<dd property="rdfs:subClassOf" resource="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="EventRescheduled" resource="https://w3id.org/fep/8a8e/EventRescheduled" typeof="rdfs:Class">
+<h3>EventRescheduled</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/EventRescheduled</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The event has been rescheduled.</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">The event's previousStartTime should be set to the old date and the startTime should be set to the event's new start date.</dd>
+<dt>Subclass of</dt>
+<dd property="rdfs:subClassOf" resource="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="EventCancelled" resource="https://w3id.org/fep/8a8e/EventCancelled" typeof="rdfs:Class">
+<h3>EventCancelled</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/EventCancelled</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The event has been cancelled.</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">The event has been cancelled.</dd>
+<dt>Subclass of</dt>
+<dd property="rdfs:subClassOf" resource="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="EventCancelled" resource="https://w3id.org/fep/8a8e/EventCancelled" typeof="rdfs:Class">
+<h3>EventCancelled</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/EventCancelled</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The event has been cancelled.</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">The event has been cancelled.</dd>
+<dt>Subclass of</dt>
+<dd property="rdfs:subClassOf" resource="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="EventTentative" resource="https://w3id.org/fep/8a8e/EventTentative" typeof="rdfs:Class">
+<h3>EventTentative</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/EventTentative</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The event is tentative</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">The event is currently being planned but not confirmed.</dd>
+<dt>Subclass of</dt>
+<dd property="rdfs:subClassOf" resource="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="EventMovedOnline" resource="https://w3id.org/fep/8a8e/EventMovedOnline" typeof="rdfs:Class">
+<h3>EventMovedOnline</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/EventMovedOnline</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The event moved online.</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">Indicates that the event was changed to allow online participation.</dd>
+<dt>Subclass of</dt>
+<dd property="rdfs:subClassOf" resource="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
 </section>
 
 ## Credits
