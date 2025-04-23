@@ -777,7 +777,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
     <dd property="rdfs:comment" lang="en">
       Indicator of how new members may be able to join an event.
       Accepted values: <code>free</code>, <code>restricted</code>, <code>external</code>, <code>none</code>, <code>invite</code>.
-      If <code>external</code>, you must also set <code>externalParticipationUrl</code>.
+      If <code>external</code>, you must also set <a href="https://w3id.org/fep/8a8e/externalParticipationUrl"><code>externalParticipationUrl</code></a>.
     </dd>
     <dt>rdfs:domain</dt>
     <dd>
@@ -826,7 +826,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
     <dd property="rdfs:label" lang="en">Required Join Visibility</dd>
     <dt>Comment</dt>
     <dd property="rdfs:comment" lang="en">
-      Specifies the minimum audience that must be addressed in a valid <code>Join<code> activity related to the event. This can include individual actors, groups, the <code>as:Public</code> collection, or any other URI. The <code>Join</code> activity must be addressed accordingly (e.g., using <code>to</code>, <code>cc</code>, <code>bto</code>, or <code>audience</code>).
+      Specifies the minimum audience that must be addressed in a valid <code>Join</code> activity related to the event. This can include individual actors, groups, the <code>as:Public</code> collection, or any other URI. The <code>Join</code> activity must be addressed accordingly (e.g., using <code>to</code>, <code>cc</code>, <code>bto</code>, or <code>audience</code>).
     </dd>
     <dt>Domain</dt>
     <dd property="rdfs:domain"><a href="https://www.w3.org/ns/activitystreams#Event">as:Event</a></dd>
