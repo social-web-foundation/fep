@@ -218,7 +218,7 @@ Applications *SHOULD* at least set and be able to make use of `name` and `url` p
   "startTime": "2014-12-31T23:00:00-08:00",
   "endTime": "2015-01-01T04:00:00-08:00",
   "location": {
-    "type":"VirtualLocation",
+    "type": "VirtualLocation",
     "name":"Jitsi Meet Meeting Link",
     "url": "https://jitsi.example.org/fediverse-moderation-meeting"
   }
@@ -251,7 +251,7 @@ When not supporting multiple entries in `location` applications *MUST* use the f
       "address": "15 Fediverse Street, 1337 Fediverse Town, Fediverse Country"
     },
     {
-      "type":"VirtualLocation",
+      "type": "VirtualLocation",
       "name": "Big Blue Button Participation Link",
       "url": "https://bbb.example.com/meeting-room-1"
     },
