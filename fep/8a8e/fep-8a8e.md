@@ -379,7 +379,7 @@ If the `Event` has a particular banner image, this image *SHOULD* be set as the 
 
 Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore, `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
 
-> **Tip**
+> **Note**
 > Providing multiple versions of banner images and specifying `width` and `height` gives receiving applications the most flexibility to choose the most appropriate one based on aspect ratio.
 
 ```json
