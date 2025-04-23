@@ -2,8 +2,8 @@
 slug: "8a8e"
 authors: André Menrath <andre.menrath@posteo.de>, les <lesion@autistici.org>
 status: DRAFT
-dateReceived: 2024-10-27
-trackingIssue: https://codeberg.org/fediverse/fep/issues/XX
+dateReceived: 2025-04-23
+trackingIssue: https://codeberg.org/fediverse/fep/issues/562
 discussionsTo: https://socialhub.activitypub.rocks/t/events-interoperability-validation-minimum-requirements-common-extensions/3849/
 ---
 # FEP-8a8e: A common approach to using the Event object type
@@ -379,7 +379,7 @@ If the `Event` has a particular banner image, this image *SHOULD* be set as the 
 
 Federated event calendars usually have thumbnail images with fixed aspect ratios. Therefore, `https://docs.joinmastodon.org/spec/activitypub/#focalPoint` *SHOULD* be set.
 
-> **Hint**
+> **Tip**
 > Providing multiple versions of banner images and specifying `width` and `height` gives receiving applications the most flexibility to choose the most appropriate one based on aspect ratio.
 
 ```json
