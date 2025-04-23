@@ -428,8 +428,6 @@ Federated event platforms benefit from a shared understanding of general event c
 To represent categories, this FEP introduces the property `https://w3id.org/fep/8a8e/category`.
 
 In most cases, a single category should be sufficient. However, multiple categories may be included when relevant.
-It provides suggestions for predefined categories serve as a recommended starting point. Implementing applications may extend this list or allow user-generated categories. However, such additions may not be understood by all consuming platforms and could default to a generic or "unknown" category.
-
 Applications *SHOULD* utilize at least the following recommended set of event categories:
 
 - ARTS
@@ -469,6 +467,9 @@ Applications *SHOULD* utilize at least the following recommended set of event ca
 - THEATRE
 - WORKSHOPS_SKILL_SHARING
 - DEFAULT
+
+> **Note**
+> Implementing applications may extend this list or allow user-generated categories. However, such additions may not be understood by all consuming platforms and could default to a generic or "unknown" category.
 
 #### Example of an event with a single category
 
