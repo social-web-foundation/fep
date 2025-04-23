@@ -287,9 +287,6 @@ If the event creator or the event creator's application does not handle joins vi
 
 This *SHOULD* be made clear beforehand by setting `https://w3id.org/fep/8a8e/joinMode` to `none`.
 
-> **Note**
-> `none` is currently not part of `https://w3id.org/fep/8a8e/joinMode` yet.
-
 #### Signaling how joins are handled
 
 If an application does not handle joins of an `Event` via ActivityPub, but knows of an external URL which handles the attendee management `https://w3id.org/fep/8a8e/joinMode` *SHOULD* be set to `external`. If `joinMode` is set to `external`, also `https://w3id.org/fep/8a8e/externalParticipationUrl` *SHOULD* be set.
