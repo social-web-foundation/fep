@@ -38,6 +38,27 @@
   },
   "@graph": [
     {
+      "@id": "https://w3id.org/fep/8a8e/EventStatusType",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "EventStatusType is an enumeration type whose instances represent several states that an Event may be in."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/eventStatus"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://schema.org/EventStatusType"
+      }
+    },
+    {
       "@id": "https://w3id.org/fep/8a8e/AttendeesCollection",
       "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
@@ -56,6 +77,97 @@
       },
       "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
         "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/EventMovedOnline",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "Indicates that the event was changed to allow online participation."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "The event moved online."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/eventStatus"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/EventTentative",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "The event is currently being planned but not confirmed."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "The event is tentative"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/eventStatus"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/eventStatus",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "The events status is"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventScheduled"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventMovedOnline"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventPostponed"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventCancelled"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventRescheduled"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventTentative"
+        }
+      ],
+      "http://www.w3.org/2002/07/owl#maxCardinality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "1"
+      },
+      "http://www.w3.org/2002/07/owl#minCardinality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "0"
       }
     },
     {
@@ -98,60 +210,45 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/timezone",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "@id": "https://w3id.org/fep/8a8e/OrganizersCollection",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
+        "@value": "Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization."
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The timezone of an Event"
+        "@value": "An Event's Organizer Collection"
       },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/organizers"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://www.w3.org/ns/activitystreams#Collection"
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/organizers",
+      "@id": "https://w3id.org/fep/8a8e/joinMode",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Organizers Collection"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://w3id.org/fep/8a8e/OrganizersCollection"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/displayEndTime",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "A property that defines whether the end time of an event should be displayed."
+        "@value": "\n      Indicator of how new members may be able to join an event.\n      Accepted values: free, restricted, external, none, invite.\n      If external, you must also set externalParticipationUrl.\n    "
       },
       "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://w3id.org/fep/8a8e/displayEndTime"
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
+        "@id": "https://w3id.org/fep/8a8e/"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "Whether to display the endTime"
+        "@value": "Join mode"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
       }
     },
     {
@@ -195,48 +292,6 @@
       },
       "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
         "@id": "https://w3id.org/fep/8a8e/EventStatusType"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/OrganizersCollection",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "An Event's Organizer Collection"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/organizers"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://www.w3.org/ns/activitystreams#Collection"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/joinMode",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "\n      Indicator of how new members may be able to join an event.\n      Accepted values: free, restricted, external, none, invite.\n      If external, you must also set externalParticipationUrl.\n    "
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Event"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e/"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Join mode"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
       }
     },
     {
@@ -286,73 +341,21 @@
       "http://purl.org/dc/terms/title": "FEP-8a8e: A common approach to using the Event object type"
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/EventPostponed",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "@id": "https://w3id.org/fep/8a8e/timezone",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "The event has been postponed and no new date has been set. The event's previousStartTime should be set."
+        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The event has been postponed."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/eventStatus"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/eventStatus",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Event"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "The events status is"
+        "@value": "The timezone of an Event"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventMovedOnline"
-        },
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventTentative"
-        },
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventPostponed"
-        },
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventScheduled"
-        },
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventCancelled"
-        },
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventRescheduled"
-        }
-      ],
-      "http://www.w3.org/2002/07/owl#maxCardinality": {
-        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-        "@value": "1"
-      },
-      "http://www.w3.org/2002/07/owl#minCardinality": {
-        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-        "@value": "0"
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
       }
     },
     {
@@ -375,6 +378,56 @@
       "http://www.w3.org/2000/01/rdf-schema#range": {
         "@id": "http://www.w3.org/2001/XMLSchema#boolean"
       }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/displayEndTime",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "A property that defines whether the end time of an event should be displayed."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://w3id.org/fep/8a8e/displayEndTime"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Whether to display the endTime"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/previousStartTime",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "The events previous start time is the old start time before an event got postponed or rescheduled."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "The event previous start time."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventPostponed"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventRescheduled"
+        }
+      ]
     },
     {
       "@id": "https://w3id.org/fep/8a8e/EventCancelled",
@@ -406,18 +459,18 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/EventTentative",
+      "@id": "https://w3id.org/fep/8a8e/EventPostponed",
       "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "The event is currently being planned but not confirmed."
+        "@value": "The event has been postponed and no new date has been set. The event's previousStartTime should be set."
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The event is tentative"
+        "@value": "The event has been postponed."
       },
       "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
         "@id": "https://w3id.org/fep/8a8e/eventStatus"
@@ -427,74 +480,21 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/previousStartTime",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "@id": "https://w3id.org/fep/8a8e/organizers",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "The events previous start time is the old start time before an event got postponed or rescheduled."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Event"
+        "@value": "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The event previous start time."
+        "@value": "Organizers Collection"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventRescheduled"
-        },
-        {
-          "@id": "https://w3id.org/fep/8a8e/EventPostponed"
-        }
-      ]
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/EventStatusType",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "EventStatusType is an enumeration type whose instances represent several states that an Event may be in."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/eventStatus"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://schema.org/EventStatusType"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/EventMovedOnline",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "Indicates that the event was changed to allow online participation."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "The event moved online."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/eventStatus"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
+        "@id": "https://w3id.org/fep/8a8e/OrganizersCollection"
       }
     }
   ]
