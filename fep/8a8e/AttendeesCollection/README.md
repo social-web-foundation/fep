@@ -7,15 +7,13 @@ Label
 : A Collection of the Event's attendees
 
 Comment
-: 
-Inherits all properties from `<https://www.w3.org/ns/activitystreams#Collection>` with the addition that the `items` may also include `https://schema.org/Person` or `https://schema.org/Organization`.
+: Inherits all properties from `https://www.w3.org/ns/activitystreams#Collection` with the addition that the `items` may also include `https://schema.org/Person` or `https://schema.org/Organization`.
 The items of the `AttendeesCollection` are entities that are confirmed attendees by an Events organizer(s). It contains all ActivityPub actors that meet one or more of the following conditions, added as a side effect.
 
 * The actor has sent a Join activity with this object as the object property that has been answered with an Accept.
 * The actor has responded to an Invite activity from the Event's owner (where the Event is specified as the object property) with an Accept activity.
 
 The items MAY be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection \*SHOULD\* have the totalItems set in any case.
-
 
 Subclass of
 : [Object](https://www.w3.org/ns/activitystreams#OrderedCollection)

@@ -27,6 +27,35 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:seeAlso <https://w3id.org/fep/8a8e/organizers> ;
 	rdfs:subClassOf as:Collection .
 
+<https://w3id.org/fep/8a8e/externalParticipationUrl> a owl:DatatypeProperty ;
+	rdfs:label "External participation URL"@en ;
+	rdfs:comment """
+      A URL that points to an external platform where people can join the event or where they can buy tickets for the event. Required if joinMode is set to external.
+    """@en ;
+	rdfs:domain as:Event ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range xsd:anyURI .
+
+<https://w3id.org/fep/8a8e/joinMode> a owl:ObjectProperty ;
+	rdfs:label "Join mode"@en ;
+	rdfs:comment """
+      Indicator of how new members may be able to join an event.
+      Accepted values: free, restricted, external, none, invite.
+      If external, you must also set externalParticipationUrl.
+    """@en ;
+	rdfs:domain as:Event ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e/> ;
+	rdfs:range rdfs:Literal .
+
+<https://w3id.org/fep/8a8e/requiredJoinVisibility> a owl:ObjectProperty ;
+	rdfs:label "Required Join Visibility"@en ;
+	rdfs:comment """
+      Specifies the minimum audience that must be addressed in a valid Join activity related to the event. This can include individual actors, groups, the as:Public collection, or any other URI. The Join activity must be addressed accordingly (e.g., using to, cc, bto, or audience).
+    """@en ;
+	rdfs:domain as:Event ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range <> .
+
 <https://w3id.org/fep/8a8e/timezone> a owl:ObjectProperty ;
 	rdfs:label "The timezone of an Event"@en ;
 	rdfs:comment "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."@en ;
@@ -34,9 +63,10 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:range rdfs:Literal .
 
 <https://w3id.org/fep/8a8e/upcomingEvents> a owl:ObjectProperty ;
-	rdfs:label "Collection of upcoming Events"@en ;
-	rdfs:comment "An ActivityStreams Collection of Event objects that have a startTime property in the future."@en ;
-	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> .
+	rdfs:label "Ordered collection of upcoming Events"@en ;
+	rdfs:comment "An ActivityStreams OrderedCollection of Event objects that have a startTime property in the future, sorted by startTime with the earliest first."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range as:OrderedCollection .
 
 <https://w3id.org/fep/8a8e/attendees> a owl:ObjectProperty ;
 	rdfs:label "Attendees of an Event"@en ;
@@ -56,13 +86,13 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:label "Organizers Collection"@en ;
 	rdfs:comment "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."@en ;
 	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
-	rdfs:range rdfs:Resource .
+	rdfs:range <https://w3id.org/fep/8a8e/OrganizersCollection> .
 
 <https://w3id.org/fep/8a8e> a owl:Ontology ;
 	dc:creator "André Menrath <andre.menrath@posteo.de>",
 		"les <lesion@autistici.org>" ;
 	dc:rights "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"@en ;
-	dcterms:abstract "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chose to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations." ;
+	dcterms:abstract "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chosen to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations." ;
 	dcterms:dateSubmitted "2024-10-27"^^xsd:date ;
 	dcterms:identifier "https://w3id.org/fep/8a8e"^^xsd:anyURI ;
 	dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;

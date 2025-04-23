@@ -7,7 +7,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "An ActivityStreams Collection of Event objects that have a startTime property in the future."
+        "@value": "An ActivityStreams OrderedCollection of Event objects that have a startTime property in the future, sorted by startTime with the earliest first."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -18,7 +18,12 @@
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
         "@language": "en",
-        "@value": "Collection of upcoming Events"
+        "@value": "Ordered collection of upcoming Events"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
       }
     ]
   }

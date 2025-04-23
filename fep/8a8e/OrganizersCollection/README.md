@@ -7,7 +7,7 @@ Label
 : An Event's Organizer Collection
 
 Comment
-: Inherits all properties from `<https://www.w3.org/ns/activitystreams#Collection>` with the addition that the `items` may also include `https://schema.org/Person` or `https://schema.org/Organization`.
+: Inherits all properties from `https://www.w3.org/ns/activitystreams#Collection` with the addition that the `items` may also include `https://schema.org/Person` or `https://schema.org/Organization`.
 
 Subclass of
 : [Object](https://www.w3.org/ns/activitystreams#Collection)

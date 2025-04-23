@@ -23,7 +23,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#range": [
       {
-        "@id": "http://www.w3.org/2000/01/rdf-schema#Resource"
+        "@id": "https://w3id.org/fep/8a8e/OrganizersCollection"
       }
     ]
   }

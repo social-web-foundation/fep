@@ -7,93 +7,17 @@
       "@id": "https://w3id.org/fep/8a8e/displayEndTime",
       "@type": "http://www.w3.org/2001/XMLSchema#boolean"
     },
+    "externalParticipationUrl": "https://w3id.org/fep/8a8e/externalParticipationUrl",
+    "joinMode": "https://w3id.org/fep/8a8e/joinMode",
     "organizers": "https://w3id.org/fep/8a8e/organizers",
+    "requiredJoinVisibility": "https://w3id.org/fep/8a8e/requiredJoinVisibility",
     "timezone": "https://w3id.org/fep/8a8e/timezone",
-    "upcomingEvents": "https://w3id.org/fep/8a8e/upcomingEvents"
+    "upcomingEvents": {
+      "@id": "https://w3id.org/fep/8a8e/upcomingEvents",
+      "@type": "@id"
+    }
   },
   "@graph": [
-    {
-      "@id": "https://w3id.org/fep/8a8e",
-      "@type": "http://www.w3.org/2002/07/owl#Ontology",
-      "http://purl.org/dc/elements/1.1/creator": [
-        "André Menrath <andre.menrath@posteo.de>",
-        "les <lesion@autistici.org>"
-      ],
-      "http://purl.org/dc/elements/1.1/rights": {
-        "@language": "en",
-        "@value": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
-      },
-      "http://purl.org/dc/terms/abstract": "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chose to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations.",
-      "http://purl.org/dc/terms/dateSubmitted": {
-        "@type": "http://www.w3.org/2001/XMLSchema#date",
-        "@value": "2024-10-27"
-      },
-      "http://purl.org/dc/terms/identifier": {
-        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
-        "@value": "https://w3id.org/fep/8a8e"
-      },
-      "http://purl.org/dc/terms/license": {
-        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
-      },
-      "http://purl.org/dc/terms/title": "FEP-8a8e: A common approach to using the Event object type"
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/displayEndTime",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "A property that defines whether the end time of an event should be displayed."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://w3id.org/fep/8a8e/displayEndTime"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Whether to display the endTime"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/timezone",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "The timezone of an Event"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/organizers",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Organizers Collection"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2000/01/rdf-schema#Resource"
-      }
-    },
     {
       "@id": "https://w3id.org/fep/8a8e/attendees",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
@@ -117,18 +41,24 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/upcomingEvents",
+      "@id": "https://w3id.org/fep/8a8e/joinMode",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "An ActivityStreams Collection of Event objects that have a startTime property in the future."
+        "@value": "\n      Indicator of how new members may be able to join an event.\n      Accepted values: free, restricted, external, none, invite.\n      If external, you must also set externalParticipationUrl.\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
+        "@id": "https://w3id.org/fep/8a8e/"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "Collection of upcoming Events"
+        "@value": "Join mode"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
       }
     },
     {
@@ -171,6 +101,148 @@
       },
       "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
         "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/upcomingEvents",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "An ActivityStreams OrderedCollection of Event objects that have a startTime property in the future, sorted by startTime with the earliest first."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Ordered collection of upcoming Events"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/displayEndTime",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "A property that defines whether the end time of an event should be displayed."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://w3id.org/fep/8a8e/displayEndTime"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Whether to display the endTime"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e",
+      "@type": "http://www.w3.org/2002/07/owl#Ontology",
+      "http://purl.org/dc/elements/1.1/creator": [
+        "André Menrath <andre.menrath@posteo.de>",
+        "les <lesion@autistici.org>"
+      ],
+      "http://purl.org/dc/elements/1.1/rights": {
+        "@language": "en",
+        "@value": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
+      },
+      "http://purl.org/dc/terms/abstract": "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chosen to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations.",
+      "http://purl.org/dc/terms/dateSubmitted": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2024-10-27"
+      },
+      "http://purl.org/dc/terms/identifier": {
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+        "@value": "https://w3id.org/fep/8a8e"
+      },
+      "http://purl.org/dc/terms/license": {
+        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "http://purl.org/dc/terms/title": "FEP-8a8e: A common approach to using the Event object type"
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/externalParticipationUrl",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "\n      A URL that points to an external platform where people can join the event or where they can buy tickets for the event. Required if joinMode is set to external.\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "External participation URL"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/requiredJoinVisibility",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "\n      Specifies the minimum audience that must be addressed in a valid Join activity related to the event. This can include individual actors, groups, the as:Public collection, or any other URI. The Join activity must be addressed accordingly (e.g., using to, cc, bto, or audience).\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Required Join Visibility"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": ""
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/organizers",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Organizers Collection"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://w3id.org/fep/8a8e/OrganizersCollection"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/timezone",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "The timezone of an Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
       }
     }
   ]

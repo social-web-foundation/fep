@@ -133,9 +133,14 @@ To specify mixed-format events (e.g., hybrid online and offline events), the loc
 
 #### Physical
 
-For adding information about a physical location of an `Event` the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address`.
+For adding information about a physical location of an `Event` the `Place` object within the events `location` property *SHOULD* be extended via the attribute `address` which is of type `https://schema.org/address` or `https://schema.org/Place` *MAY* be used directly.
 
-This allows the address to be given as a simple text input as well as a structured `https://schema.org/PostalAddress`. Applications *MUST* be able to transmogrify both incoming types to their internal representation.
+This allows the address to be given as a simple text input as well as a structured `https://schema.org/PostalAddress`. Applications *MUST* be able to transmogrify both incoming address types to their internal representation.
+
+It is *RECOMMENDED* to always provide geolocation data via `longitude` and `latitude`, as filtering by these properties is crucial in federation.
+
+> **Note**
+> Even if users do not provide this data directly, attempting to look up the geolocation of a physical location once on the source side can save a lot of resources caused by multiple lookups on the receivers in federation.
 
 Example with pure text address:
 
@@ -156,9 +161,10 @@ Example with pure text address:
   "location": {
     "type": "Place",
     "name": "Foo Bar",
-    "address": "15 Fediverse Street, 8010 Fediverse Town, Austria"
+    "address": "15 Fediverse Street, 8010 Fediverse Town, Austria",
+    "latitude": 47.06829,
+    "longitude": 15.45634
   }
-}
 ```
 
 Example with address of type `https://schema.org/PostalAddress`:
@@ -186,7 +192,9 @@ Example with address of type `https://schema.org/PostalAddress`:
       "addressRegion": "Steiermark",
       "postalCode": "8010",
       "streetAddress": "15 Fediverse Street"
-    }
+    },
+    "latitude": 47.077892,
+    "longitude": 15.460744
   }
 }
 ```
@@ -195,7 +203,7 @@ Example with address of type `https://schema.org/PostalAddress`:
 
 An online Location *SHOULD* be represented by using a type `VirtualLocation` as specified in [https://schema.org/VirtualLocation](https://schema.org/VirtualLocation).
 
- Applications *SHOULD* at least set and be able to make use of `name` and `url` properties.
+Applications *SHOULD* at least set and be able to make use of `name` and `url` properties.
 
 ```json
 {
@@ -262,25 +270,23 @@ When not supporting multiple entries in `location` applications *MUST* use the f
 
 If the event creator or the event creator's application does not handle joins via ActivityPub it *MUST* always respond to `Join` activities with an `Ignore` response, where the attribute `object` *MUST* either contain the ID of the `Join` activity, or contain a `Join` object with the `target` being set to the event-objects ID, where the former is preferred.
 
-This *SHOULD* be made clear beforehand by setting `https://joinmobilizon.org/ns#joinMode` to `none`.
+This *SHOULD* be made clear beforehand by setting `https://w3id.org/fep/8a8e/joinMode` to `none`.
 
 > **Note**
-> `none` is currently not part of `https://joinmobilizon.org/ns#joinMode` yet.
+> `none` is currently not part of `https://w3id.org/fep/8a8e/joinMode` yet.
 
-#### Handle Joins, but not via ActivityPub
+#### Signaling how joins are handled
 
-If an application does not handle joins of an `Event` via ActivityPub, but knows of an external URL which handles the attendee management `https://joinmobilizon.org/ns#joinMode` *SHOULD* be set to `external`. If `joinMode` is set to `external`, also `https://joinmobilizon.org/ns#externalParticipationUrl` *SHOULD* be set.
+If an application does not handle joins of an `Event` via ActivityPub, but knows of an external URL which handles the attendee management `https://w3id.org/fep/8a8e/joinMode` *SHOULD* be set to `external`. If `joinMode` is set to `external`, also `https://w3id.org/fep/8a8e/externalParticipationUrl` *SHOULD* be set.
 
 > **Note**
-> The "*SHOULD*" is not in line with Mobilizon's current definition. But as the join mode could also be made clear via the event's description in the content, or just not be clear yet, it should be allowed.
+> This is compatible with Mobilizon's definition of `joinMode`, but it is not identical.
 
 ```json
 {
   "@context": [
-    "https://www.w3.org/ns/activitystreams",
-    {
-      "joinMode": "https://joinmobilizon.org/ns#joinMode"
-    }
+    "https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams"
   ],
   "type": "Event",
   "id": "https://example.org/foo",
@@ -293,16 +299,14 @@ If an application does not handle joins of an `Event` via ActivityPub, but knows
 }
 ```
 
-Note that `externalParticipationUrl` *MAY* also be a `mailto`-URL, which is a way of handling event participants that is still used quite frequently by many organizers.
+> **Note**
+> `externalParticipationUrl` could also be a `mailto`-URI, which is a way of handling event participants that is still used quite frequently by many organizers.
 
 ```json
 {
   "@context": [
-    "https://www.w3.org/ns/activitystreams",
-    {
-      "joinMode": "https://joinmobilizon.org/ns#joinMode",
-      "externalParticipationUrl": "https://joinmobilizon.org/ns#externalParticipationUrl"
-    }
+    "https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams"
   ],
   "type": "Event",
   "id": "https://example.org/fediverse-workshop",
@@ -314,6 +318,12 @@ Note that `externalParticipationUrl` *MAY* also be a `mailto`-URL, which is a wa
   "externalParticipationUrl": "mailto:fediverse-workshop@example.org"
 }
 ```
+
+#### Indicating visibility and target audience of RSVP requests
+
+Who the participants of an event are should possibly not be public, but should, for example, only be visible to the organisers of the event, in other cases also to other confirmed participants, or, for example, completely anonymously. An Event *SHOULD* provide information about the visibility scope of valid `Join` requests targeting the event via utilizing `https://w3id.org/fep/8a8e/requiredJoinVisibility`.
+
+
 
 #### Showing RSVP status via ActivityPub
 
@@ -479,6 +489,8 @@ Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/
 
 ## Terms
 
+Note that the terms `joinMode` and `externalParticipationUrl` are either directly compatibly with or extensions of the ones [defined by Mobilizon](https://docs.mobilizon.org/5.%20Interoperability/1.activity_pub/).
+
 <section id="displayEndTime" resource="https://w3id.org/fep/8a8e/displayEndTime" typeof="owl:DatatypeProperty">
   <h3>displayEndTime</h3>
   <dl>
@@ -512,9 +524,11 @@ Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/
     <dt>URI</dt>
     <dd><code>https://w3id.org/fep/8a8e/upcomingEvents</code></dd>
     <dt>Label</dt>
-    <dd property="rdfs:label" lang="en">Collection of upcoming Events</dd>
+    <dd property="rdfs:label" lang="en">Ordered collection of upcoming Events</dd>
     <dt>Comment</dt>
-    <dd property="rdfs:comment" lang="en">An ActivityStreams Collection of Event objects that have a startTime property in the future.</dd>
+    <dd property="rdfs:comment" lang="en">An ActivityStreams OrderedCollection of Event objects that have a startTime property in the future, sorted by startTime with the earliest first.</dd>
+    <dt>Range</dt>
+    <dd property="rdfs:range" resource="as:OrderedCollection">An OrderedCollection (@id)</dd>
     <dt>Is defined by</dt>
     <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
   </dl>
@@ -576,7 +590,7 @@ Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/
     <dt>Comment</dt>
     <dd property="rdfs:comment" lang="en">An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to <code>null</code> this explicitly indicates a deliberate choice to withhold organizer information.</dd>
     <dt>Range</dt>
-    <dd property="rdfs:range" resource="rdfs:Resource"><a href="https://w3id.org/fep/8a8e/OrganizersCollection" target="_blank">OrganizersCollection</a> (SubType of of the Collection or OrderedCollection ActivityStreams Type) or <code>null</code></dd>
+    <dd property="rdfs:range" resource="https://w3id.org/fep/8a8e/OrganizersCollection"><a href="https://w3id.org/fep/8a8e/OrganizersCollection" target="_blank">OrganizersCollection</a> (SubType of of the Collection or OrderedCollection ActivityStreams Type) or <code>null</code></dd>
     <dt>Required</dt>
     <dd>Yes</dd>
     <dt>Functional</dt>
@@ -682,8 +696,6 @@ Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/
   </pre>
 </section>
 
-
-
 <section id="timezone" resource="https://w3id.org/fep/8a8e/timezone" typeof="owl:ObjectProperty">
   <h3>timezone</h3>
   <dl>
@@ -718,6 +730,143 @@ Every `actor` that has published `Event`s *SHOULD* have a `https://w3id.org/fep/
       "organizers": null,
     }
     </code>
+  </pre>
+</section>
+
+<section id="joinMode" resource="https://w3id.org/fep/8a8e/joinMode" typeof="owl:ObjectProperty">
+  <h3>joinMode</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/joinMode</code></dd>
+    <dt>rdfs:label</dt>
+    <dd property="rdfs:label" lang="en">Join mode</dd>
+    <dt>rdfs:comment</dt>
+    <dd property="rdfs:comment" lang="en">
+      Indicator of how new members may be able to join an event.
+      Accepted values: <code>free</code>, <code>restricted</code>, <code>external</code>, <code>none</code>, <code>invite</code>.
+      If <code>external</code>, you must also set <code>externalParticipationUrl</code>.
+    </dd>
+    <dt>rdfs:domain</dt>
+    <dd>
+      <a property="rdfs:domain" href="https://www.w3.org/ns/activitystreams#Event">as:Event</a>
+    </dd>
+    <dt>rdfs:range</dt>
+    <dd property="rdfs:range" resource="rdfs:Literal">A literal value</a></dd>
+    <dt>rdfs:isDefinedBy</dt>
+    <dd>
+      <a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e/">FEP‑8a8e</a>
+    </dd>
+  </dl>
+
+  <pre title="Example: restricted" lang="json">
+<code>{
+  "@context": [
+    "https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "@type": "Event",
+  "url": "http://example.org/events/1234",
+  "joinMode": "restricted"
+}
+</code>
+  </pre>
+
+  <pre title="Example: external" lang="json">
+<code>{
+  "@context": [
+    "https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "@type": "as:Event",
+  "url": "http://example.org/events/1234",
+  "joinMode": "external",
+  "externalParticipationUrl": "https://www.escample.org/events/1234/participate"
+}
+</code>
+  </pre>
+</section>
+
+<section id="requiredJoinVisibility" resource="https://w3id.org/fep/8a8e/requiredJoinVisibility" typeof="owl:ObjectProperty">
+  <h3>requiredJoinVisibility</h3>
+  <dl>
+    <dt>Label</dt>
+    <dd property="rdfs:label" lang="en">Required Join Visibility</dd>
+    <dt>Comment</dt>
+    <dd property="rdfs:comment" lang="en">
+      Specifies the minimum audience that must be addressed in a valid <code>Join<code> activity related to the event. This can include individual actors, groups, the <code>as:Public</code> collection, or any other URI. The <code>Join</code> activity must be addressed accordingly (e.g., using <code>to</code>, <code>cc</code>, <code>bto</code>, or <code>audience</code>).
+    </dd>
+    <dt>Domain</dt>
+    <dd property="rdfs:domain"><a href="https://www.w3.org/ns/activitystreams#Event">as:Event</a></dd>
+    <dt>Range</dt>
+    <dd property="rdfs:range"></dd>
+    <dt>Is defined by</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+  </dl>
+  <pre title="Example usage of requiredJoinVisibility" lang="json">
+<code>{
+   "@context": [
+    "https://schema.org",
+    "https://https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams",
+  ],
+  "type": "Event",
+  "id": "https://example.org/yoga-workshop",
+  "name": "Yoga Workshop with Alice and Bob",
+  "startTime": "2014-12-12T18:00:00-08:00",
+  "endTime": "2014-12-12T19:30:00-08:00",
+  "attributedTo": "https://example.org/groups/fediyoga",
+  "organizers": {
+    "type": "OrganizersCollection",
+    "id": "https://example.org/yoga-workshop/organizers",
+    "totalItems": 3,
+    "first": {
+      "type": "CollectionPage",
+      "partOf": "https://example.org/yoga-workshop/organizers",
+      "items": [
+        "https://example.org/users/bob",
+        "https://example.org/users/alice",
+        "https://example.org/groups/fediyoga"
+      ]
+    },
+  "joinMode": "restricted",
+  "requiredJoinVisibility": [
+    "https://example.org/yoga-with-alice/organizers"
+  ]
+}</code>
+  </pre>
+</section>
+
+<section id="externalParticipationUrl" resource="https://w3id.org/fep/8a8e/externalParticipationUrl" typeof="owl:DatatypeProperty">
+  <h3>externalParticipationUrl</h3>
+  <dl>
+    <dt>URI</dt>
+    <dd><code>https://w3id.org/fep/8a8e/externalParticipationUrl</code></dd>
+    <dt>rdfs:label</dt>
+    <dd property="rdfs:label" lang="en">External participation URL</dd>
+    <dt>rdfs:comment</dt>
+    <dd property="rdfs:comment" lang="en">
+      A URL that points to an external platform where people can join the event or where they can buy tickets for the event. Required if <a href="https://w3id.org/fep/8a8e/"><code>joinMode</code></a> is set to <code>external</code>.
+    </dd>
+    <dt>rdfs:domain</dt>
+    <dd><a property="rdfs:domain" href="https://www.w3.org/ns/activitystreams#Event">as:Event</a></dd>
+    <dt>rdfs:range</dt>
+    <dd property="rdfs:range" resource="xsd:anyURI">xsd:anyURI</dd>
+    <dt>rdfs:isDefinedBy</dt>
+    <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP‑8a8e</a></dd>
+  </dl>
+
+  <pre title="Example usage of externalParticipationUrl" lang="json">
+<code>{
+  "@context": [
+    "https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams"
+  ],
+  "@type": "Event",
+  "url": "http://example.org/events/1234",
+  "joinMode": "external",
+  "externalParticipationUrl": "https://www.meetup.com/somegroup/events/00000/"
+}
+</code>
   </pre>
 </section>
 

@@ -4,10 +4,13 @@ URI
 : `https://w3id.org/fep/8a8e/upcomingEvents`
 
 Label
-: Collection of upcoming Events
+: Ordered collection of upcoming Events
 
 Comment
-: An ActivityStreams Collection of Event objects that have a startTime property in the future.
+: An ActivityStreams OrderedCollection of Event objects that have a startTime property in the future, sorted by startTime with the earliest first.
+
+Range
+: An OrderedCollection (@id)
 
 Is defined by
 : [FEP-8a8e](https://w3id.org/fep/8a8e)
