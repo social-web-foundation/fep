@@ -996,13 +996,13 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
 <pre title="Example of a forward chronological OrderedCollection with additional context">
 <code>
 {
-	"@context": [
+  "@context": [
     "https://w3id.org/fep/8a8e"
-		"https://www.w3.org/ns/activitystreams",
-	],
-	"id": "https://domain.example/events/0",
-	"type": "Event",
-	"eventStatus": "eventScheduled",
+    "https://www.w3.org/ns/activitystreams",
+  ],
+  "id": "https://domain.example/events/0",
+  "type": "Event",
+  "eventStatus": "eventScheduled",
 }
 </code>
 </pre>

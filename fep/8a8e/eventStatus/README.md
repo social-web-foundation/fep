@@ -34,12 +34,12 @@ Example of a forward chronological OrderedCollection with additional context
 
 ```None
 {
-	"@context": [
+  "@context": [
     "https://w3id.org/fep/8a8e"
-		"https://www.w3.org/ns/activitystreams",
-	],
-	"id": "https://domain.example/events/0",
-	"type": "Event",
-	"eventStatus": "eventScheduled",
+    "https://www.w3.org/ns/activitystreams",
+  ],
+  "id": "https://domain.example/events/0",
+  "type": "Event",
+  "eventStatus": "eventScheduled",
 }
 ```
