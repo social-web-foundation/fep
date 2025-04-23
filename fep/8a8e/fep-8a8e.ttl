@@ -26,7 +26,9 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:label "The event has been cancelled."@en ;
 	rdfs:comment "The event has been cancelled."@en ;
 	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
-	rdfs:seeAlso <https://w3id.org/fep/8a8e/eventStatus> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/EventPostponed>,
+		<https://w3id.org/fep/8a8e/EventRescheduled>,
+		<https://w3id.org/fep/8a8e/eventStatus> ;
 	rdfs:subClassOf <https://w3id.org/fep/8a8e/EventStatusType> .
 
 <https://w3id.org/fep/8a8e/EventMovedOnline> a rdfs:Class ;
@@ -99,6 +101,15 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:domain as:Event ;
 	rdfs:isDefinedBy <https://w3id.org/fep/8a8e/> ;
 	rdfs:range xsd:string .
+
+<https://w3id.org/fep/8a8e/previousStartTime> a owl:DatatypeProperty ;
+	rdfs:label "The event previous start time."@en ;
+	rdfs:comment "The events previous start time is the old start time before an event got postponed or rescheduled."@en ;
+	rdfs:domain as:Event ;
+	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
+	rdfs:range xsd:dateTime ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/EventPostponed>,
+		<https://w3id.org/fep/8a8e/EventRescheduled> .
 
 <https://w3id.org/fep/8a8e/requiredJoinVisibility> a owl:ObjectProperty ;
 	rdfs:label "Required Join Visibility"@en ;

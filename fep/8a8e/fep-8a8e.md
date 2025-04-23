@@ -46,7 +46,7 @@ For an `Event` at least the following properties are *REQUIRED*:
 
 - [`name`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-name): A simple, human-readable, plain-text title for the event. HTML markup *MUST NOT* be included. Values for the name *MUST NOT* be an empty string and the name *MAY* be expressed using multiple language-tagged values.
 
-- [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `startTime` is not *REQUIRED* in case an event is postponed and a `https://previousStartDate` is set instead.
+- [`startTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-startTime): The date and time describing the moment the event began or is scheduled to begin in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `startTime` is not *REQUIRED* in case an event is postponed and a `https://w3id.org/fep/8a8e/previousStartTime` is set instead.
 
 - [`endTime`](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-endTime): The date and time when the event ends or is scheduled to end in the format as specified in the [Activity Stream 2.0 specification](https://www.w3.org/TR/activitystreams-core/#dates). The `endTime` *MUST* be a later date than the `startTime`. If the event is open-ended, it must include an end time at which applications (not humans) can treat the event as having ended.
 
@@ -1069,6 +1069,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
 <h3>EventCancelled</h3>
 <dl>
 <dt>URI</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventPostponed">EventPostponed</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventRescheduled">EventRescheduled</a></dd>
 <dd><code>https://w3id.org/fep/8a8e/EventCancelled</code>
 </dd>
 <dt>Label</dt>
@@ -1136,6 +1137,27 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
 <dd property="rdfs:subClassOf" resource="https://w3id.org/fep/8a8e/EventStatusType">EventStatusType</dd>
 <dt>See also</dt>
 <dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/eventStatus">eventStatus</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="previousStartTime" resource="https://w3id.org/fep/8a8e/previousStartTime" typeof="owl:DatatypeProperty">
+<h3>previousStartTime</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/previousStartTime</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The event previous start time.</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">The events previous start time is the old start time before an event got postponed or rescheduled.</dd>
+<dt>Domain</dt>
+<dd><a property="rdfs:domain" resource="as:Event" href="https://www.w3.org/ns/activitystreams#Event">Event</a></dd>
+<dt>Range</dt>
+<dd><a property="rdfs:range" resource="xsd:dateTime" href="https://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime</a> (@vocab)</dd>
+<dt>See also</dt>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventPostponed">EventPostponed</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventRescheduled">EventRescheduled</a></dd>
 <dt>Is defined by</dt>
 <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
 </dl>
