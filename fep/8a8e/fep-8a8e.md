@@ -421,6 +421,94 @@ Federated event calendars usually have thumbnail images with fixed aspect ratios
   }
 }
 ```
+### Event Categories
+
+Federated event platforms benefit from a shared understanding of general event categories. These categories serve a distinct purpose from user-generated tags or hashtags. While hashtags are typically entered freely and reflect a specific language, event categories are drawn from a limited, generalized set, making them more suitable for tasks like filtering events in aggregated or joined calendars.
+
+To represent categories, this FEP introduces the property `https://w3id.org/fep/8a8e/category`.
+
+In most cases, a single category should be sufficient. However, multiple categories may be included when relevant.
+It provides suggestions for predefined categories serve as a recommended starting point. Implementing applications may extend this list or allow user-generated categories. However, such additions may not be understood by all consuming platforms and could default to a generic or "unknown" category.
+
+Applications *SHOULD* utilize at least the following recommended set of event categories:
+
+- ARTS
+- AUTO_BOAT_AIR
+- BOOK_CLUBS
+- BUSINESS
+- CAUSES
+- CLIMATE_ENVIRONMENT
+- COMMUNITY
+- COMEDY
+- CRAFTS
+- CREATIVE_JAMS
+- DIY_MAKER_SPACES
+- FAMILY_EDUCATION
+- FASHION_BEAUTY
+- FESTIVALS
+- FILM_MEDIA
+- FOOD_DRINK
+- GAMES
+- INCLUSIVE_SPACES
+- LANGUAGE_CULTURE
+- LEARNING
+- LGBTQ
+- MEETING
+- MEDITATION_WELLBEING
+- MOVEMENTS_POLITICS
+- MUSIC
+- NETWORKING
+- OUTDOORS_ADVENTURE
+- PARTY
+- PERFORMING_VISUAL_ARTS
+- PETS
+- PHOTOGRAPHY
+- SCIENCE_TECH
+- SPIRITUALITY_RELIGION_BELIEFS
+- SPORTS
+- THEATRE
+- WORKSHOPS_SKILL_SHARING
+- DEFAULT
+
+#### Example of an event with a single category
+
+```json
+{
+  "@context": [
+    "https://https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams",
+  ],
+  "type": "Event",
+  "id": "https://example.org/event/1",
+  "name": "Demonstration againt fascism",
+  "startTime": "2014-05-01T12:00:00-08:00",
+  "startTime": "2014-05-01T18:00:00-08:00",
+  "organizer": null,
+  "category": "MOVEMENTS_POLITICS"
+}
+```
+
+#### Example of an event with multiple categories
+
+```json
+{
+  "@context": [
+    "https://https://w3id.org/fep/8a8e",
+    "https://www.w3.org/ns/activitystreams",
+  ],
+  "type": "Event",
+  "id": "https://example.org/open-mic-jam",
+  "name": "Open Mic Jam at Sunny's",
+  "startTime": "2014-12-12T20:00:00-08:00",
+  "endTime": "2014-12-12T23:00:00-08:00",
+  "organizer": null,
+  "category": [
+    "MUSIC",
+    "CREATIVE_JAM"
+  ]
+}
+```
+
 
 ### Discoverability
 
@@ -1155,6 +1243,26 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
 <dd><a property="rdfs:range" resource="xsd:dateTime" href="https://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime</a> (@vocab)</dd>
 <dt>See also</dt>
 <dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventPostponed">EventPostponed</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventRescheduled">EventRescheduled</a></dd>
+<dt>Is defined by</dt>
+<dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
+</dl>
+</section>
+
+<section id="category" resource="https://w3id.org/fep/8a8e/category" typeof="owl:DatatypeProperty">
+<h3>category</h3>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/8a8e/category</code>
+</dd>
+<dt>Label</dt>
+<dd property="rdfs:label" lang="en">The category of an Event</dd>
+<dt>Comment</dt>
+<dd property="rdfs:comment" lang="en">Recommended event categories include: <code>ARTS</code>, <code>AUTO_BOAT_AIR</code>, <code>BOOK_CLUBS</code>, <code>BUSINESS</code>, <code>CAUSES</code>, <code>CLIMATE_ENVIRONMENT</code>, <code>COMMUNITY</code>, <code>COMEDY</code>, <code>CRAFTS</code>, <code>CREATIVE_JAMS</code>, <code>DIY_MAKER_SPACES</code>, <code>FAMILY_EDUCATION</code>, <code>FASHION_BEAUTY</code>, <code>FESTIVALS</code>, <code>FILM_MEDIA</code>, <code>FOOD_DRINK</code>, <code>GAMES</code>, <code>INCLUSIVE_SPACES</code>, <code>LANGUAGE_CULTURE</code>, <code>LEARNING</code>, <code>LGBTQ</code>, <code>MEETING</code>, <code>MEDITATION_WELLBEING</code>, <code>MOVEMENTS_POLITICS</code>, <code>MUSIC</code>, <code>NETWORKING</code>, <code>OUTDOORS_ADVENTURE</code>, <code>PARTY</code>, <code>PERFORMING_VISUAL_ARTS</code>, <code>PETS</code>, <code>PHOTOGRAPHY</code>, <code>SCIENCE_TECH</code>, <code>SPIRITUALITY_RELIGION_BELIEFS</code>, <code>SPORTS</code>, <code>THEATRE</code>, <code>WORKSHOPS_SKILL_SHARING</code>, <code>DEFAULT</code>
+</dd>
+<dt>Domain</dt>
+<dd><a property="rdfs:domain" resource="as:Event" href="https://www.w3.org/ns/activitystreams#Event">Event</a></dd>
+<dt>Range</dt>
+<dd><a property="rdfs:range" resource="xsd:string" href="https://www.w3.org/TR/xmlschema-2/#string">xsd:string</a> (@list)</dd>
 <dt>Is defined by</dt>
 <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
 </dl>
