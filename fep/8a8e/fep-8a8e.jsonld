@@ -34,6 +34,73 @@
   },
   "@graph": [
     {
+      "@id": "https://w3id.org/fep/8a8e",
+      "@type": "http://www.w3.org/2002/07/owl#Ontology",
+      "http://purl.org/dc/elements/1.1/creator": [
+        "André Menrath <andre.menrath@posteo.de>",
+        "les <lesion@autistici.org>"
+      ],
+      "http://purl.org/dc/elements/1.1/rights": {
+        "@language": "en",
+        "@value": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
+      },
+      "http://purl.org/dc/terms/abstract": "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chosen to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations.",
+      "http://purl.org/dc/terms/dateSubmitted": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2025-04-23"
+      },
+      "http://purl.org/dc/terms/identifier": {
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+        "@value": "https://w3id.org/fep/8a8e"
+      },
+      "http://purl.org/dc/terms/license": {
+        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "http://purl.org/dc/terms/title": "FEP-8a8e: A common approach to using the Event object type"
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/EventStatusType",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "EventStatusType is an enumeration type whose instances represent several states that an Event may be in."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/eventStatus"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://schema.org/EventStatusType"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/joinMode",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "\n      Indicator of how new members may be able to join an event.\n      Accepted values: free, restricted, external, none, invite.\n      If external, you must also set externalParticipationUrl.\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e/"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Join mode"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
       "@id": "https://w3id.org/fep/8a8e/EventPostponed",
       "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
@@ -55,11 +122,47 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/eventStatus",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "@id": "https://w3id.org/fep/8a8e/organizers",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled."
+        "@value": "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Organizers Collection"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://w3id.org/fep/8a8e/OrganizersCollection"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/timezone",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "The timezone of an Event"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/8a8e/externalParticipationUrl",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "\n      A URL that points to an external platform where people can join the event or where they can buy tickets for the event. Required if joinMode is set to external.\n    "
       },
       "http://www.w3.org/2000/01/rdf-schema#domain": {
         "@id": "https://www.w3.org/ns/activitystreams#Event"
@@ -69,57 +172,46 @@
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The events status is"
+        "@value": "External participation URL"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/EventCancelled"
-      },
-      "http://www.w3.org/2002/07/owl#maxCardinality": {
-        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-        "@value": "1"
-      },
-      "http://www.w3.org/2002/07/owl#minCardinality": {
-        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-        "@value": "0"
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/AttendeesCollection",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "@id": "https://w3id.org/fep/8a8e/requiredJoinVisibility",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "\n      Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization.\n      The items of the AttendeesCollection are entities that are confirmed attendees by an Events organizer(s). It contains all ActivityPub actors that meet one or more of the following conditions, added as a side effect.\n      \nThe actor has sent a Join activity with this object as the object property that has been answered with an Accept.\nThe actor has responded to an Invite activity from the Event's owner (where the Event is specified as the object property) with an Accept activity.\n\n      The items MAY be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the totalItems set in any case.\n    "
+        "@value": "\n      Specifies the minimum audience that must be addressed in a valid Join activity related to the event. This can include individual actors, groups, the as:Public collection, or any other URI. The Join activity must be addressed accordingly (e.g., using to, cc, bto, or audience).\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Event"
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "A Collection of the Event's attendees"
+        "@value": "Required Join Visibility"
       },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/attendees"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/EventTentative",
+      "@id": "https://w3id.org/fep/8a8e/EventMovedOnline",
       "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "The event is currently being planned but not confirmed."
+        "@value": "Indicates that the event was changed to allow online participation."
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The event is tentative"
+        "@value": "The event moved online."
       },
       "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
         "@id": "https://w3id.org/fep/8a8e/eventStatus"
@@ -147,63 +239,24 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/timezone",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "@id": "https://w3id.org/fep/8a8e/isBannerImage",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "Indicates the timezone for which the time(s) indicated in the event are given. The value provided should be among those listed in the IANA Time Zone Database."
+        "@value": "\n      Whether an image is an (events) banner image.\n    "
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Image"
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "The timezone of an Event"
+        "@value": "Image is a banner image"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/EventStatusType",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "EventStatusType is an enumeration type whose instances represent several states that an Event may be in."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/eventStatus"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://schema.org/EventStatusType"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/EventMovedOnline",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "Indicates that the event was changed to allow online participation."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "The event moved online."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
-        "@id": "https://w3id.org/fep/8a8e/eventStatus"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
-        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
+        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
       }
     },
     {
@@ -270,50 +323,11 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/organizers",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "@id": "https://w3id.org/fep/8a8e/eventStatus",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "An ActivityStreams Collection collection that lists the entities that are disclosed to as organizers of an event. If set to null this explicitly indicates a deliberate choice to withhold organizer information."
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Organizers Collection"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "https://w3id.org/fep/8a8e/OrganizersCollection"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/joinMode",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "\n      Indicator of how new members may be able to join an event.\n      Accepted values: free, restricted, external, none, invite.\n      If external, you must also set externalParticipationUrl.\n    "
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Event"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e/"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "Join mode"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#string"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/requiredJoinVisibility",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "\n      Specifies the minimum audience that must be addressed in a valid Join activity related to the event. This can include individual actors, groups, the as:Public collection, or any other URI. The Join activity must be addressed accordingly (e.g., using to, cc, bto, or audience).\n    "
+        "@value": "An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled."
       },
       "http://www.w3.org/2000/01/rdf-schema#domain": {
         "@id": "https://www.w3.org/ns/activitystreams#Event"
@@ -323,31 +337,38 @@
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "Required Join Visibility"
+        "@value": "The events status is"
       },
       "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
-      }
-    },
-    {
-      "@id": "https://w3id.org/fep/8a8e/externalParticipationUrl",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "http://www.w3.org/2000/01/rdf-schema#comment": {
-        "@language": "en",
-        "@value": "\n      A URL that points to an external platform where people can join the event or where they can buy tickets for the event. Required if joinMode is set to external.\n    "
+        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
       },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Event"
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventMovedOnline"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventPostponed"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventTentative"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventScheduled"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventCancelled"
+        },
+        {
+          "@id": "https://w3id.org/fep/8a8e/EventRescheduled"
+        }
+      ],
+      "http://www.w3.org/2002/07/owl#maxCardinality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "1"
       },
-      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
-        "@id": "https://w3id.org/fep/8a8e"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#label": {
-        "@language": "en",
-        "@value": "External participation URL"
-      },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+      "http://www.w3.org/2002/07/owl#minCardinality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "0"
       }
     },
     {
@@ -394,50 +415,46 @@
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e/isBannerImage",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "@id": "https://w3id.org/fep/8a8e/AttendeesCollection",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
       "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "\n      Whether an image is an (events) banner image.\n    "
-      },
-      "http://www.w3.org/2000/01/rdf-schema#domain": {
-        "@id": "https://www.w3.org/ns/activitystreams#Image"
+        "@value": "\n      Inherits all properties from https://www.w3.org/ns/activitystreams#Collection with the addition that the items may also include https://schema.org/Person or https://schema.org/Organization.\n      The items of the AttendeesCollection are entities that are confirmed attendees by an Events organizer(s). It contains all ActivityPub actors that meet one or more of the following conditions, added as a side effect.\n      \nThe actor has sent a Join activity with this object as the object property that has been answered with an Accept.\nThe actor has responded to an Invite activity from the Event's owner (where the Event is specified as the object property) with an Accept activity.\n\n      The items MAY be filtered on privileges of an authenticated user or as appropriate when no authentication is given. This collection *SHOULD* have the totalItems set in any case.\n    "
       },
       "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
         "@id": "https://w3id.org/fep/8a8e"
       },
       "http://www.w3.org/2000/01/rdf-schema#label": {
         "@language": "en",
-        "@value": "Image is a banner image"
+        "@value": "A Collection of the Event's attendees"
       },
-      "http://www.w3.org/2000/01/rdf-schema#range": {
-        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/attendees"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://www.w3.org/ns/activitystreams#OrderedCollection"
       }
     },
     {
-      "@id": "https://w3id.org/fep/8a8e",
-      "@type": "http://www.w3.org/2002/07/owl#Ontology",
-      "http://purl.org/dc/elements/1.1/creator": [
-        "André Menrath <andre.menrath@posteo.de>",
-        "les <lesion@autistici.org>"
-      ],
-      "http://purl.org/dc/elements/1.1/rights": {
+      "@id": "https://w3id.org/fep/8a8e/EventTentative",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
         "@language": "en",
-        "@value": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
+        "@value": "The event is currently being planned but not confirmed."
       },
-      "http://purl.org/dc/terms/abstract": "ActivityStreams defines the Object Type Event. In real-world applications, the event object immediately showed the need for extension. Applications featuring Event objects have often chosen to add additional attributes and clarifications (i.e., interpretations) in order to implement their particular use case. This proposal clarifies and extends the ActivityPub standard to address the needs that have arisen in real-world implementations.",
-      "http://purl.org/dc/terms/dateSubmitted": {
-        "@type": "http://www.w3.org/2001/XMLSchema#date",
-        "@value": "2025-04-23"
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/8a8e"
       },
-      "http://purl.org/dc/terms/identifier": {
-        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
-        "@value": "https://w3id.org/fep/8a8e"
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "The event is tentative"
       },
-      "http://purl.org/dc/terms/license": {
-        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/8a8e/eventStatus"
       },
-      "http://purl.org/dc/terms/title": "FEP-8a8e: A common approach to using the Event object type"
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://w3id.org/fep/8a8e/EventStatusType"
+      }
     }
   ]
 }

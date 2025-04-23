@@ -22,7 +22,7 @@ Functional
 : Yes
 
 See also
-: [ForwardChronological](https://w3id.org/fep/8a8e/EventCancelled)
+: [EventCancelled](https://w3id.org/fep/8a8e/EventCancelled) | [EventCancelled](https://w3id.org/fep/8a8e/EventCancelled) | [EventScheduled](https://w3id.org/fep/8a8e/EventScheduled) | [EventTentative](https://w3id.org/fep/8a8e/EventTentative) | [EventMovedOnline](https://w3id.org/fep/8a8e/EventMovedOnline) | [EventPostponed](https://w3id.org/fep/8a8e/EventPostponed) | [EventRescheduled](https://w3id.org/fep/8a8e/EventRescheduled)
 
 Is defined by
 : [FEP-8a8e](https://w3id.org/fep/8a8e)

@@ -989,7 +989,7 @@ Note that the terms `joinMode` and `externalParticipationUrl` are compatible wit
 <dt>Functional</dt>
 <dd property="owl:maxCardinality" content="1" datatype="xsd:nonNegativeInteger">Yes</dd>
 <dt>See also</dt>
-<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventCancelled">ForwardChronological</a></dd>
+<dd><a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventCancelled">EventCancelled</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventCancelled">EventCancelled</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventScheduled">EventScheduled</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventTentative">EventTentative</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventMovedOnline">EventMovedOnline</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventPostponed">EventPostponed</a> | <a property="rdfs:seeAlso" href="https://w3id.org/fep/8a8e/EventRescheduled">EventRescheduled</a></dd>
 <dt>Is defined by</dt>
 <dd><a property="rdfs:isDefinedBy" href="https://w3id.org/fep/8a8e">FEP-8a8e</a></dd>
 </dl>

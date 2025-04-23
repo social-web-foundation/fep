@@ -147,7 +147,12 @@ The actor has responded to an Invite activity from the Event's owner (where the 
 	rdfs:domain as:Event ;
 	rdfs:isDefinedBy <https://w3id.org/fep/8a8e> ;
 	rdfs:range <https://w3id.org/fep/8a8e/EventStatusType> ;
-	rdfs:seeAlso <https://w3id.org/fep/8a8e/EventCancelled> ;
+	rdfs:seeAlso <https://w3id.org/fep/8a8e/EventCancelled>,
+		<https://w3id.org/fep/8a8e/EventMovedOnline>,
+		<https://w3id.org/fep/8a8e/EventPostponed>,
+		<https://w3id.org/fep/8a8e/EventRescheduled>,
+		<https://w3id.org/fep/8a8e/EventScheduled>,
+		<https://w3id.org/fep/8a8e/EventTentative> ;
 	owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
 	owl:minCardinality "0"^^xsd:nonNegativeInteger .
 

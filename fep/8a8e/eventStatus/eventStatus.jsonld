@@ -34,6 +34,21 @@
     "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
       {
         "@id": "https://w3id.org/fep/8a8e/EventCancelled"
+      },
+      {
+        "@id": "https://w3id.org/fep/8a8e/EventScheduled"
+      },
+      {
+        "@id": "https://w3id.org/fep/8a8e/EventTentative"
+      },
+      {
+        "@id": "https://w3id.org/fep/8a8e/EventMovedOnline"
+      },
+      {
+        "@id": "https://w3id.org/fep/8a8e/EventPostponed"
+      },
+      {
+        "@id": "https://w3id.org/fep/8a8e/EventRescheduled"
       }
     ],
     "http://www.w3.org/2002/07/owl#maxCardinality": [
