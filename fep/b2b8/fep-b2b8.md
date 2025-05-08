@@ -65,7 +65,7 @@ This property provides the same functionality as the `link` property in RSS 2.0.
 
 This property provides a brief description, teaser, abstract or "lede" for the text. It should be a maximum of about 500 characters; a few sentences; or a short paragraph.
 
-This property can include HTML markup. It should not include embedded media like images, video or audio.
+This property can include HTML markup. It should not include embedded media like images, video or audio. It should not include navigation or interaction elements like "favourite", "like", "bookmark" or other buttons. It should not include links to the publisher's home page or category pages. It should not include a "Read more..." link to the full text.
 
 This property provides the same functionality as the `description` property in RSS 2.0.
 
@@ -132,7 +132,7 @@ the full HTML element set. It should not include any CSS or JavaScript. This sub
 - `<rt>`
 - `<rp>`
 
-The HTML should only include the content of the text. Additional navigation to other pages on the originating site, like category links or home page links, should not be included. Other affordances like "favourite", "like", "bookmark" or other buttons should not be included.
+The HTML should only include the content of the text. Additional navigation to other pages on the originating site, like category links or home page links, should not be included. Other affordances like "favourite", "like", "bookmark" or other buttons should not be included. It should not include a "Read more..." link to the full article.
 
 Any embedded media like images, video or audio in the `content` property should also be listed in the `attachment` property so that consumers can pre-fetch the media.
 
@@ -179,7 +179,11 @@ For an article, the `preview` can be a `Note` that gives a well-formatted previe
 
 The `content` property of the `preview` should include a minimal set of HTML elements, as described in [ActivityPub Primer HTML](https://www.w3.org/wiki/ActivityPub/Primer/HTML).
 
-Metadata on the `Article` that applies equally to the preview, such as `attributedTo`, `published`, `updated`, and `tag` should be repeated in the `preview` property.
+The HTML should only include an excerpt or summary of the full article text. Additional navigation to other pages on the originating site, like category links, home page links. Other affordances like "favourite", "like", "bookmark" or other buttons should not be included.
+
+The `preview` property should not include a link to the full article with a "Read more..." link. The consumer should use the `url` property of the `Article` to link to the full article.
+
+Metadata on the `Article` that applies equally to the preview, such as `attributedTo`, `published`, `updated`, and `tag` can be repeated in the `preview` property. The consumer should fall back to the `Article` properties if they are not present in the `preview`.
 
 The `image` property of the `Article` may be included in the `preview` property as `attachment` items.
 
