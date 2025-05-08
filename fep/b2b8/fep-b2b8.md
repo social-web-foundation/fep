@@ -195,6 +195,19 @@ As with other AS2 object types, the `to`, `cc`, `bcc`, `bto`, and `audience` pro
 
 The addressing properties provide an access control mechanism for AS2. Publishers and consumers should not disclose the properties of any AS2 object type, including the `Article` type, with anyone except the addressees, listed in these addressing properties, or the creator(s), listed in the `attributedTo` property.
 
+### `sensitive`
+
+[sensitive](https://swicg.github.io/miscellany/#sensitive) marks an article as potentially sensitive, controversial, or disturbing in the author's opinion. As a non-exhaustive list and depending on context, nudity, sexual activity, violence, or spoilers for a movie or book may be considered sensitive.
+
+If the sensitive flag is set, the consumer should obscure the content of the article until the user conveys intent to read the article or view embedded media.
+
+To help the user decide whether to read the article or view its media, the consumer should show these properties, if provided, in order:
+
+- [`dcterms:subject`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/subject): a property from the [Dublin Core metadata terms](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/). Value should be a string or array of strings indicating the topic or topics discussed in the article.
+- `tag`: in particular, `Hashtag` names. (`subject` is preferred because hashtags are often less human-readable).
+- `name`: as described above, the title of the `Article`. Authors are more likely to leak sensitive material in the title, so the subject and/or hashtags should be used first.
+- `summary`: as described above. Only as a last resort when other properties are not defined; a well-written summary is likely to include significant excerpts or summation of the sensitive content.
+
 ## Examples
 
 This section includes examples of long-form text objects. Note that for brevity, the content is not actually multi-paragraph text.
@@ -364,6 +377,32 @@ This section includes examples of long-form text objects. Note that for brevity,
 }
 ```
 
+### Long-form text with senstive content
+
+This article includes a spoiler about the 1941 film *Citizen Kane*. The `sensitive` property is set to `true`, and the `dcterms:subject` property is used to indicate the topic of the article.
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://purl.archive.org/miscellany",
+    {"dcterms": "http://purl.org/dc/terms/"}
+  ],
+  "id": "https://example.com/article/1",
+  "type": "Article",
+  "name": "Spoiler for Citizen Kane",
+  "summary": "<p>I am going to tell you what Rosebud was.</p>",
+  "sensitive": true,
+  "dcterms:subject": ["Citizen Kane"],
+  "contents": "<p>Rosebud was his sled!</p>",
+  "tag": {
+    "id": "https://example.com/tag/citizenkane",
+    "name": "citizenkane",
+    "type": "Hashtag"
+  }
+}
+```
+
 ## User interface guidance
 
 Consumers should use their native interfaces to handle `Article` objects in an intuitive way that integrates well with other object types. The following illustrations provide examples of how `Article` objects might be displayed in a stream-oriented social web interface, such as a microblogging application. The UI elements are labelled with the properties of the `Article` object that most likely correspond to them.
@@ -385,6 +424,12 @@ An example of a long-form text object without an `image` property displayed in a
 An example of a long-form text object without a `name` property displayed in a social stream.
 
 ![Article in stream, no title](in-stream-no-title.drawio.svg)
+
+### In stream, sensitive content
+
+An example of a long-form text object with a `sensitive` property displayed in a social stream with a content warning.
+
+![Article in stream, sensitive content](content-warning.drawio.svg)
 
 ## References
 
