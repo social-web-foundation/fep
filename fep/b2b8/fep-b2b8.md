@@ -148,11 +148,15 @@ Comments are usually `Note` objects, but can be other types of objects like `Art
 
 This property provides the same functionality as the `comments` property in RSS 2.0.
 
+### `inReplyTo`
+
+If the text is a reply to another ActivityPub object, such as an `Article` or `Note`, the `inReplyTo` property can include a string with the URL of the object being replied to, or a JSON object representing that object.
+
+If the text is a commentary on or review of a particular link on the Web, the `inReplyTo` property can include a `Link` object with a `href` property that is the URL of the linked resource.
+
 ### `attachment`
 
 The [attachment](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-attachment) property provides additional media that is part of the text. This can include images, video, audio, or other media. Consumers can use this property to pre-fetch media for display without needing to load and parse the full `content` property.
-
-If the text is a commentary on or review of a particular link on the Web, the `attachment` property can include a `Link` object with a `href` property that is the URL of the linked resource.
 
 ### `tag`
 
