@@ -34,7 +34,7 @@ A status object is of type `ActorStatus`, which extends the ActivityPub `Object`
 
 The following two OPTIONAL fields are added to actors:
 
-- `status`: the last, or current, status update of this actor. SHOULD NOT be present if the last status has expired. SHOULD contain an inlined `ActorStatus`.
+- `status`: the last, or current, status update of this actor. MUST NOT be present if the last status has expired. MUST contain an inlined `ActorStatus`.
 - `statusHistory`: a collection of all past status updates of this actor. If present, implementations MAY provide a UI to view this actor's status history. If absent, implementations SHOULD NOT store this actor's past status updates and MUST NOT expose them in the UI.
 
 ## Activities
