@@ -23,6 +23,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 A status object is of type `sm:ActorStatus`, which extends the ActivityPub `Object`. It has the following fields:
 
+- `attributedTo`: the ID of the actor whose status this is. REQUIRED.
 - `content`: the plain text content of the status. REQUIRED.
 - `published`: the timestamp when this status update was created. REQUIRED.
 - `id`: a unique identifier for this status update. REQUIRED.
