@@ -21,7 +21,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## Representation of statuses
 
-A status object is of type `sm:ActorStatus`, which extends the ActivityPub `Object`. It has the following fields:
+A status object is of type `ActorStatus`, which extends the ActivityPub `Object`. It has the following fields:
 
 - `attributedTo`: the ID of the actor whose status this is. REQUIRED.
 - `content`: the plain text content of the status. REQUIRED.
@@ -34,22 +34,22 @@ A status object is of type `sm:ActorStatus`, which extends the ActivityPub `Obje
 
 The following two OPTIONAL fields are added to actors:
 
-- `sm:status`: the last, or current, status update of this actor. SHOULD NOT be present if the last status has expired. SHOULD contain an inlined `sm:ActorStatus`.
-- `sm:statusHistory`: a collection of all past status updates of this actor. If present, implementations MAY provide a UI to view this actor's status history. If absent, implementations SHOULD NOT store this actor's past status updates and MUST NOT expose them in the UI.
+- `status`: the last, or current, status update of this actor. SHOULD NOT be present if the last status has expired. SHOULD contain an inlined `ActorStatus`.
+- `statusHistory`: a collection of all past status updates of this actor. If present, implementations MAY provide a UI to view this actor's status history. If absent, implementations SHOULD NOT store this actor's past status updates and MUST NOT expose them in the UI.
 
 ## Activities
 
 ### Creating a status update
 
-A status update is created by sending a `Create{sm:ActorStatus}` activity to followers. Upon receiving this activity, an implementation updates the actor's latest status, and, if it has the `sm:statusHistory` collection, adds it to the history. After sending this activity, the `sm:status` field of the actor object MUST be updated with this new status. An `Update{Actor}` MUST NOT be sent because the `Create` already implicitly updates that field in the copies of this actor stored on remote servers.
+A status update is created by sending a `Create{ActorStatus}` activity to followers. Upon receiving this activity, an implementation updates the actor's latest status, and, if it has the `statusHistory` collection, adds it to the history. After sending this activity, the `status` field of the actor object MUST be updated with this new status. An `Update{Actor}` MUST NOT be sent because the `Create` already implicitly updates that field in the copies of this actor stored on remote servers.
 
 ### Clearing the status
 
-The latest status is cleared by sending a `Remove{sm:ActorStatus}` activity to followers. Upon receiving this activity, if the ID of the `object` matches the actor's current status, an implementation removes the actor's current status. If the actor has the `sm:statusHistory` collection, it keeps it there. Same considerations for `sm:status` apply here.
+The latest status is cleared by sending a `Remove{ActorStatus}` activity to followers. Upon receiving this activity, if the ID of the `object` matches the actor's current status, an implementation removes the actor's current status. If the actor has the `statusHistory` collection, it keeps it there. Same considerations for `status` apply here.
 
 ### Deleting the status
 
-A status is completely deleted by sending a `Delete{sm:ActorStatus}` activity to followers. If the actor has the `sm:statusHistory` collection, the status is removed from there as well as being cleared from the profile. Otherwise, this is activity is identical to `Remove`.
+A status is completely deleted by sending a `Delete{ActorStatus}` activity to followers. If the actor has the `statusHistory` collection, the status is removed from there as well as being cleared from the profile. Otherwise, this is activity is identical to `Remove`.
 
 ### Other activities in relation to statuses
 
