@@ -100,6 +100,25 @@ Updating one's status, with the ability to set it to expire:
 UI with history, similar to early Facebook:
 ![](history-ui.svg)
 
+## Example status object
+
+```json
+{
+	"type": "ActorStatus",
+	"id": "https://example.social/users/1/statuses/1747286633",
+	"attributedTo": "https://example.social/users/1",
+	"content": "is desperately trying to bring the old internet back",
+	"published": "2025-05-15T05:23:53.539Z",
+	"@context": [
+		"https://www.w3.org/ns/activitystreams",
+		{
+			"sm": "http://smithereen.software/ns#",
+			"ActorStatus": "sm:ActorStatus"
+		}
+	]
+}
+```
+
 ## References
 
 - Christine Lemmer-Webber, Jessica Tallon, Erin Shepherd, Amy Guy, Evan Prodromou, [ActivityPub], 2018
