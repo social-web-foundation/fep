@@ -43,6 +43,8 @@ The following two OPTIONAL fields are added to actors:
 
 A status update is created by sending a `Create{ActorStatus}` activity to followers. Upon receiving this activity, an implementation updates the actor's latest status, and, if it has the `statusHistory` collection, adds it to the history. After sending this activity, the `status` field of the actor object MUST be updated with this new status. An `Update{Actor}` MUST NOT be sent because the `Create` already implicitly updates that field in the copies of this actor stored on remote servers.
 
+If the actor does not have a `statusHistory`, the previous status is considered no longer existing, as if it was `Delete`d.
+
 ### Clearing the status
 
 The latest status is cleared by sending a `Remove{ActorStatus}` activity to followers. Upon receiving this activity, if the ID of the `object` matches the actor's current status, an implementation removes the actor's current status. If the actor has the `statusHistory` collection, it keeps it there. Same considerations for `status` apply here.
