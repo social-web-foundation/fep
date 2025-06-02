@@ -94,7 +94,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-dc88: Formatting Mathematics](./fep/dc88/fep-dc88.md) | `DRAFT` | [#161](https://codeberg.org/fediverse/fep/issues/161) | 2023-09-12 | - |
 | [FEP-d8c2: OAuth 2.0 Profile for the ActivityPub API](./fep/d8c2/fep-d8c2.md) | `DRAFT` | [#165](https://codeberg.org/fediverse/fep/issues/165) | 2023-09-17 | - |
 | [FEP-7628: Move actor](./fep/7628/fep-7628.md) | `DRAFT` | [#168](https://codeberg.org/fediverse/fep/issues/168) | 2023-09-20 | - |
-| [FEP-07d7: A Custom URL Scheme and Web-Based Protocol Handlers for Linking to ActivityPub Resources](./fep/07d7/fep-07d7.md) | `DRAFT` | [#171](https://codeberg.org/fediverse/fep/issues/171) | 2023-09-22 | - |
+| [FEP-07d7: A Custom URL Scheme and Web-Based Protocol Handlers for Linking to ActivityPub Resources](./fep/07d7/fep-07d7.md) | `WITHDRAWN` | [#171](https://codeberg.org/fediverse/fep/issues/171) | 2023-09-22 | 2025-04-22 |
 | [FEP-37f2: a policy for calls for consensus on SWICG group decisions](./fep/37f2/fep-37f2.md) | `DRAFT` | [#184](https://codeberg.org/fediverse/fep/issues/184) | 2023-09-28 | - |
 | [FEP-2677: Identifying the Application Actor](./fep/2677/fep-2677.md) | `DRAFT` | [#190](https://codeberg.org/fediverse/fep/issues/190) | 2023-10-14 | - |
 | [FEP-03c1: Actors without acct-URI](./fep/03c1/fep-03c1.md) | `DRAFT` | [#205](https://codeberg.org/fediverse/fep/issues/205) | 2023-11-10 | - |
@@ -156,6 +156,8 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-1042: Peer to Peer Fediverse Identities](./fep/1042/fep-1042.md) | `DRAFT` | [#546](https://codeberg.org/fediverse/fep/issues/546) | 2025-04-03 | - |
 | [FEP-4f05: Soft Deletion](./fep/4f05/fep-4f05.md) | `DRAFT` | [#554](https://codeberg.org/fediverse/fep/issues/554) | 2025-04-15 | - |
 | [FEP-8a8e: A common approach to using the Event object type](./fep/8a8e/fep-8a8e.md) | `DRAFT` | [#565](https://codeberg.org/fediverse/fep/issues/565) | 2025-04-23 | - |
+| [FEP-0151: NodeInfo in Fediverse Software (2025 edition)](./fep/0151/fep-0151.md) | `DRAFT` | [#599](https://codeberg.org/fediverse/fep/issues/599) | 2025-05-12 | - |
+| [FEP-82f6: Actor statuses](./fep/82f6/fep-82f6.md) | `DRAFT` | [#600](https://codeberg.org/fediverse/fep/issues/600) | 2025-05-12 | - |
 
 ## License
 

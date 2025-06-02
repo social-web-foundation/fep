@@ -352,8 +352,9 @@
   {
     "slug": "07d7",
     "authors": "Jennifer Moore <contact@jenniferplusplus.com>",
-    "status": "DRAFT",
+    "status": "WITHDRAWN",
     "dateReceived": "2023-09-22",
+    "dateWithdrawn": "2025-04-22",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/171",
     "discussionsTo": "https://codeberg.org/fediverse/fep/issues/171",
     "title": "A Custom URL Scheme and Web-Based Protocol Handlers for Linking to ActivityPub Resources"
@@ -930,5 +931,24 @@
     "dateReceived": "2025-04-23",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/565",
     "title": "A common approach to using the Event object type"
+  },
+  {
+    "slug": "0151",
+    "authors": "silverpill <@silverpill@mitra.social>",
+    "type": "implementation",
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/silverpill/feps/issues",
+    "dateReceived": "2025-05-12",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/599",
+    "title": "NodeInfo in Fediverse Software (2025 edition)"
+  },
+  {
+    "slug": "82f6",
+    "authors": "Gregory Klyushnikov <activitypub@grishka.me>",
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-82f6-actor-statuses/5310",
+    "dateReceived": "2025-05-12",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/600",
+    "title": "Actor statuses"
   }
 ]
