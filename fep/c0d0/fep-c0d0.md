@@ -3,7 +3,8 @@ slug: "c0d0"
 authors: Julian Lam <julian@nodebb.org>
 status: DRAFT
 discussionsTo: https://activitypub.space/topic/639/fep-c0d0-context-locking
-dateReceived: 2026-09-18
+dateReceived: 2026-09-19
+trackingIssue: https://codeberg.org/fediverse/fep/issues/928
 ---
 # FEP-c0d0: Context Locking
 
