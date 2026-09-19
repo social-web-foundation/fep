@@ -61,7 +61,7 @@ The subject of the controlled identifier document where the verification method 
 
 If a verifier encounters an integrity proof that uses a verification method that it can't resolve, or uses a cryptosuite that is not supported, or the proof has expired (as indicated by the `expires` property), the verifier SHOULD ignore the proof and try other authentication methods.
 
-If both HTTP signature and integrity proof are used, the integrity proof MUST be given precedence over HTTP signature. The HTTP signature MAY be dismissed.
+When verifying a delivered activity, the top-level integrity proof MUST take precedence over the HTTP signature if both are present. The HTTP signature MAY be dismissed.
 
 ### Algorithms
 
