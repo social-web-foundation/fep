@@ -446,6 +446,7 @@ By not adding a hash or copy of the reply in the `QuoteAuthorization` object, ma
 * [Mastodon](https://github.com/mastodon/mastodon) 4.4 has added support for verifying and displaying remote quote posts; version 4.5 introduced support for authoring quote posts and setting quote policies (restricted to automatic approval, with either `as:Public`, the author's `followers` collections, or nobody)
 * [Micro.blog](https://micro.blog/) can always be quoted, but allows users to revoke specific quotes
 * [PieFed](https://codeberg.org/rimu/pyfedi) can always be quoted, with a non-modifiable automatic public quote permission
+* [Pixelfed](https://github.com/pixelfed/pixelfed) can always be quoted by default, with follower only or none options, can revoke quotes but cannot create or view quotes directly on Pixelfed
 * [Smithereen](https://github.com/grishka/Smithereen) exposes always-allowed quote policies, supports authoring quote posts as well as issuing `QuoteAuthorization` in response to a `QuoteRequest`, it does not currently verify quotes nor request stamps
 * [WordPress ActivityPub](https://github.com/Automattic/wordpress-activitypub) can quote and be quoted, interaction policies can be customized during post authoring
 
