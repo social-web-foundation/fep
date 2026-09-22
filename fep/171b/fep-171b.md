@@ -12,9 +12,13 @@ trackingIssue: https://codeberg.org/fediverse/fep/issues/449
 
 ## Summary
 
-This document specifies a model for managing conversations in [ActivityPub] network. It is based on the implementation of [Conversation Containers][Containers] in [Streams](https://codeberg.org/streams/streams).
+This document specifies a model for managing conversations in [ActivityPub] network.
 
 In this model conversations are represented as collections controlled by a single actor. Such conversations take place within a specific audience and may be moderated.
+
+## History
+
+The model described here was based on the implementation of [Conversation Containers][Containers] in [Streams](https://codeberg.org/streams/streams). However, [Forte](https://codeberg.org/fortified/forte), the successor to Streams, is now regarded as the reference implementation of Conversation Containers. It might slightly differ from this specification.
 
 ## Requirements
 
@@ -78,8 +82,8 @@ The author of a top-level post it not necessarily the conversation owner. When o
 
 The top-level post MUST have a `contextHistory` property that refers to the conversation container. The presence of this property indicates that publisher implements conversation containers.
 
->[!NOTE]
->In addtion to `contextHistory` property, implementers MAY add a `context` property that refers to a collection of posts.
+> [!NOTE]
+> In addition to `contextHistory` property, implementers MAY add a `context` property that refers to a collection of posts.
 
 ### Interactions
 
@@ -90,6 +94,8 @@ Conversation participants SHOULD reject conversation activities that have not be
 The audience of a reply MUST be copied from a conversation root.
 
 Reply with a different audience can be created by starting a new conversation and including a [FEP-e232] link to the post instead of specifying it in `inReplyTo`.
+
+The audiences that are permitted to reply MAY be specified using the `canReply` property. The value of this property is an array containing the IDs of actors or collections.
 
 ### Moderation
 
@@ -120,6 +126,25 @@ The processing of unauthenticated embedded activities is strongly discouraged. I
 >Sometimes activities have non-dereferenceable identifiers. That may prevent their authentication.
 
 ## Examples
+
+Example of a top-level post:
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/fep/171b"
+  ],
+  "type": "Note",
+  "id": "https://alice.example/posts/1",
+  "content": "This is a post",
+  "contextHistory": "https://alice.example/contexts/1/history",
+  "canReply": ["https://alice.example/actors/1/followers"],
+  "to": [
+    "https://alice.example/actors/1/followers"
+  ]
+}
+```
 
 Example of an `Add` activity for a reply to a followers-only post:
 
@@ -193,7 +218,7 @@ Example of a container of a followers-only conversation:
 - [FEP-400e]: The `object` of `Add` is an object, not an activity, and conversation collection contains added objects. `Reject(Create)` activity is generated for rejected posts. Conversation participants are expected to add a `target` property to posts.
 - [FEP-1b12](https://codeberg.org/fediverse/fep/src/branch/main/fep/1b12/fep-1b12.md): `Announce` activity is used instead of `Add`. Conversation and related activities are synchronized between participants, but conversation backfilling mechanism is not specified.
 - [GoToSocial Interaction Policy][InteractionPolicy]: conversation is managed separately for each post (in a conversation container the owner has authority over the entire thread). `Accept` or `Reject` activity is generated for every interaction (in a conversation container `Add` activity is generated when activity is approved, and rejected activities are ignored). Conversation is not synchronized between participants, but can be backfilled by recursively fetching `replies` collections.
-- [Forwarding from inbox][ForwardingFromInbox]: Activites are distributed without wrapping. Conversations are synchronized between participants, but conversation backfilling mechanism is not specified.
+- [Forwarding from inbox][ForwardingFromInbox]: Activities are distributed without wrapping. Conversations are synchronized between participants, but conversation backfilling mechanism is not specified.
 
 ## Implementations
 
