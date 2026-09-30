@@ -2,8 +2,9 @@
 slug: "070c"
 authors: [Daniel Supernault <@dansup@mastodon.social>]
 status: DRAFT
-dateReceived: 2026-09-29
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-070c/8914
+dateReceived: 2026-09-30
+trackingIssue: https://codeberg.org/fediverse/fep/issues/934
 ---
 
 # FEP-070c: Block synchronization across servers

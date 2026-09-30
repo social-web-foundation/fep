@@ -198,6 +198,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-49eb: Batched Inbox Delivery](./fep/49eb/fep-49eb.md) | `DRAFT` | [#913](https://codeberg.org/fediverse/fep/issues/913) | 2026-08-22 | - |
 | [FEP-22cd: Attributing translations](./fep/22cd/fep-22cd.md) | `DRAFT` | [#923](https://codeberg.org/fediverse/fep/issues/923) | 2026-09-16 | - |
 | [FEP-c0d0: Context Locking](./fep/c0d0/fep-c0d0.md) | `DRAFT` | [#928](https://codeberg.org/fediverse/fep/issues/928) | 2026-09-19 | - |
+| [FEP-070c: Block synchronization across servers](./fep/070c/fep-070c.md) | `DRAFT` | [#934](https://codeberg.org/fediverse/fep/issues/934) | 2026-09-30 | - |
 
 ## License
 

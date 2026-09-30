@@ -1872,5 +1872,17 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/928",
     "title": "Context Locking",
     "implementations": 0
+  },
+  {
+    "slug": "070c",
+    "authors": [
+      "Daniel Supernault <@dansup@mastodon.social>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-070c/8914",
+    "dateReceived": "2026-09-30",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/934",
+    "title": "Block synchronization across servers",
+    "implementations": 0
   }
 ]
