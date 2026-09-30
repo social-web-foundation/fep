@@ -144,8 +144,9 @@ Block-Synchronization: url="https://a.example/federation/block-sync", digest="52
   instance's authority.
 - `digest`: the block set digest of the relevant block set for the receiving
   instance.
-  A separate header is used rather than `Collection-Synchronization` because
-  [FEP-8fcf] requires that header's `collectionId` to be a followers collection.
+
+A separate header is used rather than `Collection-Synchronization` because
+[FEP-8fcf] requires that header's `collectionId` to be a followers collection.
 
 ## The synchronization endpoint
 
@@ -162,9 +163,10 @@ or [RFC-9421]. The serving instance MUST:
 2. resolve the signing key and confirm that its owner is an actor whose `id`
    shares the authority of the key's `id`;
 3. take the authority of the owner actor's `id` as the requesting authority.
-   Requests SHOULD be signed by the requesting instance's application actor. The
-   serving instance MUST NOT accept a requesting authority from any other source,
-   such as a query parameter or request header.
+
+Requests SHOULD be signed by the requesting instance's application actor. The
+serving instance MUST NOT accept a requesting authority from any other source,
+such as a query parameter or request header.
 
 If the request is unsigned or the signature cannot be verified, the serving
 instance MUST respond with `401 Unauthorized`. If the serving instance does not
@@ -184,11 +186,24 @@ authority: every block pair in the serving instance's disclosure set whose
 `actor` shares the serving instance's authority and whose `object` shares the
 requesting authority, and nothing else.
 
+The collection MUST include a `blockSynchronizationDigest` property whose value
+is the block set digest of the collection's items, computed from the same state
+the items are read from. This lets the receiving instance check that the items
+it fetched form a consistent set, including when there was no header to compare
+against (see [Applying the result](#applying-the-result)). When the collection
+is paginated, the property is only required on the top-level collection object.
+
 ```json
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    {
+      "blockSynchronizationDigest": "https://w3id.org/fep/070c#blockSynchronizationDigest"
+    }
+  ],
   "type": "OrderedCollection",
   "totalItems": 2,
+  "blockSynchronizationDigest": "5267015e810867e01494e494c2cbe378fe9bf05e4e5dba51d65f38cbe4a47dd5",
   "orderedItems": [
     {
       "type": "Block",
@@ -204,8 +219,21 @@ requesting authority, and nothing else.
 }
 ```
 
-Serving instances MAY paginate large collections using
-`OrderedCollectionPage`.
+### Pagination
+
+A relevant block set only covers the actors of one peer, so it is usually
+small. Serving instances SHOULD return it as a single document, and SHOULD only
+paginate when the set is too large to serve at once.
+
+When a collection is paginated, serving instances SHOULD order items by `actor`
+and then `object`, and SHOULD link pages with a cursor derived from the last
+item of the previous page rather than a numeric offset. With offset-based pages,
+removing an item from an earlier page shifts later items so that one of them
+can be skipped entirely. With cursor-based pages, a block pair that exists for
+the whole duration of a fetch is always returned; only pairs added or removed
+during the fetch may or may not appear.
+
+### Caching
 
 Responses MUST NOT be stored by shared caches. Serving instances SHOULD send
 `Cache-Control: private, no-store`. They SHOULD send an `ETag` for the
@@ -264,7 +292,8 @@ instance MUST check that:
 
 - the header is covered by a valid HTTP signature;
 - the `url` parameter shares the authority of the signing actor's `id`.
-  If either check fails, the receiving instance MUST ignore the header.
+
+If either check fails, the receiving instance MUST ignore the header.
 
 The receiving instance SHOULD then compute the digest of the block pairs it has
 recorded in which the blocker shares the sender's authority and the blocked
@@ -286,18 +315,44 @@ is RECOMMENDED as a starting point.
 
 ### Applying the result
 
-After successfully fetching the complete collection, the receiving instance
-MUST discard any item whose `actor` does not share the serving instance's
-authority or whose `object` does not share its own authority. It then treats
-the remaining items as authoritative for that peer:
+Adding a block that should not exist is an inconvenience. Removing a block that
+should exist exposes a user to the actor they blocked. The rules below are
+therefore asymmetric.
 
-- For each block pair in the collection but not recorded locally, it SHOULD
-  apply the block as if it had received the corresponding `Block` activity.
-- For each block pair recorded locally but not in the collection, it SHOULD
-  remove the block as if it had received the corresponding `Undo Block`
-  activity.
+After fetching the collection, the receiving instance MUST discard any item
+whose `actor` does not share the serving instance's authority or whose `object`
+does not share its own authority, and MUST compute the block set digest of the
+items it fetched, across all pages.
 
-Blocks are unilateral, so the receiving instance does not deliver anything in response.
+For each block pair in the collection but not recorded locally, the receiving
+instance SHOULD apply the block as if it had received the corresponding `Block`
+activity. It MAY do so even when the fetch was incomplete or inconsistent.
+
+For each block pair recorded locally but not in the collection, the receiving
+instance SHOULD remove the block as if it had received the corresponding
+`Undo Block` activity, but only if all of the following hold:
+
+- every page of the collection was fetched;
+- no item was discarded or failed to parse;
+- the computed digest equals the collection's `blockSynchronizationDigest`.
+
+If the digests differ, the set changed while it was being fetched or the
+response is inconsistent. The receiving instance MUST NOT remove any block
+based on that fetch. It MAY retry the fetch once, and otherwise waits for the
+next mismatch or reconciliation.
+
+Receiving instances SHOULD NOT remove a block pair they recorded within the
+last few minutes (10 minutes is RECOMMENDED), even when all of the conditions
+above hold. This covers a `Block` activity that arrived after the serving
+instance generated its response.
+
+The digest from a `Block-Synchronization` header only decides whether to fetch.
+Removals are always checked against the digest in the fetched collection, so
+header-triggered synchronization and periodic reconciliation follow the same
+rules.
+
+Blocks are unilateral, so the receiving instance does not deliver anything in
+response.
 
 If the fetch fails or returns a non-2xx status, the receiving instance MUST NOT
 change its recorded blocks for that peer.
@@ -334,9 +389,10 @@ server would:
   guesses about undisclosed blocks.
 - The header is only sent to the instance it concerns, over the same
   connection as the delivery.
-  However, disclosing a block to the blocked actor's server means that server's
-  operators can see it, and a hostile operator could reveal it to the blocked
-  actor.
+
+However, disclosing a block to the blocked actor's server means that server's
+operators can see it, and a hostile operator could reveal it to the blocked
+actor.
 
 Implementations SHOULD therefore:
 
@@ -345,18 +401,25 @@ Implementations SHOULD therefore:
 - consider offering users a local-only block that is kept out of the disclosure
   set;
 - avoid logging header values and endpoint responses.
-  Receiving implementations SHOULD NOT notify the blocked actor as a result of
-  synchronization. This proposal does not change how implementations present
-  blocks to users.
+
+Receiving implementations SHOULD NOT notify the blocked actor as a result of
+synchronization. This proposal does not change how implementations present
+blocks to users.
 
 ## Security considerations
 
 The XOR of SHA-256 hashes is an order-independent set summary, not a
 collision-resistant set hash: a party that controls the set's contents could
-construct a different set with the same digest. The digest is therefore used
-only to decide whether to fetch. The fetched collection is always
-authoritative, and receiving instances never infer block state from the digest
-alone.
+construct a different set with the same digest. This proposal uses the digest
+in two ways, neither of which depends on collision resistance:
+
+- The header digest only decides whether to fetch.
+- The collection digest detects a set that changed during a fetch or a response
+  that is otherwise inconsistent. It protects against accidents, not against a
+  malicious serving instance, which is authoritative for its own actors' blocks
+  and can list whatever it wants.
+
+Receiving instances never infer block state from a digest alone.
 
 The `url` authority check prevents a sender from making the receiving instance
 issue signed requests to third-party servers.
@@ -378,9 +441,13 @@ Receiving instances MAY keep block pairs they cannot currently apply, such as
 pairs whose blocker has not been fetched yet, so that their digest stays in
 agreement with the serving instance.
 
-If a paginated collection changes while it is being fetched, the result may be
-incomplete. Any resulting discrepancy is corrected on the next mismatch or
-reconciliation.
+Because the serving instance usually already maintains the digest for the
+header, it can reuse it both for the collection's
+`blockSynchronizationDigest` and as the `ETag` of the response.
+
+Receiving instances that want an immediate second attempt after a digest
+mismatch during a paginated fetch should wait briefly before retrying, so that
+a burst of changes on the serving instance has time to settle.
 
 ## Implementations
 
