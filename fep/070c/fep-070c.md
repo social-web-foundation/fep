@@ -73,7 +73,7 @@ implementations that do not support it.
   shares the sending instance's authority and the `blocked` actor shares the
   receiving instance's authority.
 - **Application actor**: the actor representing the instance itself, as
-  described in [FEP-2677]. Often called the instance actor.
+  described in [FEP-d556]. Often called the instance actor.
 
 ## Disclosure set consistency
 
@@ -463,7 +463,7 @@ a burst of changes on the serving instance has time to settle.
 - [HTTP-Signatures] M. Cavage, M. Sporny, [Signing HTTP Messages](https://tools.ietf.org/html/draft-cavage-http-signatures-12), 2019
 - [RFC-9421] A. Backman, J. Richer, M. Sporny, [HTTP Message Signatures](https://www.rfc-editor.org/rfc/rfc9421), 2024
 - [FEP-8fcf] Claire, [Followers collection synchronization across servers](https://codeberg.org/fediverse/fep/src/branch/main/fep/8fcf/fep-8fcf.md), 2020
-- [FEP-2677] Ryan Barrett, [Identifying the Application Actor](https://codeberg.org/fediverse/fep/src/branch/main/fep/2677/fep-2677.md), 2024
+- [FEP-d556] Steve Bate, [Server-Level Actor Discovery Using WebFinger](https://codeberg.org/fediverse/fep/src/branch/main/fep/d556/fep-d556.md), 2024
 
 ## Copyright
 
