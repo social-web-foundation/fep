@@ -537,7 +537,7 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/209",
     "discussionsTo": "https://codeberg.org/silverpill/feps/issues",
     "title": "Portable Objects",
-    "implementations": 5
+    "implementations": 6
   },
   {
     "slug": "7502",
