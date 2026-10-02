@@ -2,8 +2,9 @@
 slug: "302f"
 authors: Fredrik Liljegren <@fiddur@aurboda.net>
 status: DRAFT
-dateReceived: 2026-10-01
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-302f-quantpub-federated-personal-metrics-for-quantified-self-sharing/8919
+dateReceived: 2026-10-02
+trackingIssue: https://codeberg.org/fediverse/fep/issues/942
 ---
 
 # FEP-302f: QuantPub — federated personal metrics for quantified-self sharing

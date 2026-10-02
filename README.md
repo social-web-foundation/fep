@@ -199,6 +199,8 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-22cd: Attributing translations](./fep/22cd/fep-22cd.md) | `DRAFT` | [#923](https://codeberg.org/fediverse/fep/issues/923) | 2026-09-16 | - |
 | [FEP-c0d0: Context Locking](./fep/c0d0/fep-c0d0.md) | `DRAFT` | [#928](https://codeberg.org/fediverse/fep/issues/928) | 2026-09-19 | - |
 | [FEP-070c: Block synchronization across servers](./fep/070c/fep-070c.md) | `DRAFT` | [#934](https://codeberg.org/fediverse/fep/issues/934) | 2026-09-30 | - |
+| [FEP-302f: QuantPub — federated personal metrics for quantified-self sharing](./fep/302f/fep-302f.md) | `DRAFT` | [#942](https://codeberg.org/fediverse/fep/issues/942) | 2026-10-02 | - |
+| [FEP-6757: Content License Metadata in ActivityPub](./fep/6757/fep-6757.md) | `DRAFT` | [#941](https://codeberg.org/fediverse/fep/issues/941) | 2026-10-02 | - |
 
 ## License
 

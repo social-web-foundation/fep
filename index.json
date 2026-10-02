@@ -1884,5 +1884,29 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/934",
     "title": "Block synchronization across servers",
     "implementations": 0
+  },
+  {
+    "slug": "302f",
+    "authors": [
+      "Fredrik Liljegren <@fiddur@aurboda.net>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-302f-quantpub-federated-personal-metrics-for-quantified-self-sharing/8919",
+    "dateReceived": "2026-10-02",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/942",
+    "title": "QuantPub \u2014 federated personal metrics for quantified-self sharing",
+    "implementations": 0
+  },
+  {
+    "slug": "6757",
+    "authors": [
+      "Evan Prodromou <evanp@socialwebfoundation.org>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/evanp/fep/issues",
+    "dateReceived": "2026-10-02",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/941",
+    "title": "Content License Metadata in ActivityPub",
+    "implementations": 0
   }
 ]
