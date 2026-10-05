@@ -1908,5 +1908,17 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/941",
     "title": "Content License Metadata in ActivityPub",
     "implementations": 0
+  },
+  {
+    "slug": "4f18",
+    "authors": [
+      "Evan Prodromou <evanp@socialwebfoundation.org>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://codeberg.org/evanp/fep/issues",
+    "dateReceived": "2026-10-05",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/946",
+    "title": "ActivityPub Network Time",
+    "implementations": 0
   }
 ]

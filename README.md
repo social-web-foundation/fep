@@ -201,6 +201,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-070c: Block synchronization across servers](./fep/070c/fep-070c.md) | `DRAFT` | [#934](https://codeberg.org/fediverse/fep/issues/934) | 2026-09-30 | - |
 | [FEP-302f: QuantPub — federated personal metrics for quantified-self sharing](./fep/302f/fep-302f.md) | `DRAFT` | [#942](https://codeberg.org/fediverse/fep/issues/942) | 2026-10-02 | - |
 | [FEP-6757: Content License Metadata in ActivityPub](./fep/6757/fep-6757.md) | `DRAFT` | [#941](https://codeberg.org/fediverse/fep/issues/941) | 2026-10-02 | - |
+| [FEP-4f18: ActivityPub Network Time](./fep/4f18/fep-4f18.md) | `DRAFT` | [#946](https://codeberg.org/fediverse/fep/issues/946) | 2026-10-05 | - |
 
 ## License
 

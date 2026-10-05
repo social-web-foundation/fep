@@ -2,8 +2,9 @@
 slug: "4f18"
 authors: Evan Prodromou <evanp@socialwebfoundation.org>
 status: DRAFT
-dateReceived: 2026-10-03
 discussionsTo: https://codeberg.org/evanp/fep/issues
+dateReceived: 2026-10-05
+trackingIssue: https://codeberg.org/fediverse/fep/issues/946
 ---
 # FEP-4f18: ActivityPub Network Time
 
