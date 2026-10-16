@@ -1,0 +1,27 @@
+name: Build and deploy FEP website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-site:
+    runs-on: codeberg-tiny-lazy
+    container:
+      image: python:3.13-alpine
+    steps:
+      # nodejs required by `checkout` action
+      - run: apk add --no-cache nodejs
+      - uses: https://data.forgejo.org/actions/checkout@v7
+
+      - run: pip install ./scripts
+      - run: pytest scripts
+      - run: ./scripts/create_site_pages.py
+      - run: mkdocs build --config-file scripts/mkdocs.yml
+
+      - uses: https://codeberg.org/git-pages/action@v2
+        with:
+          site: 'https://${{ forge.repository_owner }}.codeberg.page/fep/'
+          token: ${{ forge.token }}
+          source: scripts/site/
