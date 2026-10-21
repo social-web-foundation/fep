@@ -82,8 +82,8 @@ To produce a canonical 'ap' URI, the following operations MUST be performed:
 
 Implementers MUST support the [did:key] method. Other DID methods SHOULD NOT be used, as it might hinder interoperability.
 
->[!NOTE]
->The following additional DID methods are being considered: [did:web](https://w3c-ccg.github.io/did-method-web/), [did:dns](https://danubetech.github.io/did-method-dns/), [did:webvh](https://identity.foundation/didwebvh/) (formerly `did:tdw`) and [did:fedi](https://arcanican.is/excerpts/did-method-fedi.html).
+> [!NOTE]
+> The following additional DID methods are being considered: [did:web](https://w3c-ccg.github.io/did-method-web/), [did:dns](https://danubetech.github.io/did-method-dns/), [did:webvh](https://identity.foundation/didwebvh/), [did:vh](https://swcurran.github.io/didvh/next/) and [did:fedi](https://web.archive.org/web/20251007015620/https://arcanican.is/excerpts/did-method-fedi/).
 
 DID documents SHOULD contain Ed25519 public keys represented as verification methods with `Multikey` type (as defined in the [Controlled Identifiers][Multikey] specification).
 
