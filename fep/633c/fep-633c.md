@@ -75,6 +75,8 @@ The same URI serves a human-readable namespace document, which indexes these ter
 
 - **`shaer:hasGuardians`** — `xsd:boolean`. Advisory hint that the `Actor` responsible for this object is a ward (has guardians).
 - **`shaer:helpRequest`** — `xsd:boolean`. Marks a direct `Note` as a ward's call for help to its guardians (see 5.2.1). Guardian-side clients MAY render it as an alert; everyone else safely ignores it.
+- **`shaer:helpPickup`** — the URI of a `shaer:helpRequest` note. On a direct `Note` from a guardian: notice that this guardian is attending to that request (see 5.2.2).
+- **`shaer:helpHandled`** — the URI of a `shaer:helpRequest` note. On a direct `Note` from a guardian: notice that the request has been dealt with and needs no further attention (see 5.2.2).
 
 `shaer:hasGuardians` is a routing hint for observing implementations: it tells a remote server "interactions with this object should be treated as involving a guarded actor, so route reports/approvals to the author's guardians." It MUST NOT affect regular delivery, rendering, or storage, and MUST be safely ignorable by non-observing implementations.
 
@@ -341,6 +343,37 @@ The in-protocol form of a call for help is a `Note` carrying `shaer:helpRequest:
 - Client software **SHOULD** show the ward exactly what will be shared and ask for confirmation before sending: the ward learns what leaves the device, and accidental invocations stay harmless.
 - Escalation is not reporting. Sending a `Flag` to the subject's origin server is a follow-up decision **by a guardian** (5.1); implementations **MUST NOT** auto-file a `Flag` as a side effect of a ward's call for help.
 - Guardian-side implementations **MAY** render a `shaer:helpRequest` note distinctly (an alert with the evidence up front) and offer the follow-up actions of 5.1. Non-observing servers need nothing: the note reads as a normal direct message with an image.
+
+#### 5.2.2 Attending to a call for help (`shaer:helpPickup`, `shaer:helpHandled`)
+
+A call for help reaches every guardian at once (§5.2.1), so the guardians need a way to tell each other and the ward that one of them has it. Two markers carry that, over the same delivery as the request itself.
+
+A marker is an ordinary direct `Note` naming the request it concerns twice: as `inReplyTo`, which is plain [ActivityStreams2] and needs no knowledge of this FEP, and as the value of `shaer:helpPickup` or `shaer:helpHandled`.
+
+```json
+{
+  "type": "Note",
+  "attributedTo": "https://gran.example/actor",
+  "to": ["https://kid.example/actor", "https://parent.example/actor"],
+  "inReplyTo": "https://kids.example/notes/help-1",
+  "shaer:helpPickup": "https://kids.example/notes/help-1",
+  "content": "I am looking at this."
+}
+```
+
+- A marker **MUST** be addressed to the ward **and** to the ward's other guardians. The ward learns that someone came; the co-guardians learn they need not all drop everything.
+- A marker **MUST** carry human-readable `content`, so that on a server which does not know these terms it remains an ordinary direct message that still says what happened. This is the same degradation path as `shaer:helpRequest`.
+- A marker **MUST NOT** decide anything. It is a notice, not a decision in the sense of §3.5: no set, no threshold, no window.
+
+Three rules govern how markers are read. None of them follows from the shape, and each exists because the failure it prevents is silent.
+
+1. **A pickup does not expire, and is not exclusive.** Pickups accumulate. An implementation **MUST NOT** treat a later pickup as replacing an earlier one, and **MUST NOT** expire one by the passage of time. Two guardians answering the same request is harmless; two guardians each doing nothing because each believed the other had claimed it is not. A claim that quietly lapses is worse still, because it leaves a request that is being worked on looking untouched.
+
+2. **Handled is terminal.** There is no undo and no reopen, and an implementation **MUST NOT** offer either. If the concern is still live it is raised as a **new** request (§5.2.1): the record is added to, never rewritten. The state of a request is therefore just which markers exist, rather than a machine that can be driven backwards.
+
+3. **When in doubt, open.** Anything that is not an explicit `shaer:helpHandled` marker **MUST** be read as a request still waiting — an empty list, a row that cannot be parsed, a marker of a kind the implementation does not recognise. Note that this inverts the safe failure used elsewhere in this FEP: a gate that cannot decide denies (§3.5), but here the dangerous outcome is not an unanswered request, it is one that everybody believes has been answered.
+
+> **Suggestion (non-normative).** A guardian that has left a ward (§3.3) may still hold that ward's earlier requests in view. For that guardian they are neither open nor handled, and an implementation MAY show them as a third state — no longer yours — rather than forcing them into either. That state SHOULD stay local and MUST NOT be federated as `shaer:helpHandled`: marking a request handled is a claim about a child one no longer guards, and it would tell the remaining guardians that something was dealt with by someone who is no longer there. Keeping it local is safe because guardianship never ends at the last guardian (§3.4), so the request is still open for someone who can act on it.
 
 ### 5.3 Follows and subscriptions are gated
 
