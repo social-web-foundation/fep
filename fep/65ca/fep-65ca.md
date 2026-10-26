@@ -2,8 +2,9 @@
 slug: "65ca"
 authors: Daniel Supernault <danielsupernault@gmail.com>
 status: DRAFT
-dateReceived: 2026-10-26
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-65ca/8952
+dateReceived: 2026-10-26
+trackingIssue: https://codeberg.org/fediverse/fep/issues/956
 ---
 # FEP-65ca: Common Client Configuration
 

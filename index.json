@@ -1920,5 +1920,17 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/946",
     "title": "ActivityPub Network Time",
     "implementations": 0
+  },
+  {
+    "slug": "65ca",
+    "authors": [
+      "Daniel Supernault <danielsupernault@gmail.com>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-65ca/8952",
+    "dateReceived": "2026-10-26",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/956",
+    "title": "Common Client Configuration",
+    "implementations": 0
   }
 ]
