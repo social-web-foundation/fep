@@ -2,9 +2,10 @@
 slug: "d1cb"
 authors: Matthias Pfefferle <@pfefferle@notiz.blog>
 status: DRAFT
-dateReceived: 2026-10-27
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-d1cb-same-origin-actor-re-identification/8884
 relatedFeps: FEP-7628
+dateReceived: 2026-10-27
+trackingIssue: https://codeberg.org/fediverse/fep/issues/963
 ---
 # FEP-d1cb: Same-origin actor re-identification
 

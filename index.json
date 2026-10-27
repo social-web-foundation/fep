@@ -1932,5 +1932,20 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/959",
     "title": "Common Client Configuration",
     "implementations": 0
+  },
+  {
+    "slug": "d1cb",
+    "authors": [
+      "Matthias Pfefferle <@pfefferle@notiz.blog>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-d1cb-same-origin-actor-re-identification/8884",
+    "relatedFeps": [
+      "FEP-7628"
+    ],
+    "dateReceived": "2026-10-27",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/963",
+    "title": "Same-origin actor re-identification",
+    "implementations": 0
   }
 ]
