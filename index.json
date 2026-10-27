@@ -1928,8 +1928,8 @@
     ],
     "status": "DRAFT",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-65ca/8952",
-    "dateReceived": "2026-10-26",
-    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/956",
+    "dateReceived": "2026-10-27",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/959",
     "title": "Common Client Configuration",
     "implementations": 0
   }
