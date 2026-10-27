@@ -2,9 +2,8 @@
 slug: "65ca"
 authors: Daniel Supernault <danielsupernault@gmail.com>
 status: DRAFT
-discussionsTo: https://socialhub.activitypub.rocks/t/fep-65ca/8952
 dateReceived: 2026-10-26
-trackingIssue: https://codeberg.org/fediverse/fep/issues/956
+discussionsTo: https://socialhub.activitypub.rocks/t/fep-65ca/8952
 ---
 # FEP-65ca: Common Client Configuration
 
@@ -12,7 +11,7 @@ trackingIssue: https://codeberg.org/fediverse/fep/issues/956
 
 Third-party fediverse clients routinely need to know what a server will accept before a user presses "post": how many attachments, which file types and sizes, how long a post, bio or alt text can be, whether usernames can change, and where a user goes to reset their password. Today this information is software-specific, undocumented, hardcoded into clients, or discovered only after a request is rejected.
 
-This proposal defines a discovery endpoint at `/.well-known/activitypub-client-config` that links to a JSON document describing a server's media upload limits, composer limits, account limits, and human-facing account pages, in a software-neutral format.
+This proposal defines a discovery endpoint at `/.well-known/activitypub-client-config` that links to a JSON document describing a server's media upload limits, composer limits, account limits, and human-facing account pages, in a software-neutral format. Unauthenticated requests receive the limits of a default account; servers whose limits depend on the account MAY return the effective limits of the signed-in account when the request is authenticated.
 
 ## Motivation
 
@@ -39,7 +38,9 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 - **Discovery document**: the JSON document served at `/.well-known/activitypub-client-config`.
 - **Configuration document**: the JSON document linked from the discovery document, defined in this FEP.
 - **Limit field**: a member of the configuration document whose value is a numeric bound (for example `max_length` or `max_bytes`).
-- **Baseline account**: a standard, newly registered account on the server, with no elevated role or special allowances.
+- **Default account**: an account with the role and permissions a server gives to a regular member who is allowed to post, without elevated allowances or extra restrictions. On servers where newly registered accounts cannot post, the default account is the lowest role that can. On servers with closed registration, such as single-user, invite-only or personal servers, it is the typical posting account.
+- **Default document**: a configuration document describing the default account.
+- **Account-scoped document**: a configuration document describing the effective limits of the account that made an authenticated request. See [Account-scoped configuration](#account-scoped-configuration).
 
 ## Discovery
 
@@ -86,10 +87,41 @@ Fetching the `href` MUST return HTTP status `200`, a `Content-Type` of `applicat
 
 These requirements apply to both the discovery document and the configuration document.
 
-- **No authentication.** Both documents MUST be retrievable without authentication. A server MUST return the same document to every requester, authenticated or not. This FEP describes limits for a baseline account only.
-- **CORS.** Both responses MUST include `Access-Control-Allow-Origin: *` so that browser-based clients on other origins can read them.
-- **Caching.** Servers SHOULD send `Cache-Control` with a `max-age` between 3600 and 86400 seconds, and SHOULD send an `ETag` or `Last-Modified` header. Clients SHOULD cache both documents, SHOULD revalidate at least once every 24 hours, and SHOULD refetch the configuration document when the server rejects a request in a way that contradicts the cached configuration.
+- **Public access.** Both documents MUST be retrievable without authentication. An unauthenticated request for the configuration document MUST return the default document. The discovery document MUST be the same for every requester.
+- **CORS.** Both responses MUST include `Access-Control-Allow-Origin: *` so that browser-based clients on other origins can read them. Servers SHOULD also include `Access-Control-Expose-Headers: ETag`.
+- **Caching.** For the discovery document and the default document, servers SHOULD send `Cache-Control` with a `max-age` between 3600 and 86400 seconds, and SHOULD send an `ETag` or `Last-Modified` header. Clients SHOULD cache both documents, SHOULD revalidate at least once every 24 hours, and SHOULD refetch the configuration document when the server rejects a request in a way that contradicts the cached configuration. Account-scoped documents have additional caching rules, described below.
 - **Size.** Clients MAY refuse to process a configuration document larger than 256 KiB.
+
+### Account-scoped configuration
+
+On many servers, limits depend on the account: its role, plan, trust level or age. A newly registered account might not be allowed to post at all, while authors and editors have generous upload limits. A server MAY return an account-scoped document when the request for the configuration document is authenticated, so that a client gets the limits of the account it is signed in with.
+
+Support is OPTIONAL. A server that does not support it returns the default document to every requester.
+
+#### Server requirements
+
+A server that supports account-scoped documents:
+
+- MUST select the document using only the `Authorization` request header, carrying a credential the server accepts for its client API, typically an OAuth 2.0 bearer token ([RFC 6750]). It MUST NOT select the document using cookies or other ambient credentials.
+- SHOULD accept any credential that is valid for the account, regardless of the OAuth scopes it was granted, because the document only describes what the account is allowed to do.
+- MUST return the default document with status `200` when the `Authorization` header is absent, invalid or expired. It MUST NOT respond with `401` or `403`, so that the endpoint stays usable for every client.
+- MUST set `scope` to `"account"` in an account-scoped document, and MUST set `account_scope_supported` to `true` in every configuration document it serves, default or account-scoped.
+- MUST describe, in an account-scoped document, the limits the server will enforce for that account at the time of the request, after applying roles, plans, trust levels and any per-account restrictions. An account that cannot post at all is described with `composer.allowed` set to `false`.
+- MUST make each account-scoped document stand alone. Clients MUST NOT merge it with the default document, and members absent from it are undeclared, as in any configuration document.
+- MUST include `Vary: Authorization` on every configuration document response, default or account-scoped.
+- MUST send `Cache-Control: private` on account-scoped responses, MUST NOT send `public` or `s-maxage` on them, and SHOULD use a `max-age` no greater than 3600 seconds.
+- MUST answer a CORS preflight (`OPTIONS`) request for the configuration document with `Access-Control-Allow-Origin: *`, `Access-Control-Allow-Methods: GET` and `Access-Control-Allow-Headers: Authorization`. Browsers send a preflight before any cross-origin request carrying an `Authorization` header.
+
+`Access-Control-Allow-Origin: *` remains valid for authenticated requests because a bearer token is sent as an ordinary request header, not as a browser credential. Browser clients MUST NOT set `credentials: "include"` on this request.
+
+#### Client behavior
+
+- Clients SHOULD fetch the default document before the user signs in, for example to show registration and sign-in links, or limits during onboarding.
+- After sign-in, when `account_scope_supported` is `true`, clients SHOULD fetch the configuration document again with the account's credential, and SHOULD use the account-scoped document for that account.
+- Clients MUST check `scope`. If an authenticated request returns a document whose `scope` is `"default"` or absent, the credential was not accepted or the server does not support account-scoped documents, and the limits may not match the signed-in account.
+- Clients MUST cache account-scoped documents per account, and MUST NOT use one account's document for another account. Clients that support several accounts on the same server MUST keep a separate document for each.
+- Clients SHOULD refetch the account-scoped document when the account's credential changes, and when the server rejects a request in a way that contradicts it, because roles and plans can change at any time.
+- Clients MUST only send a credential to a configuration document on the same origin as the API the credential was issued for.
 
 ## Configuration Document
 
@@ -129,13 +161,15 @@ Lengths are measured on the text as the client submits it, before server-side pr
 
 #### Advisory nature
 
-The configuration document is advisory. Servers MUST continue to enforce their limits independently, and clients MUST continue to handle rejection errors. A server MAY grant some accounts limits that differ from the baseline account; this FEP does not express those differences.
+The configuration document is advisory. Servers MUST continue to enforce their limits independently, and clients MUST continue to handle rejection errors. A default document describes the default account. Other accounts may have different limits, which a server can express through an [account-scoped document](#account-scoped-configuration).
 
 ### Top-level members
 
 | Member         | Type   | Required | Description |
 |----------------|--------|----------|-------------|
 | `version`      | string | Yes      | Configuration document version, for example `"1.0"`. |
+| `scope`        | string | No       | `"default"` for a default document, `"account"` for an account-scoped document. Absent means `"default"`. |
+| `account_scope_supported` | boolean | No | Whether the server returns account-scoped documents for authenticated requests. |
 | `software`     | object | No       | `name` (string) and `version` (string) of the server software. Informational only; clients SHOULD NOT branch behavior on it when the information they need is present elsewhere in the document. |
 | `length_unit`  | string | No       | Length counting unit. See [Length counting](#length-counting). |
 | `media`        | object | No       | Media upload limits. See [Media](#media). |
@@ -233,6 +267,7 @@ Images and videos may share a post, up to 10 attachments in total:
 
 | Member             | Type             | Description |
 |--------------------|------------------|-------------|
+| `allowed`          | boolean          | Whether the account may create posts. `false` means it cannot post at all, for example a read-only role. Default documents SHOULD NOT set this to `false`, since the default account is by definition allowed to post. |
 | `max_length`       | limit            | Maximum length of the post body. |
 | `url_weight`       | integer or null  | If an integer, every URL in the post body counts as exactly this many length units, regardless of its actual length. If `null` or absent, URLs are counted literally. |
 | `mention_counting` | string           | `full` (default): a mention such as `@alice@example.com` counts in full. `local_part`: only `@alice` counts; the `@domain` part is free. |
@@ -409,18 +444,19 @@ This FEP intentionally does not cover:
 
 - Server statistics, software identification and federation capabilities, which belong in NodeInfo.
 - Rate limits, which change too often and vary per request to be usefully cached.
-- Per-account or per-role limits. This document describes the baseline account only.
+- Describing accounts other than the requester, or listing a server's roles and plans. An account-scoped document describes only the account that made the request.
 - OAuth and authentication endpoint discovery, which belongs in [RFC 8414] authorization server metadata.
 - Moderation policies and rule text. The `links` object points to these pages but does not reproduce them.
 
 ## Security and Privacy Considerations
 
-- **Public data only.** Both documents are public and identical for every requester. They MUST NOT contain per-user data, secrets or internal infrastructure details.
+- **Data exposure.** The discovery document and the default document are public. They MUST NOT contain per-user data, secrets or internal infrastructure details. An account-scoped document is visible only to the holder of the account's credential, and MUST NOT contain identifiers or contact details such as account IDs, usernames or email addresses.
+- **Shared caches.** Servers behind a CDN or reverse proxy MUST ensure that authenticated requests for the configuration document are neither answered from nor stored in a shared cache. [RFC 9111] already forbids shared caches from storing responses to requests carrying `Authorization` unless the response explicitly allows it, which is why `public` and `s-maxage` are not allowed on account-scoped responses. Some CDNs still need explicit configuration.
 - **Server enforcement.** A malicious or buggy client can ignore this document entirely, so servers MUST enforce every limit independently.
 - **Link safety.** Clients SHOULD show the destination host before opening a link from the `links` object, especially when it differs from the server's host.
 - **Regular expressions.** A hostile server could publish a `pattern` designed to cause excessive backtracking. Clients SHOULD bound the time spent evaluating `pattern`, and SHOULD fall back to `allowed_characters` and length checks when evaluation fails or times out.
 - **Media metadata.** When a media type rule has `strips_metadata` set to `false` or absent, clients SHOULD inform users that embedded metadata such as GPS location may be published, and SHOULD offer to remove it before upload.
-- **Fingerprinting.** Because the documents do not vary by requester and require no authentication, fetching them reveals nothing about the user beyond the fact that a client is interacting with the server.
+- **Fingerprinting.** The discovery document and the default document require no authentication, so fetching them reveals nothing about the user beyond the fact that a client is interacting with the server. An authenticated request identifies the account to the server, which already knows it from the client's other API calls.
 
 ## IANA Considerations
 
@@ -447,11 +483,13 @@ Discovery document at `https://example.social/.well-known/activitypub-client-con
 }
 ```
 
-Configuration document at `https://example.social/api/client-config/1.0`:
+Default document at `https://example.social/api/client-config/1.0`:
 
 ```json
 {
   "version": "1.0",
+  "scope": "default",
+  "account_scope_supported": true,
   "software": { "name": "examplesoft", "version": "2.4.0" },
   "length_unit": "code_points",
   "media": {
@@ -485,6 +523,7 @@ Configuration document at `https://example.social/api/client-config/1.0`:
     "focal_point": false
   },
   "composer": {
+    "allowed": true,
     "max_length": 2000,
     "url_weight": 23,
     "mention_counting": "local_part",
@@ -571,6 +610,55 @@ Configuration document at `https://example.social/api/client-config/1.0`:
 }
 ```
 
+### Account-scoped example
+
+A blog server where new accounts are read-only subscribers, and authors can post and upload. An author's client sends its bearer token:
+
+```http
+GET /api/client-config/1.0 HTTP/1.1
+Host: example.blog
+Authorization: Bearer 6f1c9e...
+```
+
+The server responds with the author's effective limits:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Cache-Control: private, max-age=600
+Vary: Authorization
+ETag: "a91f3c"
+```
+
+```json
+{
+  "version": "1.0",
+  "scope": "account",
+  "account_scope_supported": true,
+  "length_unit": "code_points",
+  "media": {
+    "max_attachments": 10,
+    "min_attachments": 0,
+    "types": [
+      {
+        "id": "image",
+        "mime_types": ["image/jpeg", "image/png", "image/webp"],
+        "max_bytes": 8000000
+      }
+    ]
+  },
+  "composer": {
+    "allowed": true,
+    "max_length": null,
+    "content_types": ["text/html", "text/markdown"],
+    "visibility": ["public", "followers"]
+  }
+}
+```
+
+The same request made with a subscriber's token returns a document with `"scope": "account"` and `"composer": { "allowed": false }`. The same request made with no token, or with an expired one, returns the default document with `"scope": "default"`.
+
 ## JSON Schema
 
 Non-normative [JSON Schema] files are published alongside this FEP: `discovery.schema.json` for the discovery document, and `client-config.schema.json` for the configuration document. Where a schema and this document disagree, this document is authoritative.
@@ -586,6 +674,8 @@ Non-normative [JSON Schema] files are published alongside this FEP: `discovery.s
 - [RFC 8615] M. Nottingham, Well-Known Uniform Resource Identifiers (URIs), 2019
 - [RFC 8414] M. Jones, N. Sakimura, J. Bradley, OAuth 2.0 Authorization Server Metadata, 2018
 - [RFC 6238] D. M'Raihi et al., TOTP: Time-Based One-Time Password Algorithm, 2011
+- [RFC 6750] M. Jones, D. Hardt, The OAuth 2.0 Authorization Framework: Bearer Token Usage, 2012
+- [RFC 9111] R. Fielding, M. Nottingham, J. Reschke, HTTP Caching, 2022
 - [WebAuthn] W3C, Web Authentication: An API for accessing Public Key Credentials
 - [ECMA-262] Ecma International, ECMAScript Language Specification
 - [UAX #29] Unicode Standard Annex #29, Unicode Text Segmentation
@@ -599,6 +689,8 @@ Non-normative [JSON Schema] files are published alongside this FEP: `discovery.s
 [RFC 8615]: https://tools.ietf.org/html/rfc8615
 [RFC 8414]: https://tools.ietf.org/html/rfc8414
 [RFC 6238]: https://tools.ietf.org/html/rfc6238
+[RFC 6750]: https://tools.ietf.org/html/rfc6750
+[RFC 9111]: https://tools.ietf.org/html/rfc9111
 [WebAuthn]: https://www.w3.org/TR/webauthn/
 [ECMA-262]: https://tc39.es/ecma262/
 [UAX #29]: https://www.unicode.org/reports/tr29/

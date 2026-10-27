@@ -4,62 +4,148 @@
   "title": "FEP-65ca Common Client Configuration 1.x",
   "description": "Non-normative schema for the FEP-65ca configuration document. Where this schema and the FEP text disagree, the FEP text is authoritative.",
   "type": "object",
-  "required": ["version"],
+  "required": [
+    "version"
+  ],
   "properties": {
-    "version": { "type": "string", "pattern": "^1\\.[0-9]+$" },
+    "version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+$"
+    },
+    "scope": {
+      "enum": [
+        "default",
+        "account"
+      ]
+    },
+    "account_scope_supported": {
+      "type": "boolean"
+    },
     "software": {
       "type": "object",
       "properties": {
-        "name": { "type": "string" },
-        "version": { "type": "string" }
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
       }
     },
-    "length_unit": { "enum": ["code_points", "graphemes", "utf16", "bytes"] },
-    "media": { "$ref": "#/$defs/media" },
-    "composer": { "$ref": "#/$defs/composer" },
-    "accounts": { "$ref": "#/$defs/accounts" },
-    "links": { "$ref": "#/$defs/links" },
+    "length_unit": {
+      "enum": [
+        "code_points",
+        "graphemes",
+        "utf16",
+        "bytes"
+      ]
+    },
+    "media": {
+      "$ref": "#/$defs/media"
+    },
+    "composer": {
+      "$ref": "#/$defs/composer"
+    },
+    "accounts": {
+      "$ref": "#/$defs/accounts"
+    },
+    "links": {
+      "$ref": "#/$defs/links"
+    },
     "extensions": {
       "type": "object",
-      "propertyNames": { "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*:" }
+      "propertyNames": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*:"
+      }
     }
   },
   "$defs": {
     "limit": {
       "description": "A non-negative integer bound. null means no limit, 0 means not allowed.",
-      "type": ["integer", "null"],
+      "type": [
+        "integer",
+        "null"
+      ],
       "minimum": 0
     },
-    "count": { "type": "integer", "minimum": 0 },
-    "httpsUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
-    "absoluteUri": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*:" },
-    "mimeType": { "type": "string", "pattern": "^[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$" },
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "httpsUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "absoluteUri": {
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*:"
+    },
+    "mimeType": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9!#$&^_.+-]+/[a-zA-Z0-9!#$&^_.+-]+$"
+    },
     "mediaType": {
       "type": "object",
-      "required": ["id", "mime_types"],
+      "required": [
+        "id",
+        "mime_types"
+      ],
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
         "mime_types": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/mimeType" }
+          "items": {
+            "$ref": "#/$defs/mimeType"
+          }
         },
-        "max_attachments": { "$ref": "#/$defs/limit" },
+        "max_attachments": {
+          "$ref": "#/$defs/limit"
+        },
         "combinable_with": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "type": "string", "minLength": 1 }
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
-        "max_bytes": { "$ref": "#/$defs/limit" },
-        "max_width": { "$ref": "#/$defs/limit" },
-        "max_height": { "$ref": "#/$defs/limit" },
-        "max_pixels": { "$ref": "#/$defs/limit" },
-        "min_duration_seconds": { "$ref": "#/$defs/count" },
-        "max_duration_seconds": { "$ref": "#/$defs/limit" },
-        "max_frame_rate": { "type": ["number", "null"], "minimum": 0 },
-        "strips_metadata": { "type": "boolean" },
-        "transcodes": { "type": "boolean" }
+        "max_bytes": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_width": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_height": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_pixels": {
+          "$ref": "#/$defs/limit"
+        },
+        "min_duration_seconds": {
+          "$ref": "#/$defs/count"
+        },
+        "max_duration_seconds": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_frame_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "strips_metadata": {
+          "type": "boolean"
+        },
+        "transcodes": {
+          "type": "boolean"
+        }
       }
     },
     "imageRule": {
@@ -68,59 +154,122 @@
         "mime_types": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/mimeType" }
+          "items": {
+            "$ref": "#/$defs/mimeType"
+          }
         },
-        "max_bytes": { "$ref": "#/$defs/limit" },
-        "max_width": { "$ref": "#/$defs/limit" },
-        "max_height": { "$ref": "#/$defs/limit" }
+        "max_bytes": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_width": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_height": {
+          "$ref": "#/$defs/limit"
+        }
       }
     },
     "media": {
       "type": "object",
       "properties": {
-        "max_attachments": { "$ref": "#/$defs/limit" },
-        "min_attachments": { "$ref": "#/$defs/count" },
-        "max_total_bytes": { "$ref": "#/$defs/limit" },
-        "types": { "type": "array", "items": { "$ref": "#/$defs/mediaType" } },
+        "max_attachments": {
+          "$ref": "#/$defs/limit"
+        },
+        "min_attachments": {
+          "$ref": "#/$defs/count"
+        },
+        "max_total_bytes": {
+          "$ref": "#/$defs/limit"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mediaType"
+          }
+        },
         "alt_text": {
           "type": "object",
           "properties": {
-            "max_length": { "$ref": "#/$defs/limit" },
-            "required": { "type": "boolean" }
+            "max_length": {
+              "$ref": "#/$defs/limit"
+            },
+            "required": {
+              "type": "boolean"
+            }
           }
         },
-        "focal_point": { "type": "boolean" }
+        "focal_point": {
+          "type": "boolean"
+        }
       }
     },
     "composer": {
       "type": "object",
       "properties": {
-        "max_length": { "$ref": "#/$defs/limit" },
-        "url_weight": { "type": ["integer", "null"], "minimum": 0 },
-        "mention_counting": { "enum": ["full", "local_part"] },
+        "allowed": {
+          "type": "boolean"
+        },
+        "max_length": {
+          "$ref": "#/$defs/limit"
+        },
+        "url_weight": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "mention_counting": {
+          "enum": [
+            "full",
+            "local_part"
+          ]
+        },
         "content_types": {
           "type": "array",
           "uniqueItems": true,
-          "items": { "$ref": "#/$defs/mimeType" }
+          "items": {
+            "$ref": "#/$defs/mimeType"
+          }
         },
         "content_warning": {
           "type": "object",
           "properties": {
-            "supported": { "type": "boolean" },
-            "max_length": { "$ref": "#/$defs/limit" },
-            "counts_toward_max_length": { "type": "boolean" }
+            "supported": {
+              "type": "boolean"
+            },
+            "max_length": {
+              "$ref": "#/$defs/limit"
+            },
+            "counts_toward_max_length": {
+              "type": "boolean"
+            }
           }
         },
         "polls": {
           "type": "object",
           "properties": {
-            "supported": { "type": "boolean" },
-            "min_options": { "$ref": "#/$defs/count" },
-            "max_options": { "$ref": "#/$defs/limit" },
-            "max_option_length": { "$ref": "#/$defs/limit" },
-            "multiple_choice": { "type": "boolean" },
-            "min_expiration_seconds": { "$ref": "#/$defs/count" },
-            "max_expiration_seconds": { "$ref": "#/$defs/limit" }
+            "supported": {
+              "type": "boolean"
+            },
+            "min_options": {
+              "$ref": "#/$defs/count"
+            },
+            "max_options": {
+              "$ref": "#/$defs/limit"
+            },
+            "max_option_length": {
+              "$ref": "#/$defs/limit"
+            },
+            "multiple_choice": {
+              "type": "boolean"
+            },
+            "min_expiration_seconds": {
+              "$ref": "#/$defs/count"
+            },
+            "max_expiration_seconds": {
+              "$ref": "#/$defs/limit"
+            }
           }
         },
         "visibility": {
@@ -128,43 +277,83 @@
           "uniqueItems": true,
           "items": {
             "anyOf": [
-              { "enum": ["public", "unlisted", "followers", "direct", "local"] },
-              { "$ref": "#/$defs/absoluteUri" }
+              {
+                "enum": [
+                  "public",
+                  "unlisted",
+                  "followers",
+                  "direct",
+                  "local"
+                ]
+              },
+              {
+                "$ref": "#/$defs/absoluteUri"
+              }
             ]
           }
         },
         "editing": {
           "type": "object",
           "properties": {
-            "supported": { "type": "boolean" },
-            "window_seconds": { "$ref": "#/$defs/limit" },
-            "max_edits": { "$ref": "#/$defs/limit" }
+            "supported": {
+              "type": "boolean"
+            },
+            "window_seconds": {
+              "$ref": "#/$defs/limit"
+            },
+            "max_edits": {
+              "$ref": "#/$defs/limit"
+            }
           }
         },
         "scheduling": {
           "type": "object",
           "properties": {
-            "supported": { "type": "boolean" },
-            "min_lead_seconds": { "$ref": "#/$defs/count" },
-            "max_lead_seconds": { "$ref": "#/$defs/limit" },
-            "max_scheduled": { "$ref": "#/$defs/limit" }
+            "supported": {
+              "type": "boolean"
+            },
+            "min_lead_seconds": {
+              "$ref": "#/$defs/count"
+            },
+            "max_lead_seconds": {
+              "$ref": "#/$defs/limit"
+            },
+            "max_scheduled": {
+              "$ref": "#/$defs/limit"
+            }
           }
         },
         "quotes": {
           "type": "object",
-          "properties": { "supported": { "type": "boolean" } }
+          "properties": {
+            "supported": {
+              "type": "boolean"
+            }
+          }
         },
-        "max_mentions": { "$ref": "#/$defs/limit" },
-        "max_hashtags": { "$ref": "#/$defs/limit" },
+        "max_mentions": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_hashtags": {
+          "$ref": "#/$defs/limit"
+        },
         "languages": {
           "type": "object",
           "properties": {
             "supported": {
-              "type": ["array", "null"],
+              "type": [
+                "array",
+                "null"
+              ],
               "uniqueItems": true,
-              "items": { "type": "string", "minLength": 1 }
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
             },
-            "required": { "type": "boolean" }
+            "required": {
+              "type": "boolean"
+            }
           }
         }
       }
@@ -175,9 +364,16 @@
         "username": {
           "type": "object",
           "properties": {
-            "min_length": { "$ref": "#/$defs/count" },
-            "max_length": { "$ref": "#/$defs/limit" },
-            "pattern": { "type": "string", "pattern": "^\\^.*\\$$" },
+            "min_length": {
+              "$ref": "#/$defs/count"
+            },
+            "max_length": {
+              "$ref": "#/$defs/limit"
+            },
+            "pattern": {
+              "type": "string",
+              "pattern": "^\\^.*\\$$"
+            },
             "allowed_characters": {
               "type": "array",
               "uniqueItems": true,
@@ -194,38 +390,74 @@
                 ]
               }
             },
-            "case_insensitive": { "type": "boolean" },
-            "changeable": { "type": "boolean" },
-            "change_cooldown_seconds": { "$ref": "#/$defs/count" }
+            "case_insensitive": {
+              "type": "boolean"
+            },
+            "changeable": {
+              "type": "boolean"
+            },
+            "change_cooldown_seconds": {
+              "$ref": "#/$defs/count"
+            }
           }
         },
         "display_name": {
           "type": "object",
-          "properties": { "max_length": { "$ref": "#/$defs/limit" } }
+          "properties": {
+            "max_length": {
+              "$ref": "#/$defs/limit"
+            }
+          }
         },
         "bio": {
           "type": "object",
-          "properties": { "max_length": { "$ref": "#/$defs/limit" } }
+          "properties": {
+            "max_length": {
+              "$ref": "#/$defs/limit"
+            }
+          }
         },
         "fields": {
           "type": "object",
           "properties": {
-            "max_count": { "$ref": "#/$defs/limit" },
-            "name_max_length": { "$ref": "#/$defs/limit" },
-            "value_max_length": { "$ref": "#/$defs/limit" },
-            "link_verification": { "type": "boolean" }
+            "max_count": {
+              "$ref": "#/$defs/limit"
+            },
+            "name_max_length": {
+              "$ref": "#/$defs/limit"
+            },
+            "value_max_length": {
+              "$ref": "#/$defs/limit"
+            },
+            "link_verification": {
+              "type": "boolean"
+            }
           }
         },
-        "avatar": { "$ref": "#/$defs/imageRule" },
-        "header": { "$ref": "#/$defs/imageRule" },
-        "max_pinned_posts": { "$ref": "#/$defs/limit" },
-        "max_featured_tags": { "$ref": "#/$defs/limit" },
-        "storage_quota_bytes": { "$ref": "#/$defs/limit" },
+        "avatar": {
+          "$ref": "#/$defs/imageRule"
+        },
+        "header": {
+          "$ref": "#/$defs/imageRule"
+        },
+        "max_pinned_posts": {
+          "$ref": "#/$defs/limit"
+        },
+        "max_featured_tags": {
+          "$ref": "#/$defs/limit"
+        },
+        "storage_quota_bytes": {
+          "$ref": "#/$defs/limit"
+        },
         "password": {
           "type": "object",
           "properties": {
-            "min_length": { "$ref": "#/$defs/count" },
-            "max_length": { "$ref": "#/$defs/limit" }
+            "min_length": {
+              "$ref": "#/$defs/count"
+            },
+            "max_length": {
+              "$ref": "#/$defs/limit"
+            }
           }
         },
         "two_factor": {
@@ -236,20 +468,36 @@
               "uniqueItems": true,
               "items": {
                 "anyOf": [
-                  { "enum": ["totp", "webauthn", "email"] },
-                  { "$ref": "#/$defs/absoluteUri" }
+                  {
+                    "enum": [
+                      "totp",
+                      "webauthn",
+                      "email"
+                    ]
+                  },
+                  {
+                    "$ref": "#/$defs/absoluteUri"
+                  }
                 ]
               }
             }
           }
         },
-        "follow_approval": { "type": "boolean" },
+        "follow_approval": {
+          "type": "boolean"
+        },
         "migration": {
           "type": "object",
           "properties": {
-            "move_in": { "type": "boolean" },
-            "move_out": { "type": "boolean" },
-            "max_aliases": { "$ref": "#/$defs/limit" }
+            "move_in": {
+              "type": "boolean"
+            },
+            "move_out": {
+              "type": "boolean"
+            },
+            "max_aliases": {
+              "$ref": "#/$defs/limit"
+            }
           }
         }
       }
@@ -257,20 +505,48 @@
     "links": {
       "type": "object",
       "properties": {
-        "registration": { "$ref": "#/$defs/httpsUrl" },
-        "login": { "$ref": "#/$defs/httpsUrl" },
-        "password_reset": { "$ref": "#/$defs/httpsUrl" },
-        "account_settings": { "$ref": "#/$defs/httpsUrl" },
-        "two_factor_settings": { "$ref": "#/$defs/httpsUrl" },
-        "account_deletion": { "$ref": "#/$defs/httpsUrl" },
-        "data_export": { "$ref": "#/$defs/httpsUrl" },
-        "about": { "$ref": "#/$defs/httpsUrl" },
-        "rules": { "$ref": "#/$defs/httpsUrl" },
-        "terms": { "$ref": "#/$defs/httpsUrl" },
-        "privacy": { "$ref": "#/$defs/httpsUrl" },
-        "support": { "$ref": "#/$defs/httpsUrl" },
-        "status": { "$ref": "#/$defs/httpsUrl" },
-        "donate": { "$ref": "#/$defs/httpsUrl" }
+        "registration": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "login": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "password_reset": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "account_settings": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "two_factor_settings": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "account_deletion": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "data_export": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "about": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "rules": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "terms": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "privacy": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "support": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "status": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "donate": {
+          "$ref": "#/$defs/httpsUrl"
+        }
       }
     }
   }
