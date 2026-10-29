@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://w3id.org/fep/2fa1#Form">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+    <rdfs:label xml:lang="en">Form</rdfs:label>
+    <rdfs:comment xml:lang="en">A scheme of categories that say what kind of thing an object is within its own object type, such as a concert or a workshop for an event, or a documentary or a tutorial for a video. It contains no categories defined by this FEP; a category states its membership with inScheme.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/2fa1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/2fa1#Topic">
+    <rdfs:comment xml:lang="en">A scheme of categories that say what an object is about: its subject matter. It contains no categories defined by this FEP; a category states its membership with inScheme.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/2fa1"/>
+    <rdfs:label xml:lang="en">Topic</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/2fa1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dcterms:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/fep/2fa1</dcterms:identifier>
+    <dc:rights xml:lang="en">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</dc:rights>
+    <dcterms:license rdf:resource="https://creativecommons.org/publicdomain/zero/1.0/"/>
+    <dcterms:title>FEP-2fa1: Federated Categories</dcterms:title>
+    <dcterms:abstract>An object can list its categories as Category objects within tag. Such a category has a stable IRI and can relate to an equivalent or a similar category in another vocabulary, allowing applications that use different category vocabularies to map and interpret classifications in federation.</dcterms:abstract>
+    <dc:creator>André Menrath &lt;andre.menrath@posteo.de&gt;</dc:creator>
+    <dcterms:dateSubmitted rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-09-30</dcterms:dateSubmitted>
+  </rdf:Description>
+</rdf:RDF>

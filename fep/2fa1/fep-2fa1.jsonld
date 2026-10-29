@@ -1,0 +1,73 @@
+{
+  "@context": {
+    "Form": "https://w3id.org/fep/2fa1#Form",
+    "Topic": "https://w3id.org/fep/2fa1#Topic",
+    "Category": {
+      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@context": {
+        "name": "http://www.w3.org/2004/02/skos/core#prefLabel",
+        "nameMap": { "@id": "http://www.w3.org/2004/02/skos/core#prefLabel", "@container": "@language" },
+        "summary": "http://www.w3.org/2004/02/skos/core#definition",
+        "summaryMap": { "@id": "http://www.w3.org/2004/02/skos/core#definition", "@container": "@language" }
+      }
+    },
+    "inScheme": { "@id": "http://www.w3.org/2004/02/skos/core#inScheme", "@type": "@id" },
+    "broader": { "@id": "http://www.w3.org/2004/02/skos/core#broader", "@type": "@id" },
+    "exactMatch": { "@id": "http://www.w3.org/2004/02/skos/core#exactMatch", "@type": "@id" },
+    "closeMatch": { "@id": "http://www.w3.org/2004/02/skos/core#closeMatch", "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "https://w3id.org/fep/2fa1#Topic",
+      "@type": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "A scheme of categories that say what an object is about: its subject matter. It contains no categories defined by this FEP; a category states its membership with inScheme."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/2fa1"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Topic"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/2fa1#Form",
+      "@type": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "A scheme of categories that say what kind of thing an object is within its own object type, such as a concert or a workshop for an event, or a documentary or a tutorial for a video. It contains no categories defined by this FEP; a category states its membership with inScheme."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/2fa1"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Form"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/2fa1",
+      "@type": "http://www.w3.org/2002/07/owl#Ontology",
+      "http://purl.org/dc/elements/1.1/creator": "André Menrath <andre.menrath@posteo.de>",
+      "http://purl.org/dc/elements/1.1/rights": {
+        "@language": "en",
+        "@value": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
+      },
+      "http://purl.org/dc/terms/abstract": "An object can list its categories as Category objects within tag. Such a category has a stable IRI and can relate to an equivalent or a similar category in another vocabulary, allowing applications that use different category vocabularies to map and interpret classifications in federation.",
+      "http://purl.org/dc/terms/dateSubmitted": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2026-09-30"
+      },
+      "http://purl.org/dc/terms/identifier": {
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+        "@value": "https://w3id.org/fep/2fa1"
+      },
+      "http://purl.org/dc/terms/license": {
+        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "http://purl.org/dc/terms/title": "FEP-2fa1: Federated Categories"
+    }
+  ]
+}
