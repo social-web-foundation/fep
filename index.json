@@ -1947,5 +1947,19 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/963",
     "title": "Same-origin actor re-identification",
     "implementations": 0
+  },
+  {
+    "slug": "f799",
+    "authors": [
+      "Hong Minhee <hong@minhee.org>",
+      "DongU Kang <hinata@natadeco.com>"
+    ],
+    "type": "implementation",
+    "status": "DRAFT",
+    "discussionsTo": "https://activitypub.space/topic/793/fep-f799-coordinated-inbox-delivery-suspension",
+    "dateReceived": "2026-10-29",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/966",
+    "title": "Coordinated Inbox Delivery Suspension",
+    "implementations": 0
   }
 ]

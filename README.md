@@ -204,6 +204,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-4f18: ActivityPub Network Time](./fep/4f18/fep-4f18.md) | `DRAFT` | [#946](https://codeberg.org/fediverse/fep/issues/946) | 2026-10-05 | - |
 | [FEP-65ca: Common Client Configuration](./fep/65ca/fep-65ca.md) | `DRAFT` | [#956](https://codeberg.org/fediverse/fep/issues/956) | 2026-10-27 | - |
 | [FEP-d1cb: Same-origin actor re-identification](./fep/d1cb/fep-d1cb.md) | `DRAFT` | [#963](https://codeberg.org/fediverse/fep/issues/963) | 2026-10-27 | - |
+| [FEP-f799: Coordinated Inbox Delivery Suspension](./fep/f799/fep-f799.md) | `DRAFT` | [#966](https://codeberg.org/fediverse/fep/issues/966) | 2026-10-29 | - |
 
 ## License
 

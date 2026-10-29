@@ -5,8 +5,9 @@ authors:
   - DongU Kang <hinata@natadeco.com>
 type: implementation
 status: DRAFT
-dateReceived: 2026-10-24
 discussionsTo: https://activitypub.space/topic/793/fep-f799-coordinated-inbox-delivery-suspension
+dateReceived: 2026-10-29
+trackingIssue: https://codeberg.org/fediverse/fep/issues/966
 ---
 
 # FEP-f799: Coordinated Inbox Delivery Suspension
