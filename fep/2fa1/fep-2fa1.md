@@ -59,37 +59,11 @@ The iCalendar specification [RFC-5545] has a similar extension that addresses th
 The FEP uses the name `Category` rather than `Concept` because "Category" is a term already familiar to ActivityPub application developers and because it describes the application-level role of these objects.
 Technically, the properties defined for `Category` correspond to a subset of [SKOS]; the FEP provides some ActivityPub-friendly JSON-LD aliases via [FEP-888d] so that implementations can use the model without requiring pure SKOS terminology.
 
+A *shared vocabulary* is a list of categories that an application or community publishes for others to reuse and map to.
+
 The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT" and "MAY" are to be interpreted as described in [RFC-2119]. Boxes marked Note, Warning or Important are non-normative.
 
-## Publishing categories
-
-- If an object has categories, they MUST be listed as `Category` objects in its `tag`.
-- Category `id`s used on an object SHOULD share the same origin as the object that contains them, putting remote IRIs in the mapping properties.
-- A publisher of a list of categories that others are meant to reuse or use as a starter pack (an application or community vocabulary)
-  - MUST make every `id` publicly dereferenceable.
-  - SHOULD give each category a description via `summary` or `summaryMap`.
-  - SHOULD add `exactMatch` or `closeMatch` to categories of widely known vocabularies (other Fediverse applications, Wikidata, schema.org) where one exists.
-
-## Consuming categories
-
-A consumer
-
-- MUST look for a limited number of `Category` objects in an object's `tag`.
-- MUST NOT require `Category` objects in an object's `tag`.
-- MUST NOT change how an object is processed at protocol level (as its `type` does) by a category, replace its `type`, or act as access control or as a content warning.
-- MUST NOT automatically add remote previously unknown categories to the list of categories or tags its users can choose from.
-- MUST always treat categories as claims by the publisher of the object.
-- MUST match two categories if they have the same IRI, or one has a a trusted claim to an `exactMatch` to the other's IRI, or both have a trusted `extactMatch` to the same IRI.
-- SHOULD NOT apply unknown `closeMatch` and `broader` mappings automatically. Those are suggestions and need mapping of a trusted human source.
-- SHOULD NOT require category IRIs to be dereferenceable in order to accept an object or the category.
-- SHOULD NOT rank or hide objects only because they have no category at all or no category it understands without user initiated filtering.
-- SHOULD limit how many categories it processes and how far it follows `broader` and matches.
-- MAY treat the `name` of a remote `Category` that it cannot map to its own categories as a `Hashtag`.
-- MAY ignore, remap or limit categories.
-- MAY ignore `inScheme`.
-
-
-## Terms and vocabulary
+## The Category Object
 
 Implementers of this FEP SHOULD add the FEP's context to their objects whenever the data contains a `Category` object.
 
@@ -103,22 +77,51 @@ Implementers of this FEP SHOULD add the FEP's context to their objects whenever 
 }
 ```
 
-### Category
+`Category` and its properties are aliases for the corresponding [SKOS] terms:
 
-`Category` and its properties are aliases for the corresponding [SKOS] terms.
+| Property                 | Any category               | Category of a *shared vocabulary*  | Meaning (SKOS term)                     |
+|--------------------------|----------------------------|------------------------------------|-----------------------------------------|
+| `type`                   | MUST                       | MUST                               | `Category` (`skos:Concept`)             |
+| `id`                     | MUST                       | MUST, and publicly dereferenceable | IRI identifying the category            |
+| `nameMap` / `name`       | MUST (`nameMap` preferred) | MUST, as `nameMap`                 | label (`skos:prefLabel`)                |
+| `summary` / `summaryMap` | MAY                        | SHOULD                             | short description (`skos:definition`)   |
+| `inScheme`               | SHOULD                     | SHOULD                             | classification scheme (`skos:inScheme`) |
+| `exactMatch`             | SHOULD                     | SHOULD                             | same meaning (`skos:exactMatch`)        |
+| `closeMatch`             | MAY                        | SHOULD                             | similar meaning (`skos:closeMatch`)     |
+| `broader`                | MAY                        | MAY                                | more general category (`skos:broader`)  |
 
-| Property for a `Category` | Requirement | Semantics                       | SKOS term (`@id`) |
-| ------------------------- | ----------- | ------------------------------- | ----------------- |
-| `type`                    | MUST        | `Category`                      | `skos:Concept`    |
-| `id`                      | MUST        | IRI identifying the category    | —                 |
-| `name` / `nameMap`        | SHOULD      | Label                           | `skos:prefLabel`  |
-| `summary` / `summaryMap`  | MAY         | Short description               | `skos:definition` |
-| `inScheme`                | MAY         | Classification scheme           | `skos:inScheme`   |
-| `broader`                 | MAY         | More general category           | `skos:broader`    |
-| `exactMatch`              | MAY         | Category with the same meaning  | `skos:exactMatch` |
-| `closeMatch`              | MAY         | Category with a similar meaning | `skos:closeMatch` |
+### Publishing categories
 
-When nested in an object, a `Category` SHOULD be represented as a stub containing `type` and `id`, and optionally `inScheme` and `exactMatch` if available. Consumers can use the IRI to identify the category and may dereference it for additional information.
+- A category's IRI MUST be stable. It MUST NOT be reused for a different meaning.
+- A publisher of a *shared vocabulary* MUST follow the "Category of a *shared vocabulary*" column above.
+- Where a category's IRI is dereferenceable, a retired category SHOULD answer `410 Gone`, preferably with a `Tombstone` (`formerType`: `Category`).
+- An instance or an actor MAY publish its own categories and its own scheme. It SHOULD relate them to categories of widely known vocabularies (other Fediverse applications, Wikidata, schema.org) with `exactMatch` or `closeMatch` where one exists.
+
+### Tagging an object with categories
+
+- If an object has categories, they MUST be listed as `Category` objects in its `tag`. Entries of other types (`Hashtag`, `Mention`, `Emoji`, etc.) are not affected.
+- Category `id`s used in `tag` SHOULD be on the origin of the object's `id`. Remote IRIs belong in `exactMatch`, `closeMatch` or `broader`, not in `id`.
+- A `Category` that is embedded in an object's `tag` SHOULD be a stub: `type`, `id`, a label and, if known, `inScheme` and `exactMatch`. If its `id` is not dereferenceable, it SHOULD also carry what a consumer could otherwise only fetch.
+
+### Consuming categories
+
+A consumer
+
+- MUST NOT require `Category` objects in an object's `tag`.
+- MUST treat categories an object has as claims by the publisher of the object.
+- MUST NOT require category IRIs to be dereferenceable in order to accept an object.
+- MUST NOT let a category change how an object is processed at protocol level, replace its `type`, or act as access control or as a content warning.
+- MUST NOT automatically add a remote category to its local categories (the categories its users can choose from). Relating a remote category to an existing local category is allowed.
+- MUST, when it relates categories, treat two as the same if they have the same IRI, or one has a trusted `exactMatch` to the other's IRI, or both have a trusted `exactMatch` to the same IRI.
+- SHOULD NOT require category IRIs to be dereferenceable in order to use a category.
+- SHOULD NOT apply `closeMatch` and `broader` automatically. Those are suggestions and need mapping of a trusted human source.
+- SHOULD NOT rank or hide objects only because they carry no category, or none it understands, without user initiated filtering.
+- SHOULD limit how many categories it processes and how far it follows `broader` and matches.
+- MAY, for a remote category it cannot map to one of its own, use the category's label (the closest-language entry of `nameMap`, or `name`) in the way it uses the name of a `Hashtag`.
+- MAY ignore, remap or limit categories.
+- MAY ignore `inScheme`.
+
+## Vocabulary
 
 <section id="Topic" resource="https://w3id.org/fep/2fa1#Topic" typeof="skos:ConceptScheme">
 <h3>Topic</h3>
@@ -303,6 +306,8 @@ The application can adopt this FEP step by step:
 
 When creating a new category on an instance an administrator may provide mappings from a community vocabulary.
 This allows interoperability to grow from existing category systems rather than requiring a universal taxonomy first.
+Small community calendars can converge on a regional vocabulary, namely the one that most of them map to.
+Nothing in this FEP requires or names such a vocabulary or its curator, and anyone can publish one.
 
 ### Appendix B: Sharing category mappings
 
