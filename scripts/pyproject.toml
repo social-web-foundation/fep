@@ -20,4 +20,4 @@ dependencies = [
 packages = ["fep_tools"]
 
 [tool.pytest.ini_options]
-norecursedirs = ["docs", "build"]
+norecursedirs = ["docs", "build", "scripts/site"]
