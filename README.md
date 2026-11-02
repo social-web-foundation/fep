@@ -205,6 +205,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-65ca: Common Client Configuration](./fep/65ca/fep-65ca.md) | `DRAFT` | [#956](https://codeberg.org/fediverse/fep/issues/956) | 2026-10-27 | - |
 | [FEP-d1cb: Same-origin actor re-identification](./fep/d1cb/fep-d1cb.md) | `DRAFT` | [#963](https://codeberg.org/fediverse/fep/issues/963) | 2026-10-27 | - |
 | [FEP-f799: Coordinated Inbox Delivery Suspension](./fep/f799/fep-f799.md) | `DRAFT` | [#966](https://codeberg.org/fediverse/fep/issues/966) | 2026-10-29 | - |
+| [FEP-336f: Creator Collaborations](./fep/336f/fep-336f.md) | `DRAFT` | [#970](https://codeberg.org/fediverse/fep/issues/970) | 2026-11-02 | - |
 
 ## License
 

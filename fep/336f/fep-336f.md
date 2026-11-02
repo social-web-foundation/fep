@@ -2,8 +2,9 @@
 slug: "336f"
 authors: Daniel Supernault <danielsupernault@gmail.com>
 status: DRAFT
-dateReceived: 2026-10-29
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-336f/8963
+dateReceived: 2026-11-02
+trackingIssue: https://codeberg.org/fediverse/fep/issues/970
 ---
 # FEP-336f: Creator Collaborations
 
