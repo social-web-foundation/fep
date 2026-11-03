@@ -3,7 +3,12 @@ import pytest
 
 from urllib.parse import urlparse
 
-from scripts.fep_tools import get_fep_ids, FepFile, title_to_slug
+from scripts.fep_tools import (
+    get_fep_ids,
+    get_registered_fep_ids,
+    title_to_slug,
+    FepFile,
+)
 
 
 def is_valid_url(url: str):
@@ -15,16 +20,24 @@ def is_valid_url(url: str):
     return True
 
 
-@pytest.mark.parametrize("fep", list(get_fep_ids()))
-def test_fep_front_matter(fep):
-    fep_file = FepFile(fep)
+@pytest.fixture(scope="session")
+def registered_fep_ids():
+    return get_registered_fep_ids()
+
+
+@pytest.mark.parametrize("fep_id", list(get_fep_ids()))
+def test_fep_front_matter(fep_id, registered_fep_ids):
+    fep_file = FepFile(fep_id)
     parsed_frontmatter = fep_file.parsed_frontmatter
+    is_registered = fep_id in registered_fep_ids
 
     assert "status" in parsed_frontmatter
     assert parsed_frontmatter["status"] in ["DRAFT", "FINAL", "WITHDRAWN"]
-    assert parsed_frontmatter["slug"] == fep
+    assert parsed_frontmatter["slug"] == fep_id
     assert "dateReceived" in parsed_frontmatter
     assert "discussionsTo" in parsed_frontmatter
+    if is_registered:
+        assert "trackingIssue" in parsed_frontmatter
 
     assert isinstance(parsed_frontmatter["authors"], list)
 
@@ -56,9 +69,9 @@ def test_fep_front_matter(fep):
         assert all(type(item) == str for item in parsed_frontmatter["tags"])
 
 
-@pytest.mark.parametrize("fep", list(get_fep_ids()))
-def test_fep_content(fep):
-    fep_file = FepFile(fep)
+@pytest.mark.parametrize("fep_id", list(get_fep_ids()))
+def test_fep_content(fep_id):
+    fep_file = FepFile(fep_id)
 
     content = fep_file.content
 
@@ -70,11 +83,11 @@ def test_fep_content(fep):
 
     title = titles[0]
 
-    begin_title = f"# FEP-{fep}: "
+    begin_title = f"# FEP-{fep_id}: "
 
     assert title.startswith(begin_title)
     true_title = title.removeprefix(begin_title)
 
     expected_slug = title_to_slug(true_title)
 
-    assert expected_slug == fep
+    assert expected_slug == fep_id

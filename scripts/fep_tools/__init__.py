@@ -1,9 +1,14 @@
 from dataclasses import dataclass
 import glob
 import hashlib
+import json
 
 from .fep_file import FepFile
 from .table import table_for_feps
+
+
+INDEX_JSON_PATH = "index.json"
+README_PATH = "README.md"
 
 
 def title_to_slug(title: str):
@@ -13,6 +18,13 @@ def title_to_slug(title: str):
 def get_fep_ids():
     for fep in glob.glob("fep/*"):
         yield fep.removeprefix("fep/")
+
+
+def get_registered_fep_ids():
+    with open(INDEX_JSON_PATH, "r") as index_file:
+        index = json.load(index_file)
+        for fep_data in index:
+            yield fep_data["slug"]
 
 
 def index():

@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "fep336f": "https://w3id.org/fep/336f#",
+    "gts": "https://gotosocial.org/ns#",
+    "CoauthorAuthorization": "fep336f:CoauthorAuthorization",
+    "coauthors": {
+      "@id": "fep336f:coauthors",
+      "@container": "@set"
+    },
+    "interactingObject": {
+      "@id": "gts:interactingObject",
+      "@type": "@id"
+    },
+    "interactionTarget": {
+      "@id": "gts:interactionTarget",
+      "@type": "@id"
+    }
+  }
+}

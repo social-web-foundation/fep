@@ -148,7 +148,7 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/34",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c390-identity-proofs/2726",
     "title": "Identity Proofs",
-    "implementations": 3
+    "implementations": 4
   },
   {
     "slug": "cb76",
@@ -1929,7 +1929,7 @@
     "status": "DRAFT",
     "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-65ca/8952",
     "dateReceived": "2026-10-27",
-    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/959",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/956",
     "title": "Common Client Configuration",
     "implementations": 0
   },
@@ -1946,6 +1946,32 @@
     "dateReceived": "2026-10-27",
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/963",
     "title": "Same-origin actor re-identification",
+    "implementations": 0
+  },
+  {
+    "slug": "f799",
+    "authors": [
+      "Hong Minhee <hong@minhee.org>",
+      "DongU Kang <hinata@natadeco.com>"
+    ],
+    "type": "implementation",
+    "status": "DRAFT",
+    "discussionsTo": "https://activitypub.space/topic/793/fep-f799-coordinated-inbox-delivery-suspension",
+    "dateReceived": "2026-10-29",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/966",
+    "title": "Coordinated Inbox Delivery Suspension",
+    "implementations": 0
+  },
+  {
+    "slug": "336f",
+    "authors": [
+      "Daniel Supernault <danielsupernault@gmail.com>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-336f/8963",
+    "dateReceived": "2026-11-02",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/970",
+    "title": "Creator Collaborations",
     "implementations": 0
   }
 ]
