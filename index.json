@@ -1973,5 +1973,17 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/970",
     "title": "Creator Collaborations",
     "implementations": 0
+  },
+  {
+    "slug": "f12e",
+    "authors": [
+      "Andr\u00e9 Menrath <andre.menrath@posteo.de>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-f12e-consent-respecting-attributions/8956",
+    "dateReceived": "2026-11-03",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/973",
+    "title": "Consent-respecting attributions",
+    "implementations": 0
   }
 ]

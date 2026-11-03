@@ -2,8 +2,9 @@
 slug: f12e
 authors: André Menrath <andre.menrath@posteo.de>
 status: DRAFT
-dateReceived: 2026-10-29
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-f12e-consent-respecting-attributions/8956
+dateReceived: 2026-11-03
+trackingIssue: https://codeberg.org/fediverse/fep/issues/973
 ---
 
 # FEP-f12e: Consent-respecting attributions
