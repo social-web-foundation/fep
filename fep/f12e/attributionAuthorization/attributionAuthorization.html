@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>attributionAuthorization</title>
+</head>
+<body>
+<section id="attributionAuthorization" resource="https://w3id.org/fep/f12e/attributionAuthorization" typeof="owl:ObjectProperty">
+<h1>attributionAuthorization</h1>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/f12e/attributionAuthorization</code></dd>
+<dt>Label</dt>
+<dd lang="en" property="rdfs:label">has an attribution authorization</dd>
+<dt>Comment</dt>
+<dd lang="en" property="rdfs:comment">References an <code>AttributionAuthorization</code> that proves the consent of the attributed party to be listed in the <code>attributions</code> Collection of an object.</dd>
+<dt>Domain</dt>
+<dd><a href="https://www.w3.org/ns/activitystreams#Relationship" property="rdfs:domain">Relationship</a></dd>
+<dt>Range</dt>
+<dd property="rdfs:range" resource="https://w3id.org/fep/f12e/AttributionAuthorization">An <a href="https://w3id.org/fep/f12e/AttributionAuthorization">AttributionAuthorization</a> (<code>@id</code>)</dd>
+<dt>Required</dt>
+<dd content="0" datatype="xsd:nonNegativeInteger" property="owl:minCardinality">No</dd>
+<dt>Functional</dt>
+<dd content="1" datatype="xsd:nonNegativeInteger" property="owl:maxCardinality">Yes</dd>
+<dt>Is defined by</dt>
+<dd><a href="https://w3id.org/fep/f12e" property="rdfs:isDefinedBy">FEP-f12e</a></dd>
+</dl>
+<pre lang="json" title="Example of an attributions item referencing its authorization">
+    <code>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/fep/f12e"
+  ],
+  "type": "Relationship",
+  "subject": "https://example.com/article/1",
+  "relationship": "https://schema.org/author",
+  "object": "https://example.org/actors/1",
+  "attributionAuthorization": "https://example.org/actors/1/attributions/1"
+}
+    </code>
+  </pre>
+</section>
+</body>
+</html>

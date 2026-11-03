@@ -1,0 +1,13 @@
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/fep/f12e/attributionAuthorization> a owl:ObjectProperty ;
+	rdfs:label "has an attribution authorization"@en ;
+	rdfs:comment "References an AttributionAuthorization that proves the consent of the attributed party to be listed in the attributions Collection of an object."@en ;
+	rdfs:domain as:Relationship ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:range <https://w3id.org/fep/f12e/AttributionAuthorization> ;
+	owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:minCardinality "0"^^xsd:nonNegativeInteger .

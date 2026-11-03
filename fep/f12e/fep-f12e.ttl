@@ -1,0 +1,47 @@
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/fep/f12e/AttributionAuthorization> a rdfs:Class ;
+	rdfs:label "Attribution Authorization"@en ;
+	rdfs:comment "A revocable approval stamp issued by an actor. Its object is the Relationship the actor consents to."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:seeAlso <https://w3id.org/fep/f12e/AttributionRequest>,
+		<https://w3id.org/fep/f12e/attributionAuthorization> ;
+	rdfs:subClassOf as:Object .
+
+<https://w3id.org/fep/f12e/AttributionRequest> a rdfs:Class ;
+	rdfs:label "Attribution Request"@en ;
+	rdfs:comment "An activity by which the publisher of an object asks an actor for consent to be listed in the attributions of that object. Its object is the Relationship the actor is asked to consent to."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:seeAlso <https://w3id.org/fep/f12e/AttributionAuthorization> ;
+	rdfs:subClassOf as:Activity .
+
+<https://w3id.org/fep/f12e/attributions> a owl:ObjectProperty ;
+	rdfs:label "Attributions Collection"@en ;
+	rdfs:comment "An ActivityStreams Collection of Relationship items that list the parties that have attributed importance to an object."@en ;
+	rdfs:domain as:Object ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:range as:Collection .
+
+<https://w3id.org/fep/f12e/attributionAuthorization> a owl:ObjectProperty ;
+	rdfs:label "has an attribution authorization"@en ;
+	rdfs:comment "References an AttributionAuthorization that proves the consent of the attributed party to be listed in the attributions Collection of an object."@en ;
+	rdfs:domain as:Relationship ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:range <https://w3id.org/fep/f12e/AttributionAuthorization> ;
+	owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:minCardinality "0"^^xsd:nonNegativeInteger .
+
+<https://w3id.org/fep/f12e> a owl:Ontology ;
+	dc:creator "André Menrath <andre.menrath@posteo.de>" ;
+	dc:rights "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"@en ;
+	dcterms:abstract "This document defines how to show, in a consent-respecting way, who has attributed importance to an ActivityPub object, for example as author, contributor or organizer." ;
+	dcterms:dateSubmitted "2026-10-29"^^xsd:date ;
+	dcterms:identifier "https://w3id.org/fep/f12e"^^xsd:anyURI ;
+	dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+	dcterms:title "FEP-f12e: Consent-respecting attributions" .
+

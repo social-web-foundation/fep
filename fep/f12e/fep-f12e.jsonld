@@ -1,0 +1,132 @@
+{
+  "@context": {
+    "AttributionAuthorization": "https://w3id.org/fep/f12e/AttributionAuthorization",
+    "AttributionRequest": "https://w3id.org/fep/f12e/AttributionRequest",
+    "attributionAuthorization": {
+      "@id": "https://w3id.org/fep/f12e/attributionAuthorization",
+      "@type": "@id"
+    },
+    "attributions": "https://w3id.org/fep/f12e/attributions"
+  },
+  "@graph": [
+    {
+      "@id": "https://w3id.org/fep/f12e/attributionAuthorization",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "References an AttributionAuthorization that proves the consent of the attributed party to be listed in the attributions Collection of an object."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Relationship"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/f12e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "has an attribution authorization"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://w3id.org/fep/f12e/AttributionAuthorization"
+      },
+      "http://www.w3.org/2002/07/owl#maxCardinality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "1"
+      },
+      "http://www.w3.org/2002/07/owl#minCardinality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "0"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/f12e/attributions",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "An ActivityStreams Collection of Relationship items that list the parties that have attributed importance to an object."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#domain": {
+        "@id": "https://www.w3.org/ns/activitystreams#Object"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/f12e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Attributions Collection"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#range": {
+        "@id": "https://www.w3.org/ns/activitystreams#Collection"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/f12e/AttributionAuthorization",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "A revocable approval stamp issued by an actor. Its object is the Relationship the actor consents to."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/f12e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Attribution Authorization"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+        {
+          "@id": "https://w3id.org/fep/f12e/AttributionRequest"
+        },
+        {
+          "@id": "https://w3id.org/fep/f12e/attributionAuthorization"
+        }
+      ],
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://www.w3.org/ns/activitystreams#Object"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/f12e/AttributionRequest",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "http://www.w3.org/2000/01/rdf-schema#comment": {
+        "@language": "en",
+        "@value": "An activity by which the publisher of an object asks an actor for consent to be listed in the attributions of that object. Its object is the Relationship the actor is asked to consent to."
+      },
+      "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": {
+        "@id": "https://w3id.org/fep/f12e"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#label": {
+        "@language": "en",
+        "@value": "Attribution Request"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#seeAlso": {
+        "@id": "https://w3id.org/fep/f12e/AttributionAuthorization"
+      },
+      "http://www.w3.org/2000/01/rdf-schema#subClassOf": {
+        "@id": "https://www.w3.org/ns/activitystreams#Activity"
+      }
+    },
+    {
+      "@id": "https://w3id.org/fep/f12e",
+      "@type": "http://www.w3.org/2002/07/owl#Ontology",
+      "http://purl.org/dc/elements/1.1/creator": "André Menrath <andre.menrath@posteo.de>",
+      "http://purl.org/dc/elements/1.1/rights": {
+        "@language": "en",
+        "@value": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication"
+      },
+      "http://purl.org/dc/terms/abstract": "This document defines how to show, in a consent-respecting way, who has attributed importance to an ActivityPub object, for example as author, contributor or organizer.",
+      "http://purl.org/dc/terms/dateSubmitted": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2026-10-29"
+      },
+      "http://purl.org/dc/terms/identifier": {
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+        "@value": "https://w3id.org/fep/f12e"
+      },
+      "http://purl.org/dc/terms/license": {
+        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "http://purl.org/dc/terms/title": "FEP-f12e: Consent-respecting attributions"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://w3id.org/fep/f12e/attributionAuthorization">
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has an attribution authorization</rdfs:label>
+    <rdfs:domain rdf:resource="https://www.w3.org/ns/activitystreams#Relationship"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/f12e"/>
+    <rdfs:range rdf:resource="https://w3id.org/fep/f12e/AttributionAuthorization"/>
+    <rdfs:comment xml:lang="en">References an AttributionAuthorization that proves the consent of the attributed party to be listed in the attributions Collection of an object.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/f12e/AttributionRequest">
+    <rdfs:comment xml:lang="en">An activity by which the publisher of an object asks an actor for consent to be listed in the attributions of that object. Its object is the Relationship the actor is asked to consent to.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://www.w3.org/ns/activitystreams#Activity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:seeAlso rdf:resource="https://w3id.org/fep/f12e/AttributionAuthorization"/>
+    <rdfs:label xml:lang="en">Attribution Request</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/f12e"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/f12e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dcterms:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://w3id.org/fep/f12e</dcterms:identifier>
+    <dc:rights xml:lang="en">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</dc:rights>
+    <dcterms:license rdf:resource="https://creativecommons.org/publicdomain/zero/1.0/"/>
+    <dcterms:title>FEP-f12e: Consent-respecting attributions</dcterms:title>
+    <dcterms:abstract>This document defines how to show, in a consent-respecting way, who has attributed importance to an ActivityPub object, for example as author, contributor or organizer.</dcterms:abstract>
+    <dc:creator>André Menrath &lt;andre.menrath@posteo.de&gt;</dc:creator>
+    <dcterms:dateSubmitted rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-10-29</dcterms:dateSubmitted>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/f12e/attributions">
+    <rdfs:domain rdf:resource="https://www.w3.org/ns/activitystreams#Object"/>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/f12e"/>
+    <rdfs:range rdf:resource="https://www.w3.org/ns/activitystreams#Collection"/>
+    <rdfs:label xml:lang="en">Attributions Collection</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="en">An ActivityStreams Collection of Relationship items that list the parties that have attributed importance to an object.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/fep/f12e/AttributionAuthorization">
+    <rdfs:seeAlso rdf:resource="https://w3id.org/fep/f12e/AttributionRequest"/>
+    <rdfs:seeAlso rdf:resource="https://w3id.org/fep/f12e/attributionAuthorization"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:comment xml:lang="en">A revocable approval stamp issued by an actor. Its object is the Relationship the actor consents to.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://www.w3.org/ns/activitystreams#Object"/>
+    <rdfs:label xml:lang="en">Attribution Authorization</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/fep/f12e"/>
+  </rdf:Description>
+</rdf:RDF>

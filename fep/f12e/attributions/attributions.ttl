@@ -1,0 +1,10 @@
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://w3id.org/fep/f12e/attributions> a owl:ObjectProperty ;
+	rdfs:label "Attributions Collection"@en ;
+	rdfs:comment "An ActivityStreams Collection of Relationship items that list the parties that have attributed importance to an object."@en ;
+	rdfs:domain as:Object ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:range as:Collection .

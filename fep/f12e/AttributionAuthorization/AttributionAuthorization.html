@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AttributionAuthorization</title>
+</head>
+<body>
+<section id="AttributionAuthorization" resource="https://w3id.org/fep/f12e/AttributionAuthorization" typeof="rdfs:Class">
+<h1>AttributionAuthorization</h1>
+<dl>
+<dt>URI</dt>
+<dd><code>https://w3id.org/fep/f12e/AttributionAuthorization</code></dd>
+<dt>Label</dt>
+<dd lang="en" property="rdfs:label">Attribution Authorization</dd>
+<dt>Comment</dt>
+<dd lang="en" property="rdfs:comment">A revocable approval stamp issued by an actor. Its <code>object</code> is the <code>Relationship</code> the actor consents to.</dd>
+<dt>Subclass of</dt>
+<dd><a href="https://www.w3.org/ns/activitystreams#Object" property="rdfs:subClassOf">Object</a></dd>
+<dt>See also</dt>
+<dd><a href="https://w3id.org/fep/f12e/attributionAuthorization" property="rdfs:seeAlso">attributionAuthorization</a> | <a href="https://w3id.org/fep/f12e/AttributionRequest" property="rdfs:seeAlso">AttributionRequest</a></dd>
+<dt>Is defined by</dt>
+<dd><a href="https://w3id.org/fep/f12e" property="rdfs:isDefinedBy">FEP-f12e</a></dd>
+</dl>
+<pre lang="json" title="Example of an AttributionAuthorization">
+    <code>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/fep/f12e"
+  ],
+  "type": "AttributionAuthorization",
+  "id": "https://example.org/actors/1/attributions/1",
+  "attributedTo": "https://example.org/actors/1",
+  "object": {
+    "type": "Relationship",
+    "subject": "https://example.com/article/1",
+    "relationship": "https://schema.org/author",
+    "object": "https://example.org/actors/1"
+  }
+}
+    </code>
+  </pre>
+</section>
+</body>
+</html>

@@ -1,0 +1,10 @@
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://w3id.org/fep/f12e/AttributionAuthorization> a rdfs:Class ;
+	rdfs:label "Attribution Authorization"@en ;
+	rdfs:comment "A revocable approval stamp issued by an actor. Its object is the Relationship the actor consents to."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:seeAlso <https://w3id.org/fep/f12e/AttributionRequest>,
+		<https://w3id.org/fep/f12e/attributionAuthorization> ;
+	rdfs:subClassOf as:Object .

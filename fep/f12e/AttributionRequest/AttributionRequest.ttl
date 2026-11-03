@@ -1,0 +1,9 @@
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://w3id.org/fep/f12e/AttributionRequest> a rdfs:Class ;
+	rdfs:label "Attribution Request"@en ;
+	rdfs:comment "An activity by which the publisher of an object asks an actor for consent to be listed in the attributions of that object. Its object is the Relationship the actor is asked to consent to."@en ;
+	rdfs:isDefinedBy <https://w3id.org/fep/f12e> ;
+	rdfs:seeAlso <https://w3id.org/fep/f12e/AttributionAuthorization> ;
+	rdfs:subClassOf as:Activity .

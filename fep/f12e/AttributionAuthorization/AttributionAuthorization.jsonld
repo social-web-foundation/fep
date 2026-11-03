@@ -1,0 +1,38 @@
+[
+  {
+    "@id": "https://w3id.org/fep/f12e/AttributionAuthorization",
+    "@type": [
+      "http://www.w3.org/2000/01/rdf-schema#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A revocable approval stamp issued by an actor. Its object is the Relationship the actor consents to."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/fep/f12e"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Attribution Authorization"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "https://w3id.org/fep/f12e/attributionAuthorization"
+      },
+      {
+        "@id": "https://w3id.org/fep/f12e/AttributionRequest"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://www.w3.org/ns/activitystreams#Object"
+      }
+    ]
+  }
+]
