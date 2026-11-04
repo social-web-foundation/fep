@@ -2,9 +2,10 @@
 slug: "2fa1"
 authors: André Menrath <andre.menrath@posteo.de>
 status: DRAFT
-dateReceived: 2026-10-29
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-2fa1-federated-categories/8957
 tags: ["category", "classification", "concept"]
+dateReceived: 2026-11-04
+trackingIssue: https://codeberg.org/fediverse/fep/issues/974
 ---
 
 # FEP-2fa1: Federated Categories
@@ -154,7 +155,6 @@ A consumer
 > [!NOTE]
 > Topic and Form are interoperability hints, not an ontology of the Fediverse. Whether something is a form, a genre or an object type is not decided here.
 
----
 
 *All following sections are non-normative.*
 

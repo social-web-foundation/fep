@@ -1985,5 +1985,22 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/973",
     "title": "Consent-respecting attributions",
     "implementations": 0
+  },
+  {
+    "slug": "2fa1",
+    "authors": [
+      "Andr\u00e9 Menrath <andre.menrath@posteo.de>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-2fa1-federated-categories/8957",
+    "tags": [
+      "category",
+      "classification",
+      "concept"
+    ],
+    "dateReceived": "2026-11-04",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/974",
+    "title": "Federated Categories",
+    "implementations": 0
   }
 ]

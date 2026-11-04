@@ -207,6 +207,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-f799: Coordinated Inbox Delivery Suspension](./fep/f799/fep-f799.md) | `DRAFT` | [#966](https://codeberg.org/fediverse/fep/issues/966) | 2026-10-29 | - |
 | [FEP-336f: Creator Collaborations](./fep/336f/fep-336f.md) | `DRAFT` | [#970](https://codeberg.org/fediverse/fep/issues/970) | 2026-11-02 | - |
 | [FEP-f12e: Consent-respecting attributions](./fep/f12e/fep-f12e.md) | `DRAFT` | [#973](https://codeberg.org/fediverse/fep/issues/973) | 2026-11-03 | - |
+| [FEP-2fa1: Federated Categories](./fep/2fa1/fep-2fa1.md) | `DRAFT` | [#974](https://codeberg.org/fediverse/fep/issues/974) | 2026-11-04 | - |
 
 ## License
 
