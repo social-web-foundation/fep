@@ -2002,5 +2002,17 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/974",
     "title": "Federated Categories",
     "implementations": 0
+  },
+  {
+    "slug": "5837",
+    "authors": [
+      "Daniel Supernault <danielsupernault@gmail.com>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-5837-content-credentials-for-media-attachments/8968",
+    "dateReceived": "2026-11-05",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/978",
+    "title": "Content Credentials for Media Attachments",
+    "implementations": 0
   }
 ]

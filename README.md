@@ -208,6 +208,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-336f: Creator Collaborations](./fep/336f/fep-336f.md) | `DRAFT` | [#970](https://codeberg.org/fediverse/fep/issues/970) | 2026-11-02 | - |
 | [FEP-f12e: Consent-respecting attributions](./fep/f12e/fep-f12e.md) | `DRAFT` | [#973](https://codeberg.org/fediverse/fep/issues/973) | 2026-11-03 | - |
 | [FEP-2fa1: Federated Categories](./fep/2fa1/fep-2fa1.md) | `DRAFT` | [#974](https://codeberg.org/fediverse/fep/issues/974) | 2026-11-04 | - |
+| [FEP-5837: Content Credentials for Media Attachments](./fep/5837/fep-5837.md) | `DRAFT` | [#978](https://codeberg.org/fediverse/fep/issues/978) | 2026-11-05 | - |
 
 ## License
 
