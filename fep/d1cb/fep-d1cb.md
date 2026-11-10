@@ -176,6 +176,10 @@ The receiver MUST NOT:
 
 If the receiver already has separate actors for the alias and the `id`, it SHOULD merge them into one actor and keep the relationships of both.
 
+The receiver applies a re-identification once. After the change, the `id` is known, so a repeated `Update` or any later `Update` is processed as a normal `Update` of the actor.
+
+The change is not reverted. If the receiver later gets an actor document with the alias as `id`, for example from a cache or embedded in an older activity, it MUST NOT create a new actor for it and MUST NOT replace the `id` with the alias. It resolves the alias as described above.
+
 ## Security considerations
 
 A document served from an origin is authoritative for identifiers on that origin. This is the same authority a receiver grants when it dereferences an `id`. This document does not require integrity proofs to verify a re-identification.
