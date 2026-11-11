@@ -361,6 +361,8 @@ Of course there is a lot of middle ground here. A reasonable approach that sits 
 * Loops
 * Mastodon
 * Pixelfed
+* Plamenu
+* WordPress
 
 ## References
 
