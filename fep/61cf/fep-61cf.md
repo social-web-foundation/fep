@@ -130,7 +130,11 @@ In an [ActivityPub] context, a remotely authenticated user will expect to be abl
 
 ### HTTP Signatures
 
-An OpenWebAuth signed request must have an `Authorization` header starting with the word `Signature` followed by the encoded HTTP signature. See [ActPubSig] for more details on signing Fediverse requests.
+OpenWebAuth signed requests use the same HTTP signatures as authenticated Fediverse POST requests. See [ActPubSig] for more details on signing Fediverse requests.
+
+When using [draft-cavage] signatures, an OpenWebAuth signed request must have an `Authorization` header starting with the word `Signature` followed by the encoded HTTP signature, as described in section 3 of the draft. This differs from ActivityPub signed POSTs which use the `Signature` header.
+
+[RFC9421] does not define the use of the `Authorization` header to carry signatures. In this case the `Signature` header is used.
 
 ### Target instance's login check
 
@@ -155,6 +159,7 @@ The implementation of this endpoint needs to request a login token from the targ
 - [Forte](https://codeberg.org/fortified/forte)
 - [Friendica](https://github.com/friendica/friendica) (partial)
 - [FedIAM](https://codeberg.org/FenTiger/FedIAM)
+- [django-auth-openwebauth](https://pypi.org/project/django-auth-openwebauth/)
 
 ## Security Considerations
 
@@ -178,15 +183,19 @@ OpenWebAuth involves redirecting the user's browser twice. It is important to ve
 
 The first redirection sends the user to their home instance's redirection endpoint (often `/magic`). If this endpoint is discovered via webfinger, the target instance should check that its hostname portion matches the hostname in the user's claimed ID.
 
-The second redirection sends the user back to the URL specified in the `bdest` query parameter. This redirection should only take place if
-* the token endpoint discovery step succeeded
-* the discovered token endpoint URL has the same origin as the `bdest` URL
+The second redirection sends the user back to the URL specified in the `bdest` query parameter. This redirection should only take place if the token endpoint discovery step succeeded and the discovered token endpoint URL has the same origin as the `bdest` URL.
 
 In any other case the home instance's redirection endpoint should return a suitable HTTP error code.
 
 ### Mixup attack
 
 The `zid=` query parameter may make a [MixUpAttack] easier to launch, as discussed briefly above. This does not apply to OpenWebAuth but should be considered carefully when trying to generalise the `zid=` mechanism to other authentication protocols.
+
+### Use of deprecated PKCS#1 1.5 encryption method
+
+Existing deployments of OpenWebAuth encrypt the returned token using the RSA PKCS#1 1.5 encryption method. The protocol does not allow this to be changed and so anyone wishing to interoperate with the existing network must make use of this method.
+
+PKCS#1 1.5 is [considered to be insecure](https://www.ietf.org/archive/id/draft-irtf-cfrg-rsa-guidance-05.html#name-rationale) and is being deprecated and phased out. Any future updates to the protocol should remove the use of PKCS #1 1.5 and allow this encryption step to be parameterised.
 
 ## References
 
@@ -197,6 +206,8 @@ The `zid=` query parameter may make a [MixUpAttack] easier to launch, as discuss
 
 [ActivityPub]: https://www.w3.org/TR/activitypub/
 [ActPubSig]: https://swicg.github.io/activitypub-http-signature/
+[draft-cavage]: https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-12
+[RFC9421]: https://www.rfc-editor.org/info/rfc9421/
 [MixUpAttack]: https://datatracker.ietf.org/doc/html/rfc9700#name-mix-up-attacks
 [OpenRedirectionAttack]: https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html#dangerous-url-redirects
 
