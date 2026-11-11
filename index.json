@@ -614,7 +614,7 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/263",
     "discussionsTo": "https://codeberg.org/fediverse/fep/issues/263",
     "title": "The OpenWebAuth Protocol",
-    "implementations": 5
+    "implementations": 6
   },
   {
     "slug": "73cd",
