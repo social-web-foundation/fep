@@ -2014,5 +2014,17 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/978",
     "title": "Content Credentials for Media Attachments",
     "implementations": 0
+  },
+  {
+    "slug": "c3ab",
+    "authors": [
+      "Jiwoon Kim <kimjiwoon75@gmail.com>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c3ab-referencing-existing-objects-in-client-to-server-create/8983",
+    "dateReceived": "2026-11-12",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/985",
+    "title": "Referencing Existing Objects in ActivityPub Client-to-Server Create",
+    "implementations": 0
   }
 ]

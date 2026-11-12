@@ -3,8 +3,9 @@ slug: "c3ab"
 authors:
   - "Jiwoon Kim <kimjiwoon75@gmail.com>"
 status: DRAFT
-dateReceived: 2026-11-12
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-c3ab-referencing-existing-objects-in-client-to-server-create/8983
+dateReceived: 2026-11-12
+trackingIssue: https://codeberg.org/fediverse/fep/issues/985
 ---
 # FEP-c3ab: Referencing Existing Objects in ActivityPub Client-to-Server Create
 
