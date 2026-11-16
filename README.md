@@ -210,6 +210,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-2fa1: Federated Categories](./fep/2fa1/fep-2fa1.md) | `DRAFT` | [#974](https://codeberg.org/fediverse/fep/issues/974) | 2026-11-04 | - |
 | [FEP-5837: Content Credentials for Media Attachments](./fep/5837/fep-5837.md) | `DRAFT` | [#978](https://codeberg.org/fediverse/fep/issues/978) | 2026-11-05 | - |
 | [FEP-c3ab: Referencing Existing Objects in ActivityPub Client-to-Server Create](./fep/c3ab/fep-c3ab.md) | `DRAFT` | [#985](https://codeberg.org/fediverse/fep/issues/985) | 2026-11-12 | - |
+| [FEP-c0a8: Queryable Governable Event Stores for Moderators](./fep/c0a8/fep-c0a8.md) | `DRAFT` | [#991](https://codeberg.org/fediverse/fep/issues/991) | 2026-11-16 | - |
 
 ## License
 

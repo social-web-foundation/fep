@@ -2026,5 +2026,17 @@
     "trackingIssue": "https://codeberg.org/fediverse/fep/issues/985",
     "title": "Referencing Existing Objects in ActivityPub Client-to-Server Create",
     "implementations": 0
+  },
+  {
+    "slug": "c0a8",
+    "authors": [
+      "Reese Armstrong <me@reeseric.ci>"
+    ],
+    "status": "DRAFT",
+    "discussionsTo": "https://socialhub.activitypub.rocks/t/fep-c0a8-queryable-governable-event-stores-for-moderators/8999",
+    "dateReceived": "2026-11-16",
+    "trackingIssue": "https://codeberg.org/fediverse/fep/issues/991",
+    "title": "Queryable Governable Event Stores for Moderators",
+    "implementations": 0
   }
 ]

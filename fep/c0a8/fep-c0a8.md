@@ -2,8 +2,9 @@
 slug: "c0a8"
 authors: [Reese Armstrong <me@reeseric.ci>]
 status: DRAFT
-dateReceived: 2026-11-16
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-c0a8-queryable-governable-event-stores-for-moderators/8999
+dateReceived: 2026-11-16
+trackingIssue: https://codeberg.org/fediverse/fep/issues/991
 ---
 # FEP-c0a8: Queryable Governable Event Stores for Moderators
 
