@@ -1,0 +1,8 @@
+{
+  "@context": {
+    "governableEvents": {
+      "@id": "https://w3id.org/fep/c0a8#governableEvents",
+      "@type": "@id"
+    }
+  }
+}
