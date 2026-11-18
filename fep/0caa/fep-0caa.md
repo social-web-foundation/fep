@@ -3,9 +3,10 @@ slug: "0caa"
 authors: [panos <@panos@catodon.rocks>]
 type: implementation
 status: DRAFT
-dateReceived: 2026-11-17
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-0caa-places-on-actors-and-objects/9000
 relatedFeps: [FEP-8a8e, FEP-ee3a, FEP-5feb, FEP-268d, FEP-844e, FEP-e03f]
+dateReceived: 2026-11-18
+trackingIssue: https://codeberg.org/fediverse/fep/issues/996
 ---
 # FEP-0caa: Places on actors and objects
 
