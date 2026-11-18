@@ -3,9 +3,10 @@ slug: "e03f"
 authors: [panos <@panos@catodon.rocks>]
 type: implementation
 status: DRAFT
-dateReceived: 2026-11-17
 discussionsTo: https://socialhub.activitypub.rocks/t/fep-e03f-place-search-between-servers/9001
 relatedFeps: [FEP-0caa, FEP-2677, FEP-5feb, FEP-268d, FEP-c180, FEP-844e, FEP-0151]
+dateReceived: 2026-11-18
+trackingIssue: https://codeberg.org/fediverse/fep/issues/997
 ---
 # FEP-e03f: Place search between servers
 
