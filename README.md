@@ -102,7 +102,7 @@ Do you have ideas to improve the FEP Process? Post your suggestions to the issue
 | [FEP-d556: Server-Level Actor Discovery Using WebFinger](./fep/d556/fep-d556.md) | `FINAL` | [#243](https://codeberg.org/fediverse/fep/issues/243) | 2024-01-20 | 2025-03-15 |
 | [FEP-3264: Federated Work Coordination](./fep/3264/fep-3264.md) | `DRAFT` | [#255](https://codeberg.org/fediverse/fep/issues/255) | 2024-01-31 | - |
 | [FEP-c5a1: To-do's](./fep/c5a1/fep-c5a1.md) | `DRAFT` | [#256](https://codeberg.org/fediverse/fep/issues/256) | 2024-01-31 | - |
-| [FEP-61cf: The OpenWebAuth Protocol](./fep/61cf/fep-61cf.md) | `DRAFT` | [#263](https://codeberg.org/fediverse/fep/issues/263) | 2024-02-06 | - |
+| [FEP-61cf: The OpenWebAuth Protocol](./fep/61cf/fep-61cf.md) | `FINAL` | [#263](https://codeberg.org/fediverse/fep/issues/263) | 2024-02-06 | 2026-11-16 |
 | [FEP-73cd: Migration User Stories](./fep/73cd/fep-73cd.md) | `DRAFT` | [#265](https://codeberg.org/fediverse/fep/issues/265) | 2024-02-07 | - |
 | [FEP-96ff: Explicit signalling of ActivityPub Semantics](./fep/96ff/fep-96ff.md) | `DRAFT` | [#272](https://codeberg.org/fediverse/fep/issues/272) | 2024-02-17 | - |
 | [FEP-6481: Specifying ActivityPub extension support with NodeInfo](./fep/6481/fep-6481.md) | `WITHDRAWN` | [#279](https://codeberg.org/fediverse/fep/issues/279) | 2024-03-12 | 2024-10-31 |
