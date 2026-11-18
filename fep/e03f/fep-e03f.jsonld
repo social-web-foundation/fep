@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "placeSearch": {
+      "@id": "https://w3id.org/fep/e03f#placeSearch",
+      "@type": "@id"
+    },
+    "placeCoverage": {
+      "@id": "https://w3id.org/fep/e03f#placeCoverage",
+      "@type": "@id"
+    }
+  }
+}
